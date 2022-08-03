@@ -10,6 +10,8 @@ import { NewEventComponent } from './new-event/new-event.component';
 import { ArchwizardModule } from 'angular-archwizard';
 import { UtilitiesModule } from '../utilities/utilities.module';
 import { FormsModule } from '@angular/forms';
+import { EventSapmleComponent } from './event-sapmle/event-sapmle.component';
+import { LocationComponent } from './location/location.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { FormsModule } from '@angular/forms';
     EventComponent,
     EventListComponent,
     CalendarComponent,
-    NewEventComponent
+    NewEventComponent,
+    EventSapmleComponent,
+    LocationComponent
   ],
   imports: [
     CommonModule,

@@ -10,6 +10,17 @@ import { Router } from '@angular/router';
 })
 export class EventListComponent implements OnInit {
 
+  editable = true;
+  eventDetail = {
+    "date": "",
+    "title": "",
+    "description": "",
+    "location": "",
+    "time_start": "",
+    "time_end": "",
+    "status": null,
+  }
+  eventSandbox;
   currentTab = true;
 
   spinnerLoading = false;
@@ -24,6 +35,18 @@ export class EventListComponent implements OnInit {
 
   ngOnInit(): void {
     this.gData();
+  }
+  seeDetail(obj) {
+    this.editable = true;
+    this.eventDetail = { ...obj }
+  }
+  editEvent() {
+    this.editable = false;
+    this.eventSandbox = { ...this.eventDetail }
+  }
+  cancelEditEvent() {
+    this.editable = true;
+    this.eventDetail = { ...this.eventSandbox }
   }
   changeTabs(tab) {
     this.currentTab = tab;
