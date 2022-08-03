@@ -3,11 +3,13 @@ let data = [
     "id": "tasks",
     "EN": {
       "title": "Tasks",
+
       "items": ["Task List", "Verify", "Đăng ký [Eng]", "Lịch tuần mẫu [Eng]", "Địa điểm [Eng]"]
+
     },
     "VN": {
       "title": "Công Việc",
-      "items": ["Danh Sách Công Việc", "Chưa duyệt", "Đăng ký", "Lịch tuần mẫu", "Địa điểm"]
+      "items": ["Danh Sách Công Việc", "Lịch tuần mẫu", "Địa điểm"]
     },
     'routing': [
       '/task-list',
