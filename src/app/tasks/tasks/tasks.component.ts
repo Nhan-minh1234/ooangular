@@ -12,7 +12,7 @@ export class TasksComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.router.navigate(['/tasks/task-list'])
+    //this.router.navigate(['/tasks/task-list'])
   }
 
 }
