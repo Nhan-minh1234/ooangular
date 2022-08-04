@@ -147,8 +147,7 @@ export class NewTaskComponent implements OnInit {
   ////////////////////////Step 2
 
   allUserInStep2List
-  chosenAssigneelList: any[] = [
-  ];
+  chosenAssigneelList: any[] = [];
   groupKeyChosenInStep2 = 'all'
   majorAssignee
   dualListUpdateForAssignee(event) {

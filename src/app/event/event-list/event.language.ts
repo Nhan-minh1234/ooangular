@@ -8,7 +8,10 @@ let data = {
         "dateCol": 'Date',
         'timeCol': 'Time',
         'descriptionCol': 'Description',
-        'locationCol': 'Location'
+        'locationCol': 'Location',
+        'to': 'to',
+        'verify': 'Verified',
+        'unverify': 'Unverify'
     },
     "VN": {
         "pageTitle": "Danh sách sự kiện",
@@ -19,7 +22,10 @@ let data = {
         "dateCol": 'Ngày',
         'timeCol': 'Giờ',
         'descriptionCol': 'Nội dung',
-        'locationCol': 'Địa điểm'
+        'locationCol': 'Địa điểm',
+        'to': 'đến',
+        'verify': 'Đã duyệt',
+        'unverify': 'Chưa duyệt'
     }
 };
 export default data;
