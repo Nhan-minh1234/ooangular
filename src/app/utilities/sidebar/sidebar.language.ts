@@ -37,7 +37,8 @@ let data = [
       ]
     },
     "routing": [
-      '/event-list'
+      '/event-list',
+      '/new-event'
     ],
     'icon': 'uil-calendar-alt'
   },

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EventListComponent } from './event-list/event-list.component';
 import { EventComponent } from './event/event.component';
+import { NewEventComponent } from './new-event/new-event.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,11 @@ const routes: Routes = [
         data: { "link": "/event/event-list" },
         path: 'event-list',
         component: EventListComponent
+      },
+      {
+        data: { "link": "/event/new-event" },
+        path: 'new-event',
+        component: NewEventComponent
       },
     ]
   }

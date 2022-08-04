@@ -10,6 +10,6 @@ export class SocialComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    this.router.navigate(['/social/notification']);
+    //this.router.navigate(['/social/notification']);
   }
 }
