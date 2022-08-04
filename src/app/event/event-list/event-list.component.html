@@ -162,7 +162,7 @@
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                             <button *ngIf="!editable" type="button" class="btn btn-warning"
                                 (click)="cancelEditEvent()">Huỷ</button>
-                            <button *ngIf="!editable" type="button" class="btn btn-success">Lưu</button>
+                            <button *ngIf="!editable" (click)="close()" type="button" class="btn btn-success">Lưu</button>
                             <button *ngIf="editable" type="button" class="btn btn-primary"
                                 (click)="editEvent()">Sửa</button>
                             <button *ngIf="!eventDetail.status" type="button" class="btn btn-success">Duyệt</button>
