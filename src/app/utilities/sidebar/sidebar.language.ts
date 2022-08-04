@@ -26,19 +26,26 @@ let data = [
       "title": "Event",
       "items": [
         "Event list",
-        "New event"
+        "New event",
+        "Event Sample",
+        "Location",
       ]
     },
     "VN": {
       "title": "Lịch tuần",
       "items": [
         "Danh sách lịch",
-        "Đăng ký lịch"
+        "Đăng ký lịch",
+        "Lịch tuần mẫu",
+        "Địa điểm"
       ]
     },
     "routing": [
       '/event-list',
-      '/new-event'
+      '/new-event',
+      '/event-sample',
+      '/location'
+
     ],
     'icon': 'uil-calendar-alt'
   },

@@ -12,6 +12,7 @@ import { UtilitiesModule } from '../utilities/utilities.module';
 import { FormsModule } from '@angular/forms';
 import { EventSampleComponent } from './event-sample/event-sample.component';
 import { LocationComponent } from './location/location.component';
+import { NewEventSampleComponent } from './new-event-sample/new-event-sample.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { LocationComponent } from './location/location.component';
     CalendarComponent,
     NewEventComponent,
     LocationComponent,
-    EventSampleComponent
+    EventSampleComponent,
+    NewEventSampleComponent
   ],
   imports: [
     CommonModule,
