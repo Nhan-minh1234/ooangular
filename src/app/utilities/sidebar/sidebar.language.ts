@@ -105,7 +105,7 @@ let data = [
   {
     "id": "personal",
     "EN": {
-      "title": "personal",
+      "title": "Personal",
       "items": [
         "Event",
         "File cabinet",

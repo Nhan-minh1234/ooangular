@@ -10,12 +10,14 @@ import { UtilitiesModule } from './utilities/utilities.module';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SocialModule } from './social/social.module';
+import { PersonalComponent } from './personal/personal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
+    PersonalComponent,
   ],
   imports: [
     BrowserAnimationsModule,
