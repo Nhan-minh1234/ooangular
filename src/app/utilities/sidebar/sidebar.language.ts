@@ -75,6 +75,60 @@ let data = [
       '/survey'
     ],
     'icon': 'uil-globe'
+  },
+  {
+    "id": "documents",
+    "EN": {
+      "title": "Sign Documents",
+      "items": [
+        "Document signing",
+        "Signator list"
+        
+      ]
+    },
+    "VN": {
+      "title": "Ký văn bản",
+      "items": [
+        "Trình ký văn bản",
+        "Danh sách trình ký"
+        
+      ]
+    },
+    "routing": [
+      '/Document signing',
+      '/Signator',
+      '/news',
+     
+    ],
+    'icon': 'uil-notes'
+  },
+  {
+    "id": "personal",
+    "EN": {
+      "title": "personal",
+      "items": [
+        "Event",
+        "File cabinet",
+        "Business card",
+        "Change password"
+      ]
+    },
+    "VN": {
+      "title": "Cá nhân",
+      "items": [
+        "Lịch",
+        "Tủ hồ sơ",
+        "Danh thiếp",
+        "Đổi mật khẩu"
+      ]
+    },
+    "routing": [
+      '/event',
+      '/file cabinet',
+      '/business card',
+      '/change password'
+    ],
+    'icon': 'uil-smile'
   }
 ];
 
