@@ -5,8 +5,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DualListComponent } from './dual-list/dual-list.component';
-//import { CalendarComponent } from './calendar/calendar.component';
-
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -14,7 +13,6 @@ import { DualListComponent } from './dual-list/dual-list.component';
     FooterComponent,
     SidebarComponent,
     DualListComponent,
-    //CalendarComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +22,8 @@ import { DualListComponent } from './dual-list/dual-list.component';
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
-    DualListComponent
+    DualListComponent,
+    NgChartsModule
   ]
 })
 export class UtilitiesModule { }
