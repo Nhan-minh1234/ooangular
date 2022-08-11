@@ -1,32 +1,44 @@
 
-    <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
-    <thead>
-        <tr>
-            <th>STT</th>
-            <th>Số VB</th>
-            <th>Trính yếu</th>
-            <th>Nơi nhận</th>
-            <th>Ngày nhận</th>
-            <th>Nơi phát hành</th>
-        </tr>
-    </thead>
+    <div class="row">
+        <div class="col-9">
+            <table  id = "basic-datatable"  class = "table dt-responsive nowrap w-100" > 
+            <thead > 
+                <tr > 
+                    <th > Tên </th>
+                    <th > Chức vụ </th > 
+                    <th > Văn phòng </th > 
+                    <th > Tuổi </th > 
+                    <th > Ngày bắt đầu </th > 
+                    <th >Mức lương </th > 
+                </tr > 
+            </thead >
+             <tbody > 
+                <tr > 
+                    <td > Tiger Nixon </td > 
+                    <td > System Architect </td > 
+                    <td > Edinburgh </td > 
+                    <td > 61 </td > 
+                    <td > 2011/04/25 </td > 
+                    <td > $ 320,800</td > 
+                </tr > 
+                <tr > 
+                    <td > Garrett Winters </td > 
+                    <td > Kế toán </td > 
+                    <td > Tokyo </td > 
+                    <td > 63 </td > 
+                    <td > 2011/07 / 25 </td > 
+                    <td > $ 170.750 </td > 
+                </tr >
+            </tbody>
+            </table >
+        </div>
+            <div class="col-3">
+                <div  class = "d-grid" >
+                        <button [routerLink]="'/document/new-document'"  type = "button"  class = "btn btn-primary" > Thêm văn bản đến </button >
+                        <button [routerLink]="'/document/search'"  type = "button"  class = "btn btn-sm btn-info" > Tìm kiếm </button >
+                </div>
+            </div>
+    </div> 
 
 
-    <tbody>
-        <tr>
-            <td>15</td>
-            <td>22348</td>
-            <td>công văn test</td>
-            <td>ban giám đốc</td>
-            <td>28/03/2022</td>
-            <td>SYT</td>
-        </tr>
-        <tr>
-            <td>Garrett Winpers</td>
-            <td>Accountant</td>
-            <td>Tokyo</td>
-            <td>63</td>
-            <td>2011/07/25</td>
-        </tr>
-    </tbody>
-</table>
+    

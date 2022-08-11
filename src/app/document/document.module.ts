@@ -9,6 +9,7 @@ import { TextGoComponent } from './text-go/text-go.component';
 import { TextInheritanceComponent } from './text-inheritance/text-inheritance.component';
 import { TextSourceComponent } from './text-source/text-source.component';
 import { DocumentRouting } from './document-routing.module';
+import { NewDocumentComponent } from './new-document/new-document.component';
 @NgModule({
   declarations: [
     DocumentComponent,
@@ -18,7 +19,8 @@ import { DocumentRouting } from './document-routing.module';
     SearchComponent,
     TextGoComponent,
     TextInheritanceComponent,
-    TextSourceComponent
+    TextSourceComponent,
+    NewDocumentComponent
   ],
   imports: [
     CommonModule,
