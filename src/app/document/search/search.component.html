@@ -1,112 +1,155 @@
+<div class="col-lg-9">
+    <div class="row">
+        <div class="col-4">
+            <div class="mb-3 row">
+                <div class="col-3">
+                    <label for="simpleinput" class="form-label"> Thông tin tìm
+                        kiếm
+                    </label>
+                </div>
+                <div class="col-9">
+                    <input type="text" id="simpleinput" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="col-8">
+            <div class="mb-3 row">
+                <div class="col-3">
+                    <label class="form-label"> Kiểu văn bản </label>
+                </div>
+                <div class="col-9">
+                    <select class="form-select" id="example-select">
+                        <option> Văn bản đến </option>
+                        <option> Văn bản đi </option>
+                        <option> Văn bản nội bộ </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <div class="mb-3 row">
+                <div class="col-3">
+                    <label class="form-label"> Lưu bản cứng </label>
+                </div>
+                <div class="col-9">
+                    <select class="form-select" id="example-select">
+                        <option> Chọn Phòng ban </option>
+                        <option> Ban Giám đốc </option>
+                        <option> Phòng Kế Hoạch Tài Vụ </option>
+                        <option> Phòng Hành Chính Quản Trị </option>
+                        <option> Phòng Kinh Doanh </option>
+                        <option> Phòng Kỹ Thuật </option>
+                        <option> Phòng Tài Chính Kế Toán </option>
+                        <option> Phòng Nhân Sự </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-8">
+            <div class="mb-3 row">
+                <div class="col-3">
+                    <label class="form-label"> Nguồn văn bản </label>
+                </div>
+                <div class="col-9">
+                    <select class="form-select" id="example-select">
+                        <option> FAX </option>
+                        <option> EMS </option>
+                        <option> Nội Bộ </option>
+                        <option> Công Văn </option>
+                        <option> Hành Chính</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <div class="mb-3 row">
+                <div class="col-3">
+                    <label class="form-label"> Thư mục </label>
+                </div>
+                <div class="col-9">
+                    <select class="select2 form-control"
+                        data-toggle="select2"
+                        data-placeholder="Choose ...">
+                        <option value=" AK "> Alaska </option>
+                        <option value=" HI "> Hawaii </option>
+                        <option value="CA"> California </option>
+                        <option value="NV"> Nevada </option>
+                        <option value="OR"> Oregon </option>
+                        <option value="WA"> Washington </option>
+                        <option value="AZ"> Arizona </option>
+                        <option value="CO"> Colorado </option>
+                        <option value="ID"> Idaho </option>
+                        <option value="MT"> Montana </option>
+                        <option value="NE "> Nebraska</option>
+                        <option value="NM"> New Mexico </option>
+                        <option value="ND"> North Dakota </option>
+                        <option value="UT"> Utah </option>
+                        <option value=" WY "> Wyoming </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-8">
+            <div class="mb-3 row">
+                <div class="col-3">
+                    <label class="form-label"> Nơi soạn thảo </label>
+                </div>
+                <div class="col-9">
+                    <select class="form-select" id="example-select">
+                        <option> Chọn Phòng ban </option>
+                        <option> Ban Giám đốc </option>
+                        <option> Phòng Kế Hoạch Tài Vụ </option>
+                        <option> Phòng Hành Chính Quản Trị </option>
+                        <option> Phòng Kinh Doanh </option>
+                        <option> Phòng Kỹ Thuật </option>
+                        <option> Phòng Tài Chính Kế Toán </option>
+                        <option> Phòng Nhân Sự </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 <div class="row">
-    <div class="col-4">
+    <div class="col-6">
         <div class="mb-3 row">
             <div class="col-3">
-                <label for="simpleinput" class="form-label"> Thông tin tìm kiếm </label>
+                <label class="form-label"> Từ ngày </label>
             </div>
             <div class="col-9">
-                <input type="text" id="simpleinput" class="form-control">
+                <div class="mb-3 position-relative" id="datepicker1">
+                    <input class="form-control" id="example-date" type="date"
+                        name="date">
+                </div>
             </div>
         </div>
     </div>
+    <div class="col-6">
+        <div class="mb-3 row">
+            <div class="col-3">
+                <label class="form-label"> Đến ngày </label>
+            </div>
+            <div class="col-9">
+                <div class="mb-3 position-relative" id="datepicker1">
+                    <input class="form-control" id="example-date" type="date"
+                        name="date">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
     <div class="col-8">
         <div class="mb-3 row">
-            <div class="col-3">
-            <label class="form-label"> Kiểu văn bản </label>
-            </div>
-            <div class="col-9">
-            <select class="form-select" id="example-select">
-                <option> Văn bản đến </option>
-                <option> Văn bản đi </option>
-                <option> Văn bản nội bộ </option>
-            </select>
+            <div class="col-8">
+                <label class="form-label"> (-- không tìm theo Từ ngày --> Đến ngày, xin hãy vui lòng bỏ trống hai ô này ) </label>
             </div>
         </div>
     </div>
-    <div class="col-4">
-        <div class="mb-3 row">
-            <div class="col-3">
-            <label class="form-label"> Lưu bản cứng </label>
-            </div>
-            <div class="col-9">
-            <select class="form-select" id="example-select">
-                <option> Chọn Phòng ban </option>
-                <option> Ban Giám đốc </option>
-                <option> Phòng Kế Hoạch Tài Vụ </option>
-                <option> Phòng Hành Chính Quản Trị </option>
-                <option> Phòng Kinh Doanh </option>
-                <option> Phòng Kỹ Thuật </option>
-                <option> Phòng Tài Chính Kế Toán </option>
-                <option> Phòng Nhân Sự </option>
-            </select>
-            </div>
-        </div> 
-    </div>
-    <div class="col-8">
-        <div class="mb-3 row">
-            <div class="col-3">
-            <label class="form-label"> Nguồn văn bản </label>
-            </div>
-            <div class="col-9">
-            <select class="form-select" id="example-select">
-                <option> FAX </option>
-                <option> EMS </option>
-                <option> Nội Bộ </option>
-                <option> Công Văn </option>
-                <option> Hành Chính</option>
-            </select>
-            </div>
-        </div>
-    </div>
-    <div class="col-4">
-        <div class="mb-3 row">
-            <div class="col-3">
-                <select  class = "select2 form-control select2-multiple"  data-toggle = "select2"  multiple = "multiple"  data-placeholder = "Choose ..." > 
-    <optgroup  label = " Múi giờ Alaska / Hawaii " > 
-        <option  value = " AK " > Alaska </ option > 
-        <option  value = " HI " > Hawaii </ option >
-    </optgroup >
-    <optgroup  label = "Múi giờ Thái Bình Dương" > 
-        <
-            option  value = "CA" > California </ option > 
-        < option  value = "NV" > Nevada </ option > 
-        < option  value = "OR" > Oregon </ option > 
-        < option  value = "WA" > Washington </ option > 
-    </ optgroup > 
-    < optgroup label = "Múi giờ miền núi" > 
-        < option  value = "AZ" > Arizona </ option > 
-        < option  value = "CO" > Colorado </ option > 
-        < option  value = "ID" > Idaho </ option > 
-        < option  value = "MT" > Montana </ option > 
-        < option  value = "NE " > Nebraska</ option > 
-        < option  value = "NM" > New Mexico </ option > 
-        < option  value = "ND" > North Dakota </ ​​option > 
-        < option  value = "UT" > Utah </ option > 
-        < option  value = " WY " > Wyoming </ option > 
-    </ optgroup > 
-</ select >
-            </div>
-            <div class="col-9">
-                <input type="text" id="simpleinput" class="form-control">
-            </div>
-        </div>
-    </div>
-    <div class="col-8">
-        <div class="mb-3 row">
-            <div class="col-3">
-            <label class="form-label"> Nơi soạn thảo </label>
-            </div>
-            <div class="col-9">
-            <select class="form-select" id="example-select">
-                <option> Ban Giám đốc </option>
-                <option> Phòng Kế Hoạch Tài Vụ </option>
-                <option> Phòng Hành Chính Quản Trị </option>
-                <option> Phòng Kinh Doanh </option>
-                <option> Phòng Kỹ Thuật </option>
-                <option> Phòng Tài Chính Kế Toán </option>
-                <option> Phòng Nhân Sự </option>
-            </select>
-            </div>
-        </div>
-    </div>
+<div class="col-3">
+
 </div>
