@@ -76,7 +76,7 @@ let data = [
       '/search'
 
     ],
-    'icon': ''
+    'icon': 'uil-users-alt'
   },
   {
     "id": "social",

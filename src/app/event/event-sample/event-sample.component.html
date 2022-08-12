@@ -4,6 +4,7 @@
             <h4 class="page-title">Lịch tuần mẫu</h4>
         </div>
     </div>
+
     <table class="table table-centered mb-0">
         <thead>
             <tr>
@@ -15,26 +16,116 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Ngô Hồng Lâm</td>
-                <td>01/08/2022</td>
+            <tr *ngFor="let i of eventSampleData" data-bs-toggle="modal" data-bs-target="#event-sample-modal">
+                <td>{{i.name}}</td>
+                <td>{{i.date}}</td>
                 <td>14h00</td>
                 <td>Đi học</td>
                 <td>Quận 12
                 </td>
             </tr>
-            <tr>
-                <td>Ngô Hồng Lâm</td>
-                <td>01/08/2022</td>
-                <td>14h00</td>
-                <td>Đi học</td>
-                <td>Quận 12
-                </td>
-            </tr>
+            <div id="event-sample-modal" class="modal fade" tabindex="-1" role="dialog"
+                aria-labelledby="standard-modalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="standard-modalLabel">Chi tiết lịch tuần mẫu</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
+                                <li class="nav-item">
+                                    <a href="#detailTab" data-bs-toggle="tab" aria-expanded="false"
+                                        class="nav-link rounded-0 active">
+                                        <i class="mdi mdi-information d-md-none d-block"></i>
+                                        <span class="d-none d-md-block">Thông Tin</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#assigneeTab" data-bs-toggle="tab" aria-expanded="true"
+                                        class="nav-link rounded-0">
+                                        <i class="mdi mdi-key d-md-none d-block"></i>
+                                        <span class="d-none d-md-block">Danh sách tham gia</span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content">
+                                <div class="tab-pane  show active" id="detailTab">
+                                    <div class="row">
+                                        <div class="mb-3 col-12">
+                                            <label for="simpleinput" class="form-label">Tiêu đề:</label>
+                                            <input [readonly]="editable" type="text" id="simpleinput"
+                                                class="form-control">
+                                        </div>
+                                        <div class="mb-3 col-lg-6 col-sm-12 row">
+                                            <label for="simpleinput" class="form-label">Bắt đầu:</label>
+                                            <div class="col-lg-6 col-sm-12">
+                                                <input [readonly]="editable" class="form-control" id="example-date"
+                                                     type="date"
+                                                    name="date">
+                                            </div>
+                                            <div class="col-lg-6 col-sm-12">
+                                                <input [readonly]="editable" class="form-control" id="example-time"
+                                                     type="time"
+                                                    name="time">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 col-lg-6 col-sm-12 row">
+                                            <label for="simpleinput" class="form-label">Kết thúc:</label>
+                                            <div class="col-lg-6 col-sm-12">
+                                                <input [readonly]="editable" class="form-control" id="example-date"
+                                                     type="date"
+                                                    name="date">
+                                            </div>
+                                            <div class="col-lg-6 col-sm-12">
+                                                <input [readonly]="editable" class="form-control" id="example-time"
+                                                     type="time"
+                                                    name="time">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 col-12">
+                                            <label for="simpleinput" class="form-label">Nội dung:</label>
+                                            <textarea class="form-control" [readonly]="editable" id="example-textarea"
+                                                rows="5"></textarea>
+                                        </div>
+                                        <div class="mb-3 col-12">
+                                            <label for="simpleinput" class="form-label">Địa điểm:</label>
+                                            <select id="example-multiselect" [disabled]="editable" class="form-control">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="tab-pane" id="assigneeTab">
+                                    <p>{{'Đang cập nhật'|uppercase}}</p>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Đóng</button>
+                            <button *ngIf="!editable" type="button" class="btn btn-warning"
+                            (click)="cancelEditEvent()">Huỷ</button>
+                            <button *ngIf="!editable" (click)="close()" type="button"
+                            class="btn btn-success">Lưu</button>
+                            <button *ngIf="editable" type="button" class="btn btn-primary"
+                                (click)="editEvent()">Sửa</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
             <button [routerLink]="['/event/new-event-sample']" type="button" class="btn btn-info">
                 Thêm mới
             </button>
         </tbody>
     </table>
-    
+
 </div>
