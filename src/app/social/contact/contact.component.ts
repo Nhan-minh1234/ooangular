@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { GeneralService } from 'src/app/services/general.service';
 import data from './contact.language'
-import { CalendarComponent } from 'src/app/utilities/calendar/calendar.component';
 
 //for fake api
 import { HttpClient } from '@angular/common/http';

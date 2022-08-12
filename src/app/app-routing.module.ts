@@ -38,6 +38,11 @@ const routes: Routes = [
     path: 'event',
     loadChildren: () => import('./event/event.module').then(m => m.EventModule)
   },
+  {
+    canActivate: [RouteGuardService],
+    path: 'client', 
+    loadChildren: () => import('./client/client.module').then(m => m.ClientModule)
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' }
 ];
