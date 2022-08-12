@@ -1,1 +1,48 @@
-<p>text-go works!</p>
+
+    <div class="row">
+        <div class="col-9">
+            <table  id = "basic-datatable"  class = "table dt-responsive nowrap w-100" > 
+            <thead > 
+                <tr > 
+                    <th > STT </th>
+                    <th > Số VB </th > 
+                    <th > Trích yếu </th > 
+                    <th > Nơi nhận </th > 
+                    <th > Ngày PH </th > 
+                    <th > Nơi soạn thảo </th > 
+                </tr > 
+            </thead >
+            <tbody>
+                <tr *ngFor="let i of textgosData |paginate: config">
+                    <td>{{i.numerical_order}}</td>
+                    <td>{{i.text_number}}</td>
+                    <td>{{i.abstract}}</td>
+                    <td>{{i.recipients}}</td>
+                    <td>{{i.release_date}}</td>
+                    <td>{{i.drafting_place}}</td>
+                    
+                </tr>
+            </tbody>
+            </table >
+            <div class="list row">
+                <div class="col-md-8">
+                    <pagination-controls id="paging" [previousLabel]="'quay lại'" [nextLabel]="'tiếp tục'"
+                        responsive="true" responsive="true" (pageChange)="handlePageChange($event)"></pagination-controls>
+                </div>
+                <div class="col-md-4">
+                    Số lượng thư mục
+                    <select style="border: solid 1px rgb(230, 229, 229);" (change)="handlePageSizeChange($event)">
+                        <option *ngFor="let size of pageSizes" [ngValue]="size">
+                            {{ size }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+            <div class="col-3">
+            
+            </div>
+    </div> 
+
+
+    

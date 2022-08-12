@@ -10,6 +10,8 @@ import { TextInheritanceComponent } from './text-inheritance/text-inheritance.co
 import { TextSourceComponent } from './text-source/text-source.component';
 import { DocumentRouting } from './document-routing.module';
 import { NewDocumentComponent } from './new-document/new-document.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 @NgModule({
   declarations: [
     DocumentComponent,
@@ -24,7 +26,8 @@ import { NewDocumentComponent } from './new-document/new-document.component';
   ],
   imports: [
     CommonModule,
-    DocumentRouting
+    DocumentRouting,
+    NgxPaginationModule
   ]
 })
 export class DocumentModule { }
