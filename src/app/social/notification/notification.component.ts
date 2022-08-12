@@ -8,7 +8,7 @@ import { GeneralService } from 'src/app/services/general.service';
 })
 export class NotificationComponent implements OnInit {
   notificationData = []
-
+  lorem = 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur ea consectetur itaque odit similique harum odio est illo incidunt soluta distinctio, esse architecto vero sequi expedita adipisci deserunt illum ullam?'
   spinnerLoading = false;
   page = 0;
   pageSize = 10;
@@ -19,6 +19,9 @@ export class NotificationComponent implements OnInit {
   constructor(private el: ElementRef, public generalService: GeneralService) { }
   ngOnInit(): void {
     this.gData()
+  }
+  uploadFile() {
+    document.getElementById("files_upload").click();
   }
   gData() {
     this.notificationData = []

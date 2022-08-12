@@ -7,6 +7,7 @@ import data from './news.language';
   styleUrls: ['./news.component.css']
 })
 export class NewsComponent implements OnInit {
+  newGroupTitle = ["Y tế", "An ninh", '...']
   newsData = []
   spinnerLoading = false;
 

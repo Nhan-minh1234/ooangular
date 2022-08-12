@@ -5,7 +5,8 @@ import { NewTaskComponent } from "./new-task/new-task.component";
 import { TaskDetailComponent } from "./task-detail/task-detail.component";
 import { TaskListComponent } from "./task-list/task-list.component";
 import { TasksComponent } from "./tasks/tasks.component";
-
+import { TaskReportComponent } from "./task-report/task-report.component";
+import { TaskAutocompleteComponent } from "./task-autocomplete/task-autocomplete.component";
 
 const routes: Routes = [
   {
@@ -15,18 +16,28 @@ const routes: Routes = [
     children: [
       {
         data: { "link": "/tasks/new-task" },
-        path:'new-task',
-        component:NewTaskComponent
+        path: 'new-task',
+        component: NewTaskComponent
       },
       {
         data: { "link": "/tasks/task-list" },
-        path:'task-list',
-        component:TaskListComponent
+        path: 'task-list',
+        component: TaskListComponent
       },
       {
         data: { "link": "/tasks/task-detail" },
-        path:'task-detail/:taskid',
-        component:TaskDetailComponent
+        path: 'task-detail/:taskid',
+        component: TaskDetailComponent
+      },
+      {
+        data: { "link": "/tasks/task-report" },
+        path: 'task-report',
+        component: TaskReportComponent
+      },
+      {
+        data: { "link": "/tasks/task-autocomplete" },
+        path: 'task-autocomplete',
+        component: TaskAutocompleteComponent
       },
       // {
       //   data: { "link": "/user/change-password" },
@@ -38,7 +49,7 @@ const routes: Routes = [
       //   path:'help',
       //   component:HelpComponent
       // }
-          ]
+    ]
   }
 ];
 
