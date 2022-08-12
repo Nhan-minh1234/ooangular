@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { EventRoutingModule } from './event-routing.module';
 import { EventComponent } from './event/event.component';
 import { EventListComponent } from './event-list/event-list.component';
-import { CalendarComponent } from '../utilities/calendar/calendar.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxLoadingModule } from 'ngx-loading';
 import { NewEventComponent } from './new-event/new-event.component';
@@ -19,7 +18,6 @@ import { NewEventSampleComponent } from './new-event-sample/new-event-sample.com
   declarations: [
     EventComponent,
     EventListComponent,
-    CalendarComponent,
     NewEventComponent,
     LocationComponent,
     EventSampleComponent,

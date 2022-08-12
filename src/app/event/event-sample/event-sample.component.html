@@ -1,51 +1,40 @@
-<table class="table table-centered mb-0">
-    <thead>
-        <tr>
-            <th>Tên</th>
-            <th>Ngày</th>
-            <th>Giờ</th>
-            <th>Nội dung</th>
-            <th>Địa điểm</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Ngô Hồng Lâm</td>
-            <td>01/08/2022</td>
-            <td>14h00</td>
-            <td>Đi học</td>
-            <td>Quận 12
-            </td>
-        </tr>
-        <tr>
-            <td>Ngô Hồng Lâm</td>
-            <td>01/08/2022</td>
-            <td>14h00</td>
-            <td>Đi học</td>
-            <td>Quận 12
-            </td>
-        </tr>
-        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            Thêm mới
-        </button>
-        
-        <!-- Modal -->
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
-                    </div> <!-- end modal header -->
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Understood</button>
-                    </div> <!-- end modal footer -->
-                </div> <!-- end modal content-->
-            </div> <!-- end modal dialog-->
-        </div> <!-- end modal-->
-    </tbody>
-</table>
+<div class="container-fluid">
+    <div class="col-11">
+        <div class="page-title-box">
+            <h4 class="page-title">Lịch tuần mẫu</h4>
+        </div>
+    </div>
+    <table class="table table-centered mb-0">
+        <thead>
+            <tr>
+                <th>Tên</th>
+                <th>Ngày</th>
+                <th>Giờ</th>
+                <th>Nội dung</th>
+                <th>Địa điểm</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Ngô Hồng Lâm</td>
+                <td>01/08/2022</td>
+                <td>14h00</td>
+                <td>Đi học</td>
+                <td>Quận 12
+                </td>
+            </tr>
+            <tr>
+                <td>Ngô Hồng Lâm</td>
+                <td>01/08/2022</td>
+                <td>14h00</td>
+                <td>Đi học</td>
+                <td>Quận 12
+                </td>
+            </tr>
+            <button [routerLink]="['/event/new-event-sample']" type="button" class="btn btn-info">
+                Thêm mới
+            </button>
+        </tbody>
+    </table>
+    
+</div>
