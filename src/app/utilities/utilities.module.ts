@@ -6,6 +6,8 @@ import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DualListComponent } from './dual-list/dual-list.component';
 import { NgChartsModule } from 'ng2-charts';
+import { AvatarTooltipComponent } from './avatar-tooltip/avatar-tooltip.component';
+import { NewItemButtonComponent } from './new-item-button/new-item-button.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +15,8 @@ import { NgChartsModule } from 'ng2-charts';
     FooterComponent,
     SidebarComponent,
     DualListComponent,
+    AvatarTooltipComponent,
+    NewItemButtonComponent,
   ],
   imports: [
     CommonModule,
@@ -23,6 +27,8 @@ import { NgChartsModule } from 'ng2-charts';
     FooterComponent,
     SidebarComponent,
     DualListComponent,
+    AvatarTooltipComponent,
+    NewItemButtonComponent,
     NgChartsModule
   ]
 })

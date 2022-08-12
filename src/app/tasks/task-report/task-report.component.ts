@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-task-report',
   templateUrl: './task-report.component.html',
-  styleUrls: ['./task-report.component.css']
+  styleUrls: ['./task-report.component.css'],
 })
 export class TaskReportComponent implements OnInit {
   fakeAPI = 'https://62e7546c69bd03090f7b852b.mockapi.io/task_report';

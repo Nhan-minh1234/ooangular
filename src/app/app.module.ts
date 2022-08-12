@@ -9,7 +9,6 @@ import { FormsModule } from '@angular/forms';
 import { UtilitiesModule } from './utilities/utilities.module';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatStepperModule } from '@angular/material/stepper';
 import { NgChartsModule } from 'ng2-charts';
 @NgModule({
   
@@ -25,7 +24,6 @@ import { NgChartsModule } from 'ng2-charts';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    MatStepperModule,
     UtilitiesModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',

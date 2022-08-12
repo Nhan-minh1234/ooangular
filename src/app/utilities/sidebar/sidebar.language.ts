@@ -10,7 +10,7 @@ let data = [
       "title": "Công Việc",
       "items": ["Danh Sách Công Việc", "Thống kê", "Công việc mẫu", "Báo cáo", "Báo cáo định kỳ", "Dự án công việc", "Nhóm công việc", "Trao đổi"]
     },
-    'routing': ['/task-list', '/task-report', '/task-autocomplete', "/report", "", "", "", ""],
+    'routing': ['/task-list', '/task-report', '/task-autocomplete', "/report", "/project", "", "", ""],
     'icon': ' uil-receipt-alt'
   },
   {
@@ -34,10 +34,10 @@ let data = [
     },
     "VN": {
       "title": "Cổng Thông Tin",
-      "items": ["Thông báo", "Thư Viện", "Tin tức", "Hình ảnh", "Danh bạ", "Thăm dò khảo sát"
+      "items": ["Thông báo", "Thư Viện", "Tin tức", "Hình ảnh", "Danh bạ"/*, "Thăm dò khảo sát"*/
       ]
     },
-    "routing": ['/notification', '/library', '/news', '/images', '/contact', '/survey'
+    "routing": ['/notification', '/library', '/news', '/images', '/contact'/*, '/survey'*/
     ],
     'icon': 'uil-globe'
   },

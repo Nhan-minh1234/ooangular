@@ -14,10 +14,10 @@ import { NgxLoadingModule } from "ngx-loading";
 import { CircleProgressOptions, NgCircleProgressModule } from 'ng-circle-progress';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
 import { TaskReportComponent } from './task-report/task-report.component';
-import { MatStepperModule } from '@angular/material/stepper';
 import { TaskAutocompleteComponent } from './task-autocomplete/task-autocomplete.component';
 import { DonutChartComponent } from '../utilities/donut-chart/donut-chart.component';
-
+import { ReportComponent } from './report/report.component';
+import { ProjectComponent } from './project/project.component';
 @NgModule({
   declarations: [
     TaskListComponent,
@@ -26,11 +26,12 @@ import { DonutChartComponent } from '../utilities/donut-chart/donut-chart.compon
     TaskDetailComponent,
     TaskReportComponent,
     TaskAutocompleteComponent,
-    DonutChartComponent
+    DonutChartComponent,
+    ReportComponent,
+    ProjectComponent
   ],
   imports: [
     CommonModule,
-    MatStepperModule,
     TasksRouting,
     FormsModule,
     AngularMyDatePickerModule,
