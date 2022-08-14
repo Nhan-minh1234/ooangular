@@ -75,6 +75,43 @@ let data = [
       '/survey'
     ],
     'icon': 'uil-globe'
+  },
+  {
+    "id": "document",
+    "EN": {
+      "title": "Van ban [Eng]",
+      "items": [
+        "Inoming Text",
+        "Text go",
+        "Internal Text",
+        "Search",
+        "Create Folder",
+        "Text Source",
+        "Text Inheritance"
+      ]
+    },
+    "VN": {
+      "title": "Văn bản",
+      "items": [
+        "Văn bản đến",
+        "Văn bản đi",
+        "Văn bản nội bộ",
+        "Tìm kiếm",
+        "Tạo thư mục",
+        "Nguồn văn bản",
+        "Kế thừa văn bản"
+      ]
+    },
+    "routing": [
+      '/incoming-text',
+      '/text-go',
+      '/internal-text',
+      '/search',
+      '/create-folder',
+      '/text-source',
+      '/text-inheritance'
+    ],
+    'icon': 'dripicons-blog'
   }
 ];
 
