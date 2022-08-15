@@ -35,7 +35,7 @@ export class SearchComponent implements OnInit {
     for (let i = 0; i < this.count; i++) {
       let GiaTriMoi = {
       'numerical_order':i+1,
-      'ttext_notation': 'Kí hiệu VB',
+      'text_notation': 'Kí hiệu VB',
       'data_text': 'Ngày tháng VB',
       'text_type_name_and_excerpt': 'Tên loại VB và Trích yếu',
       'editing_place': 'Nơi soạn thảo',

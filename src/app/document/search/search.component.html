@@ -145,14 +145,36 @@
         </div>
     </div>
 </div>
-<div class="col-8">
-    <div class="mb-3 row">
-        <div class="col-8">
-            <label class="form-label"> (-- không tìm theo Từ ngày --> Đến ngày,
-                xin hãy vui lòng bỏ trống hai ô này --) </label>
-        </div>
-    </div>
-</div>
+<!--lời chỉ dẫn-->
+            <td width="100%" colspan="4">
+                <p align="center">
+                    <font color="#999999" style="font-size: 8pt">
+                        <b>
+                            <i>( Nếu không tìm theo </i>
+                        </b>
+                    </font>
+                    <b>
+                        <font color="#FF0000" style="font-size: 8pt">Từ ngày --&gt; Đến ngày</font>
+                        <font color="#999999" style="font-size: 8pt"><i>, xin vui lòng bỏ trống hai ô này )</i>
+                        </font>
+                    </b>
+                </p>
+            </td>
+
+            <!--nú lênh nhanh-->
+            <tr>
+                <td colspan="4" width="100%" align="center">
+                    <div class="btnOO">
+                        <input type="submit" name="ctl22$Tim" value="Tìm" id="ctl22_Tim" style="width:20%;">
+                        <input type="submit" name="ctl22$btnReset" value="Làm mới" id="ctl22_btnReset" class="btnOO" style="width:20%;">
+                        <input type="submit" name="ctl22$btnExportfile" value="Xuất File" id="ctl22_btnExportfile" class="btnOO" style="width:20%;">
+                    </div>
+                </td>
+            </tr>
+            <div class="TableOO" align="center">
+                <span id="ctl22_lblThongBao" style="color:Red;font-weight:bold;font-style:italic;"></span>
+            </div>
+        
 <!--Nút lệnh tìm kiếm -->
 <div class="col-lg-9">
     <div class="row">
@@ -200,5 +222,6 @@
             </div>   
 
 <div class="col-3">
+    
 
 </div>
