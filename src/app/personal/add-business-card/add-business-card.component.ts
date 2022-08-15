@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import data from './add-business-card.language';
+import { GeneralService } from 'src/app/services/general.service';
 
 @Component({
   selector: 'app-add-business-card',
