@@ -109,24 +109,24 @@ let data = [
       "items": [
         "Event",
         "File cabinet",
-        "Business card",
-        "Change password"
+        "Business card"
+        
       ]
     },
     "VN": {
       "title": "Cá nhân",
       "items": [
-        "Lịch",
+        "Lịch cá nhân",
         "Tủ hồ sơ",
-        "Danh thiếp",
-        "Đổi mật khẩu"
+        "Danh thiếp"
+        
       ]
     },
     "routing": [
       '/event',
-      '/file cabinet',
-      '/business card',
-      '/change password'
+      '/file-cabinet',
+      '/business-card'
+      
     ],
     'icon': 'uil-smile'
   }
