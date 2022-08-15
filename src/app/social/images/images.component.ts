@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 import { GeneralService } from 'src/app/services/general.service';
 import data from './images.language';
 
+declare var bootstrap: any
 @Component({
   selector: 'app-images',
   templateUrl: './images.component.html',
@@ -10,6 +11,10 @@ import data from './images.language';
 export class ImagesComponent implements OnInit {
 
   constructor(private el: ElementRef, public generalService: GeneralService) { }
+  myModal
+  editable = false;
+  imageGroupTitle = ["Nhóm 1", "Nhóm 2", 'Nhóm 3']
+
   imagesData = []
   spinnerLoading = false;
   page = 0;
@@ -18,7 +23,25 @@ export class ImagesComponent implements OnInit {
   count = 500;
   config
   ngOnInit(): void {
+    this.myModal = new bootstrap.Modal(document.querySelector('#img-modal'), {
+    })
     this.gData()
+  }
+  lookup() {
+    this.editable = false;
+    this.myModal.show();
+  }
+  save() {
+    this.myModal.hide();
+  }
+  edit() {
+    this.editable = true;
+  }
+  cancel() {
+    this.editable = false;
+  }
+  uploadFile() {
+    document.getElementById("uploadimages").click();
   }
   gData() {
     this.imagesData = []

@@ -1,7 +1,6 @@
 let data = {
     "EN": {
-        "pageTitle": "Images",
-        "newFile": "Add a new images",
+        "pageTitle": "Contact",
         "itemsPerPage": "Number of items per page",
         "nextBtn": 'Next',
         "previousBtn": 'Previous',
@@ -11,8 +10,7 @@ let data = {
         'emailCol': 'Email'
     },
     "VN": {
-        "pageTitle": "Thư Viện",
-        "newFile": "Thêm mới hình ảnh",
+        "pageTitle": "Danh bạ",
         "itemsPerPage": "Số lượng thư mục mỗi trang",
         "nextBtn": 'Trang sau',
         "previousBtn": 'Trang trước',
