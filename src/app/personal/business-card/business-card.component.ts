@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< Updated upstream
 import { GeneralService } from 'src/app/services/general.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import data from './business-card.language';
+=======
+
+>>>>>>> Stashed changes
 @Component({
   selector: 'app-business-card',
   templateUrl: './business-card.component.html',
@@ -10,6 +14,7 @@ import data from './business-card.language';
 })
 export class BusinessCardComponent implements OnInit {
 
+<<<<<<< Updated upstream
   editable = true;
   businesscardDetail = {
     "date": "",
@@ -87,3 +92,11 @@ export class BusinessCardComponent implements OnInit {
  
 
 }
+=======
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+}
+>>>>>>> Stashed changes

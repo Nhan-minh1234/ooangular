@@ -7,7 +7,7 @@ let data = {
         "previousBtn": 'Previous',
         "emailCol": 'Email',
         'noteCol': 'Note',
-       
+        'upDate': 'Update',
         'to': 'to'
         
         
@@ -20,7 +20,7 @@ let data = {
         "previousBtn": 'Trang trước',
         "emailCol": 'Email',
         'noteCol': 'Ghi chú',
-        
+        'upDate': 'Cập nhật',
         'to': 'đến'
     
     }

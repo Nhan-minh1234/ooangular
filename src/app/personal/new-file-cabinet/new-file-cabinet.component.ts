@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { WizardComponent } from 'angular-archwizard';
 import { GeneralService } from 'src/app/services/general.service';
-import data from './new-file-cabinet.language'
+import data from './new-file-cabinet.language';
 @Component({
   selector: 'app-new-file-cabinet',
   templateUrl: './new-file-cabinet.component.html',

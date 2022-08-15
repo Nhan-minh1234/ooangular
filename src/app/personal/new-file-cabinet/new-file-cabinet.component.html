@@ -14,7 +14,7 @@
         </div>
     </div>
     <aw-wizard>
-        <aw-wizard-step stepTitle="1. Nhập Dữ Liệu Hồ Sơ">
+        <aw-wizard-step stepTitle="{{getLabel('enterInformation')}}">
             <div class="container">
                 <div class="row">
                    
@@ -43,15 +43,15 @@
                 <button type="button" awNextStep class="btn btn-primary">Next Step</button>
             </div>
         </aw-wizard-step>
-        <aw-wizard-step stepTitle="2. Danh sách liên quan" awOptionalStep>
+        <aw-wizard-step stepTitle="{{getLabel('relatedList')}}" awOptionalStep>
             <div class="card">
                 <div class="card-body">
                     <div style="margin: 0 10px 30px 30px;">
                         <label class="form-label" for="groupOfAssignee">
-                            Lựa chọn danh sách từ: </label>
+                            {{getLabel('selectList')}} </label>
                         <select style="width: 50%;" [(ngModel)]="groupKeyChosenInStep2" class="form-select"
                             id="groupOfAssignee">
-                            <option value="all" selected>Tất cả nhân viên</option>
+                            <option value="all" selected>{{getLabel('allStaff')}}</option>
                             <option [ngValue]="groupKey" *ngFor="let groupKey of generalService.allUserGroupsKey">
                                 {{groupKey}}</option>
                         </select>
@@ -61,7 +61,7 @@
                         [rightList]="chosenAssigneelList"></app-dual-list>
                     <div style="margin: 0 10px 30px 30px;">
                         <label class="form-label" for="majorAssignee"><span style="color: tomato;">(*)</span>
-                            Người Xử lý Chính: </label>
+                            {{getLabel('mainHandler')}} </label>
                         <select style="width: 50%;" [(ngModel)]="majorAssignee" class="form-select" id="majorAssignee">
                             <option selected>Chọn...</option>
                             <option [ngValue]="assignee" *ngFor="let assignee of chosenAssigneelList">
@@ -71,8 +71,8 @@
                 </div>
             </div>
             <div class="btn_list">
-                <button type="button" class="btn btn-warning" awPreviousStep>Previous Step</button>
-                <button type="button" class="btn btn-success">Finish</button>
+                <button type="button" class="btn btn-warning" awPreviousStep>{{getLabel('previousStep')}}</button>
+                <button type="button" class="btn btn-success">{{getLabel('finishCol')}}</button>
             </div>
         </aw-wizard-step>
     </aw-wizard>
