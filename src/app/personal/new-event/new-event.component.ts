@@ -97,6 +97,10 @@ export class NewEventComponent implements OnInit {
   wizardGoodToGo(numb) {
     this.wizard.goToStep(numb);
   }
+
+getLabel(key) {
+  return data[`${this.generalService.currentLanguage.Code}`][`${key}`]
+}
   finish() {
 
   }

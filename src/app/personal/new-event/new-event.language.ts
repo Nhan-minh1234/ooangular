@@ -11,7 +11,9 @@ let data = {
         'allStaff': 'all staff',
         'mainHandler': 'main handler',
         'previousStep': 'Previous Step',
-        'finishCol': 'Finish'
+        'finishCol': 'Finish',
+        'enterInfomation':'1.Infomation calendar',
+        'relatedList':'2.Related List'
     },
     "VN": {
         "pageTitle": "Lịch Cá Nhân",
@@ -19,13 +21,15 @@ let data = {
         "theEnd": "Kết thúc",
         "contentCol": 'Nội dung',
         "locationCal": 'Địa điểm',
-        "daddFiles": 'Thêm file',
+        "addFiles": 'Thêm file',
         'nextCol': 'Tiếp tục',
         'selectList': 'Lựa chọn danh sách từ',
         'allStaff': 'Tất cả nhân viên',
         'mainHanler': 'Người xử lý chính',
         'previousStep': 'Quay lại',
-        'finishCol': 'Kết thúc'
+        'finishCol': 'Kết thúc',
+        'enterInfomation':'1.Nhập thông tin lịch',
+        'relatedList':'2.Danh sách liên quan'
     }
 };
 export default data;

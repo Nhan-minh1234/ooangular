@@ -9,17 +9,17 @@
         </div>
         <div class="col-11">
             <div class="page-title-box">
-                <h4 class="page-title">Thêm Mới Lịch Cá Nhân</h4>
+                <h4 class="page-title">{{getLabel('pageTitle')}}</h4>
             </div>
         </div>
     </div>
     <aw-wizard>
-        <aw-wizard-step stepTitle="1. Nhập thông tin lịch">
+        <aw-wizard-step stepTitle="{{getLabel('enterInfomation')}}">
             <div class="container">
                 <div class="row">
                    
                     <div class="mb-3 col-lg-6 col-sm-12 row">
-                        <label for="simpleinput" class="form-label ipt">Bắt đầu:</label>
+                        <label for="simpleinput" class="form-label ipt">{{getLabel('startCol')}}</label>
                         <div class="col-lg-6 col-sm-12">
                             <input class="form-control" id="example-date" type="date" name="date">
                         </div>
@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <div class="mb-3 col-lg-6 col-sm-12 row">
-                        <label for="simpleinput" class="form-label ipt">Kết thúc:</label>
+                        <label for="simpleinput" class="form-label ipt">{{getLabel('theEnd')}}</label>
                         <div class="col-lg-6 col-sm-12">
                             <input class="form-control" id="example-date" type="date" name="date">
                         </div>
@@ -37,17 +37,17 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="example-textarea" class="form-label ipt">Nội dung:</label>
+                        <label for="example-textarea" class="form-label ipt">{{getLabel('contentCol')}}</label>
                         <textarea class="form-control" id="example-textarea" rows="5"></textarea>
                     </div>
                    
                     <div class="mb-3">
-                        <label for="example-textarea" class="form-label">Địa điểm:</label>
+                        <label for="example-textarea" class="form-label">{{getLabel('locationCal')}}</label>
                         <textarea class="form-control" id="example-textarea" rows="1"></textarea>
                     </div>
                    
                     <div class="mb-3">
-                        <label for="example-fileinput" class="form-label">Thêm file:</label>
+                        <label for="example-fileinput" class="form-label">{{getLabel('addFiles')}}</label>
                         <input type="file" multiple (change)="handleFileInput($event.target.files)" id="fileList"
                             class="form-control">
                         <ol class="list-group list-group-numbered">
@@ -62,15 +62,15 @@
                 <button type="button" awNextStep class="btn btn-primary">Next Step</button>
             </div>
         </aw-wizard-step>
-        <aw-wizard-step stepTitle="2. Danh sách liên quan" awOptionalStep>
+        <aw-wizard-step stepTitle="{{getLabel('relatedList')}}" awOptionalStep>
             <div class="card">
                 <div class="card-body">
                     <div style="margin: 0 10px 30px 30px;">
                         <label class="form-label" for="groupOfAssignee">
-                            Lựa chọn danh sách từ: </label>
+                            {{getLabel('selectList')}} </label>
                         <select style="width: 50%;" [(ngModel)]="groupKeyChosenInStep2" class="form-select"
                             id="groupOfAssignee">
-                            <option value="all" selected>Tất cả nhân viên</option>
+                            <option value="all" selected>{{getLabel('allStaff')}}</option>
                             <option [ngValue]="groupKey" *ngFor="let groupKey of generalService.allUserGroupsKey">
                                 {{groupKey}}</option>
                         </select>
@@ -80,7 +80,7 @@
                         [rightList]="chosenAssigneelList"></app-dual-list>
                     <div style="margin: 0 10px 30px 30px;">
                         <label class="form-label" for="majorAssignee"><span style="color: tomato;">(*)</span>
-                            Người Xử lý Chính: </label>
+                            {{getLabel('mainHandler')}} </label>
                         <select style="width: 50%;" [(ngModel)]="majorAssignee" class="form-select" id="majorAssignee">
                             <option selected>Chọn...</option>
                             <option [ngValue]="assignee" *ngFor="let assignee of chosenAssigneelList">
