@@ -28,6 +28,7 @@ const routes: Routes = [
         path:'task-detail/:taskid',
         component:TaskDetailComponent
       },
+    
       // {
       //   data: { "link": "/user/change-password" },
       //   path:'change-password',

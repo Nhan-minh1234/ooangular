@@ -16,8 +16,9 @@ import { SocialModule } from './social/social.module';
     AppComponent,
     LoginComponent,
     HomeComponent,
-
+    
   ],
+
   imports: [
     BrowserAnimationsModule,
     BrowserModule,

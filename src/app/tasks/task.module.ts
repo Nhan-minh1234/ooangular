@@ -19,7 +19,8 @@ import { TaskDetailComponent } from './task-detail/task-detail.component';
     TaskListComponent,
     NewTaskComponent,
     TasksComponent,
-    TaskDetailComponent
+    TaskDetailComponent,
+
   ],
   imports: [
     CommonModule,
