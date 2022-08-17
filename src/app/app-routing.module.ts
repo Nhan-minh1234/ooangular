@@ -9,6 +9,7 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent
   },
+
   {
     path: 'login',
     component: LoginComponent
@@ -37,6 +38,11 @@ const routes: Routes = [
     canActivate: [RouteGuardService],
     path: 'event',
     loadChildren: () => import('./event/event.module').then(m => m.EventModule)
+  },
+   {
+    canActivate: [RouteGuardService],
+    path: 'document',
+    loadChildren: () => import('./document/document.module').then(m => m.DocumentModule)
   },
   {
     canActivate: [RouteGuardService],

@@ -22,7 +22,7 @@ import { NgChartsModule } from 'ng2-charts';
     AppComponent,
     LoginComponent,
     HomeComponent,
-    ClientComponent,
+    ClientComponent
   ],
   imports: [
     BrowserAnimationsModule,
