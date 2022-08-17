@@ -21,7 +21,7 @@ import { NgChartsModule } from 'ng2-charts';
     LoginComponent,
     HomeComponent,
     PersonalComponent,  
-    ClientComponent
+    ClientComponent,
   ],
   imports: [
     BrowserAnimationsModule,

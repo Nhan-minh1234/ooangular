@@ -28,14 +28,14 @@ export class SearchComponent implements OnInit {
   pageSize = 10;
   pageSizes = [10, 20, 30];
   count = 500;
-
+search_new
   config
 
   taoDuLieu(){
     for (let i = 0; i < this.count; i++) {
       let GiaTriMoi = {
       'numerical_order':i+1,
-      'ttext_notation': 'Kí hiệu VB',
+      'text_notation': 'Kí hiệu VB',
       'data_text': 'Ngày tháng VB',
       'text_type_name_and_excerpt': 'Tên loại VB và Trích yếu',
       'editing_place': 'Nơi soạn thảo',
@@ -59,6 +59,10 @@ handlePageSizeChange(event): void {
   this.pageSize = event.target.value;
   this.page = 0;
   this.taoDuLieu();
+}
+tuyChon()
+{
+this.search_new=true;
 }
 
 }

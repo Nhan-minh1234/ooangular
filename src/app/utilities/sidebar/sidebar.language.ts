@@ -123,7 +123,7 @@ let data = [
       '/text-source',
       '/text-inheritance'
     ],
-    'icon': 'uil-globe'
+    'icon': 'uil-notes'
   },
   {
     "id": "documents",

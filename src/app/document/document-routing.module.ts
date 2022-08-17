@@ -9,6 +9,7 @@ import { TextGoComponent } from './text-go/text-go.component';
 import { TextInheritanceComponent } from './text-inheritance/text-inheritance.component';
 import { TextSourceComponent } from './text-source/text-source.component';
 import { NewDocumentComponent } from './new-document/new-document.component';
+import { NewTextGoComponent } from './new-text-go/new-text-go.component';
 
 const routes: Routes = [
   {
@@ -56,6 +57,11 @@ const routes: Routes = [
         path: 'new-document',
         component: NewDocumentComponent
       },
+      {
+        data: { "link": "/document/new-text-go" },
+        path: 'new-text-go',
+        component: NewTextGoComponent
+      },
     ]
   }
 ];
@@ -64,6 +70,6 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class DocumentRouting { }
-
-
+export class DocumentRouting {
+  
+ }

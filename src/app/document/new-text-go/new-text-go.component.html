@@ -1,67 +1,17 @@
-<div class="ootoppage1 kichthuoc mb-2 row">Danh sách văn bản điến</div>
-    <div class="row">
-        <div class="col-9">
-            <table  id = "basic-datatable"  class = "table dt-responsive nowrap w-100" > 
-            <thead > 
-                <tr > 
-                    <th > STT </th>
-                    <th > Số VB </th > 
-                    <th >Trích yếu </th > 
-                    <th > Nơi nhận </th > 
-                    <th > Ngày PH </th > 
-                    <th > Nơi soạn thảo </th > 
-                </tr > 
-            </thead >
+<div class="ootoppage1">Nhập văn bản đi</div>
+<div class="col-md-9 single_right">
+    <div class="but_list">
+        <table class="table">
             <tbody>
-                <tr *ngFor="let i of incomingtextsData |paginate: config">
-                    <td>{{i.numerical_order}}</td>
-                    <td>{{i.abstract}}</td>
-                    <td>{{i.recipients}}</td>
-                    <td>{{i.release_date}}</td>
-                    <td>{{i.drafting_place}}</td>
-                    <td>{{i.text_number}}</td>
-                </tr>
-            </tbody>
-            </table >
-            <div class="list row">
-                <div class="col-md-8">
-                    <pagination-controls id="paging" [previousLabel]="'quay lại'" [nextLabel]="'tiếp tục'"
-                        responsive="true" responsive="true" (pageChange)="handlePageChange($event)"></pagination-controls>
-                </div>
-                <div class="col-md-4">
-                    Số lượng thư mục
-                    <select style="border: solid 1px rgb(230, 229, 229);" (change)="handlePageSizeChange($event)">
-                        <option *ngFor="let size of pageSizes" [ngValue]="size">
-                            {{ size }}
-                        </option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <!--nút -->
-            <div class="col-3">
-                <div  class = "d-grid" >
-                        <button [routerLink]="'/document/new-document'"  type = "button"  class  =  "btn btn-primary mb-1" > Thêm văn bản đến </button >
-                        <button [routerLink]="'/document/search'"  type = "button"  class = "btn btn-sm btn-info mb-1" > Chuyển đến xem </button >
-                        <button [routerLink]="'/document/search'"  type = "button"  class = "btn btn-sm btn-success " > Tìm kiếm </button >
-                </div>
-            </div>
-    </div> 
+                
+                <tr>
+                    <td class="TableTdOO-20">Số TT</td>
+                    <td class="TableTdOO-30">
+                        <input name="ctl22$SOTT" type="text" value="1"
+                            id="ctl22_SOTT" class="inputOO">
 
-    <!---nút nâng cao-->
-
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#standard-modal">Standard Modal</button>
-    <div id="standard-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="standard-modalLabel">Modal Heading</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="ootoppage1 kichthuoc mb-2 row"> Chế độ xem </div>
-<div class="col-md-3 single_right">
-<div class="d-flex justify-content-end">
+                    </td>
+                    <td class="TableTdOO-20">Lưu bản cứng</td>
                     <td class="TableTdOO-30">
                         <select class="form-select" id="example-select">
                             <option value="0" data-select2-id="13">Chọn Phòng
@@ -86,8 +36,7 @@
                                 Thoát Nước Mưa</option>
                         </select>
                     </td>
-                </div>
-            
+                </tr>
                 <tr>
                     <td class="TableTdOO-20">Nơi gửi</td>
                     <td class="TableTdOO-30">
@@ -1563,14 +1512,9 @@
                             <input name="ctl22$ChonNguoiTHChinh" type="hidden"
                                 id="ctl22_ChonNguoiTHChinh" style="width: 100%">
                         </div>
-                    </td>
-                </tr>
-
-                <tr>
+                    </td></tr>
+                    <tr>
                     <td colspan="2">
-
-
-
                         <table border="0" style="width: 100%; border-collapse:
                             collapse">
                             <tbody><tr>
@@ -1751,25 +1695,18 @@
                                             {this.value='';TuongTacListBox_OO('ctl22_List_User_Duoc_Chon','ctl22_List_User_Co_San');AddValueFromMultiSelectListBoxToHidden_OO('ctl22_List_User_Duoc_Chon','ctl22_DSNguoiDuocChon');GanListBoxToComBo_OO('ctl22_List_User_Duoc_Chon','ctl22_NguoiChinh','ctl22_ChonNguoiTHChinh');}"></td>
                                 </tr>
                             </tbody></table>
-
-
+                    </td></tr>
+                <tr>
+                    <td colspan="2">
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
-
                     </td>
                 </tr>
-
-                <tr>
-                    <td colspan="2">
-
-
-
-                    </td>
-                </tr>
-
-
+            </tbody>
+        </table>
+<!---->
         <div>
             <div class="btnOO">
                 <p align="center">
@@ -1793,9 +1730,3 @@
         <div class="clearfix"></div>
     </div>
 </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">update</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
