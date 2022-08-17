@@ -28,31 +28,162 @@
             </div>
         </div>
         <div class="col-2 my-auto">
-            <abbr style="cursor: pointer;" [title]="getLabel('newBtn')">
-                <!--<img (click)="openNewTaskModal()" style="width:40px;height:auto; float: right !important;"
-                    src="assets/imgs/plus.png" />-->
+            <abbr data-bs-toggle="modal" data-bs-target="#standard-modal" style="cursor: pointer;" [title]="'Thêm mới'">
                 <img style="width:40px;height:auto; float: right !important;" src="assets/imgs/plus.png" />
             </abbr>
         </div>
     </div>
+    <div id="image-folder-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class=" modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="standard-modalLabel">Modal Heading</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                </div>
+                <div class="modal-body">
+                    <app-new-images-folder></app-new-images-folder>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-success">Thêm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="standard-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class=" modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="standard-modalLabel">Modal Heading</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                </div>
+                <div class="modal-body">
+                    <app-new-image></app-new-image>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-success">Thêm</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!--End page title-->
-    <table id="basic-datatable" class="table table-striped table-hover dt-responsive nowrap w-100">
-        <thead>
-            <tr>
-                <th>{{getLabel('imgCol')}}</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="myTableRow" *ngFor="let item of imagesData | paginate: config">
-                <td>
-                    <img src="{{item.img}}" alt="{{item.title}}.img" width="100">
-                    {{item.title}}
-                </td>
-                <td>*action*</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col-9">
+            <table id="basic-datatable" class="table table-hover table-bordered table-centered mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th>{{getLabel('imgCol')}}</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="myTableRow" *ngFor="let item of imagesData | paginate: config">
+                        <td>
+                            {{item.title}}
+                        </td>
+                        <td class="table-action">
+                            <div class="d-flex">
+                                <div id="tooltip-lookup">
+                                    <button type="button" class="btn btn-primary" data-bs-container="#tooltip-lookup"
+                                        title="Xem album" (click)="lookup()" data-bs-toggle="modal"
+                                        data-bs-target="#img-modal"><i class="uil-eye"></i>
+                                    </button>
+                                </div>
+                                <div id="tooltip-edit">
+                                    <button type="button" class="btn btn-warning" data-bs-container="#tooltip-edit"
+                                        data-bs-toggle="modal" title="Chỉnh sửa" (click)="edit()"
+                                        data-bs-target="#img-modal"> <i class="uil-edit"></i>
+                                    </button>
+                                </div>
+                                <div id="tooltip-delete">
+                                    <button type="button" class="btn btn-danger" data-bs-container="#tooltip-delete"
+                                        data-bs-toggle="tooltip" title="Xoá"><i class="uil-trash-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="modal fade" id="img-modal" tabindex="-1" role="dialog" aria-labelledby="scrollableModalTitle"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="scrollableModalTitle">Ablum title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="mb-3 col-12">
+                                    <h3>Miêu tả Ablum</h3>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae itaque aspernatur
+                                        repellendus nam magni. Laudantium quisquam beatae cum architecto facilis
+                                        distinctio voluptate neque quam repellendus, eaque cupiditate soluta odit fuga.
+                                    </p>
+                                </div>
+                                <h3 class="mb-3">Danh sách hình ảnh</h3>
+                                <div class="col-lg-4 col-sm-12 mb-3" *ngFor="let i of [1,2,3,4,5,6,7,8]">
+                                    <div class="position-relative">
+                                        <div *ngIf="editable" class="position-absolute btn-custom">
+                                            <i class="uil-multiply"></i>
+                                        </div>
+                                        <img src="https://phanmematp.vn/wp-content/uploads/2020/10/ky-nang-xu-ly-tinh-huong-trong-cong-viec-1.jpg"
+                                            class="img-fluid" alt="test.img">
+                                    </div>
+                                </div>
+                                <div *ngIf="editable" class="col-lg-4 col-sm-12 mb-3">
+                                    <input type="file" id="uploadimages" style="display:none">
+                                    <div (click)="uploadFile()" class="file_upload_area">
+                                        <div><i class="uil-cloud-upload display-6"></i></div>
+                                        <h4>Thêm hình ảnh</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            <button type="button" *ngIf="!editable" (click)="edit()"
+                                class="btn btn-primary">Sửa</button>
+                            <button type="button" id="buy" *ngIf="editable" (click)="cancel()"
+                                class="btn btn-warning">Huỷ</button>
+                            <button type="button" (click)="save()" *ngIf="editable" class="btn btn-success">Lưu</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+        </div>
+
+        <div class="col-3">
+            <div class="list-group">
+                <div class="list-group-item list-group-item-custom-dark">
+                    Bộ lọc
+                </div>
+                <div class="list-group-item list-group-item-primary">
+                    Tìm theo tiêu đề:
+                </div>
+                <div class="list-group-item">
+                    <input type="text" class="form-control" placeholder="Tìm kiếm" />
+                </div>
+                <a class="list-group-item list-group-item-primary hover" data-bs-toggle="collapse" href="#department"
+                    aria-expanded="false">
+                    Theo thư mục
+                    <i class="mdi mdi-chevron-down accordion-arrow"></i>
+                </a>
+                <div class="collapse list-group" id="department">
+                    <div class="list-group-item" *ngFor="let item of imageGroupTitle; let i = index">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="departmentCheck{{i}}">
+                            <label class="form-check-label hover" for="departmentCheck{{i}}">{{item}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- /////////////////// Pagination -->
     <div class="list row">
         <div class="col-md-8">
@@ -70,3 +201,15 @@
     </div>
     <div data-provide="datepicker-inline"></div>
 </div>
+<script type="text/javascript">
+    $("#buy").click(function () {
+        var a = 4;
+        if (a == 5) {
+            alert("if");
+            $('#myModal').modal('show');
+        } else {
+            alert("else");
+            $('#myModal').modal('hide');
+        }
+    });
+</script>

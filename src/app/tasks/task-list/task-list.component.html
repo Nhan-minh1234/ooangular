@@ -2,7 +2,7 @@
     <ngx-loading [show]="spinnerLoading"
         [config]="{ primaryColour: 'whitesmoke', backdropBorderRadius: '3px', fullScreenBackdrop: true }"></ngx-loading>
     <!-- start page title -->
-    <div class="modal" id="myModal" >
+    <div class="modal" id="myModal">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -14,7 +14,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    <button (click)="getTaskList()" type="button" class="btn btn-primary">Thử lại</button>
+                    <button (click)="generateData()" type="button" class="btn btn-primary">Thử lại</button>
                 </div>
             </div>
         </div>
@@ -38,28 +38,36 @@
 
 
     <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
-        <li (click)="changeTabs('assigned')" class="nav-item">
+        <li (click)="currentTab = '0'; generateData()" class="nav-item">
             <a data-bs-toggle="tab" aria-expanded="false" class="nav-link rounded-0 active">
                 <i class="mdi mdi-home-variant d-md-none d-block"></i>
                 <span class="d-none d-md-block">{{getLabel("assignedTab")}}
                     <span style=" vertical-align:top;" class="badge rounded-pill bg-warning text-dark"
-                        *ngIf="paginationConfig!=null && currentTab=='assigned'">{{paginationConfig.totalItems}}</span></span>
+                        *ngIf="currentTab==='0'">{{paginationConfig.totalItems}}</span></span>
             </a>
         </li>
-        <li (click)="changeTabs('forwarded')" class="nav-item">
+        <li (click)="currentTab = '1'; generateData()" class="nav-item">
             <a data-bs-toggle="tab" aria-expanded="true" class="nav-link rounded-0">
                 <i class="mdi mdi-account-circle d-md-none d-block"></i>
                 <span class="d-none d-md-block">{{getLabel("forwadedTab")}} <span style=" vertical-align:top;"
                         class="badge rounded-pill bg-warning text-dark"
-                        *ngIf="paginationConfig!=null && currentTab=='forwarded'">{{paginationConfig.totalItems}}</span></span>
+                        *ngIf="currentTab==='1'">{{paginationConfig.totalItems}}</span></span>
             </a>
         </li>
-        <li (click)="changeTabs('watchable')" class="nav-item">
+        <li (click)="currentTab = '2'; generateData()" class="nav-item">
             <a data-bs-toggle="tab" aria-expanded="false" class="nav-link rounded-0">
                 <i class="mdi mdi-settings-outline d-md-none d-block"></i>
                 <span class="d-none d-md-block">{{getLabel("watchableTab")}} <span style=" vertical-align:top;"
                         class="badge rounded-pill bg-warning text-dark"
-                        *ngIf="paginationConfig!=null && currentTab=='watchable'">{{paginationConfig.totalItems}}</span></span>
+                        *ngIf="currentTab==='2'">{{paginationConfig.totalItems}}</span></span>
+            </a>
+        </li>
+        <li (click)="currentTab = '3'; generateData()" class="nav-item">
+            <a data-bs-toggle="tab" aria-expanded="false" class="nav-link rounded-0">
+                <i class="mdi mdi-settings-outline d-md-none d-block"></i>
+                <span class="d-none d-md-block">{{getLabel("completedTab")}}<span style=" vertical-align:top;"
+                        class="badge rounded-pill bg-warning text-dark"
+                        *ngIf="currentTab==='3'">{{paginationConfig.totalItems}}</span></span>
             </a>
         </li>
     </ul>
@@ -67,10 +75,10 @@
     <div class="list row">
         <div class="col-md-8">
             <div class="input-group mb-3">
-                <input (keyup)="filterList()" type="text" class="form-control"
+                <input (keyup)="search()" type="text" class="form-control"
                     [placeholder]="getLabel('searchPlaceholer')" [(ngModel)]="searchKey" />
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" (click)="filterList()">
+                    <button class="btn btn-outline-secondary" type="button" (click)="search()">
                         <i class="uil-search-alt"></i> {{getLabel("searchBtn")}}
                     </button>
                 </div>
@@ -78,7 +86,7 @@
         </div>
     </div>
 
-    <div *ngIf="currentTab=='assigned'" class="row">
+    <div class="row">
         <div class="col-sm-12">
             <div>
                 <div class="card">
@@ -97,9 +105,9 @@
                                     </tr>
                                 </thead>
 
-                                <tbody *ngIf="currentAssignedTask!=null">
+                                <tbody *ngIf="taskList!=null">
                                     <tr class="myTableRow" (click)="taskItemClick(data)"
-                                        *ngFor="let data of currentAssignedTask | paginate: paginationConfig">
+                                        *ngFor="let data of taskList | paginate: paginationConfig">
                                         <td>{{data.chude}}</td>
                                         <td>{{data.nguoiTaoHoTen}}</td>
                                         <td>{{data.ngayBatDau}}</td>
@@ -121,13 +129,12 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div> <!-- end card-body -->
+                    </div>
                 </div>
-
             </div>
-        </div><!-- end col -->
-    </div><!-- end row -->
-
+        </div>
+    </div>
+    <!-- 
     <div *ngIf="currentTab=='forwarded'" class="row">
         <div class="col-sm-12">
             <div>
@@ -169,12 +176,12 @@
                             </tbody>
                         </table>
 
-                    </div> <!-- end card-body -->
+                    </div>
                 </div>
 
             </div>
-        </div><!-- end col -->
-    </div><!-- end row -->
+        </div>
+    </div>
 
     <div *ngIf="currentTab=='watchable'" class="row">
         <div class="col-sm-12">
@@ -216,21 +223,19 @@
                                 </tr>
                             </tbody>
                         </table>
-
-                    </div> <!-- end card-body -->
+                    </div>
                 </div>
-
             </div>
-        </div><!-- end col -->
-    </div><!-- end row -->
+        </div>
+    </div> -->
 
 
     <!-- /////////////////// Pagination -->
     <div class="list row">
         <div class="col-md-8">
             <pagination-controls id="paginationControl" [previousLabel]="getLabel('previousBtn')"
-                [nextLabel]="getLabel('nextBtn')" responsive="true"
-                (pageChange)="handlePageChange($event)"></pagination-controls>
+                [nextLabel]="getLabel('nextBtn')" responsive="true" (pageChange)="handlePageChange($event)">
+            </pagination-controls>
         </div>
         <div class="col-md-4">
             {{getLabel("itemsPerPage")}}:

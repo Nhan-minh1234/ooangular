@@ -52,8 +52,10 @@
                 </a>
                 <div class="collapse" id="{{item.id}}">
                     <ul class="side-nav-second-level">
-                        <li *ngFor="let child of item[this.generalService.currentLanguage.Code].items; let i = index">
-                            <a (click)="routeNavigator(item.id + item.routing[i])">{{child}}</a>
+                        <li *ngFor="let child of item[this.generalService.currentLanguage.Code].items; let i = index"
+                            [routerLinkActive]="['menuitem-active']">
+                            <a [routerLink]="item.id + item.routing[i]"
+                                [routerLinkActiveOptions]="{exact:true}">{{child}}</a>
                         </li>
                     </ul>
                 </div>
