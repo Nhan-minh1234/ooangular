@@ -17,14 +17,61 @@ let data = [
     "id": "event",
     "EN": {
       "title": "Event",
-      "items": ["Event list", "New event", "Event sample", "location"]
+
+      "items": [
+        "Event list",
+        "New event",
+        "Event Sample",
+        "Location",
+      ]
     },
     "VN": {
       "title": "Lịch tuần",
-      "items": ["Danh sách lịch", "Đăng ký lịch", "Lịch tuần mẫu", "Địa điểm"]
+      "items": [
+        "Danh sách lịch",
+        "Đăng ký lịch",
+        "Lịch tuần mẫu",
+        "Địa điểm"
+      ]
     },
-    "routing": ['/event-list', '/new-event', "/event-sample", "/location"],
+    "routing": [
+      '/event-list',
+      '/new-event',
+      '/event-sample',
+      '/location'
+
+    ],
+
     'icon': 'uil-calendar-alt'
+  },
+  {
+    "id": "client",
+    "EN": {
+      "title": "Client",
+      "items": [
+        "Contract",
+        "Catalog",
+        "Report",
+        "Search",
+      ]
+    },
+    "VN": {
+      "title": "Khách hàng",
+      "items": [
+        "Hợp đồng",
+        "Danh mục",
+        "Báo cáo",
+        "Tìm kiếm"
+      ]
+    },
+    "routing": [
+      '/contract',
+      '/catalog',
+      '/report',
+      '/search'
+
+    ],
+    'icon': 'uil-users-alt'
   },
   {
     "id": "social",
