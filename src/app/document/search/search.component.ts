@@ -28,7 +28,7 @@ export class SearchComponent implements OnInit {
   pageSize = 10;
   pageSizes = [10, 20, 30];
   count = 500;
-
+search_new
   config
 
   taoDuLieu(){
@@ -59,6 +59,10 @@ handlePageSizeChange(event): void {
   this.pageSize = event.target.value;
   this.page = 0;
   this.taoDuLieu();
+}
+tuyChon()
+{
+this.search_new=true;
 }
 
 }

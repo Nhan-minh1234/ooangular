@@ -59,7 +59,7 @@ const routes: Routes = [
       },
       {
         data: { "link": "/document/new-text-go" },
-        path: 'new-new-text-go',
+        path: 'new-text-go',
         component: NewTextGoComponent
       },
     ]
