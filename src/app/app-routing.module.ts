@@ -38,6 +38,14 @@ const routes: Routes = [
     path: 'event',
     loadChildren: () => import('./event/event.module').then(m => m.EventModule)
   },
+  {
+    canActivate: [RouteGuardService],
+    path: 'personal',
+    loadChildren: () => import('./personal/personal.module').then(m => m.PersonalModule)
+  },
+ 
+ 
+ 
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' }
 ];
