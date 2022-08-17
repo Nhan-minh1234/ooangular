@@ -107,13 +107,9 @@ let data = [
     "EN": {
       "title": "Personal",
       "items": [
-        "Calendar",
+        "event",
         "File cabinet",
         "Business card"
-<<<<<<< Updated upstream
-        
-=======
->>>>>>> Stashed changes
       ]
     },
     "VN": {
@@ -122,7 +118,7 @@ let data = [
         "Lịch cá nhân",
         "Tủ hồ sơ",
         "Danh thiếp"
-<<<<<<< Updated upstream
+
         
       ]
     },
@@ -131,14 +127,8 @@ let data = [
       '/file-cabinet',
       '/business-card'
       
-=======
-      ]
-    },
-    "routing": [
-      '/calendar',
-      '/file-cabinet',
-      '/business-card'
->>>>>>> Stashed changes
+
+
     ],
     'icon': 'uil-smile'
   }

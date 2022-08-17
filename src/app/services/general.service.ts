@@ -1,5 +1,6 @@
 import { ElementRef, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { url } from 'inspector';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
@@ -27,6 +28,7 @@ export class GeneralService {
   {
     return this.appConfig.API_BASE_URL + '/' + imgName;
   }
+  
   logout()
   {
     this.isLogin=false;

@@ -1,19 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< Updated upstream
 import { GeneralService } from 'src/app/services/general.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import data from './file-cabinet.language';
-=======
->>>>>>> Stashed changes
-
 @Component({
   selector: 'app-file-cabinet',
   templateUrl: './file-cabinet.component.html',
   styleUrls: ['./file-cabinet.component.css']
 })
 export class FileCabinetComponent implements OnInit {
-<<<<<<< Updated upstream
   editable = true;
   filecabinetDetail = {
     "date": "",
@@ -88,12 +83,8 @@ export class FileCabinetComponent implements OnInit {
     this.gData();
   }
  
-=======
 
-  constructor() { }
 
-  ngOnInit(): void {
-  }
->>>>>>> Stashed changes
+  
 
 }
