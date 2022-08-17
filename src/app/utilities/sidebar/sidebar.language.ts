@@ -123,7 +123,6 @@ let data = [
       '/text-source',
       '/text-inheritance'
     ],
-<<<<<<< HEAD
     'icon': 'uil-globe'
   },
   {
@@ -167,23 +166,15 @@ let data = [
       "items": [
         "Lịch cá nhân",
         "Tủ hồ sơ",
-        "Danh thiếp"
-
-        
+        "Danh thiếp"        
       ]
     },
     "routing": [
       '/event',
       '/file-cabinet',
-      '/business-card'
-      
-
-
+      '/business-card'    
     ],
     'icon': 'uil-smile'
-=======
-    'icon': 'dripicons-blog'
->>>>>>> main
   }
 
 ];
