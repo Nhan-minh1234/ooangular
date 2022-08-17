@@ -1,11 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
-.myTableRow{
+.myTableRow {
     cursor: pointer;
 }
-.requiredField{
-    color:tomato
+
+.requiredField {
+    color: tomato
 }
-.fixLoginPageMargin{
+
+.fixLoginPageMargin {
     margin: 0 !important;
-    padding:0 !important;
+    padding: 0 !important;
+}
+
+.list-group-item-custom-dark {
+    background-color: #474d56;
+    color: #fff;
+    font-weight: bold;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.paragraph_ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
 }

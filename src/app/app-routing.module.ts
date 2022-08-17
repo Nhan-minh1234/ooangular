@@ -9,6 +9,7 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent
   },
+
   {
     path: 'login',
     component: LoginComponent
@@ -43,9 +44,16 @@ const routes: Routes = [
     path: 'personal',
     loadChildren: () => import('./personal/personal.module').then(m => m.PersonalModule)
   },
- 
- 
- 
+  {
+    canActivate: [RouteGuardService],
+    path: 'document',
+    loadChildren: () => import('./document/document.module').then(m => m.DocumentModule)
+  },
+  {
+    canActivate: [RouteGuardService],
+    path: 'client',
+    loadChildren: () => import('./client/client.module').then(m => m.ClientModule)
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' }
 ];

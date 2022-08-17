@@ -11,6 +11,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LocationComponent implements OnInit {
 
+  editable = true;
+  deletetable = true;
+  
+
   spinnerLoading = false;
   eventListData
   page = 0;
