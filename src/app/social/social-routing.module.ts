@@ -6,6 +6,8 @@ import { LibraryComponent } from './library/library.component';
 import { ImagesComponent } from './images/images.component';
 import { ContactComponent } from './contact/contact.component';
 import { SurveyComponent } from './survey/survey.component';
+import { NewImageComponent } from './new-image/new-image.component';
+import { NewsDetailComponent } from './news-detail/news-detail.component';
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
@@ -44,6 +46,16 @@ const routes: Routes = [
                 data: { "link": "/social/survey" },
                 path: 'survey',
                 component: SurveyComponent
+            },
+            {
+                data: { "link": "/social/images/new" },
+                path: 'images/new',
+                component: NewImageComponent
+            },
+            {
+                data: { "link": "/social/news/detail" },
+                path: 'news/detail/:id',
+                component: NewsDetailComponent
             },
         ]
     }

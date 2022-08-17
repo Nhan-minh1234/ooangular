@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { GeneralService } from 'src/app/services/general.service';
 import data from './contact.language'
-import { CalendarComponent } from 'src/app/utilities/calendar/calendar.component';
 
 //for fake api
 import { HttpClient } from '@angular/common/http';
@@ -15,6 +14,8 @@ import { promise } from 'protractor';
 export class ContactComponent implements OnInit {
 
   constructor(private el: ElementRef, public generalService: GeneralService, private httpClient: HttpClient) { }
+  departmentList = ['Tất cả', 'Ban giám đốc', 'Phòng tổ chức hành chính', 'Phòng kỹ thuật']
+
   contactData = []
   spinnerLoading = false;
   page = 0;

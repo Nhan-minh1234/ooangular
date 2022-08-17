@@ -3,76 +3,88 @@ let data = [
     "id": "tasks",
     "EN": {
       "title": "Tasks",
-
-      "items": ["Task List", "Verify", "Đăng ký [Eng]", "Lịch tuần mẫu [Eng]", "Địa điểm [Eng]"]
+      "items": ["Task list", "Task report", "Task Autocomplete", "Report", "Báo cáo định kỳ", "Project", "Project group", "Trao đổi"]
 
     },
     "VN": {
       "title": "Công Việc",
-      "items": ["Danh Sách Công Việc", "Lịch tuần mẫu", "Địa điểm"]
+      "items": ["Danh Sách Công Việc", "Thống kê", "Công việc mẫu", "Báo cáo", "Báo cáo định kỳ", "Dự án công việc", "Nhóm công việc", "Trao đổi"]
     },
-    'routing': [
-      '/task-list',
-      '',
-      '',
-      '',
-      ''
-    ],
-    'icon': 'uil-database-alt'
+    'routing': ['/task-list', '/task-report', '/task-autocomplete', "/report", "/project", "", "", ""],
+    'icon': ' uil-receipt-alt'
   },
   {
     "id": "event",
     "EN": {
       "title": "Event",
+
       "items": [
         "Event list",
-        "New event"
+        "New event",
+        "Event Sample",
+        "Location",
       ]
     },
     "VN": {
       "title": "Lịch tuần",
       "items": [
         "Danh sách lịch",
-        "Đăng ký lịch"
+        "Đăng ký lịch",
+        "Lịch tuần mẫu",
+        "Địa điểm"
       ]
     },
     "routing": [
       '/event-list',
-      '/new-event'
+      '/new-event',
+      '/event-sample',
+      '/location'
+
     ],
+
     'icon': 'uil-calendar-alt'
+  },
+  {
+    "id": "client",
+    "EN": {
+      "title": "Client",
+      "items": [
+        "Contract",
+        "Catalog",
+        "Report",
+        "Search",
+      ]
+    },
+    "VN": {
+      "title": "Khách hàng",
+      "items": [
+        "Hợp đồng",
+        "Danh mục",
+        "Báo cáo",
+        "Tìm kiếm"
+      ]
+    },
+    "routing": [
+      '/contract',
+      '/catalog',
+      '/report',
+      '/search'
+
+    ],
+    'icon': 'uil-users-alt'
   },
   {
     "id": "social",
     "EN": {
       "title": "Cong Thong Tin [Eng]",
-      "items": [
-        "Notification",
-        "Library",
-        "News",
-        "Images",
-        "Contact",
-        "Survey"
-      ]
+      "items": ["Notification", "Library", "News", "Images", "Contact", "Survey"]
     },
     "VN": {
       "title": "Cổng Thông Tin",
-      "items": [
-        "Thông báo",
-        "Thư Viện",
-        "Tin tức",
-        "Hình ảnh",
-        "Danh bạ",
-        "Thăm dò khảo sát"
+      "items": ["Thông báo", "Thư Viện", "Tin tức", "Hình ảnh", "Danh bạ"/*, "Thăm dò khảo sát"*/
       ]
     },
-    "routing": [
-      '/notification',
-      '/library',
-      '/news',
-      '/images',
-      '/contact',
-      '/survey'
+    "routing": ['/notification', '/library', '/news', '/images', '/contact'/*, '/survey'*/
     ],
     'icon': 'uil-globe'
   },
@@ -113,6 +125,7 @@ let data = [
     ],
     'icon': 'dripicons-blog'
   }
+
 ];
 
 export default data;
