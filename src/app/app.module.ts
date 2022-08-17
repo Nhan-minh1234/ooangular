@@ -9,11 +9,9 @@ import { FormsModule } from '@angular/forms';
 import { UtilitiesModule } from './utilities/utilities.module';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { SocialModule } from './social/social.module';
+import { PersonalComponent } from './personal/personal.component';
 import { ClientComponent } from './client/client/client.component';
-
-
 import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
@@ -22,6 +20,7 @@ import { NgChartsModule } from 'ng2-charts';
     AppComponent,
     LoginComponent,
     HomeComponent,
+    PersonalComponent,  
     ClientComponent
   ],
   imports: [
