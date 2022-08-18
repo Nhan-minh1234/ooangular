@@ -19,7 +19,7 @@ export class IncomingTextComponent implements OnInit {
   editable = true;
   incomingtextsData = []
   incomingnamMoi = []
-  incomingtextDuLieu=['Giám đốc','Trưởng phòng']
+  incomingtextDuLieu=['Giám đốc','Trưởng phòng','Nhân viên CNTT']
   documentSandbox;
   currentTab = true;
 
