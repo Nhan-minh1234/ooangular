@@ -38,11 +38,28 @@
                 </div>
             </div>
         </div>
+        <!--thời gian-->
+            
         <!--nút -->
             <div class="col-3">
                 <div  class = "d-grid" >
+                    <div class="ootoppage1 btn btn-success "> Năm</div>
+                    <select id="inputState" class="form-select mb-1">
+                        <option>Tất cả</option>
+                        <option value="-1"*ngFor="let i of incomingnamMoi" >
+                            {{i}}
+                        </option>
+                    </select>
+                    <div class="ootoppage1 btn btn-success "> Nơi nhận văn bản</div>
+                    <select id="inputState" class="form-select mb-1">
+                        <option>Tất cả mọi người</option>
+                        <option *ngFor="let i of incomingtextDuLieu">
+                            {{i}}
+                        </option>
+                        
+                    </select>
                         <button [routerLink]="'/document/new-document'"  type = "button"  class  =  "btn btn-primary mb-1" > Thêm văn bản đến </button >
-                        <button [routerLink]="'/document/search'"  type = "button"  class = "btn btn-sm btn-info mb-1" > Chuyển đến xem </button >
+                        <button  type = "button"  class = "btn btn-sm btn-info mb-1" data-bs-toggle="modal" data-bs-target="#standard-modal" > Chuyển đến xem </button >
                         <button [routerLink]="'/document/search'"  type = "button"  class = "btn btn-sm btn-success " > Tìm kiếm </button >
                 </div>
             </div>
@@ -50,16 +67,15 @@
 
     <!---nút nâng cao-->
 
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#standard-modal">Standard Modal</button>
+    
     <div id="standard-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="standard-modalLabel">Modal Heading</h4>
+                    <h4 class="modal-title" id="standard-modalLabel">CHẾ ĐỘ XEM</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="ootoppage1 kichthuoc mb-2 row"> Chế độ xem </div>
 <div class="col-md-3 single_right">
 <div class="d-flex justify-content-end">
                     <td class="TableTdOO-30">
@@ -1510,23 +1526,11 @@
                 </tr>
 
                 <tr>
-                    <td class="TableTdOO-20">Trích yếu
-                    </td>
-                    <td colspan="3" class="TableTdOO-80">
-                        <textarea name="ctl22$TRICHYEU" rows="2" cols="20"
-                            id="ctl22_TRICHYEU" class="inputOO">
-                        </textarea>
-
-                    </td>
+                   <!--trích yếu-->
+                   <!--ghi chú-->
                 </tr>
                 <tr>
-                    <td class="TableTdOO-20">Ghi chú
-                    </td>
-                    <td colspan="3" class="TableTdOO-80">
-                        <textarea name="ctl22$GHI_CHU" rows="2" cols="20"
-                            id="ctl22_GHI_CHU" class="inputOO">
-                        </textarea>
-                    </td>
+                    
                 </tr>
                 <tr>
                     <td class="TableTdOO-20">Đính kèm:

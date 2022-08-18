@@ -33,8 +33,8 @@ const routes: Routes = [
         component: InternalTextComponent
       },
       {
-        data: { "link": "/document/Create-folder" },
-        path: 'Create-folder',
+        data: { "link": "/document/create-folder" },
+        path: 'create-folder',
         component: CreateFolderComponent
       },
       {

@@ -13,9 +13,13 @@ export class IncomingTextComponent implements OnInit {
 
   ngOnInit(): void {
     this.taoDuLieu()
+    this.tinhNam()
+
   }
   editable = true;
   incomingtextsData = []
+  incomingnamMoi = []
+  incomingtextDuLieu=['Giám đốc','Trưởng phòng']
   documentSandbox;
   currentTab = true;
 
@@ -48,6 +52,15 @@ export class IncomingTextComponent implements OnInit {
       totalItems: this.incomingtextsData.length
     }
 }
+  tinhNam(){
+    for ( let i=0; i<=20; i++){
+      this.incomingnamMoi.push(2022-i)
+    }
+
+  }
+
+   
+  
 handlePageChange(event): void {
   this.page = event;
   this.taoDuLieu();

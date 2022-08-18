@@ -3,7 +3,7 @@ let data = [
     "id": "tasks",
     "EN": {
       "title": "Tasks",
-      "items": ["Task list", "Task report", "Task Autocomplete", "Report", "Báo cáo định kỳ", "Project", "Project group", "Trao đổi"]
+      "items": ["Task list", "Task report", "Task Autocomplete", "Report", "Periodical report", "Project", "Project group", "Trao đổi"]
 
     },
     "VN": {
