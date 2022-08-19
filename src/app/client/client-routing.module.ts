@@ -5,6 +5,7 @@ import {ContractComponent} from './contract/contract.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { ReportComponent } from './report/report.component';
 import { SearchComponent } from './search/search.component';
+import { CustomersComponent } from './customers/customers.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,11 @@ const routes: Routes = [
         data: { "link": "/client/search" },
         path: 'search',
         component: SearchComponent
+      },
+      {
+        data: { "link": "/client/customers" },
+        path: 'customers',
+        component: CustomersComponent
       }
     ]
   }

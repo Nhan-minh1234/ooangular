@@ -10,6 +10,7 @@ import { NgxLoadingModule } from 'ngx-loading';
 import { ArchwizardModule } from 'angular-archwizard';
 import { UtilitiesModule } from '../utilities/utilities.module';
 import { FormsModule } from '@angular/forms';
+import { CustomersComponent } from './customers/customers.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { FormsModule } from '@angular/forms';
     CatalogComponent,
     ReportComponent,
     SearchComponent,
+    CustomersComponent,
   ],
   imports: [
     CommonModule,

@@ -52,15 +52,17 @@ let data = [
     "EN": {
       "title": "Client",
       "items": [
+        "Customers",
         "Contract",
         "Catalog",
         "Report",
-        "Search",
+        "Search"
       ]
     },
     "VN": {
       "title": "Khách hàng",
       "items": [
+        "Khách hàng",
         "Hợp đồng",
         "Danh mục",
         "Báo cáo",
@@ -68,6 +70,7 @@ let data = [
       ]
     },
     "routing": [
+      '/customers',
       '/contract',
       '/catalog',
       '/report',
