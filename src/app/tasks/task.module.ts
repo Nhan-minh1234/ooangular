@@ -18,6 +18,15 @@ import { TaskAutocompleteComponent } from './task-autocomplete/task-autocomplete
 import { DonutChartComponent } from '../utilities/donut-chart/donut-chart.component';
 import { ReportComponent } from './report/report.component';
 import { ProjectComponent } from './project/project.component';
+import { TaskSettingComponent } from './task-detail/task-detail-tabs/task-setting/task-setting.component';
+import { TaskOverviewComponent } from './task-detail/task-detail-tabs/task-overview/task-overview.component';
+import { TaskFilesComponent } from './task-detail/task-detail-tabs/task-files/task-files.component';
+import { TaskUsersComponent } from './task-detail/task-detail-tabs/task-users/task-users.component';
+import { TaskActivityComponent } from './task-detail/task-detail-tabs/task-activity/task-activity.component';
+import { TaskTargetsComponent } from './task-detail/task-detail-tabs/task-targets/task-targets.component';
+import { DragulaModule } from 'ng2-dragula';
+import { TaskTargetDetailComponent } from './task-detail/task-detail-tabs/task-target-detail/task-target-detail.component';
+import { TaskTargetManagerComponent } from './task-detail/task-detail-tabs/task-target-manager/task-target-manager.component';
 @NgModule({
   declarations: [
     TaskListComponent,
@@ -28,10 +37,19 @@ import { ProjectComponent } from './project/project.component';
     TaskAutocompleteComponent,
     DonutChartComponent,
     ReportComponent,
-    ProjectComponent
+    ProjectComponent,
+    TaskSettingComponent,
+    TaskOverviewComponent,
+    TaskFilesComponent,
+    TaskActivityComponent,
+    TaskUsersComponent,
+    TaskTargetsComponent,
+    TaskTargetDetailComponent,
+    TaskTargetManagerComponent
   ],
   imports: [
     CommonModule,
+    DragulaModule.forRoot(),
     TasksRouting,
     FormsModule,
     AngularMyDatePickerModule,
