@@ -32,7 +32,6 @@ export class NewEventComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.wizardStep)
     this.onAsigneeGroupChange(null)
-    this.dualListUpdateForAssignee(null);
   }
   goBack() {
     this._location.back();
