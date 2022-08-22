@@ -14,7 +14,6 @@ import { NgxLoadingModule } from "ngx-loading";
 import { CircleProgressOptions, NgCircleProgressModule } from 'ng-circle-progress';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
 import { TaskReportComponent } from './task-report/task-report.component';
-import { TaskAutocompleteComponent } from './task-autocomplete/task-autocomplete.component';
 import { DonutChartComponent } from '../utilities/donut-chart/donut-chart.component';
 import { ReportComponent } from './report/report.component';
 import { ProjectComponent } from './project/project.component';
@@ -27,6 +26,9 @@ import { TaskTargetsComponent } from './task-detail/task-detail-tabs/task-target
 import { DragulaModule } from 'ng2-dragula';
 import { TaskTargetDetailComponent } from './task-detail/task-detail-tabs/task-target-detail/task-target-detail.component';
 import { TaskTargetManagerComponent } from './task-detail/task-detail-tabs/task-target-manager/task-target-manager.component';
+import { TaskSamplesComponent } from './task-samples/task-samples.component';
+import { TaskSampleDetailComponent } from './task-sample-detail/task-sample-detail.component';
+import { TaskSampleManagerComponent } from './task-sample-manager/task-sample-manager.component';
 @NgModule({
   declarations: [
     TaskListComponent,
@@ -34,7 +36,6 @@ import { TaskTargetManagerComponent } from './task-detail/task-detail-tabs/task-
     TasksComponent,
     TaskDetailComponent,
     TaskReportComponent,
-    TaskAutocompleteComponent,
     DonutChartComponent,
     ReportComponent,
     ProjectComponent,
@@ -45,7 +46,10 @@ import { TaskTargetManagerComponent } from './task-detail/task-detail-tabs/task-
     TaskUsersComponent,
     TaskTargetsComponent,
     TaskTargetDetailComponent,
-    TaskTargetManagerComponent
+    TaskTargetManagerComponent,
+    TaskSamplesComponent,
+    TaskSampleDetailComponent,
+    TaskSampleManagerComponent
   ],
   imports: [
     CommonModule,

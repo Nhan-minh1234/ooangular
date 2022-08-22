@@ -6,7 +6,7 @@ import { TaskDetailComponent } from "./task-detail/task-detail.component";
 import { TaskListComponent } from "./task-list/task-list.component";
 import { TasksComponent } from "./tasks/tasks.component";
 import { TaskReportComponent } from "./task-report/task-report.component";
-import { TaskAutocompleteComponent } from "./task-autocomplete/task-autocomplete.component";
+import { TaskSamplesComponent } from "./task-samples/task-samples.component";
 
 const routes: Routes = [
   {
@@ -35,9 +35,9 @@ const routes: Routes = [
         component: TaskReportComponent
       },
       {
-        data: { "link": "/tasks/task-autocomplete" },
-        path: 'task-autocomplete',
-        component: TaskAutocompleteComponent
+        data: { "link": "/tasks/task-samples" },
+        path: 'task-samples',
+        component: TaskSamplesComponent
       },
       // {
       //   data: { "link": "/user/change-password" },

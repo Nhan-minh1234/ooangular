@@ -60,6 +60,16 @@
                     <div class="tab-pane" id="edit_users">
                         <app-dual-list (updateLists)="dualListUpdateForAssignee($event)" [leftList]="allUserInStep2List"
                             [rightList]="chosenAssigneelList"></app-dual-list>
+                        <div style="margin: 30px 10px 30px 30px;">
+                            <label class="form-label" for="majorAssignee"><span style="color: tomato;">(*)</span>
+                                Người Xử lý Chính: </label>
+                            <select style="width: 50%;" [(ngModel)]="majorAssignee" class="form-select"
+                                id="majorAssignee">
+                                <option selected>Chọn...</option>
+                                <option [ngValue]="assignee" *ngFor="let assignee of chosenAssigneelList">
+                                    {{assignee.fullName}}</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="tab-pane" id="edit_watching">
                         <app-dual-list (updateLists)="dualListUpdateForAssignee($event)" [leftList]="allUserInStep2List"

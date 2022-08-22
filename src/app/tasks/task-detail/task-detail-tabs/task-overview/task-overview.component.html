@@ -53,7 +53,8 @@
                 <h4 class="card-title mb-0">Tiến trình công việc</h4>
 
                 <div id="cardCollpase1" class="collapse pt-3 show">
-                    ...
+                    <canvas baseChart [data]="doughnutChartData"  [options]="ChartConfig" [type]="doughnutChartType">
+                    </canvas>
                 </div>
             </div>
         </div>

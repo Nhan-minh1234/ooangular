@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TaskAutocompleteComponent } from './task-autocomplete.component';
+import { TaskSamplesComponent } from './task-samples.component';
 
-describe('TaskAutocompleteComponent', () => {
-  let component: TaskAutocompleteComponent;
-  let fixture: ComponentFixture<TaskAutocompleteComponent>;
+describe('TaskSamplesComponent', () => {
+  let component: TaskSamplesComponent;
+  let fixture: ComponentFixture<TaskSamplesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TaskAutocompleteComponent ]
+      declarations: [ TaskSamplesComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TaskAutocompleteComponent);
+    fixture = TestBed.createComponent(TaskSamplesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
