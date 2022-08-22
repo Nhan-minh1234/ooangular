@@ -3,27 +3,21 @@ let data = [
     "id": "tasks",
     "EN": {
       "title": "Tasks",
-
-      "items": ["Task List", "Verify", "Đăng ký [Eng]", "Lịch tuần mẫu [Eng]", "Địa điểm [Eng]"]
+      "items": ["Task list", "Task report", "Task Autocomplete", "Report", "Báo cáo định kỳ", "Project", "Project group", "Trao đổi"]
 
     },
     "VN": {
       "title": "Công Việc",
-      "items": ["Danh Sách Công Việc", "Lịch tuần mẫu", "Địa điểm"]
+      "items": ["Danh Sách Công Việc", "Thống kê", "Công việc mẫu", "Báo cáo", "Báo cáo định kỳ", "Dự án công việc", "Nhóm công việc", "Trao đổi"]
     },
-    'routing': [
-      '/task-list',
-      '',
-      '',
-      '',
-      ''
-    ],
-    'icon': 'uil-database-alt'
+    'routing': ['/task-list', '/task-report', '/task-autocomplete', "/report", "/project", "", "", ""],
+    'icon': ' uil-receipt-alt'
   },
   {
     "id": "event",
     "EN": {
       "title": "Event",
+
       "items": [
         "Event list",
         "New event",
@@ -45,6 +39,7 @@ let data = [
       
 
     ],
+
     'icon': 'uil-calendar-alt'
   },
   {
@@ -83,36 +78,17 @@ let data = [
     "id": "social",
     "EN": {
       "title": "Cong Thong Tin [Eng]",
-      "items": [
-        "Notification",
-        "Library",
-        "News",
-        "Images",
-        "Contact",
-        "Survey"
-      ]
+      "items": ["Notification", "Library", "News", "Images", "Contact", "Survey"]
     },
     "VN": {
       "title": "Cổng Thông Tin",
-      "items": [
-        "Thông báo",
-        "Thư Viện",
-        "Tin tức",
-        "Hình ảnh",
-        "Danh bạ",
-        "Thăm dò khảo sát"
+      "items": ["Thông báo", "Thư Viện", "Tin tức", "Hình ảnh", "Danh bạ"/*, "Thăm dò khảo sát"*/
       ]
     },
-    "routing": [
-      '/notification',
-      '/library',
-      '/news',
-      '/images',
-      '/contact',
-      '/survey'
+    "routing": ['/notification', '/library', '/news', '/images', '/contact'/*, '/survey'*/
     ],
     'icon': 'uil-globe'
-  }
+  },
 ];
 
 export default data;

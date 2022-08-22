@@ -11,14 +11,16 @@ declare var bootstrap: any
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
+  //currentAssignedTask
+  //originalAssignedTask
+  //currentForwardedTask
+  //originalForwardedTask
+  //currentWatchableTask
+  //originalWatchableTask
   spinnerLoading = false
-  currentTab = 'assigned'
-  currentAssignedTask
-  originalAssignedTask
-  currentForwardedTask
-  originalForwardedTask
-  currentWatchableTask
-  originalWatchableTask
+  currentTab = '0'
+  originalTaskList
+  taskList
 
   tutorials: any;
   currentTutorial = null;
@@ -35,7 +37,7 @@ export class TaskListComponent implements OnInit {
   constructor(private el: ElementRef, private api: ApiservicesService, public generalService: GeneralService, private router: Router) {
   }
   ngOnInit(): void {
-    this.getTaskList();
+    this.generateData();
     this.myModal = new bootstrap.Modal(document.getElementById('myModal'), {
       keyboard: false
     })
@@ -44,16 +46,8 @@ export class TaskListComponent implements OnInit {
   getLabel(key) {
     return data[`${this.generalService.currentLanguage.Code}`][`${key}`]
   }
-  changeTabs(tab) {
-    this.searchKey = ''
-    this.currentTab = tab;
-    this.page = 0;
-    this.count = 0;
-    this.pageSize = 10;
-    this.getTaskList();
-  }
 
-  async getTaskList() {
+  async generateData() {
     this.spinnerLoading = true
     let options = {
       PageNumber: this.page,
@@ -63,59 +57,22 @@ export class TaskListComponent implements OnInit {
     try {
       let res
       let result
-      let taskType
-      switch (this.currentTab) {
-        case 'assigned':
-          taskType = '0'
-          res = await this.api.httpCall(this.api.apiLists.getTasks + taskType, {}, options, 'get', true);
-          result = <any>res
-          this.originalAssignedTask = this.updateProgressInfoToList(result.data);
-          this.currentAssignedTask = Array.from(this.originalAssignedTask)
-          this.count = result.totalRecords
-          this.paginationConfig = {
-            id: 'paginationControl',
-            itemsPerPage: this.pageSize,
-            currentPage: this.page,
-            totalItems: this.count
-          }
-          break;
-        case 'forwarded':
-          taskType = '1'
-          res = await this.api.httpCall(this.api.apiLists.getTasks + taskType, {}, options, 'get', true);
-          result = <any>res
-          this.originalForwardedTask = this.updateProgressInfoToList(result.data);
-          this.currentForwardedTask = Array.from(this.originalForwardedTask)
-          this.count = result.totalRecords
-          this.paginationConfig = {
-            id: 'paginationControl',
-            itemsPerPage: this.pageSize,
-            currentPage: this.page,
-            totalItems: this.count
-          }
-          break;
-        case 'watchable':
-          taskType = '2'
-          res = await this.api.httpCall(this.api.apiLists.getTasks + taskType, {}, options, 'get', true);
-          result = <any>res
-          this.originalWatchableTask = this.updateProgressInfoToList(result.data);
-          this.currentWatchableTask = Array.from(this.originalWatchableTask)
-          this.count = result.totalRecords
-          this.paginationConfig = {
-            id: 'paginationControl',
-            itemsPerPage: this.pageSize,
-            currentPage: this.page,
-            totalItems: this.count
-          }
-          break;
-        default:
-          break;
+      res = await this.api.httpCall(this.api.apiLists.getTasks + this.currentTab, {}, options, 'get', true);
+      result = <any>res
+      this.originalTaskList = this.updateProgressInfoToList(result.data)
+      this.taskList = Array.from(this.originalTaskList)
+      this.count = result.totalRecords
+      this.paginationConfig = {
+        id: 'paginationControl',
+        itemsPerPage: this.pageSize,
+        currentPage: this.page,
+        totalItems: this.count
       }
-      this.spinnerLoading = false
+      this.spinnerLoading = false;
     } catch (error) {
       this.spinnerLoading = false
       this.myModal.toggle()
     }
-
   }
   openNewTaskModal() {
     console.log('new task')
@@ -123,60 +80,25 @@ export class TaskListComponent implements OnInit {
   }
   handlePageChange(event): void {
     this.page = event;
-    this.getTaskList();
+    this.generateData();
   }
   handlePageSizeChange(event): void {
     this.pageSize = event.target.value;
     this.page = 0;
-    this.getTaskList();
+    this.generateData();
   }
-  filterList() {
-    console.log(this.searchKey)
-    switch (this.currentTab) {
-      case 'assigned':
-        if (this.originalAssignedTask != null) {
-          let self = this;
-          if (this.searchKey != '')
-            this.currentAssignedTask = this.originalAssignedTask.filter(function (v, i) {
-              if (self.removeAccents(v.chude.toLowerCase()).indexOf(self.removeAccents(self.searchKey)) >= 0
-                || self.removeAccents(v.nguoiTaoHoTen.toLowerCase()).indexOf(self.removeAccents(self.searchKey)) >= 0) {
-                return true;
-              } else false;
-            });
-          else
-            this.currentAssignedTask = Array.from(this.originalAssignedTask)
-        }
-        break;
-      case 'forwarded':
-        if (this.originalForwardedTask != null) {
-          let self = this;
-          if (this.searchKey != '')
-            this.currentForwardedTask = this.originalForwardedTask.filter(function (v, i) {
-              if (self.removeAccents(v.chude.toLowerCase()).indexOf(self.removeAccents(self.searchKey)) >= 0
-                || self.removeAccents(v.nguoiTaoHoTen.toLowerCase()).indexOf(self.removeAccents(self.searchKey)) >= 0) {
-                return true;
-              } else false;
-            });
-          else
-            this.currentForwardedTask = Array.from(this.originalForwardedTask)
-        }
-        break;
-      case 'watchable':
-        if (this.originalWatchableTask != null) {
-          let self = this;
-          if (this.searchKey != '')
-            this.currentWatchableTask = this.originalWatchableTask.filter(function (v, i) {
-              if (self.removeAccents(v.chude.toLowerCase()).indexOf(self.removeAccents(self.searchKey)) >= 0
-                || self.removeAccents(v.nguoiTaoHoTen.toLowerCase()).indexOf(self.removeAccents(self.searchKey)) >= 0) {
-                return true;
-              } else false;
-            });
-          else
-            this.currentWatchableTask = Array.from(this.originalWatchableTask)
-        }
-        break;
-      default:
-        break;
+  search() {
+    if (this.originalTaskList != null) {
+      let self = this;
+      if (this.searchKey != '')
+        this.taskList = this.originalTaskList.filter(function (v, i) {
+          if (self.removeAccents(v.chude.toLowerCase()).indexOf(self.removeAccents(self.searchKey)) >= 0
+            || self.removeAccents(v.nguoiTaoHoTen.toLowerCase()).indexOf(self.removeAccents(self.searchKey)) >= 0) {
+            return true;
+          } else false;
+        });
+      else
+        this.taskList = Array.from(this.originalTaskList)
     }
   }
   taskItemClick(task) {
@@ -262,4 +184,127 @@ export class TaskListComponent implements OnInit {
       displayText: displayText
     }
   }
+  /*
+  
+  filterList() {
+    console.log(this.searchKey)
+    switch (this.currentTab) {
+      case 'assigned':
+        if (this.originalAssignedTask != null) {
+          let self = this;
+          if (this.searchKey != '')
+            this.currentAssignedTask = this.originalAssignedTask.filter(function (v, i) {
+              if (self.removeAccents(v.chude.toLowerCase()).indexOf(self.removeAccents(self.searchKey)) >= 0
+                || self.removeAccents(v.nguoiTaoHoTen.toLowerCase()).indexOf(self.removeAccents(self.searchKey)) >= 0) {
+                return true;
+              } else false;
+            });
+          else
+            this.currentAssignedTask = Array.from(this.originalAssignedTask)
+        }
+        break;
+      case 'forwarded':
+        if (this.originalForwardedTask != null) {
+          let self = this;
+          if (this.searchKey != '')
+            this.currentForwardedTask = this.originalForwardedTask.filter(function (v, i) {
+              if (self.removeAccents(v.chude.toLowerCase()).indexOf(self.removeAccents(self.searchKey)) >= 0
+                || self.removeAccents(v.nguoiTaoHoTen.toLowerCase()).indexOf(self.removeAccents(self.searchKey)) >= 0) {
+                return true;
+              } else false;
+            });
+          else
+            this.currentForwardedTask = Array.from(this.originalForwardedTask)
+        }
+        break;
+      case 'watchable':
+        if (this.originalWatchableTask != null) {
+          let self = this;
+          if (this.searchKey != '')
+            this.currentWatchableTask = this.originalWatchableTask.filter(function (v, i) {
+              if (self.removeAccents(v.chude.toLowerCase()).indexOf(self.removeAccents(self.searchKey)) >= 0
+                || self.removeAccents(v.nguoiTaoHoTen.toLowerCase()).indexOf(self.removeAccents(self.searchKey)) >= 0) {
+                return true;
+              } else false;
+            });
+          else
+            this.currentWatchableTask = Array.from(this.originalWatchableTask)
+        }
+        break;
+      default:
+        break;
+    }
+  }
+    changeTabs(tab) {
+    this.searchKey = ''
+    this.currentTab = tab;
+    this.page = 0;
+    this.count = 0;
+    this.pageSize = 10;
+    this.generateData();
+  }
+  async getTaskList() {
+    this.spinnerLoading = true
+    let options = {
+      PageNumber: this.page,
+      PageSize: this.pageSize,
+      isPaging: true
+    }
+    try {
+      let res
+      let result
+      let taskType
+      switch (this.currentTab) {
+        case 'assigned':
+          taskType = '0'
+          res = await this.api.httpCall(this.api.apiLists.getTasks + taskType, {}, options, 'get', true);
+          result = <any>res
+          this.originalAssignedTask = this.updateProgressInfoToList(result.data);
+          this.currentAssignedTask = Array.from(this.originalAssignedTask)
+          this.count = result.totalRecords
+          this.paginationConfig = {
+            id: 'paginationControl',
+            itemsPerPage: this.pageSize,
+            currentPage: this.page,
+            totalItems: this.count
+          }
+          break;
+        case 'forwarded':
+          taskType = '1'
+          res = await this.api.httpCall(this.api.apiLists.getTasks + taskType, {}, options, 'get', true);
+          result = <any>res
+          this.originalForwardedTask = this.updateProgressInfoToList(result.data);
+          this.currentForwardedTask = Array.from(this.originalForwardedTask)
+          this.count = result.totalRecords
+          this.paginationConfig = {
+            id: 'paginationControl',
+            itemsPerPage: this.pageSize,
+            currentPage: this.page,
+            totalItems: this.count
+          }
+          break;
+        case 'watchable':
+          taskType = '2'
+          res = await this.api.httpCall(this.api.apiLists.getTasks + taskType, {}, options, 'get', true);
+          result = <any>res
+          this.originalWatchableTask = this.updateProgressInfoToList(result.data);
+          this.currentWatchableTask = Array.from(this.originalWatchableTask)
+          this.count = result.totalRecords
+          this.paginationConfig = {
+            id: 'paginationControl',
+            itemsPerPage: this.pageSize,
+            currentPage: this.page,
+            totalItems: this.count
+          }
+          break;
+        default:
+          break;
+      }
+      this.spinnerLoading = false
+    } catch (error) {
+      this.spinnerLoading = false
+      this.myModal.toggle()
+    }
+  }
+  */
 }

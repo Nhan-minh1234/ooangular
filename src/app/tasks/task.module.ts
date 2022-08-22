@@ -13,13 +13,22 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxLoadingModule } from "ngx-loading";
 import { CircleProgressOptions, NgCircleProgressModule } from 'ng-circle-progress';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
-
+import { TaskReportComponent } from './task-report/task-report.component';
+import { TaskAutocompleteComponent } from './task-autocomplete/task-autocomplete.component';
+import { DonutChartComponent } from '../utilities/donut-chart/donut-chart.component';
+import { ReportComponent } from './report/report.component';
+import { ProjectComponent } from './project/project.component';
 @NgModule({
   declarations: [
     TaskListComponent,
     NewTaskComponent,
     TasksComponent,
-    TaskDetailComponent
+    TaskDetailComponent,
+    TaskReportComponent,
+    TaskAutocompleteComponent,
+    DonutChartComponent,
+    ReportComponent,
+    ProjectComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +42,7 @@ import { TaskDetailComponent } from './task-detail/task-detail.component';
     NgxLoadingModule.forRoot({}),
     NgCircleProgressModule,
   ],
-  providers:[
+  providers: [
     CircleProgressOptions
   ]
 })

@@ -9,10 +9,15 @@ import { FormsModule } from '@angular/forms';
 import { UtilitiesModule } from './utilities/utilities.module';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { SocialModule } from './social/social.module';
 import { ClientComponent } from './client/client/client.component';
 
+
+import { NgChartsModule } from 'ng2-charts';
+
 @NgModule({
+  
   declarations: [
     AppComponent,
     LoginComponent,
@@ -21,6 +26,7 @@ import { ClientComponent } from './client/client/client.component';
   ],
   imports: [
     BrowserAnimationsModule,
+    NgChartsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

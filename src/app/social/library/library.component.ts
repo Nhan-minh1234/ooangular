@@ -9,6 +9,7 @@ import { GeneralService } from 'src/app/services/general.service';
   styleUrls: ['./library.component.css']
 })
 export class LibraryComponent implements OnInit {
+  editable = false;
   libraryData = []
 
   spinnerLoading = false;
@@ -21,6 +22,24 @@ export class LibraryComponent implements OnInit {
   constructor(private el: ElementRef, private api: ApiservicesService, public generalService: GeneralService, private router: Router) { }
   ngOnInit(): void {
     this.gData()
+  }
+  uploadFile() {
+    document.getElementById("files_upload").click();
+  }
+  lookup() {
+    this.editable = false;
+  }
+  edit() {
+    this.editable = true
+  }
+  update() {
+    
+  }
+  delete() {
+
+  }
+  cancel() {
+    this.editable = false;
   }
   gData() {
     this.libraryData = []
