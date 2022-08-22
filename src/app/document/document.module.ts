@@ -12,6 +12,8 @@ import { DocumentRouting } from './document-routing.module';
 import { NewDocumentComponent } from './new-document/new-document.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NewTextGoComponent } from './new-text-go/new-text-go.component';
+import { UtilitiesModule } from '../utilities/utilities.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,11 +27,13 @@ import { NewTextGoComponent } from './new-text-go/new-text-go.component';
     TextSourceComponent,
     NewDocumentComponent,
     NewTextGoComponent
+
   ],
   imports: [
     CommonModule,
     DocumentRouting,
-    NgxPaginationModule
+    NgxPaginationModule,FormsModule,
+    UtilitiesModule
   ]
 })
 export class DocumentModule { }

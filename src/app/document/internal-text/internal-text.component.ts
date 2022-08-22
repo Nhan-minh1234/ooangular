@@ -13,10 +13,13 @@ export class InternalTextComponent implements OnInit {
 
   ngOnInit(): void {
     this.taoDuLieu()
+    this.tinhNam()
   }
   editable = true;
   internaltextsData = []
   documentSandbox;
+  internalTextnamMoi = []
+  internalTextDuLieu=['Giám đốc','Trưởng phòng','Nhân viên CNTT']
   currentTab = true;
 
   spinnerLoading = false;
@@ -47,6 +50,12 @@ export class InternalTextComponent implements OnInit {
       currentPage: this.page,
       totalItems: this.internaltextsData.length
     }
+}
+tinhNam(){
+  for ( let i=0; i<=20; i++){
+    this.internalTextnamMoi.push(2022-i)
+  }
+
 }
 handlePageChange(event): void {
   this.page = event;

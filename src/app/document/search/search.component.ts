@@ -30,6 +30,8 @@ export class SearchComponent implements OnInit {
   count = 500;
 search_new
   config
+  fileToUpload
+  searchData
 
   taoDuLieu(){
     for (let i = 0; i < this.count; i++) {
@@ -59,6 +61,24 @@ handlePageSizeChange(event): void {
   this.pageSize = event.target.value;
   this.page = 0;
   this.taoDuLieu();
+}
+handleFileInput(files: FileList) {
+  this.fileToUpload = Array.from(files);
+  console.log(this.fileToUpload)
+}
+removeFileFromUploadList(index) {
+  this.fileToUpload.splice(index, 1);
+  const dt = new DataTransfer()
+  const input = document.getElementById('fileList') as HTMLInputElement
+  const { files } = input
+
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i]
+    if (index !== i)
+      dt.items.add(file) // here you exclude the file. thus removing it.
+  }
+
+  input.files = dt.files
 }
 tuyChon()
 {
