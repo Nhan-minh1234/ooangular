@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { WizardComponent } from 'angular-archwizard';
 import { GeneralService } from 'src/app/services/general.service';
-import data from './new-file-cabinet.language';
+import data from './sign-process.language';
+
 @Component({
-  selector: 'app-new-file-cabinet',
-  templateUrl: './new-file-cabinet.component.html',
-  styleUrls: ['./new-file-cabinet.component.css']
+  selector: 'app-sign-process',
+  templateUrl: './sign-process.component.html',
+  styleUrls: ['./sign-process.component.css']
 })
-export class NewFileCabinetComponent implements OnInit {
+export class SignProcessComponent implements OnInit {
 
   public wizard: WizardComponent;
   wizardStep = 0;
@@ -25,7 +27,7 @@ export class NewFileCabinetComponent implements OnInit {
   allUserInStep2List
   majorAssignee
   groupKeyChosenInStep2 = 'all'
-  constructor(private _location: Location, public generalService: GeneralService) { }
+  constructor(private _location: Location, public generalService: GeneralService,private router:Router) { }
 
   ngOnInit(): void {
     console.log(this.wizardStep)
@@ -43,9 +45,9 @@ export class NewFileCabinetComponent implements OnInit {
       this.allUserInStep2List = this.generalService.allUsersWithGroups[`${this.groupKeyChosenInStep2}`]
     }
   }
-  dualListUpdateForAssignee(filecabinet) {
-    this.allUserInStep2List = filecabinet.leftList;
-    this.chosenAssigneelList = filecabinet.rightList
+  dualListUpdateForAssignee(signprocess) {
+    this.allUserInStep2List = signprocess.leftList;
+    this.chosenAssigneelList = signprocess.rightList
     // if(this.groupKeyChosenInStep2 == 'all')
     // {
     //   for(let i=0; i< this.allUserInStep2List.length; ++i)
@@ -100,8 +102,5 @@ export class NewFileCabinetComponent implements OnInit {
   finish() {
 
   }
+
 }
-
-
-
-

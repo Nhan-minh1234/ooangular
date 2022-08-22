@@ -13,6 +13,8 @@ import { SocialModule } from './social/social.module';
 import { PersonalComponent } from './personal/personal.component';
 import { ClientComponent } from './client/client/client.component';
 import { NgChartsModule } from 'ng2-charts';
+import { SignDocumentsComponent } from './sign-documents/sign-documents.component';
+
 
 @NgModule({
   
@@ -21,7 +23,7 @@ import { NgChartsModule } from 'ng2-charts';
     LoginComponent,
     HomeComponent,
     PersonalComponent,  
-    ClientComponent
+    ClientComponent, SignDocumentsComponent
   ],
   imports: [
     BrowserAnimationsModule,

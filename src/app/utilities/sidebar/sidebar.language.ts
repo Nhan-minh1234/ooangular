@@ -123,15 +123,15 @@ let data = [
       '/text-source',
       '/text-inheritance'
     ],
-<<<<<<< HEAD
+
     'icon': 'uil-globe'
   },
   {
-    "id": "documents",
+    "id": "sign-documents",
     "EN": {
       "title": "Sign Documents",
       "items": [
-        "Document signing",
+        "sign process",
         "Signator list"
         
       ]
@@ -141,13 +141,12 @@ let data = [
       "items": [
         "Trình ký văn bản",
         "Danh sách trình ký"
-        
+
       ]
     },
     "routing": [
-      '/Document signing',
-      '/Signator',
-      '/news',
+      '/sign-process',
+      '/signator-list'
      
     ],
     'icon': 'uil-notes'
@@ -181,9 +180,7 @@ let data = [
 
     ],
     'icon': 'uil-smile'
-=======
-    'icon': 'dripicons-blog'
->>>>>>> main
+
   }
 
 ];
