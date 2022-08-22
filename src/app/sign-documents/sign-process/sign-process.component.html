@@ -9,21 +9,21 @@
         </div>
         <div class="col-11">
             <div class="page-title-box">
-                <h4 class="page-title">Thêm trình ký</h4>
+                <h4 class="page-title">Trình ký văn bản</h4>
             </div>
         </div>
     </div>
     <aw-wizard>
-        <aw-wizard-step stepTitle="{{getLabel('enterInformation')}}">
+        <aw-wizard-step stepTitle="{{getLabel('enterInfomation')}}">
             <div class="container">
                 <div class="row"> 
                     <div class="mb-3">
-                        <label for="example-textarea" class="form-label ipt">Tiêu đề</label>
-                        <textarea class="form-control" id="example-textarea" rows="1"></textarea>
+                        <label for="example-textarea" class="form-label ipt">Tiêu đề <span class="requiredField"></span></label>
+                        <textarea [(ngModel)]="signProcessData.title" class="form-control" id="example-textarea" rows="1"></textarea>
                     </div>
                     <div class="TableTdOO-20">
-                    <label for="example-textarea" class="form-label ipt">Nội dung</label>
-                        <textarea class="form-control" rows="5" cols="20" id="example-textarea" style="width: 100%">
+                    <label for="example-textarea" class="form-label ipt">Nội dung <span class="requiredField"></span></label>
+                        <textarea class="form-control" [(ngModel)]="signProcessData.description" rows="5" cols="20" id="example-textarea" style="width: 100%">
 </textarea>
                     </div>
                    
@@ -33,7 +33,7 @@
                         <input type="file" multiple (change)="handleFileInput($event.target.files)" id="fileList"
                             class="form-control">
                         <ol class="list-group list-group-numbered">
-                            <li *ngFor="let file of newfileCabinetData.file; index as i" class="list-group-item">
+                            <li *ngFor="let file of signProcessData.file; index as i" class="list-group-item">
                                 {{file.name}}<span (click)="removeFile(i)" style="float: right; font-weight:
                                 bold; cursor: pointer; color: #fa6767;">X</span></li>
                         </ol>
@@ -41,10 +41,11 @@
                 </div>
             </div>
             <div class="btn_list">
-                <button type="button" awNextStep class="btn btn-primary">Next Step</button>
+                <button type="button"(click)='check()'  class="btn btn-primary">Next Step</button>
+
             </div>
         </aw-wizard-step>
-        <aw-wizard-step stepTitle="{{getLabel('relatedList')}}" awOptionalStep>
+        <aw-wizard-step stepTitle="{{getLabel('relatedList')}}" >
             <div class="card">
                 <div class="card-body">
                     <div style="margin: 0 10px 30px 30px;">

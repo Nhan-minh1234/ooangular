@@ -19,26 +19,26 @@
                 <div class="row">
                    
                     <div class="mb-3 col-lg-6 col-sm-12 row">
-                        <label for="simpleinput" class="form-label ipt">{{getLabel('startCol')}}</label>
+                        <label [(ngModel)]="newEventData.start" for="simpleinput" class="form-label ipt">{{getLabel('startCol')}}<span class="requiredField"></span></label>
                         <div class="col-lg-6 col-sm-12">
-                            <input class="form-control" id="example-date" type="date" name="date">
+                            <input [(ngModel)]="newEventData.start" class="form-control" id="example-date" type="date" name="date">
                         </div>
                         <div class="col-lg-4 col-sm-12">
-                            <input class="form-control col" id="example-time" type="time" name="time">
+                            <input [(ngModel)]="newEventData.start" class="form-control col" id="example-time" type="time" name="time">
                         </div>
                     </div>
                     <div class="mb-3 col-lg-6 col-sm-12 row">
-                        <label for="simpleinput" class="form-label ipt">{{getLabel('theEnd')}}</label>
+                        <label [(ngModel)]="newEventData.end" for="simpleinput" class="form-label ipt">{{getLabel('theEnd')}}<span class="requiredField"></span></label>
                         <div class="col-lg-6 col-sm-12">
-                            <input class="form-control" id="example-date" type="date" name="date">
+                            <input [(ngModel)]="newEventData.end" class="form-control" id="example-date" type="date" name="date">
                         </div>
                         <div class="col-lg-4 col-sm-12">
-                            <input class="form-control col" id="example-time" type="time" name="time">
+                            <input [(ngModel)]="newEventData.end" class="form-control col" id="example-time" type="time" name="time">
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="example-textarea" class="form-label ipt">{{getLabel('contentCol')}}</label>
-                        <textarea class="form-control" id="example-textarea" rows="5"></textarea>
+                        <label for="example-textarea" class="form-label ipt">{{getLabel('contentCol')}}<span class="requiredField"></span></label>
+                        <textarea [(ngModel)]="newEventData.description" class="form-control" id="example-textarea" rows="5"></textarea>
                     </div>
                    
                     <div class="mb-3">
@@ -59,10 +59,10 @@
                 </div>
             </div>
             <div class="btn_list">
-                <button type="button" awNextStep class="btn btn-primary">Next Step</button>
+                <button type="button"  (click)='check()' class="btn btn-primary">Next Step</button>
             </div>
         </aw-wizard-step>
-        <aw-wizard-step stepTitle="{{getLabel('relatedList')}}" awOptionalStep>
+        <aw-wizard-step stepTitle="{{getLabel('relatedList')}}" >
             <div class="card">
                 <div class="card-body">
                     <div style="margin: 0 10px 30px 30px;">
