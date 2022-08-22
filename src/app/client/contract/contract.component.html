@@ -1,39 +1,193 @@
-<div class="grid-form1">
-    <div class="ootoppage1">
-        Danh sách khách hàng
+<div class="container-fluid">
+    <div class="col-11">
+        <div class="page-title-box">
+            <h4 class="page-title">Danh sách hợp đồng</h4>
+        </div>
     </div>
-</div>
-<table class="table mb-0">
-    <thead>
-        <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Tên hợp đồng</th>
-            <th scope="col">Địa vị</th>
-            <th scope="col">Người đại diện</th>
 
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Cell</td>
-            <td>Cell</td>
-            <td>Cell</td>
+    <table class="table mb-0">
+        <thead>
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Số hợp đồng</th>
+                <th scope="col">Ngày ký</th>
+                <th scope="col">Giá trị</th>
+                <th scope="col">Tên khách hàng</th>
 
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Cell</td>
-            <td>Cell</td>
-            <td>Cell</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of contractListData | paginate: config" data-bs-toggle="modal"
+                data-bs-target="#scrollable-modal">
+                <th scope="row">{{item.id}}</th>
+                <td>{{item.contract_number}}</td>
+                <td>{{item.date}}</td>
+                <td>{{item.value}}</td>
+                <td>{{item.customers}}</td>
 
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Cell</td>
-            <td>Cell</td>
-            <td>Cell</td>
+            </tr>
+        </tbody>
+    </table>
 
-        </tr>
-    </tbody>
-</table>
+    <div class="list row">
+        <div class="col-md-8">
+            <pagination-controls id="paging" [previousLabel]="getLabel('previousBtn')" [nextLabel]="getLabel('nextBtn')"
+                responsive="true" responsive="true" (pageChange)="handlePageChange($contract)"></pagination-controls>
+        </div>
+        <div class="col-md-4">
+            Số lượng thư mục mỗi trang {{getLabel("itemsPerPage")}}:
+            <select style="border: solid 1px rgb(230, 229, 229);" (change)="handlePageSizeChange($contract)">
+                <option *ngFor="let size of pageSizes" [ngValue]="size">
+                    {{ size }}
+                </option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="scrollable-modal" tabindex="-1" role="dialog" aria-labelledby="scrollableModalTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-full-width" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="scrollableModalTitle">Chi tiết hợp đồng</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+
+                        <div class="col-9">
+
+                            <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
+                                <li class="nav-item">
+                                    <a href="#detailTab" data-bs-toggle="tab" aria-expanded="false"
+                                        class="nav-link rounded-0 active">
+                                        <i class="mdi mdi-information d-md-none d-block"></i>
+                                        <span class="d-none d-md-block">Thông tin</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#assigneeTab" data-bs-toggle="tab" aria-expanded="true"
+                                        class="nav-link rounded-0">
+                                        <i class="mdi mdi-key d-md-none d-block"></i>
+                                        <span class="d-none d-md-block">Danh sách tham gia</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#assigneeTab" data-bs-toggle="tab" aria-expanded="true"
+                                        class="nav-link rounded-0">
+                                        <i class="mdi mdi-key d-md-none d-block"></i>
+                                        <span class="d-none d-md-block">Danh sách tham gia</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#assigneeTab" data-bs-toggle="tab" aria-expanded="true"
+                                        class="nav-link rounded-0">
+                                        <i class="mdi mdi-key d-md-none d-block"></i>
+                                        <span class="d-none d-md-block">Danh sách tham gia</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane  show active" id="detailTab">
+                                    <div class="row">
+                                        <div class="mb-3 col-12">
+                                            <label for="simpleinput" class="form-label">Tên khách hàng:</label>
+                                            <input [readonly]="editable" type="text" id="simpleinput"
+                                                class="form-control">
+                                        </div>
+                                        <div class="mb-3 col-6">
+                                            <label for="simpleinput" class="form-label">Số hợp đồng:</label>
+                                            <input [readonly]="editable" type="text" id="simpleinput"
+                                                class="form-control">
+                                        </div>
+                                        <div class="mb-3 col-6">
+                                            <label for="simpleinput" class="form-label">Loại hợp đồng:</label>
+                                            <input [readonly]="editable" type="text" id="simpleinput"
+                                                class="form-control">
+                                        </div>
+                                        <div class="mb-3 col-lg-6 col-sm-12 row">
+                                            <label for="simpleinput" class="form-label">Ngày kí:</label>
+                                            <div class="col-lg-6 col-sm-12">
+                                                <input [readonly]="editable" class="form-control" id="example-date"
+                                                    type="date" name="date">
+                                            </div>
+                                            <div class="col-lg-6 col-sm-12">
+                                                <input [readonly]="editable" class="form-control" id="example-time"
+                                                    type="time" name="time">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 col-lg-6 col-sm-12 row">
+                                            <label for="simpleinput" class="form-label">Ngày thanh lý:</label>
+                                            <div class="col-lg-6 col-sm-12">
+                                                <input [readonly]="editable" class="form-control" id="example-date"
+                                                    type="date" name="date">
+                                            </div>
+                                            <div class="col-lg-6 col-sm-12">
+                                                <input [readonly]="editable" class="form-control" id="example-time"
+                                                    type="time" name="time">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 col-12">
+                                            <label for="simpleinput" class="form-label">Nội dung:</label>
+                                            <textarea class="form-control" [readonly]="editable" id="example-textarea"
+                                                rows="3"></textarea>
+                                        </div>
+                                        <div class="mb-3 col-12">
+                                            <label for="simpleinput" class="form-label">Sản phẩm-Dịch vụ:</label>
+                                            <input [readonly]="editable" type="text" id="simpleinput"
+                                                class="form-control">
+                                        </div>
+                                        <div class="mb-3 col-12">
+                                            <label for="example-fileinput" class="form-label">Đính kèm:</label>
+                                            <input type="file" id="example-fileinput" class="form-control">
+                                        </div>
+                                        <div class="mb-3 col-12">
+                                            <label for="simpleinput" class="form-label">Chọn ngày gia hạn:</label>
+                                            <select id="example-multiselect" [disabled]="editable" class="form-control">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3 col-12">
+                                            <label for="simpleinput" class="form-label">Thanh toán:</label>
+                                            <select id="example-multiselect" [disabled]="editable" class="form-control">
+                                                <option>Chưa thanh toán</option>
+                                                <option>Đã thanh toán</option>
+                                                
+                                            </select>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="assigneeTab">
+                                    <p>{{'working'|uppercase}}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-3">
+                            <div  class = "d-grid" >
+                                <button [routerLink]="'/client/new-contract'" data-bs-dismiss="modal" type = "button"  class = "btn btn-primary" > Thêm hợp đồng </button >
+                                <button [routerLink]="'/document/search'" data-bs-dismiss="modal" type = "button"  class = "btn btn-sm btn-info" > Chuyển đến xem </button >
+                                <button [routerLink]="'/document/search'" data-bs-dismiss="modal" type = "button"  class = "btn btn-sm btn-warning" > Tìm kiếm </button >
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button *ngIf="!editable" type="button" class="btn btn-warning"
+                        (click)="cancelEditContract()">Huỷ</button>
+                    <button *ngIf="!editable" (click)="close()" type="button" class="btn btn-success">Lưu</button>
+                    <button *ngIf="editable" type="button" class="btn btn-primary" (click)="editContract()">Sửa</button>
+                    <button type="button" class="btn btn-success">Cập nhật</button>
+                </div>
+
+            </div>

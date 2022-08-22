@@ -11,6 +11,7 @@ import { ArchwizardModule } from 'angular-archwizard';
 import { UtilitiesModule } from '../utilities/utilities.module';
 import { FormsModule } from '@angular/forms';
 import { CustomersComponent } from './customers/customers.component';
+import { NewContractComponent } from './new-contract/new-contract.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { CustomersComponent } from './customers/customers.component';
     ReportComponent,
     SearchComponent,
     CustomersComponent,
+    NewContractComponent,
   ],
   imports: [
     CommonModule,
