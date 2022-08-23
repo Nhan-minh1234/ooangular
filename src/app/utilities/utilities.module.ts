@@ -8,6 +8,7 @@ import { DualListComponent } from './dual-list/dual-list.component';
 import { NgChartsModule } from 'ng2-charts';
 import { AvatarTooltipComponent } from './avatar-tooltip/avatar-tooltip.component';
 import { NewItemButtonComponent } from './new-item-button/new-item-button.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { NewItemButtonComponent } from './new-item-button/new-item-button.compon
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
   exports: [
     HeaderComponent,
