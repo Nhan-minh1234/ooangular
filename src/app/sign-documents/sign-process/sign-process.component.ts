@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { WizardComponent } from 'angular-archwizard';
 import { GeneralService } from 'src/app/services/general.service';
@@ -11,12 +11,13 @@ import data from './sign-process.language';
   styleUrls: ['./sign-process.component.css']
 })
 export class SignProcessComponent implements OnInit {
-
+ 
+  @ViewChild(WizardComponent)
   public wizard: WizardComponent;
   wizardStep = 0;
   spinnerLoading = false;
-  newfileCabinetData = {
-    
+  signProcessData = {
+    title:'',
     description: '',
     location: '',
     invited: '',
@@ -27,11 +28,19 @@ export class SignProcessComponent implements OnInit {
   allUserInStep2List
   majorAssignee
   groupKeyChosenInStep2 = 'all'
-  constructor(private _location: Location, public generalService: GeneralService,private router:Router) { }
+  constructor(private _location: Location, public generalService: GeneralService,) { }
 
   ngOnInit(): void {
     console.log(this.wizardStep)
     this.onAsigneeGroupChange(null)
+  }
+  check(){
+    if (this.signProcessData.title===''||this.signProcessData.description===''){
+      this.generalService.showErrorToast(2, 'Các trường đánh dấu (*) không được bỏ trống');
+    }
+    else{
+      this.wizard.goToNextStep()
+    }
   }
   goBack() {
     this._location.back();
@@ -76,7 +85,7 @@ export class SignProcessComponent implements OnInit {
     }
   }
   removeFile(index) {
-    this.newfileCabinetData.file.splice(index, 1)
+    this.signProcessData.file.splice(index, 1)
     const dt = new DataTransfer()
     const input = document.getElementById('fileList') as HTMLInputElement
     const { files } = input
@@ -90,7 +99,7 @@ export class SignProcessComponent implements OnInit {
     input.files = dt.files
   }
   handleFileInput(files: FileList) {
-    this.newfileCabinetData.file = Array.from(files);
+    this.signProcessData.file = Array.from(files);
     console.log(files)
   }
   wizardGoodToGo(numb) {
