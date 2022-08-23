@@ -32,11 +32,11 @@
     <div class="list row">
         <div class="col-md-8">
             <pagination-controls id="paging" [previousLabel]="getLabel('previousBtn')" [nextLabel]="getLabel('nextBtn')"
-                responsive="true" responsive="true" (pageChange)="handlePageChange($contract)"></pagination-controls>
+                responsive="true" responsive="true" (pageChange)="handlePageChange($event)"></pagination-controls>
         </div>
         <div class="col-md-4">
             Số lượng thư mục mỗi trang {{getLabel("itemsPerPage")}}:
-            <select style="border: solid 1px rgb(230, 229, 229);" (change)="handlePageSizeChange($contract)">
+            <select style="border: solid 1px rgb(230, 229, 229);" (change)="handlePageSizeChange($event)">
                 <option *ngFor="let size of pageSizes" [ngValue]="size">
                     {{ size }}
                 </option>
@@ -63,28 +63,7 @@
                                     <a href="#detailTab" data-bs-toggle="tab" aria-expanded="false"
                                         class="nav-link rounded-0 active">
                                         <i class="mdi mdi-information d-md-none d-block"></i>
-                                        <span class="d-none d-md-block">Thông tin</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#assigneeTab" data-bs-toggle="tab" aria-expanded="true"
-                                        class="nav-link rounded-0">
-                                        <i class="mdi mdi-key d-md-none d-block"></i>
-                                        <span class="d-none d-md-block">Danh sách tham gia</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#assigneeTab" data-bs-toggle="tab" aria-expanded="true"
-                                        class="nav-link rounded-0">
-                                        <i class="mdi mdi-key d-md-none d-block"></i>
-                                        <span class="d-none d-md-block">Danh sách tham gia</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#assigneeTab" data-bs-toggle="tab" aria-expanded="true"
-                                        class="nav-link rounded-0">
-                                        <i class="mdi mdi-key d-md-none d-block"></i>
-                                        <span class="d-none d-md-block">Danh sách tham gia</span>
+                                        <span class="d-none d-md-block">Xem hợp đồng</span>
                                     </a>
                                 </li>
                             </ul>
@@ -173,13 +152,11 @@
                         <div class="col-3">
                             <div  class = "d-grid" >
                                 <button [routerLink]="'/client/new-contract'" data-bs-dismiss="modal" type = "button"  class = "btn btn-primary" > Thêm hợp đồng </button >
-                                <button [routerLink]="'/document/search'" data-bs-dismiss="modal" type = "button"  class = "btn btn-sm btn-info" > Chuyển đến xem </button >
-                                <button [routerLink]="'/document/search'" data-bs-dismiss="modal" type = "button"  class = "btn btn-sm btn-warning" > Tìm kiếm </button >
+                                
                         </div>
                         </div>
                     </div>
                 </div>
-
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
@@ -188,6 +165,7 @@
                     <button *ngIf="!editable" (click)="close()" type="button" class="btn btn-success">Lưu</button>
                     <button *ngIf="editable" type="button" class="btn btn-primary" (click)="editContract()">Sửa</button>
                     <button type="button" class="btn btn-success">Cập nhật</button>
+                    <button type="button" class="btn btn-success">Xóa</button>
                 </div>
 
             </div>

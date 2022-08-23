@@ -79,6 +79,7 @@ export class ContractComponent implements OnInit {
     this.page = 0;
     this.gData();
   }
+  
   }
   
 

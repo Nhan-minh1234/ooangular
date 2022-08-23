@@ -7,6 +7,7 @@ import { ReportComponent } from './report/report.component';
 import { SearchComponent } from './search/search.component';
 import { CustomersComponent } from './customers/customers.component';
 import { NewContractComponent } from './new-contract/new-contract.component';
+import { NewCustomersComponent } from './new-customers/new-customers.component';
 
 
 const routes: Routes = [
@@ -44,6 +45,11 @@ const routes: Routes = [
         data: { "link": "/client/new-contract" },
         path: 'new-contract',
         component: NewContractComponent
+      },
+      {
+        data: { "link": "/client/new-customers" },
+        path: 'new-customers',
+        component: NewCustomersComponent
       }
     ]
   }

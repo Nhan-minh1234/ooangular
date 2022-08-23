@@ -12,6 +12,7 @@ import { UtilitiesModule } from '../utilities/utilities.module';
 import { FormsModule } from '@angular/forms';
 import { CustomersComponent } from './customers/customers.component';
 import { NewContractComponent } from './new-contract/new-contract.component';
+import { NewCustomersComponent } from './new-customers/new-customers.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { NewContractComponent } from './new-contract/new-contract.component';
     SearchComponent,
     CustomersComponent,
     NewContractComponent,
+    NewCustomersComponent,
   ],
   imports: [
     CommonModule,

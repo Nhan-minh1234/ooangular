@@ -11,5 +11,4 @@ export class NewContractComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
