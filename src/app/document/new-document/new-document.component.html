@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <div class="kichthuoc">Nhập văn bản đến</div>
+    <div class="kichthuoc">Nhập văn bản</div>
     <div>
         <div>
             <input type="checkbox" class="form-check-input" id="customCheck1">
@@ -198,31 +198,6 @@
           </div>
       </div>
     </div>  
-    <div class="card">
-        <div class="card-body">
-            <div style="margin: 0 10px 30px 30px;">
-                <label class="form-label" for="groupOfAssignee">
-                    Lựa chọn danh sách từ: </label>
-                <select style="width: 50%;" [(ngModel)]="groupKeyChosenIn" class="form-select"
-                    id="groupOfAssignee">
-                    <option value="all" selected>Tất cả nhân viên</option>
-                    <option [ngValue]="groupKey" *ngFor="let groupKey of generalService.allUserGroupsKey">
-                        {{groupKey}}</option>
-                </select>
-            </div>
-
-            <app-dual-list (updateLists)="dualListUpdateForAssignee($event)" [leftList]="allUserInList"
-                [rightList]="chosenAssigneelList"></app-dual-list>
-            <div style="margin: 0 10px 30px 30px;">
-                <label class="form-label" for="majorAssignee"><span style="color: tomato;">(*)</span>
-                    Người Xử lý Chính: </label>
-                <select style="width: 50%;" [(ngModel)]="majorAssignee" class="form-select" id="majorAssignee">
-                    <option selected>Chọn...</option>
-                    <option [ngValue]="assignee" *ngFor="let assignee of chosenAssigneelList">
-                        {{assignee.fullName}}</option>
-                </select>
-            </div>
-        </div>
     </div>
     <div class="btnOO d-flex justify-content-center">
         <div class="col-9">

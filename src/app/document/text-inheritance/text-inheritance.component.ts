@@ -15,7 +15,8 @@ export class TextInheritanceComponent implements OnInit {
     this.taoDuLieu()
   }
   editable = true;
-  textInheritancesData = []
+  textInheritanceData = []
+  textInheritanceDuLieu=['Giám đốc','Trưởng phòng','Nhân viên CNTT,....']
   documentSandbox;
   currentTab = true;
 
@@ -39,13 +40,13 @@ export class TextInheritanceComponent implements OnInit {
       'drafting_place': 'Nơi soạn thảo',
       
       }
-      this.textInheritancesData.push(GiaTriMoi)
+      this.textInheritanceData.push(GiaTriMoi)
     };
     this.config = {
       id: 'paging',
       itemsPerPage: this.pageSize,
       currentPage: this.page,
-      totalItems: this.textInheritancesData.length
+      totalItems: this.textInheritanceData.length
     }
 }
 handlePageChange(event): void {
