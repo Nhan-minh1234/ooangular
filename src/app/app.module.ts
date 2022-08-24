@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PersonalComponent } from './personal/personal.component';
 import { ClientComponent } from './client/client/client.component';
 import { NgChartsModule } from 'ng2-charts';
+import { AdminComponent } from './admin/admin/admin.component';
 
 @NgModule({
 
@@ -20,7 +21,8 @@ import { NgChartsModule } from 'ng2-charts';
     LoginComponent,
     HomeComponent,
     PersonalComponent,
-    ClientComponent
+    ClientComponent,
+    AdminComponent
   ],
   imports: [
     BrowserAnimationsModule,

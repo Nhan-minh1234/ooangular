@@ -1,0 +1,139 @@
+<div id="user-manager-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="standard-modalLabel">Modal Heading</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
+                    <li class="nav-item">
+                        <a href="#overview_tab" data-bs-toggle="tab" aria-expanded="false"
+                            class="nav-link rounded-0 active">
+                            <i class="mdi mdi-home-variant d-md-none d-block"></i>
+                            <span class="d-none d-md-block">Thông tin người dùng</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#second_tab" data-bs-toggle="tab" aria-expanded="true" class="nav-link rounded-0">
+                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                            <span class="d-none d-md-block">Phân quyền</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#group_tab" data-bs-toggle="tab" aria-expanded="false" class="nav-link rounded-0">
+                            <i class="mdi mdi-settings-outline d-md-none d-block"></i>
+                            <span class="d-none d-md-block">Phân nhóm</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane show active" id="overview_tab">
+                        <div class="row">
+                            <form class="form-horizontal">
+                                <div class="row mb-3">
+                                    <label class="col-3 col-form-label">Ảnh đại diện:</label>
+                                    <div class="col-9 d-flex align-items-center">
+                                        <img src="https://demo.onlineoffice.vn/images/user_32.gif" alt="avatar"
+                                            class="img-fluid avatar-md rounded-circle">
+                                        <input class="form-control" type="file">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-3 col-form-label">Tên đăng nhập:</label>
+                                    <div class="col-9">
+                                        <input type="text" class="form-control" placeholder="Tên đăng nhập">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-3 col-form-label">Họ và tên:</label>
+                                    <div class="col-9">
+                                        <input type="text" class="form-control" placeholder="Họ và tên">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-3 col-form-label">Chức danh:</label>
+                                    <div class="col-9">
+                                        <input type="text" class="form-control" placeholder="Chức danh">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-3 col-form-label">Email:</label>
+                                    <div class="col-9">
+                                        <input type="email" class="form-control" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-3 col-form-label">Điện thoại:</label>
+                                    <div class="col-9">
+                                        <input type="text" class="form-control" placeholder="Điện thoại">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="second_tab">
+                        <h4>Danh sách phân quyền</h4>
+                        <div class="list-group">
+                            <div class="list-group-item list-group-item-custom-dark">
+                                <div class="row">
+                                    <div class="col-9">Danh sách phân quyền</div>
+                                    <div class="col-3 form-check form-switch">
+                                        <input type="checkbox" class="form-check-input" checked='true'
+                                            id="customSwitch1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group" data-simplebar style="max-height: 55vh;">
+                            <div *ngFor="let item of rights" class="list-group-item">
+                                <div class="row">
+                                    <div class="col-9">{{item.title}}</div>
+                                    <div class="col-3 form-check form-switch">
+                                        <input type="checkbox" class="form-check-input" checked='true'
+                                            id="customSwitch1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="group_tab">
+
+                        <h4>Danh sách phân nhóm</h4>
+                        <div class="list-group">
+                            <div class="list-group-item list-group-item-custom-dark">
+                                <div class="row">
+                                    <div class="col-9">Danh sách phân nhóm</div>
+                                    <div class="col-3 form-check form-switch">
+                                        <input type="checkbox" class="form-check-input" checked='true'
+                                            id="customSwitch1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group" data-simplebar style="max-height: 55vh;">
+                            <div *ngFor="let item of group" class="list-group-item">
+                                <div class="row">
+                                    <div class="col-9">{{item.title}}</div>
+                                    <div class="col-3 form-check form-switch">
+                                        <input type="checkbox" class="form-check-input" checked='true'
+                                            id="customSwitch1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Đóng</button>
+                <!-- <button type="button" class="btn btn-light" data-bs-dismiss="modal" data-bs-toggle="modal"
+                    data-bs-target="#user-detail-modal">Quay lại</button> -->
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal">Lưu</button>
+                <button type="button" class="btn btn-danger">Xoá người dùng</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>

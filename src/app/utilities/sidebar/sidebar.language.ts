@@ -202,8 +202,26 @@ let data = [
       '/business-card'
     ],
     'icon': 'uil-smile'
+  },
+  {
+    "id": 'admin',
+    "VN": {
+      'title': "Admin",
+      'items': [
+        'Người Dùng',
+      ]
+    },
+    "EN": {
+      'title': "Admin",
+      'items': [
+        'Users',
+      ]
+    },
+    "routing": [
+      '/users'
+    ],
+    "icon": "uil-padlock"
   }
-
 ];
 
 export default data;

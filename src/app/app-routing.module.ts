@@ -54,6 +54,11 @@ const routes: Routes = [
     path: 'client',
     loadChildren: () => import('./client/client.module').then(m => m.ClientModule)
   },
+  {
+    canActivate: [RouteGuardService],
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' }
 ];
