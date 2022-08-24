@@ -18,6 +18,8 @@ import { TaskAutocompleteComponent } from './task-autocomplete/task-autocomplete
 import { DonutChartComponent } from '../utilities/donut-chart/donut-chart.component';
 import { ReportComponent } from './report/report.component';
 import { ProjectComponent } from './project/project.component';
+import { MorePeojectComponent } from './more-peoject/more-peoject.component';
+import { ProjectListComponent } from './project-list/project-list.component';
 @NgModule({
   declarations: [
     TaskListComponent,
@@ -28,7 +30,10 @@ import { ProjectComponent } from './project/project.component';
     TaskAutocompleteComponent,
     DonutChartComponent,
     ReportComponent,
-    ProjectComponent
+    ProjectComponent,
+    MorePeojectComponent,
+    ProjectListComponent,
+
   ],
   imports: [
     CommonModule,

@@ -3,8 +3,6 @@ import { Location } from '@angular/common';
 import { WizardComponent } from 'angular-archwizard';
 import { GeneralService } from 'src/app/services/general.service';
 import data from './new-event.language';
-import * as moment from 'moment';
-import { IAngularMyDpOptions, IMyDateModel } from 'angular-mydatepicker';
 import { ApiservicesService } from 'src/app/services/api.service';
 
 
@@ -34,19 +32,14 @@ export class NewEventComponent implements OnInit {
   allUserInStep2List
   majorAssignee
   groupKeyChosenInStep2 = 'all'
-  step1BtnClicked = false
+  
   constructor(private _location: Location, public generalService: GeneralService, public apiservicesserver:ApiservicesService) { }
  
-  wizardGoodToGo(direction) {
-    if (direction == 'next')
-      this.wizard.goToNextStep();
-    else if (direction == 'previous')
-      this.wizard.goToPreviousStep();
-  }
   
   ngOnInit(): void {
     console.log(this.wizardStep)
-    this.onAsigneeGroupChange(null)
+    this.onAsigneeGroupChange(null);
+   
   }
   check(){
     if (this.newEventData.start===''||this.newEventData.end===''||this.newEventData.description===''){
@@ -69,9 +62,9 @@ export class NewEventComponent implements OnInit {
       this.allUserInStep2List = this.generalService.allUsersWithGroups[`${this.groupKeyChosenInStep2}`]
     }
   }
-  dualListUpdateForAssignee(event) {
-    this.allUserInStep2List = event.leftList;
-    this.chosenAssigneelList = event.rightList
+  dualListUpdateForAssignee(newevent) {
+    this.allUserInStep2List = newevent.leftList;
+    this.chosenAssigneelList = newevent.rightList
     // if(this.groupKeyChosenInStep2 == 'all')
     // {
     //   for(let i=0; i< this.allUserInStep2List.length; ++i)
@@ -117,7 +110,9 @@ export class NewEventComponent implements OnInit {
     this.newEventData.file = Array.from(files);
     console.log(files)
   }
- 
+  wizardGoodToGo(numb) {
+    this.wizard.goToStep(numb);
+  }
 
 getLabel(key) {
   return data[`${this.generalService.currentLanguage.Code}`][`${key}`]

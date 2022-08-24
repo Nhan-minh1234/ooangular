@@ -7,6 +7,8 @@ import { TaskListComponent } from "./task-list/task-list.component";
 import { TasksComponent } from "./tasks/tasks.component";
 import { TaskReportComponent } from "./task-report/task-report.component";
 import { TaskAutocompleteComponent } from "./task-autocomplete/task-autocomplete.component";
+import { ProjectComponent } from "./project/project.component";
+import { ProjectListComponent } from "./project-list/project-list.component";
 
 const routes: Routes = [
   {
@@ -25,9 +27,19 @@ const routes: Routes = [
         component: TaskListComponent
       },
       {
+        data: { "link": "/tasks/project" },
+        path: 'project',
+        component: ProjectComponent
+      },
+      {
         data: { "link": "/tasks/task-detail" },
         path: 'task-detail/:taskid',
         component: TaskDetailComponent
+      },
+      {
+        data: { "link": "/tasks/project-list" },
+        path: 'project-list',
+        component: ProjectListComponent
       },
       {
         data: { "link": "/tasks/task-report" },
@@ -39,6 +51,7 @@ const routes: Routes = [
         path: 'task-autocomplete',
         component: TaskAutocompleteComponent
       },
+      
       // {
       //   data: { "link": "/user/change-password" },
       //   path:'change-password',
