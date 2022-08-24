@@ -8,75 +8,73 @@
                 <div class="modal-header">
                     <h5 class="modal-title">Thông Báo</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    
+
                 </div>
-                
+
                 <div class="modal-body">
                     <p>Có lỗi xảy ra khi kết nối đến máy chủ. Xin vui lòng thử lại</p>
                 </div>
-                
+
             </div>
 
         </div>
-        
-    </div>
-      <div class="modal-footer">
-        <button [routerLink]="'/tasks/project-list'"  type = "button"  class = "btn btn-primary" > Thêm/sửa/xóa dự án </button >
-    </div>
-    <div class="modal-footer">
-        <button [routerLink]="'/tasks/project-list'"  type = "button"  class = "btn btn-primary" > Đưa CV vào dự án   </button >
-    </div>
-    <div class="modal-footer">
-        <button [routerLink]="'/tasks/project-list'"  type = "button"  class = "btn btn-primary" > Xóa CV khỏi dự án </button >
+
     </div>
     <div class="row">
         <div class="col-10">
             <div class="page-title-box">
                 <h4 class="page-title">Dự án đang xem</h4>
             </div>
-            </div>
-            
+        </div>
     </div>
+
     <div class="row">
-        <div class="col-10">
-    
-    <table id="basic-datatable" class="table dt-responsive nowrap w-100">
-        <thead>
-            <tr>
-                <th><span type="checkbox" title="Chọn/bỏ chọn tất cả"><input id="ctl22_gvCongViec_chkAll" type="checkbox" name="công việc" /></span></th>
-                <th> Công việc thuộc dự án </th>
-                <th> Ngày bắt đàu </th>
-                <th> Ngày hoàn thành </th>
-                
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><span type="checkbox" title="Chọn/bỏ chọn tất cả"><input id="ctl22_gvCongViec_chkAll" type="checkbox" name="công việc"  /></span></td>
-                <td><a href="#"> Triển khai</a></td>
-                <td>15/08/2022<td>
-                <td>22/08/2022</td>
-            </tr>
-            <tr>
-                <td><span type="checkbox" title="Chọn/bỏ chọn tất cả"><input id="ctl22_gvCongViec_chkAll" type="checkbox" name="công việc"  /></span></td>
-                <td><a href="#"> Triển khai </a></td>
-                <td> Đã kết thúc</td>
-            </tr>
-            <tr>
-                <td><span type="checkbox" title="Chọn/bỏ chọn tất cả"><input id="ctl22_gvCongViec_chkAll" type="checkbox" name="công việc"  /></span></td>
-                <td><a href="#"> Dự án tháng 5 </a></td>
-                <td> Đã kết thúc</td>
-            </tr>
-            <tr>
-                <td><span type="checkbox" title="Chọn/bỏ chọn tất cả"><input id="ctl22_gvCongViec_chkAll" type="checkbox" name="công việc"  /></span></td>
-                <td><a href="#"> Triển khai </a></td>
-                <td> Đã kết thúc</td>
-            </tr>
-            <tr>
-                <td><span type="checkbox" title="Chọn/bỏ chọn tất cả"><input id="ctl22_gvCongViec_chkAll" type="checkbox" name="công việc"  /></span></td>
-                <td><a href="#"> Hội nghị </a></td>
-                <td> Đã kết thúc</td>
-            </tr>
-        </tbody>
-    </table >
-    
+        <div class="col-9">
+
+            <table id="basic-datatable" class="table dt-responsive nowrap w-100">
+                <thead>
+                    <tr>
+                        <th><span type="checkbox" title="Chọn/bỏ chọn tất cả"><input 
+                                    type="checkbox" name="công việc" /></span></th>
+                        <th> Công việc thuộc dự án </th>
+                        <th> Ngày bắt đàu </th>
+                        <th> Ngày hoàn thành </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of eventListData | paginate: config" data-bs-toggle="modal"
+                    data-bs-target="#scrollable-modal">
+                        <td><span type="checkbox" title="Chọn/bỏ chọn tất cả"><input (change)="addlist(item.id,$event)" type="checkbox"
+                                    name="công việc" /></span></td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.start|date:"dd/MM/yyyy"}}</td>
+                        <td>{{item.end|date:"dd/MM/yyyy"}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-3">
+            <abbr style="width:200px;height:auto; float: right !important; ;" class="row">
+                <button [routerLink]="'/tasks/project-list'" type="button" class="btn btn-primary mb-2"> Thêm/sửa/xóa dự án
+                </button> 
+                <button [routerLink]="" type="button" class="btn btn-primary mb-2"> Đưa CV vào dự
+                    án </button>
+                <button (click)="test()" type="button" class="btn btn-primary"> Xóa CV khỏi dự án
+                </button>
+            </abbr>
+    </div>
+    <div class="list row">
+        <div class="col-md-8">
+            <pagination-controls id="paging" [previousLabel]="getLabel('previousBtn')" [nextLabel]="getLabel('nextBtn')"
+                responsive="true" responsive="true" (pageChange)="handlePageChange($event)"></pagination-controls>
+        </div>
+        <div class="col-md-4">
+            {{getLabel("itemsPerPage")}}:
+            <select style="border: solid 1px rgb(230, 229, 229);" (change)="handlePageSizeChange($event)">
+                <option *ngFor="let size of pageSizes" [ngValue]="size">
+                    {{ size }}
+                </option>
+            </select>
+        </div>
+    </div>

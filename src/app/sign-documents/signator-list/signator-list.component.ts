@@ -64,9 +64,7 @@ export class SignatorListComponent implements OnInit {
     this.pageSize = 10;
     this.gData();
   }
-  openNewEvent() {
-    this.router.navigate(['/personal/new-event']);
-  }
+  
   async gData() {
     this.spinnerLoading = true;
     this.httpClient.get('https://62fde3c541165d66bfb3a622.mockapi.io/api/list').subscribe(i => {

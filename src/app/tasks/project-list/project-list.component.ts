@@ -4,15 +4,21 @@ import { GeneralService } from 'src/app/services/general.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { WizardComponent } from 'angular-archwizard';
+import data from './project-list.language';
 @Component({
   selector: 'app-project-list',
   templateUrl: './project-list.component.html',
   styleUrls: ['./project-list.component.css']
 })
 export class ProjectListComponent implements OnInit {
-projectListData = {
-  location: '',
-}
+  projectListData = {
+    location: '',
+    description: '',
+
+    invited: '',
+    note: '',
+    file: []
+  }
   editable = true;
   eventDetail = {
     "date": "",
@@ -34,9 +40,13 @@ projectListData = {
   pageSize = 10;
   pageSizes = [10, 20, 30];
   count = 500;
-
+newlist={
+  number:1,
+  name:'',
+  status: 'chua hoan thanh'
+}
   config
-  constructor(private httpClient: HttpClient,  public generalService: GeneralService, private router: Router,private _location: Location) { }
+  constructor(private httpClient: HttpClient, public generalService: GeneralService, private router: Router, private _location: Location) { }
 
   ngOnInit(): void {
     this.gData();
@@ -62,7 +72,7 @@ projectListData = {
   }
   async gData() {
     this.spinnerLoading = true;
-    this.httpClient.get('https://62fde3c541165d66bfb3a622.mockapi.io/api/projectlist').subscribe(i => {
+    this.httpClient.get('https://62fde3c541165d66bfb3a622.mockapi.io/api/project?sortby=number').subscribe(i => {
       this.eventListData = i;
       this.config = {
         id: 'paging',
@@ -83,8 +93,38 @@ projectListData = {
     this.page = 0;
     this.gData();
   }
+  handleFileInput(files: FileList) {
+    this.projectListData.file = Array.from(files);
+    console.log(files)
+  }
   goBack() {
     this._location.back();
+  }
+  getLabel(key) {
+    return data[`${this.generalService.currentLanguage.Code}`][`${key}`]
+  }
+  number() {
+    let numbers = []
+    for (let i = 1; i <= 100; i++) {
+      numbers.push(i)
+    }
+
+    return numbers
+
+  }
+  clicknew(){
+    this.httpClient.post('https://62fde3c541165d66bfb3a622.mockapi.io/api/project',this.newlist).subscribe(i=>
+    {
+      this.generalService.showErrorToast(1, 'Da them moi')
+     this.newlist={
+        number:1,
+        name:'',
+        status: 'chua hoan thanh'
+      }
+      this.gData()
+    }
+    
+    )
   }
 
 }

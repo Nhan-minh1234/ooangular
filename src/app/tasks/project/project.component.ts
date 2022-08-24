@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { GeneralService } from 'src/app/services/general.service';
+import data from './project.language';
+import { Console } from 'console';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-project',
@@ -10,6 +13,10 @@ import { GeneralService } from 'src/app/services/general.service';
 })
 export class ProjectComponent implements OnInit {
   editable = true;
+  deleteList = []
+
+  eventSandbox;
+  currentTab = true;
   eventDetail = {
     "date": "",
     "title": "",
@@ -19,8 +26,7 @@ export class ProjectComponent implements OnInit {
     "time_end": "",
     "status": null,
   }
-  eventSandbox;
-  currentTab = true;
+
 
   spinnerLoading = false;
   eventListData
@@ -30,7 +36,7 @@ export class ProjectComponent implements OnInit {
   count = 500;
 
   config
-  constructor(private httpClient: HttpClient,  public generalService: GeneralService, private router: Router) { }
+  constructor(private httpClient: HttpClient, public generalService: GeneralService, private router: Router) { }
 
   ngOnInit(): void {
     this.gData();
@@ -39,13 +45,13 @@ export class ProjectComponent implements OnInit {
     this.editable = true;
     this.eventDetail = { ...obj }
   }
-  editEvent() {
+  editProject() {
     this.editable = false;
-    this.eventSandbox = { ...this.eventDetail }
+
   }
-  cancelEditEvent() {
+  cancelEditProject() {
     this.editable = true;
-    this.eventDetail = { ...this.eventSandbox }
+
   }
   changeTabs(tab) {
     this.currentTab = tab;
@@ -54,9 +60,7 @@ export class ProjectComponent implements OnInit {
     this.pageSize = 10;
     this.gData();
   }
-  openNewEvent() {
-    this.router.navigate(['/personal/new-event']);
-  }
+
   async gData() {
     this.spinnerLoading = true;
     this.httpClient.get('https://62fde3c541165d66bfb3a622.mockapi.io/api/projectlist').subscribe(i => {
@@ -74,12 +78,31 @@ export class ProjectComponent implements OnInit {
     this.page = event;
     this.gData();
   }
- 
-
+  addlist(id, x) {
+    if (x.target.checked) {
+      this.deleteList.push(id)
+    } else {
+      this.deleteList = this.deleteList.filter((e) => {
+        e !== id
+      })
+    }
+  }
+  test() {
+    this.deleteList.forEach((e)=>{
+      this.httpClient.delete(`https://62fde3c541165d66bfb3a622.mockapi.io/api/projectlist/${e}`).subscribe((a)=>{
+        this.generalService.showErrorToast(2, 'da xoa')
+      this.gData() 
+    }
+      )
+    })
+  }
   handlePageSizeChange(event): void {
     this.pageSize = event.target.value;
     this.page = 0;
     this.gData();
+  }
+  getLabel(key) {
+    return data[`${this.generalService.currentLanguage.Code}`][`${key}`]
   }
 
 }
