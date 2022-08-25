@@ -1,4 +1,13 @@
 <div class="row">
+    <div class="d-flex justify-content-between">
+        <h3>Danh sách công việc</h3>
+        <div class="w-40">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <span class="input-group-text text-primary"><i class="uil-search-alt"></i></span>
+            </div>
+        </div>
+    </div>
     <div class="col-4" *ngFor="let item of kanbanData">
         <div class="card task-status" style="height: 95%;">
             <div class="card-body">

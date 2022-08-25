@@ -1,7 +1,13 @@
 <div class="row">
-    <div class="col-6">
+    <div class="d-flex justify-content-between">
+        <h3>Danh sách tham gia</h3>
+        <div class="w-40">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <span class="input-group-text text-primary"><i class="uil-search-alt"></i></span>
+            </div>
+        </div>
     </div>
-    <h3>Danh sách tham gia</h3>
     <div class="col-4" *ngFor="let i of[0,1,2,3,4,5,6,7,8,9]">
         <div class="card rounded">
             <div class="card-body">
