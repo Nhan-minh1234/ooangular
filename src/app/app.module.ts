@@ -14,6 +14,7 @@ import { PersonalComponent } from './personal/personal.component';
 import { ClientComponent } from './client/client/client.component';
 import { NgChartsModule } from 'ng2-charts';
 import { SignDocumentsComponent } from './sign-documents/sign-documents.component';
+import { SearchComponent } from './search/search/search.component';
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import { SignDocumentsComponent } from './sign-documents/sign-documents.componen
     LoginComponent,
     HomeComponent,
     PersonalComponent,  
-    ClientComponent, SignDocumentsComponent
+    ClientComponent, SignDocumentsComponent, SearchComponent
   ],
   imports: [
     BrowserAnimationsModule,
