@@ -1,0 +1,113 @@
+<div class="container-fluid">
+        <div style="font-weight:bold;" class="bg-custom kichthuoc mb-3">TRANG CHỦ</div>
+    <div class="row"> 
+        <div class="col-9">
+           <!--home-content-->
+           <div class="row">
+            <div class="col-3">
+                <div class="card text-white bg-primary mb-3 " style="max-width: 15rem;">
+                <div class="card-body justify-content-center ">
+                    <i class='uil-briefcase-alt'></i>
+                    <h5 class="card-title">29</h5>
+                    <p class="card-text">Total Projects</p>
+                </div>
+              </div></div>
+            <div class="col-3">
+                <div class="card text-white bg-success mb-3" style="max-width: 15rem;">
+                    <div class="card-body justify-content-center ">
+                        <i class='dripicons-checklist'></i>
+                        <h5 class="card-title">100</h5>
+                        <p class="card-text">Total Tasks</p>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-3">
+                <div class="card text-white bg-primary mb-3" style="max-width: 15rem;">
+                    <div class="card-body justify-content-center ">
+                        <i class='uil-users-alt'></i>
+                        <h5 class="card-title">29</h5>
+                        <p class="card-text">Members</p>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-3">
+                <div class="card text-white bg-primary mb-3" style="max-width: 15rem;">
+                    <div class="card-body justify-content-center ">
+                        <i class='uil-chart-line'></i>
+                        <div class="indicator">
+                            <span class="text">93%</span>
+                            <i class='uil-top-arrow-from-top'></i>
+                        </div>
+                        <p class="card-text">Productivity</p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <!--thong báo-->
+            <div class="row">
+                    <div class="kichthuoc mb-2">
+                        <i class='uil-notes'></i>
+                        <span class="text">Công việc</span>
+                    </div>
+                    <ul class="nav nav-tabs mb-3">
+                    <li class="nav-item">
+                        <a href="#home" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
+                            <i class="mdi mdi-home-variant d-md-none d-block"></i>
+                            <span class="d-none d-md-block">Được giao</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#profile" data-bs-toggle="tab" aria-expanded="true" class="nav-link active">
+                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                            <span class="d-none d-md-block"> Chuyển giao</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#settings" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
+                            <i class="mdi mdi-settings-outline d-md-none d-block"></i>
+                            <span class="d-none d-md-block">Được xem</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane" id="home">
+                        <div class="row mb-2">
+                            <div class="col-4"> <canvas baseChart [data]="doughnutChartDuLieu" [type]="doughnutChartType"></canvas></div>
+                            <div class="col-8"> <canvas baseChart [data]="doughnutChartDuLieu" [type]="barChartType"></canvas></div>
+                        </div>
+                        
+                    </div>
+                    <div class="tab-pane show active" id="profile">
+                        <div class="row mb-2">
+                            <div class="col-4"> <canvas baseChart [data]="doughnutChartThongTin" [type]="doughnutChartType" [options]="ChartConfig"></canvas></div>
+                            <div class="col-8"> <canvas baseChart [data]="doughnutChartThongTin" [type]="barChartType"></canvas></div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="settings">
+                        <div class="row mb-2">
+                            <div class="col-4"> <canvas baseChart [data]="doughnutChartThongTin" [type]="doughnutChartType" [options]="ChartConfig"></canvas></div>
+                            <div class="col-8"> <canvas baseChart [data]="doughnutChartThongTin" [type]="barChartType"></canvas></div>
+                        </div>
+                    </div>
+                    <!-- văn bản-->
+                <div class="kichthuoc mb-2">
+                    <i class='uil-notes'></i>
+                    <span class="text">Văn bản</span>
+                </div>
+                <div class="tab-pane show active" id="profile">
+                    <div class="row">
+                        <div class="col-4"> <canvas baseChart [data]="doughnutChartVanBan" [type]="doughnutChartType" ></canvas></div>
+                        <div class="col-8"> <canvas baseChart [data]="doughnutChartVanBan" [type]="barChartType"></canvas></div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="mb-2">
+                <div>Năng xuất công việc</div>
+            </div>
+            <canvas baseChart [data]="doughnutChartData" [type]="doughnutChartType"></canvas>
+        </div>
+    </div>
+</div>

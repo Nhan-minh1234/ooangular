@@ -5,7 +5,6 @@ import { DashboardRouting } from './dashboard-routing.module';
 import { UtilitiesModule } from '../utilities/utilities.module';
 
 
-
 @NgModule({
   declarations: [
     DashboardLayoutComponent,
@@ -14,6 +13,8 @@ import { UtilitiesModule } from '../utilities/utilities.module';
   imports: [
     CommonModule,
     DashboardRouting,
+    UtilitiesModule
   ]
+
 })
 export class DashboardModule { }

@@ -1,20 +1,22 @@
 <div class="kichthuoc mb-2">Nguồn văn bản</div>
 <div class="row">
-	<table  id = "basic-datatable" border="2"  class = "table table-bordered dt-responsive nowrap w-100" > 
+	<table  id = "basic-datatable"  class =" table-centered table table-bordered dt-responsive nowrap w-100" > 
 		<thead > 
 			<tr > 
 				<th > STT </th>
 				<th > Tên nguồn văn bản </th > 
 				<th >  </th > 
-				<th >  </th > 
 			</tr > 
 		</thead >
 		<tbody>
 			<tr *ngFor="let i of textsourceDuLieu |paginate: config">
-				<td>{{i.nume_rical_order}}</td>
+				<td >{{i.nume_rical_order}}</td>
 				<td>{{i.textsource_name}}</td>
-				<td> <button type="button" class="btn btn-link rounded-pill ">xóa</button> </td>
-				<td> <button type="button" class="btn btn-link rounded-pill">sửa</button> </td>
+				<td class="d-flex justify-content-center"> 
+					<button type="button" class="btn btn-link rounded-pill ">xóa</button>
+					<button type="button" class="btn btn-link rounded-pill">sửa</button>  
+				</td>
+				 
 			</tr>
 		</tbody>
 	</table >
