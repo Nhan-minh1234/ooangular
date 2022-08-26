@@ -5,6 +5,7 @@ import { EventComponent } from './event/event.component';
 import { NewEventComponent } from './new-event/new-event.component';
 import { EventSampleComponent } from './event-sample/event-sample.component';
 import { LocationComponent } from './location/location.component';
+import { NewEventSampleComponent } from './new-event-sample/new-event-sample.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,11 @@ const routes: Routes = [
         path: 'location',
         component: LocationComponent
       },
+      {
+        data: { "link": "/event/new-event-sample" },
+        path: 'new-event-sample',
+        component: NewEventSampleComponent
+      }
     ]
   }
 ];

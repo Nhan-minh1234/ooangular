@@ -1,0 +1,184 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card rounded">
+            <div class="card-body">
+                <ul class="nav nav-tabs mb-3">
+                    <li class="nav-item">
+                        <a href="#setting_overview" data-bs-toggle="tab" aria-expanded="true" class="nav-link active">
+                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                            <span class="d-none d-md-block">Thông tin cơ bản</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#setting_files" data-bs-toggle="tab" aria-expanded="true" class="nav-link">
+                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                            <span class="d-none d-md-block">Các tệp tin</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#setting_users" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
+                            <i class="mdi mdi-settings-outline d-md-none d-block"></i>
+                            <span class="d-none d-md-block">Danh sách tham gia</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#setting_watching" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
+                            <i class="mdi mdi-settings-outline d-md-none d-block"></i>
+                            <span class="d-none d-md-block">Danh sách liên quan</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane show active" id="setting_overview">
+                        <form class="form-horizontal">
+                            <div class="row mb-3">
+                                <b class="col-3 col-form-label">Tên công việc:</b>
+                                <div class="col-9">
+                                    <input type="text" class="form-control" placeholder="Tên công việc">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <b class="col-3 col-form-label">Dự án:</b>
+                                <div class="col-9">
+                                    <select class="form-select" id="example-select">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <b class="col-3 col-form-label">Khách hàng:</b>
+                                <div class="col-9">
+                                    <select class="form-select" id="example-select">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <b class="col-3 col-form-label">Nhóm công việc:</b>
+                                <div class="col-9">
+                                    <select class="form-select" id="example-select">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <b class="col-3 col-form-label">Nội dung:</b>
+                                <div class="col-9">
+                                    <angular-editor>
+                                    </angular-editor>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <b class="col-3 col-form-label">Ngày bắt đầu:</b>
+                                <div class="col-9">
+                                    <div class="input-group">
+                                        <input name="startDate" class="form-control" placeholder="Ngày Bắt Đầu:"
+                                            angular-mydatepicker #startDateID="angular-mydatepicker"
+                                            [options]="myDatePickerOptions" />
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" (click)="startDateID.toggleCalendar()">
+                                                <i class="uil-calender"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <b class="col-3 col-form-label">Ngày kết thúc:</b>
+                                <div class="col-9">
+                                    <div class="input-group">
+                                        <input name="startDate" class="form-control" placeholder="Ngày kết thúc:"
+                                            angular-mydatepicker #startDateID="angular-mydatepicker"
+                                            [options]="myDatePickerOptions" />
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" (click)="startDateID.toggleCalendar()">
+                                                <i class="uil-calender"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="form-check mt-2">
+                                        <input type="checkbox" class="form-check-input" id="customCheck1">
+                                        <label class="form-check-label" for="customCheck1">Không giới hạn</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <b class="col-3 col-form-label">Nhóm công việc:</b>
+                                <div class="col-9">
+                                    <select class="form-select" id="example-select">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane" id="setting_files">
+                        <button type="button" class="btn btn-primary">Thêm tệp đính kèm</button>
+                        <table class="table table-centered mb-0 mt-3">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Tên file</th>
+                                    <th>Ngày upload</th>
+                                    <th>Kích thước</th>
+                                    <th>Người gửi</th>
+                                    <th>Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let i of [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]">
+                                    <td><a href="#">Files.png</a></td>
+                                    <td>15/08/2022</td>
+                                    <td>2.3KB</td>
+                                    <td>NGUYEN HOAI THUONG</td>
+                                    <td>
+                                        <button type="button" class="btn btn-success">Tải</button>
+                                        <button type="button" class="btn btn-danger">Xoá</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane" id="setting_users">
+                        <app-dual-list (updateLists)="dualListUpdateForAssignee($event)" [leftList]="allUserInStep2List"
+                            [rightList]="chosenAssigneelList"></app-dual-list>
+                        <div style="margin: 30px 10px 30px 30px;">
+                            <label class="form-label" for="majorAssignee"><span style="color: tomato;">(*)</span>
+                                Người Xử lý Chính: </label>
+                            <select style="width: 50%;" [(ngModel)]="majorAssignee" class="form-select"
+                                id="majorAssignee">
+                                <option selected>Chọn...</option>
+                                <option [ngValue]="assignee" *ngFor="let assignee of chosenAssigneelList">
+                                    {{assignee.fullName}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="setting_watching">
+                        <app-dual-list (updateLists)="dualListUpdateForAssignee($event)" [leftList]="allUserInStep2List"
+                            [rightList]="chosenAssigneelList"></app-dual-list>
+                    </div>
+                </div>
+
+                <div class="justify-content-center d-flex mt-3">
+                    <button type="submit" class="btn btn-success">Lưu</button>
+                    <button type="submit" class="btn btn-danger ms-2">Xoá công việc này</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
