@@ -9,6 +9,9 @@ import { TaskReportComponent } from "./task-report/task-report.component";
 import { TaskAutocompleteComponent } from "./task-autocomplete/task-autocomplete.component";
 import { ProjectComponent } from "./project/project.component";
 import { ProjectListComponent } from "./project-list/project-list.component";
+import { ProjectGroupComponent } from "./project-group/project-group.component";
+import { AddGroupComponent } from "./add-group/add-group.component";
+import { PassGroupComponent } from "./pass-group/pass-group.component";
 
 const routes: Routes = [
   {
@@ -50,6 +53,20 @@ const routes: Routes = [
         data: { "link": "/tasks/task-autocomplete" },
         path: 'task-autocomplete',
         component: TaskAutocompleteComponent
+      }, {
+        data: { "link": "/tasks/project-group" },
+        path: 'project-group',
+        component: ProjectGroupComponent
+      },
+      {
+        data: { "link": "/tasks/add-group" },
+        path: 'add-group',
+        component: AddGroupComponent
+      },
+      {
+        data: { "link": "/tasks/pass-group" },
+        path: 'pass-group',
+        component: PassGroupComponent
       },
       
       // {

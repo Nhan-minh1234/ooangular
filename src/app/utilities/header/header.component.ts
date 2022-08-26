@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
   customerLList : any = [];
   searchName:any;
   dictionary
+  labelforsearch='s'
   listOfFlags = [
     {
       "Code":'EN',
@@ -25,7 +26,9 @@ export class HeaderComponent implements OnInit {
       "URL": 'assets/images/flags/vietnam.png'
     }
   ]
-  
+  test(){
+    console.log(this.labelforsearch)
+  }
 
   @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
 

@@ -20,6 +20,9 @@ import { ReportComponent } from './report/report.component';
 import { ProjectComponent } from './project/project.component';
 import { MorePeojectComponent } from './more-peoject/more-peoject.component';
 import { ProjectListComponent } from './project-list/project-list.component';
+import { ProjectGroupComponent } from './project-group/project-group.component';
+import { AddGroupComponent } from './add-group/add-group.component';
+import { PassGroupComponent } from './pass-group/pass-group.component';
 @NgModule({
   declarations: [
     TaskListComponent,
@@ -33,6 +36,9 @@ import { ProjectListComponent } from './project-list/project-list.component';
     ProjectComponent,
     MorePeojectComponent,
     ProjectListComponent,
+    ProjectGroupComponent,
+    AddGroupComponent,
+    PassGroupComponent,
 
   ],
   imports: [
