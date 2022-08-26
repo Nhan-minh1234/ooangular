@@ -3,12 +3,15 @@ import { Router } from '@angular/router';
 import { GeneralService } from 'src/app/services/general.service';
 import data from './header.language';
 
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  customerLList : any = [];
+  searchName:any;
   dictionary
   listOfFlags = [
     {
@@ -63,5 +66,5 @@ export class HeaderComponent implements OnInit {
   {
     this.router.navigate(['/user/help'])
   } 
-
+  
 }
