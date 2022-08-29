@@ -1,1 +1,194 @@
-<p>report works!</p>
+<div class="container-fluid">
+    <div class="col-11">
+        <div class="page-title-box">
+            <h4 class="page-title">Báo cáo</h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-9 row"> 
+            <div class="mb-3 col-6">
+                <label for="example-select" class="form-label">Loại khách hàng</label>
+                <select class="form-select" id="example-select">
+                    <option>Tất cả</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+            <div class="mb-3 col-6">
+                <label for="example-select" class="form-label">Loại hợp đồng</label>
+                <select class="form-select" id="example-select">
+                    <option>Tất cả</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+            <div class="mb-3 col-6">
+                <label for="example-select" class="form-label">Loại hình</label>
+                <select class="form-select" id="example-select">
+                    <option>Tất cả</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+            <div class="mb-3 col-6">
+                <label for="example-select" class="form-label">Ngành nghề</label>
+                <select class="form-select" id="example-select">
+                    <option>Tất cả</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+            <div class="mb-3 col-6">
+                <label for="example-select" class="form-label">Tỉnh/Thành</label>
+                <select (change)="setProvincesCode($event.target.value)" class="form-select" id="example-select">
+                    <option [value]="item.codename" *ngFor="let item of countryData">{{item.name}}</option>
+                </select>
+            </div>
+            <div class="mb-3 col-6">
+                <label for="example-select" class="form-label">Quận/Huyện</label>
+                <select class="form-select" id="example-select">
+                    <option *ngFor="let item of districtsData">{{item.name}}</option>
+                </select>
+            </div>>
+
+            <div class="row">
+                <div class="mb-3 col-9 row">
+                    <div class="mb-3 col-6">
+                        <th>Sản phẩm</th>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                                First checkbox
+                            </li>
+                            <li class="list-group-item">
+                                <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                                Second checkbox
+                            </li>
+                            <li class="list-group-item">
+                                <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                                Third checkbox
+                            </li>
+                            <li class="list-group-item">
+                                <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                                Fourth checkbox
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mb-3 col-6">
+                        <div class="mb-3 ">
+                            <label for="example-select" class="form-label">Giá trị hợp đồng</label>
+                            <select class="form-select" id="example-select">
+                                <option></option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>  
+                        <div class="mb-3 ">
+                            <label for="example-number" class="form-label">Từ</label>
+                            <input class="form-control" id="example-number" type="number" >
+                        </div>       
+                        <div class="mb-3 ">
+                            <label for="example-number" class="form-label">Đến</label>
+                            <input class="form-control" id="example-number" type="number" >
+                        </div>       
+                    </div>
+                    <div class="mb-3 ">
+                        <label for="simpleinput" class="form-label">Ngày thành lập:</label>
+                        <div class="mb-3 col-6">Từ:
+                            <input  class="form-control" id="example-date"
+                                type="date" name="date" >
+                        </div>
+                        <div class="mb-3 col-6">Đến:
+                            <input  class="form-control" id="example-date"
+                                type="date" name="date">
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+
+        </div>
+        <div class="col-3">
+            <div class= "d-grid">
+                    <button type="button" (click)="eData()" class="btn btn-primary">Tìm kiếm</button>
+            </div>
+            <div  class = "d-grid" >
+                <button type = "button"  class = "btn btn-primary" > Xuất File </button >
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        
+            <div class="list-group-item col-lg-12 mb-3">
+                <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                <label class="text-danger">Tất cả</label>
+            </div>
+            <div class="list-group-item col-3 mb-3">
+                <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                First checkbox
+            </div>
+            <div class="list-group-item col-3 mb-3">
+                <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                First checkbox
+            </div>
+            <div class="list-group-item col-3 mb-3">
+                <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                First checkbox
+            </div>
+            <div class="list-group-item col-3 mb-3">
+                <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                First checkbox
+            </div>
+            <div class="list-group-item col-3 mb-3">
+                <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                First checkbox
+            </div>
+            <div class="list-group-item col-3 mb-3">
+                <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                First checkbox
+            </div>
+            <div class="list-group-item col-3 mb-3">
+                <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                First checkbox
+            </div><div class="list-group-item col-3 mb-3">
+                <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                First checkbox
+            </div>
+    </div>
+    <div *ngIf="customersListData" class="row">
+        <table class="table mb-0">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Khách</th>
+                    <th>Địa chỉ</th>
+                    <th>Người đại diện</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of customersListData | paginate: config">
+                    <th scope="row">{{item.id}}</th>
+                    <td>{{item.name}}</td>
+                    <td>{{item.location}}</td>
+                    <td>{{item.representative}}</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -54,6 +54,21 @@ const routes: Routes = [
     path: 'client',
     loadChildren: () => import('./client/client.module').then(m => m.ClientModule)
   },
+  {
+    canActivate: [RouteGuardService],
+    path: 'sign-documents',
+    loadChildren: () => import('./sign-documents/sign-documents.module').then(m => m.SignDocumentsModule)
+  },
+  {
+    canActivate: [RouteGuardService],
+    path: 'search',
+    loadChildren: () => import('./search/search.module').then(m => m.SearchModule)
+  },
+   {
+    canActivate: [RouteGuardService],
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' }
 ];

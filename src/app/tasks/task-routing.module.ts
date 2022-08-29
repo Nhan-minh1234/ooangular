@@ -6,7 +6,12 @@ import { TaskDetailComponent } from "./task-detail/task-detail.component";
 import { TaskListComponent } from "./task-list/task-list.component";
 import { TasksComponent } from "./tasks/tasks.component";
 import { TaskReportComponent } from "./task-report/task-report.component";
-import { TaskAutocompleteComponent } from "./task-autocomplete/task-autocomplete.component";
+import { ProjectComponent } from "./project/project.component";
+import { ProjectListComponent } from "./project-list/project-list.component";
+import { ProjectGroupComponent } from "./project-group/project-group.component";
+import { AddGroupComponent } from "./add-group/add-group.component";
+import { PassGroupComponent } from "./pass-group/pass-group.component";
+import { TaskSamplesComponent } from "./task-samples/task-samples.component";
 
 const routes: Routes = [
   {
@@ -25,20 +30,46 @@ const routes: Routes = [
         component: TaskListComponent
       },
       {
+        data: { "link": "/tasks/project" },
+        path: 'project',
+        component: ProjectComponent
+      },
+      {
         data: { "link": "/tasks/task-detail" },
         path: 'task-detail/:taskid',
         component: TaskDetailComponent
+      },
+      {
+        data: { "link": "/tasks/project-list" },
+        path: 'project-list',
+        component: ProjectListComponent
       },
       {
         data: { "link": "/tasks/task-report" },
         path: 'task-report',
         component: TaskReportComponent
       },
-      {
-        data: { "link": "/tasks/task-autocomplete" },
-        path: 'task-autocomplete',
-        component: TaskAutocompleteComponent
+    {
+        data: { "link": "/tasks/project-group" },
+        path: 'project-group',
+        component: ProjectGroupComponent
       },
+      {
+        data: { "link": "/tasks/add-group" },
+        path: 'add-group',
+        component: AddGroupComponent
+      },
+      {
+        data: { "link": "/tasks/pass-group" },
+        path: 'pass-group',
+        component: PassGroupComponent
+      },
+      {
+        data: { "link": "/tasks/task-samples" },
+        path: 'task-samples',
+        component: TaskSamplesComponent
+      },
+      
       // {
       //   data: { "link": "/user/change-password" },
       //   path:'change-password',
