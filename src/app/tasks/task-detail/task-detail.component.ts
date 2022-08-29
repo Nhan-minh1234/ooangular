@@ -11,7 +11,7 @@ import * as moment from 'moment';
   styleUrls: ['./task-detail.component.css']
 })
 export class TaskDetailComponent implements OnInit {
-  spinnerLoading = false 
+  spinnerLoading = false
   taskID
 
   constructor(private route: ActivatedRoute, private el: ElementRef, private api: ApiservicesService, public generalService: GeneralService, private router: Router) {
@@ -25,9 +25,8 @@ export class TaskDetailComponent implements OnInit {
   }
   getLabel(key) {
     return data[`${this.generalService.currentLanguage.Code}`][`${key}`]
-  } 
-  getTaskDetail()
-  {
-    this.api.httpCall(this.api.apiLists.getTaskDetail + this.taskID,{},{},'get',true)
+  }
+  getTaskDetail() {
+    this.api.httpCall(this.api.apiLists.getTaskDetail + this.taskID, {}, {}, 'get', true)
   }
 }
