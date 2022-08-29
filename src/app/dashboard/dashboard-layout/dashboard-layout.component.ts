@@ -38,6 +38,7 @@ export class DashboardLayoutComponent implements OnInit {
       { data: [15,50,30] }
     ]
   };
+  dashboardDuLieu=['Giám đốc','Trưởng phòng','Nhân viên CNTT']
   public barChartType:ChartType ='bar'
   public doughnutChartType: ChartType = 'doughnut';
   public ChartConfig: ChartConfiguration['options']={

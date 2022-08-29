@@ -35,6 +35,7 @@ import { TaskTargetManagerComponent } from './task-detail/task-detail-tabs/task-
 import { TaskSamplesComponent } from './task-samples/task-samples.component';
 import { TaskSampleDetailComponent } from './task-sample-detail/task-sample-detail.component';
 import { TaskSampleManagerComponent } from './task-sample-manager/task-sample-manager.component';
+import { NewReportComponent } from './new-report/new-report.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { TaskSampleManagerComponent } from './task-sample-manager/task-sample-ma
     TaskTargetManagerComponent,
     TaskSamplesComponent,
     TaskSampleDetailComponent,
-    TaskSampleManagerComponent
+    TaskSampleManagerComponent,
+    NewReportComponent
   ],
   imports: [
     CommonModule,

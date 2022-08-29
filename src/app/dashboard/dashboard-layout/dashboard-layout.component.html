@@ -1,20 +1,20 @@
 <div class="container-fluid">
-        <div style="font-weight:bold;" class="bg-custom kichthuoc mb-3">TRANG CHỦ</div>
+    <div class="list-group-item  mb-3">TRANG CHỦ</div>
     <div class="row"> 
         <div class="col-9">
            <!--home-content-->
            <div class="row">
             <div class="col-3">
-                <div class="card text-white bg-primary mb-3 " style="max-width: 15rem;">
-                <div class="card-body justify-content-center ">
+                <div class="card text-white bg-primary kichthuoc mb-3 " style="max-width: 20rem;">
+                <div class="card-body d-flex justify-content-center flex-column align-items-center">
                     <i class='uil-briefcase-alt'></i>
                     <h5 class="card-title">29</h5>
                     <p class="card-text">Total Projects</p>
                 </div>
               </div></div>
             <div class="col-3">
-                <div class="card text-white bg-success mb-3" style="max-width: 15rem;">
-                    <div class="card-body justify-content-center ">
+                <div class="card text-white bg-success kichthuoc mb-3" style="max-width: 20rem;">
+                    <div class="card-body d-flex justify-content-center flex-column align-items-center ">
                         <i class='dripicons-checklist'></i>
                         <h5 class="card-title">100</h5>
                         <p class="card-text">Total Tasks</p>
@@ -22,8 +22,8 @@
                   </div>
             </div>
             <div class="col-3">
-                <div class="card text-white bg-primary mb-3" style="max-width: 15rem;">
-                    <div class="card-body justify-content-center ">
+                <div class="card text-white bg-danger kichthuoc mb-3" style="max-width: 20rem;">
+                    <div class="card-body d-flex justify-content-center flex-column align-items-center ">
                         <i class='uil-users-alt'></i>
                         <h5 class="card-title">29</h5>
                         <p class="card-text">Members</p>
@@ -31,8 +31,8 @@
                   </div>
             </div>
             <div class="col-3">
-                <div class="card text-white bg-primary mb-3" style="max-width: 15rem;">
-                    <div class="card-body justify-content-center ">
+                <div class="card text-white bg-warning kichthuoc mb-3" style="max-width: 20rem;">
+                    <div class="card-body d-flex justify-content-center flex-column align-items-center ">
                         <i class='uil-chart-line'></i>
                         <div class="indicator">
                             <span class="text">93%</span>
@@ -50,7 +50,18 @@
                     <span class="text">Thông báo</span>
                 </div>
                 <div>
-                    <input type="text" id="simpleinput" class="form-control">
+                    <div class="list-group">
+                        <div class="list-group-item">
+                            <div class="d-flex">
+                                <div class="uil-arrow-circle-right"> Thông báo nghĩ lễ Quốc khánh</div>
+                                (<div class="uil-user-circle">Phạm Minh Nhẫn,02/09/2022</div>
+                                <div class="uil-eye">22</div>)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button [routerLink]="'/social/notification'" type = "button"  class = "btn btn-info" > Xem tiếp <i class='uil-angle-double-right'></i> </button>
                 </div>
             </div>
             <!--công việc-->
@@ -107,45 +118,90 @@
                         <div class="col-4"> <canvas baseChart [data]="doughnutChartVanBan" [type]="doughnutChartType" ></canvas></div>
                         <div class="col-8"> <canvas baseChart [data]="doughnutChartVanBan" [type]="barChartType"></canvas></div>
                     </div>
+                    <div class="d-flex justify-content-end">
+                        <button [routerLink]="'/document/incoming-text'" type = "button"  class = "btn btn-info" > Xem tiếp <i class='uil-angle-double-right'></i> </button>
+                    </div>
                 </div>
             </div>
-            <!--Lịch-->
-            <!--
-            <div class="kichthuoc mb-2">
-                <i class='uil-calendar-alt'></i>
-                <span class="text">Lịch</span>
-                <ul class="nav nav-tabs mb-3">
-                    <li class="nav-item">
-                        <a href="#event" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
-                            <i class="mdi mdi-home-variant d-md-none d-block"></i>
-                            <span class="d-none d-md-block">Lịch tuần</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#personal-calendar" data-bs-toggle="tab" aria-expanded="true" class="nav-link active">
-                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
-                            <span class="d-none d-md-block">Lịch cá nhân</span>
-                        </a>
-                    </li>
-                </ul>
-                </div>
-                <div class="tab-content">
-                    <div class="tab-pane" id="event">
-                        <div class="row mb-2">
-                            <div class="col-4"> <canvas baseChart [data]="doughnutChartThongTin" [type]="doughnutChartType" [options]="ChartConfig"></canvas></div>
-                            <div class="col-8"> <canvas baseChart [data]="doughnutChartThongTin" [type]="barChartType"></canvas></div>
-                        </div>
-                    </div>
-                    <div class="tab-pane show active" id="personal-calendar">
-                        <div class="row mb-2">
-                            <div class="col-4"> <canvas baseChart [data]="doughnutChartDuLieu" [type]="doughnutChartType"></canvas></div>
-                            <div class="col-8"> <canvas baseChart [data]="doughnutChartDuLieu" [type]="barChartType"></canvas></div>
-                        </div>
-                    </div>
-                </div>-->
+                <!--lịch-->
                 <div class="kichthuoc mb-2">
-                    <i class='uil-postcard'></i>
-                    <span class="text">Tin tức</span>
+                    <i class='uil-schedule'></i>
+                    <span class="text">Lịch</span>
+                    <div>
+                        <ul class="nav nav-tabs mb-3">
+                            <li class="nav-item">
+                                <a href="#personal-calendar" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
+                                    <i class="mdi mdi-home-variant d-md-none d-block"></i>
+                                    <span class="d-none d-md-block">Lịch cá nhân</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#calendar" data-bs-toggle="tab" aria-expanded="true" class="nav-link active">
+                                    <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                                    <span class="d-none d-md-block">Lịch</span>
+                                </a>
+                            </li>
+                        </ul>
+                        
+                        <div class="tab-content">
+                            <div class="tab-pane" id="personal-calendar">
+                                <table id = "basic-datatable"  class =" table-centered table table-bordered dt-responsive nowrap w-100">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="4">Lịch tuần</th>
+                                        </tr>
+                                        <tr>
+                                            <th>Ngày</th>
+                                            <th>Giờ</th>
+                                            <th>Nội dung</th>
+                                            <th>Địa điểm</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                          </tr>
+                                          <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                          </tr>
+                                    </tbody>
+                                  </table>
+                            </div>
+                            <div class="tab-pane show active" id="calendar">
+                                <p>...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button [routerLink]="'/event/event-list'" type = "button"  class = "btn btn-info" > Xem tiếp <i class='uil-angle-double-right'></i> </button>
+                    </div>
+                </div>
+                <!--Tinh tức-->
+                <div class="kichthuoc mb-2">
+                    <div class="mb-2">
+                        <i class='uil-postcard'></i>
+                        <span class="text">Tin tức</span>
+                    </div>
+                    <div>
+                        <div class="list-group">
+                            <div class="list-group-item">
+                                <div class="d-flex">
+                                    <div class="uil-arrow-circle-right"> Thông báo nghĩ lễ Quốc khánh</div>
+                                    (<div class="uil-user-circle">Phạm Minh Nhẫn,02/09/2022</div>
+                                    <div class="uil-eye">22</div>)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button [routerLink]="'/social/news'" type = "button"  class = "btn btn-info" > Xem tiếp <i class='uil-angle-double-right'></i> </button>
+                    </div>
                 </div>
             </div>
         </div>

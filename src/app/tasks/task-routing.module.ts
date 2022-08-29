@@ -12,6 +12,8 @@ import { ProjectGroupComponent } from "./project-group/project-group.component";
 import { AddGroupComponent } from "./add-group/add-group.component";
 import { PassGroupComponent } from "./pass-group/pass-group.component";
 import { TaskSamplesComponent } from "./task-samples/task-samples.component";
+import { PeriodicalReportComponent } from "./periodical-report/periodical-report.component";
+import { NewReportComponent } from "./new-report/new-report.component";
 
 const routes: Routes = [
   {
@@ -48,6 +50,16 @@ const routes: Routes = [
         data: { "link": "/tasks/task-report" },
         path: 'task-report',
         component: TaskReportComponent
+      },
+      {
+        data: { "link": "/tasks/periodical-report" },
+        path: 'periodical-report',
+        component: PeriodicalReportComponent
+      },
+      {
+        data: { "link": "/tasks/new-report" },
+        path: 'new-report',
+        component: NewReportComponent
       },
     {
         data: { "link": "/tasks/project-group" },
