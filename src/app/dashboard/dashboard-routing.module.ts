@@ -10,8 +10,7 @@ const routes: Routes = [
     path: '',
     component: DashboardLayoutComponent,
     data: { "link": "/dashboard" },
-    children: [
-          ]
+    children: []
   }
 ];
 

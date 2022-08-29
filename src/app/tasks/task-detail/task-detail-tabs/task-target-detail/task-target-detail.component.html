@@ -1,0 +1,182 @@
+<div id="target_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-full-width">
+        <div class="modal-content bg-custom">
+            <div class="modal-header">
+                <h4 class="modal-title" id="standard-modalLabel">Draft the new contract document for sales team</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-6 col-sm-12">
+                                        <h6>ASSIGNED TO</h6>
+                                        <div class="d-flex">
+                                            <div class="avatar-sm avatar-group" *ngFor="let user of [1,2,3,4,5]">
+                                                <img src="assets/images/users/avatar-2.jpg" alt="image"
+                                                    class="img-fluid avatar-sm rounded-circle img-thumbnail">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12">
+                                        <h6>DUE DATE</h6>
+                                        <label>2022</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <h5>Overview:</h5>
+                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio expedita
+                                            similique
+                                            laborum
+                                            sapiente. Repellat asperiores optio porro quasi dolor, sequi nostrum
+                                            sapiente
+                                            corrupti earum
+                                            modi alias maiores cupiditate inventore praesentium labore error corporis?
+                                            Sit,
+                                            distinctio
+                                            quam doloribus corrupti, quidem sed eligendi, ducimus odit temporibus
+                                            accusantium
+                                            voluptas.
+                                            Voluptatum eaque tempore sequi quam corrupti adipisci quos numquam harum
+                                            minus
+                                            libero
+                                            perspiciatis, excepturi rerum aspernatur illo rem atque obcaecati distinctio
+                                            veniam.
+                                            Pariatur reprehenderit eveniet ullam ratione natus maxime cumque voluptates
+                                            quae
+                                            sapiente
+                                            nostrum, cum est? Optio eveniet numquam ipsum eaque in, ducimus dignissimos
+                                            inventore
+                                            quaerat quis, maiores voluptatibus repellendus nisi est nostrum explicabo.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h5 class="card-title-mb-0">Comments</h5>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="d-flex" *ngFor="let i of [1,1,1]">
+                                                <img src="assets/images/users/avatar-2.jpg" alt="image"
+                                                    class="img-fluid avatar-sm rounded-circle img-thumbnail">
+                                                <div class="ms-2">
+                                                    <h5>Hoai Thuong Dev</h5>
+                                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab,
+                                                        quod repellat voluptas laboriosam eum autem beatae quae sapiente
+                                                        incidunt ipsa sunt iusto dolorem maxime molestiae dignissimos
+                                                        culpa odit ipsam ducimus! Maiores, eius minima! Laboriosam
+                                                        voluptas vel sed consequuntur, ipsa rem hic ad possimus a! Modi
+                                                        harum, aut quos voluptas quaerat at? Corrupti cumque suscipit
+                                                        error quis libero ab est esse. Qui, consequuntur eligendi.
+                                                        Voluptatibus, nesciunt! Nisi provident porro at itaque, quia
+                                                        sint libero nostrum aperiam repellendus. Optio blanditiis totam
+                                                        voluptates deserunt dignissimos delectus expedita fuga laborum
+                                                        error facilis? Rem, error. Necessitatibus optio tenetur quidem
+                                                        exercitationem vitae illum suscipit ducimus excepturi.</p>
+                                                </div>
+                                            </div>
+                                            <angular-editor></angular-editor>
+                                            <div class="d-flex mt-3 justify-content-end">
+                                                <button type="button" class="btn btn-primary me-2"><i
+                                                        class="uil-link-h"></i>Thêm tệp đính kèm</button>
+                                                <button type="button" class="btn btn-success">Gửi <i
+                                                        class="uil-navigator"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title-mb-0">Danh sách tệp tin</h4>
+                                <div data-simplebar style="max-height: 250px;" class="list-group">
+                                    <div class="list-group-item"
+                                        *ngFor="let i of [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex align-items-center">
+                                                <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png"
+                                                    width="50px" alt="">
+                                                <div class="ms-2">
+                                                    <h5>Name.pdf</h5>
+                                                    <i>23MB</i>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="pointer">
+                                                    <i class="uil-file-download-alt text-success h3"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title-mb-0">Danh sách tham gia</h4>
+                                <div data-simplebar style="max-height: 250px;" class="list-group">
+                                    <div class="list-group-item" *ngFor="let i of [1,1,1,1,1]">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex align-items-center">
+                                                <img src="assets/images/users/avatar-2.jpg" alt="image"
+                                                    class="img-fluid avatar-sm rounded-circle img-thumbnail">
+                                                <div class="ms-2">
+                                                    <h5>NGUYEN HOAI THUONG</h5>
+                                                    <i>Đang xử lí</i>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="pointer">
+                                                    <i class="uil-eye text-success h3"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title-mb-0">Danh sách được xem</h4>
+                                <div data-simplebar style="max-height: 250px;" class="list-group">
+                                    <div class="list-group-item" *ngFor="let i of [1,1,1,1,1]">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex align-items-center">
+                                                <img src="assets/images/users/avatar-2.jpg" alt="image"
+                                                    class="img-fluid avatar-sm rounded-circle img-thumbnail">
+                                                <div class="ms-2">
+                                                    <h5>NGUYEN HOAI THUONG</h5>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="pointer">
+                                                    <i class="uil-eye text-success h3"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-warning" data-bs-dismiss="modal" data-bs-toggle="modal"
+                    data-bs-target="#target-manager-modal">Sửa</button>
+            </div>
+        </div>
+    </div>
+</div>

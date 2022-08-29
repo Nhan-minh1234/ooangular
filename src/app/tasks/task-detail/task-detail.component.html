@@ -8,6 +8,119 @@
                 <h4 class="page-title">{{getLabel("pageTitle")}}</h4>
             </div>
         </div>
-           </div>
+    </div>
     <!-- end page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row mt-3 mb-3">
+                        <div class="col-lg-2 col-sm-12">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/1200px-Angular_full_color_logo.svg.png"
+                                class="img-thumbnail" alt="test">
+                        </div>
+                        <div class="col-lg-7 col-sm-12 d-flex flex-column justify-content-evenly">
+                            <h3> Online Office Angular <span class="badge badge-outline-warning">Đang thực hiện</span>
+                            </h3>
+                            <label class="description">Triển khai làm mới giao diện và công nghệ Online Office
+                                2022</label>
+                            <div class="row d-flex">
+                                <div class="col-md-3 col-sm-12 mb-3 mb-md-0">
+                                    <div class="task-report">
+                                        <h4>15/08/2022</h4>
+                                        <b>Ngày kết thúc</b>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-12 mb-3 mb-md-0">
+                                    <div class="task-report">
+                                        <h4><i class="uil-arrow-up text-success"></i> 79</h4>
+                                        <b>Tổng số công việc</b>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12 d-flex">
+                                    <div class="avatar-sm avatar-group" *ngFor="let i of[1,2,3,4,5,6,7]">
+                                        <img src="assets/images/users/avatar-2.jpg" alt="image"
+                                            class="img-fluid avatar-sm rounded-circle img-thumbnail">
+                                    </div>
+                                    <div class="avatar-sm avatar-group">
+                                        <span style="font-weight: bolder;"
+                                            class="avatar-title bg-custom-color rounded-circle img-thumbnail">
+                                            +15
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div>
+                                <button type="button" class="btn btn-primary" [routerLink]="'/tasks/new-task'">Thêm công
+                                    việc</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <ul class="nav nav-tabs nav-bordered mb-3">
+                            <li class="nav-item">
+                                <a href="#overview" data-bs-toggle="tab" aria-expanded="false" class="nav-link active">
+                                    <i class="mdi mdi-home-variant d-md-none d-block"></i>
+                                    <span class="d-none d-md-block">Tổng quan</span>
+                                </a>
+                            </li>
+                            <!-- <li class="nav-item">
+                                <a href="#activity" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
+                                    <i class="mdi mdi-home-variant d-md-none d-block"></i>
+                                    <span class="d-none d-md-block">Thảo luận</span>
+                                </a>
+                            </li> -->
+                            <li class="nav-item">
+                                <a href="#targets" data-bs-toggle="tab" aria-expanded="true" class="nav-link">
+                                    <i class="mdi-cog-outline d-md-none d-block"></i>
+                                    <span class="d-none d-md-block">Công việc</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#users" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
+                                    <i class="mdi mdi-account-multiple d-md-none d-block"></i>
+                                    <span class="d-none d-md-block">Danh sách tham gia</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#files" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
+                                    <i class="mdi mdi-cog-outline d-md-none d-block"></i>
+                                    <span class="d-none d-md-block">Tệp tin</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#setting" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
+                                    <i class="uil-cog d-md-none d-block"></i>
+                                    <span class="d-none d-md-block">Cài đặt công việc</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <div class="tab-content">
+            <div class="tab-pane show active" id="overview">
+                <app-task-overview></app-task-overview>
+            </div>
+            <!-- <div class="tab-pane" id="activity">
+                <app-task-activity></app-task-activity>
+            </div> -->
+            <div class="tab-pane" id="targets">
+                <app-task-targets></app-task-targets>
+            </div>
+            <div class="tab-pane" id="users">
+                <app-task-users></app-task-users>
+            </div>
+            <div class="tab-pane" id="files">
+                <app-task-files></app-task-files>
+            </div>
+            <div class="tab-pane" id="setting">
+                <app-task-setting></app-task-setting>
+            </div>
+        </div>
+    </div>
+</div>

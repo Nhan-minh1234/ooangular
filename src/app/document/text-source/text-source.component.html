@@ -1,3 +1,34 @@
-<h1>
-
-</h1>
+<div class="kichthuoc mb-2">Nguồn văn bản</div>
+<div class="row">
+	<table  id = "basic-datatable"  class =" table-centered table table-bordered dt-responsive nowrap w-100" > 
+		<thead > 
+			<tr > 
+				<th > STT </th>
+				<th > Tên nguồn văn bản </th > 
+				<th >  </th > 
+			</tr > 
+		</thead >
+		<tbody>
+			<tr *ngFor="let i of textsourceDuLieu |paginate: config">
+				<td >{{i.nume_rical_order}}</td>
+				<td>{{i.textsource_name}}</td>
+				<td class="d-flex justify-content-center"> 
+					<button type="button" class="btn btn-link rounded-pill ">xóa</button>
+					<button type="button" class="btn btn-link rounded-pill">sửa</button>  
+				</td>
+				 
+			</tr>
+		</tbody>
+	</table >
+	<table>
+		<div class="row">
+			<div class="col-3">
+				<pagination-controls id="paging" [previousLabel]="'quay lại'" [nextLabel]="'tiếp tục'"
+				(pageChange)="handlePageChange($event)"></pagination-controls>
+			</div>
+			<div class="col-6"><input type="text" id="simpleinput" class="form-control"></div>
+			<div class="col-3"><button type="button" class="btn btn-primary">Thêm mới</button></div>
+		</div>
+	</table>
+</div>
+	
