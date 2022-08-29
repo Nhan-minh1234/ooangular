@@ -23,11 +23,12 @@ let data = [
       '/task-report',
       '/task-samples',
       "/report",
+      "/periodic-report",
       "/project",
+      "/project-group"
       "",
-      "",
-      ""
     ],
+
     'icon': ' uil-receipt-alt'
   },
   {
@@ -127,11 +128,11 @@ let data = [
     'icon': 'uil-notes'
   },
   {
-    "id": "documents",
+    "id": "sign-documents",
     "EN": {
       "title": "Sign Documents",
       "items": [
-        "Document signing",
+        "sign process",
         "Signator list"
 
       ]
@@ -145,10 +146,8 @@ let data = [
       ]
     },
     "routing": [
-      '/Document signing',
-      '/Signator',
-      '/news',
-
+      '/sign-process',
+      '/signator-list'
     ],
     'icon': 'uil-notes'
   },
