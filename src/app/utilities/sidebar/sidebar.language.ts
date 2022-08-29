@@ -38,8 +38,7 @@ let data = [
       "items": [
         "Event list",
         "New event",
-        "Event Sample",
-        "Location",
+        "Event Sample"
       ]
     },
     "VN": {
@@ -47,15 +46,14 @@ let data = [
       "items": [
         "Danh sách lịch",
         "Đăng ký lịch",
-        "Lịch tuần mẫu",
-        "Địa điểm"
+        "Lịch tuần mẫu"
       ]
     },
     "routing": [
       '/event-list',
       '/new-event',
-      '/event-sample',
-      '/location'
+      '/event-sample'
+      
 
     ],
 
@@ -66,15 +64,17 @@ let data = [
     "EN": {
       "title": "Client",
       "items": [
+        "Customers",
         "Contract",
         "Catalog",
         "Report",
-        "Search",
+        "Search"
       ]
     },
     "VN": {
       "title": "Khách hàng",
       "items": [
+        "Khách hàng",
         "Hợp đồng",
         "Danh mục",
         "Báo cáo",
@@ -82,6 +82,7 @@ let data = [
       ]
     },
     "routing": [
+      '/customers',
       '/contract',
       '/catalog',
       '/report',
