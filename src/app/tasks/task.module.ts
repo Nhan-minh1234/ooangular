@@ -17,6 +17,7 @@ import { TaskReportComponent } from './task-report/task-report.component';
 import { DonutChartComponent } from '../utilities/donut-chart/donut-chart.component';
 import { ReportComponent } from './report/report.component';
 import { ProjectComponent } from './project/project.component';
+import { PeriodicalReportComponent } from './periodical-report/periodical-report.component';
 import { TaskSettingComponent } from './task-detail/task-detail-tabs/task-setting/task-setting.component';
 import { TaskOverviewComponent } from './task-detail/task-detail-tabs/task-overview/task-overview.component';
 import { TaskFilesComponent } from './task-detail/task-detail-tabs/task-files/task-files.component';
@@ -29,6 +30,7 @@ import { TaskTargetManagerComponent } from './task-detail/task-detail-tabs/task-
 import { TaskSamplesComponent } from './task-samples/task-samples.component';
 import { TaskSampleDetailComponent } from './task-sample-detail/task-sample-detail.component';
 import { TaskSampleManagerComponent } from './task-sample-manager/task-sample-manager.component';
+
 @NgModule({
   declarations: [
     TaskListComponent,
@@ -39,6 +41,7 @@ import { TaskSampleManagerComponent } from './task-sample-manager/task-sample-ma
     DonutChartComponent,
     ReportComponent,
     ProjectComponent,
+    PeriodicalReportComponent
     TaskSettingComponent,
     TaskOverviewComponent,
     TaskFilesComponent,

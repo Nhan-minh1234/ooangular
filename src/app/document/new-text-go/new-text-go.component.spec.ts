@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SearchComponent } from './search.component';
+import { NewTextGoComponent } from './new-text-go.component';
 
-describe('InternalTextComponent', () => {
-  let component: SearchComponent;
-  let fixture: ComponentFixture<SearchComponent>;
+describe('NewTextGoComponent', () => {
+  let component: NewTextGoComponent;
+  let fixture: ComponentFixture<NewTextGoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SearchComponent ]
+      declarations: [ NewTextGoComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SearchComponent);
+    fixture = TestBed.createComponent(NewTextGoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

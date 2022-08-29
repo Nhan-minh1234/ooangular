@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SearchComponent } from './search.component';
+import { PeriodicalReportComponent } from './periodical-report.component';
 
-describe('InternalTextComponent', () => {
-  let component: SearchComponent;
-  let fixture: ComponentFixture<SearchComponent>;
+describe('PeriodicalReportComponent', () => {
+  let component: PeriodicalReportComponent;
+  let fixture: ComponentFixture<PeriodicalReportComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SearchComponent ]
+      declarations: [ PeriodicalReportComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SearchComponent);
+    fixture = TestBed.createComponent(PeriodicalReportComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
