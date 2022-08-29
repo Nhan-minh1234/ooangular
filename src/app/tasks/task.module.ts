@@ -41,7 +41,7 @@ import { TaskSampleManagerComponent } from './task-sample-manager/task-sample-ma
     DonutChartComponent,
     ReportComponent,
     ProjectComponent,
-    PeriodicalReportComponent
+    PeriodicalReportComponent,
     TaskSettingComponent,
     TaskOverviewComponent,
     TaskFilesComponent,
