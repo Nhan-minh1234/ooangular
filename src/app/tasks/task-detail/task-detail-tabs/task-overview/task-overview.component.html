@@ -1,0 +1,117 @@
+<div class="row">
+    <div class="col-xl-6 col-lg-12">
+        <div class="card rounded">
+            <div class="card-body">
+                <h3 class="card-title mb-0">Thông tin cơ bản</h3>
+                <div id="cardCollpase1" class="collapse pt-3 show">
+                    <ul>
+                        <li class="row mb-1">
+                            <div class="col-4"><b>Tạo bởi:</b></div>
+                            <div class="col-8">Nguyễn Hồng Sơn</div>
+                        </li>
+                        <li class="row mb-1">
+                            <div class="col-4"><b>Dự án:</b></div>
+                            <div class="col-8">Xây dựng Phiên bản Online Office Mới</div>
+                        </li>
+                        <li class="row mb-1">
+                            <div class="col-4"><b>Khách hàng:</b></div>
+                            <div class="col-8">NULL</div>
+                        </li>
+                        <li class="row mb-1">
+                            <div class="col-4"><b>Nhóm công việc:</b></div>
+                            <div class="col-8">NULL</div>
+                        </li>
+                        <li class="row mb-1">
+                            <div class="col-4"><b>Nội dung:</b></div>
+                            <div class="col-8">
+                                Sơn + Hoàng phụ trách chính.
+                                Phân công hướng dẫn các em thực tập thực hiện công việc và post report
+                                trên
+                                luồng này. Teamwork tốt nhé.
+                            </div>
+                        </li>
+                        <li class="row mb-1">
+                            <div class="col-4"><b>Thực hiện chính:</b></div>
+                            <div class="col-8">NULL</div>
+                        </li>
+                        <li class="row mb-1">
+                            <div class="col-4"><b>Ngày bắt đầu:</b></div>
+                            <div class="col-8">01/08/2022</div>
+                        </li>
+                        <li class="row mb-1">
+                            <div class="col-4"><b>Ngày kết thúc:</b></div>
+                            <div class="col-8">Không xác định</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-lg-12">
+        <div class="card rounded">
+            <div class="card-body">
+                <h4 class="card-title mb-0">Tiến trình công việc</h4>
+
+                <div id="cardCollpase1" class="collapse pt-3 show">
+                    <canvas baseChart [data]="doughnutChartData" [options]="ChartConfig" [type]="doughnutChartType">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+        <div class="card rounded">
+            <div class="card-body">
+                <h4 class="card-title mb-0">Tệp đính kèm</h4>
+                <div id="cardCollpase1" class="collapse pt-3 show">
+                    <div class="d-flex justify-content-between mb-2" *ngFor="let i of [1,2,3,4]">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/PDF_icon.svg/1200px-PDF_icon.svg.png"
+                                    width="50px" alt="icon">
+                            </div>
+                            <div class="ms-2">
+                                <h5 class="pointer">Project tech requirements</h5>
+                                <i>2 ngày trước bởi NHT</i>
+                            </div>
+                        </div>
+                        <i class="uil-download-alt h2 text-success pointer"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="card mt-3 rounded">
+            <div class="card-body">
+                <h4 class="card-title">Thảo luận</h4>
+                <div class="row">
+                    <div class="text-center load-more-comments"><i class="pointer">Hiển thị thêm bình luận</i></div>
+                    <div class="d-flex align-items-start" *ngFor="let i of [1,1,1,1]">
+                        <app-avatar-tooltip [fullname]="'Nguyễn Hoài Thương'" [size]="'sm'">
+                        </app-avatar-tooltip>
+                        <div class="ms-2 mb-3">
+                            <div class="d-flex align-items-center">
+                                <h5>Nguyễn Hoài Thương</h5><i class="ms-1">5 phút trước</i>
+                            </div>
+                            <div>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium sapiente suscipit
+                                consequuntur. Excepturi molestiae quidem corporis ratione quas tempore deleniti
+                                voluptatibus impedit necessitatibus nisi maxime possimus, perspiciatis labore corrupti
+                                ab saepe inventore nobis optio totam accusantium pariatur neque fuga repellendus?
+                                Recusandae tempore adipisci, rem voluptatum culpa at aut fuga placeat laudantium
+                                corrupti sunt soluta excepturi dolore. Laborum, tempore quam obcaecati ad ipsam magni!
+                                Inventore, possimus eius harum quidem nihil non deleniti blanditiis, tenetur totam
+                                veniam accusamus impedit omnis illo corrupti, modi dignissimos fugiat beatae maiores
+                                porro quisquam dolorem. Provident quaerat doloribus at quos non est voluptatibus fuga ut
+                                eaque! Obcaecati.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <angular-editor [config]="editorConfig"></angular-editor>
+                    <div class="d-flex justify-content-end mt-1">
+                        <button type="button" class="btn btn-success"><i class="uil-message"></i> </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

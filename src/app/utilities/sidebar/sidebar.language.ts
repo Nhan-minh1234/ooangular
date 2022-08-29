@@ -3,14 +3,32 @@ let data = [
     "id": "tasks",
     "EN": {
       "title": "Tasks",
-      "items": ["Task list", "Task report", "Task Autocomplete", "Report", "Báo cáo định kỳ", "Project", "Project group", "Trao đổi"]
-
+      "items": ["Task list", "Task report", "Task Autocomplete", "Report", "Periodical report", "Project", "Project group", "Trao đổi"]
     },
     "VN": {
       "title": "Công Việc",
-      "items": ["Danh Sách Công Việc", "Thống kê", "Công việc mẫu", "Báo cáo", "Báo cáo định kỳ", "Dự án công việc", "Nhóm công việc", "Trao đổi"]
+      "items": [
+        "Danh Sách Công Việc",
+        "Thống kê",
+        "Công việc mẫu",
+        "Báo cáo",
+        "Báo cáo định kỳ",
+        "Dự án công việc",
+        "Nhóm công việc",
+        "Trao đổi"
+      ]
     },
-    'routing': ['/task-list', '/task-report', '/task-autocomplete', "/report", "/periodic-report", "/project", "/project-group", ""],
+    'routing': [
+      '/task-list',
+      '/task-report',
+      '/task-samples',
+      "/report",
+      "/periodic-report",
+      "/project",
+      "/project-group"
+      "",
+    ],
+
     'icon': ' uil-receipt-alt'
   },
   {
@@ -21,8 +39,7 @@ let data = [
       "items": [
         "Event list",
         "New event",
-        "Event Sample",
-        "Location",
+        "Event Sample"
       ]
     },
     "VN": {
@@ -30,15 +47,14 @@ let data = [
       "items": [
         "Danh sách lịch",
         "Đăng ký lịch",
-        "Lịch tuần mẫu",
-        "Địa điểm"
+        "Lịch tuần mẫu"
       ]
     },
     "routing": [
       '/event-list',
       '/new-event',
-      '/event-sample',
-      '/location'
+      '/event-sample'
+      
 
     ],
 
@@ -49,15 +65,17 @@ let data = [
     "EN": {
       "title": "Client",
       "items": [
+        "Customers",
         "Contract",
         "Catalog",
         "Report",
-        "Search",
+        "Search"
       ]
     },
     "VN": {
       "title": "Khách hàng",
       "items": [
+        "Khách hàng",
         "Hợp đồng",
         "Danh mục",
         "Báo cáo",
@@ -65,6 +83,7 @@ let data = [
       ]
     },
     "routing": [
+      '/customers',
       '/contract',
       '/catalog',
       '/report',
@@ -92,26 +111,9 @@ let data = [
     "id": "document",
     "EN": {
       "title": "Van ban [Eng]",
-      "items": [
-        "Inoming Text",
-        "Text go",
-        "Internal Text",
-        "Search",
-        "Create Folder",
-        "Text Source",
-        "Text Inheritance"
-      ]
+      "items": ["Inoming Text","Text go","Internal Text","Search","Create Folder","Text Source","Text Inheritance"]
     },
-    "VN": {
-      "title": "Văn bản",
-      "items": [
-        "Văn bản đến",
-        "Văn bản đi",
-        "Văn bản nội bộ",
-        "Tìm kiếm",
-        "Tạo thư mục",
-        "Nguồn văn bản",
-        "Kế thừa văn bản"
+    "VN": {"title": "Văn bản","items": ["Văn bản đến","Văn bản đi","Văn bản nội bộ","Tìm kiếm","Tạo thư mục","Nguồn văn bản","Kế thừa văn bản"
       ]
     },
     "routing": [
@@ -123,8 +125,7 @@ let data = [
       '/text-source',
       '/text-inheritance'
     ],
-
-    'icon': 'uil-globe'
+    'icon': 'uil-notes'
   },
   {
     "id": "sign-documents",
@@ -133,7 +134,7 @@ let data = [
       "items": [
         "sign process",
         "Signator list"
-        
+
       ]
     },
     "VN": {
@@ -147,7 +148,6 @@ let data = [
     "routing": [
       '/sign-process',
       '/signator-list'
-     
     ],
     'icon': 'uil-notes'
   },
@@ -167,22 +167,34 @@ let data = [
         "Lịch cá nhân",
         "Tủ hồ sơ",
         "Danh thiếp"
-
-        
       ]
     },
     "routing": [
       '/event',
       '/file-cabinet',
       '/business-card'
-      
-
-
     ],
     'icon': 'uil-smile'
-
+  },
+  {
+    "id": 'admin',
+    "VN": {
+      'title': "Admin",
+      'items': [
+        'Người Dùng',
+      ]
+    },
+    "EN": {
+      'title': "Admin",
+      'items': [
+        'Users',
+      ]
+    },
+    "routing": [
+      '/users'
+    ],
+    "icon": "uil-padlock"
   }
-
 ];
 
 export default data;
