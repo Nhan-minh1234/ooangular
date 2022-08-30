@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <div class="list-group-item  mb-3">TRANG CHỦ</div>
+    <div class="list-group-item trangchu mb-3">TRANG CHỦ</div>
     <div class="row"> 
         <div class="col-9">
            <!--home-content-->
@@ -53,7 +53,9 @@
                     <div class="list-group">
                         <div class="list-group-item">
                             <div class="d-flex">
-                                <div class="uil-arrow-circle-right"> Thông báo nghĩ lễ Quốc khánh</div>
+                                <div class="uil-arrow-circle-right">
+                                    <a href="http://localhost:4200/social/notification">Thông báo nghĩ lễ Quốc khánh</a>
+                                </div>
                                 (<div class="uil-user-circle">Phạm Minh Nhẫn,02/09/2022</div>
                                 <div class="uil-eye">22</div>)
                             </div>
@@ -174,7 +176,7 @@
                                   </table>
                             </div>
                             <div class="tab-pane show active" id="calendar">
-                                <p>...</p>
+                                <!--lịch-->
                             </div>
                         </div>
                     </div>
@@ -192,7 +194,9 @@
                         <div class="list-group">
                             <div class="list-group-item">
                                 <div class="d-flex">
-                                    <div class="uil-arrow-circle-right"> Thông báo nghĩ lễ Quốc khánh</div>
+                                    <div class="uil-arrow-circle-right">
+                                        <a href="http://localhost:4200/social/news">Thông báo nghĩ lễ quốc khánh</a>
+                                    </div>
                                     (<div class="uil-user-circle">Phạm Minh Nhẫn,02/09/2022</div>
                                     <div class="uil-eye">22</div>)
                                 </div>
@@ -207,9 +211,13 @@
         </div>
         <div class="col-3">
             <div class="mb-2">
-                <div>Công việc được giao</div>
+                <div>Công việc được giao :</div>
             </div>
             <canvas baseChart [data]="doughnutChartData" [type]="doughnutChartType"></canvas>
+            <!---->
+            <div class="mb-2">
+                <div>Tiến độ công việc hoàn thành :</div>
+            </div>
         </div>
     </div>
 </div>
