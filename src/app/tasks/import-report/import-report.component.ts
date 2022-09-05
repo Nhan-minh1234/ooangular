@@ -13,7 +13,7 @@ export class ImportReportComponent implements OnInit {
   editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: false,
-    minHeight: '80',
+    height: '150px',
     enableToolbar: true,
     showToolbar: true,
     placeholder: 'Nhập nội dung...',

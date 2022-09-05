@@ -9,6 +9,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { AvatarTooltipComponent } from './avatar-tooltip/avatar-tooltip.component';
 import { NewItemButtonComponent } from './new-item-button/new-item-button.component';
 import { FormsModule } from '@angular/forms';
+import { ExpandButtonComponent } from './expand-button/expand-button.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { FormsModule } from '@angular/forms';
     DualListComponent,
     AvatarTooltipComponent,
     NewItemButtonComponent,
+    ExpandButtonComponent,
   ],
   imports: [
     CommonModule,
@@ -31,7 +33,8 @@ import { FormsModule } from '@angular/forms';
     DualListComponent,
     AvatarTooltipComponent,
     NewItemButtonComponent,
-    NgChartsModule
+    NgChartsModule,
+    ExpandButtonComponent
   ]
 })
 export class UtilitiesModule { }
