@@ -24,9 +24,9 @@ let data = [
       '/task-samples',
       "/report",
       "/project",
-      "",
-      "",
-      ""
+      "/,",
+      "/.",
+      "/topic"
     ],
     'icon': ' uil-receipt-alt'
   },

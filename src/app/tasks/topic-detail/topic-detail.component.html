@@ -1,0 +1,51 @@
+<div class="container-flu">
+    <div class="col-12">
+        <div class="page-title-box">
+            <h4 class="page-title">Chi tiết trao đổi</h4>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-9">
+        <table class="table table-bordered border-primary table-centered">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Nội dung trao đổi</th>
+                    <th class="text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="table-user col-1">
+                        <img src="assets/images/users/avatar-6.jpg" alt="table-user" class="me-2 rounded-circle" />
+                        Risa D. Pearson aaa
+                    </td>
+                    <td></td>
+                    <td class="table-action text-center col-1">
+                        <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                    </td>
+            </tbody>
+        </table>
+        <angular-editor [config]="editorConfig"></angular-editor>
+        <div class="d-flex justify-content-end mt-1">
+            <button type="button" class="btn btn-success"><i class="uil-message"></i> </button>
+        </div>
+    </div>
+<div class="col-3">
+        <div class="row">
+            <button type="button" class="btn btn-primary" [routerLink]="'/tasks/topic'">Quay lại</button>
+        </div>
+        <div class="row">
+            <button type="button" class="btn btn-primary" [routerLink]="'/tasks/new-task'">Tạo mới công việc</button>
+        </div>
+        <div class="row">
+            <button type="button" class="btn btn-primary" >Phản hồi</button>
+        </div><div class="row">
+            <button type="button" class="btn btn-primary" >Chuyển tiếp</button>
+        </div>
+</div>
+</div>
+
+
