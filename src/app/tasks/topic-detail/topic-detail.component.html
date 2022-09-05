@@ -33,7 +33,7 @@
             <button type="button" class="btn btn-success"><i class="uil-message"></i> </button>
         </div>
     </div>
-<div class="col-3">
+    <div class="col-3">
         <div class="row">
             <button type="button" class="btn btn-primary" [routerLink]="'/tasks/topic'">Quay lại</button>
         </div>
@@ -41,11 +41,40 @@
             <button type="button" class="btn btn-primary" [routerLink]="'/tasks/new-task'">Tạo mới công việc</button>
         </div>
         <div class="row">
-            <button type="button" class="btn btn-primary" >Phản hồi</button>
-        </div><div class="row">
-            <button type="button" class="btn btn-primary" >Chuyển tiếp</button>
+            <button type="button" class="btn btn-primary">Phản hồi</button>
         </div>
-</div>
-</div>
+        <div class="row">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#bs-example-modal-lg">Chuyển tiếp</button>
+            <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" role="dialog"
+                aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myLargeModalLabel">Chuyển tiếp</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                        </div>
+                        <div class="modal-body">
+                            <label class="form-label" for="groupOfWatchable">
+                                Lựa chọn danh sách từ: </label>
+                            <select style="width: 50%;" (change)="onWatchableGroupChange($event)"
+                                [(ngModel)]="groupKeyChosenInStep3" class="form-select" id="groupOfWatchable">
+                                <option value="all" selected>Tất cả nhân viên</option>
+                                <option [ngValue]="groupKey" *ngFor="let groupKey of generalService.allUserGroupsKey">
+                                    {{groupKey}}</option>
+                            </select>
+                        </div>
 
-
+                        <app-dual-list (updateLists)="dualListUpdateForWatchable($event)"
+                            [leftList]="allUserInStep3List" [rightList]="chosenWatchablelList"></app-dual-list>
+                        <div style="height:30px"></div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Đóng</button>
+                            <button type="button" class="btn btn-primary">Cập nhật</button>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </div>
+</div>
