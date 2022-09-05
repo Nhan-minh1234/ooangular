@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
   customerLList : any = [];
   searchName:any;
   dictionary
-  labelforsearch='s'
+  labelforsearch=''
   listOfFlags = [
     {
       "Code":'EN',
