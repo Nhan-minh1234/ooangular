@@ -12,16 +12,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PersonalComponent } from './personal/personal.component';
 import { ClientComponent } from './client/client/client.component';
 import { NgChartsModule } from 'ng2-charts';
+import { SignDocumentsComponent } from './sign-documents/sign-documents.component';
+import { SearchComponent } from './search/search/search.component';
 import { AdminComponent } from './admin/admin/admin.component';
-
 @NgModule({
 
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    PersonalComponent,
+    PersonalComponent,  
     ClientComponent,
+    SignDocumentsComponent,
+    SearchComponent,
     AdminComponent
   ],
   imports: [

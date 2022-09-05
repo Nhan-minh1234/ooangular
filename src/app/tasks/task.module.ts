@@ -17,6 +17,11 @@ import { TaskReportComponent } from './task-report/task-report.component';
 import { DonutChartComponent } from '../utilities/donut-chart/donut-chart.component';
 import { ReportComponent } from './report/report.component';
 import { ProjectComponent } from './project/project.component';
+import { MorePeojectComponent } from './more-peoject/more-peoject.component';
+import { ProjectListComponent } from './project-list/project-list.component';
+import { ProjectGroupComponent } from './project-group/project-group.component';
+import { AddGroupComponent } from './add-group/add-group.component';
+import { PassGroupComponent } from './pass-group/pass-group.component';
 import { PeriodicalReportComponent } from './periodical-report/periodical-report.component';
 import { TaskSettingComponent } from './task-detail/task-detail-tabs/task-setting/task-setting.component';
 import { TaskOverviewComponent } from './task-detail/task-detail-tabs/task-overview/task-overview.component';
@@ -43,6 +48,11 @@ import { TopicDetailComponent } from './topic-detail/topic-detail.component';
     DonutChartComponent,
     ReportComponent,
     ProjectComponent,
+    MorePeojectComponent,
+    ProjectListComponent,
+    ProjectGroupComponent,
+    AddGroupComponent,
+    PassGroupComponent,
     PeriodicalReportComponent,
     TaskSettingComponent,
     TaskOverviewComponent,

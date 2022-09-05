@@ -23,7 +23,7 @@
     <div class="row">
         <div class="col-10">
             <div class="page-title-box">
-                <h4 class="page-title">Dự án đang xem</h4>
+                <h4 class="page-title">Nhóm công việc đang xem</h4>
             </div>
         </div>
     </div>
@@ -36,14 +36,14 @@
                     <tr>
                         <th><span type="checkbox" title="Chọn/bỏ chọn tất cả"><input 
                                     type="checkbox" name="công việc" /></span></th>
-                        <th> Công việc thuộc dự án </th>
+                        <th> Công việc thuộc nhóm </th>
                         <th> Ngày bắt đàu </th>
                         <th> Ngày hoàn thành </th>
 
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let item of eventListData | paginate: config" data-bs-toggle="modal"
+                    <tr *ngFor="let item of projectGroupData | paginate: config" data-bs-toggle="modal"
                     data-bs-target="#scrollable-modal">
                         <td><span type="checkbox" title="Chọn/bỏ chọn tất cả"><input (change)="addlist(item.id,$event)" type="checkbox"
                                     name="công việc" /></span></td>
@@ -56,11 +56,11 @@
         </div>
         <div class="col-3">
             <abbr style="width:200px;height:auto; float: right !important; ;" class="row">
-                <button [routerLink]="'/tasks/project-list'" type="button" class="btn btn-primary mb-2"> Thêm/sửa/xóa dự án
+                <button [routerLink]="'/tasks/add-group'" type="button" class="btn btn-primary mb-2"> Thêm/sửa/xóa nhóm
                 </button> 
-                <button [routerLink]="" type="button" class="btn btn-primary mb-2"> Đưa CV vào dự
+                <button [routerLink]="'/tasks/pass-group'" type="button" class="btn btn-primary mb-2"> Đưa CV vào nhóm
                     án </button>
-                <button (click)="test()" type="button" class="btn btn-primary"> Xóa CV khỏi dự án
+                <button (click)="test()" type="button" class="btn btn-primary"> Xóa CV khỏi nhóm
                 </button>
             </abbr>
     </div>
