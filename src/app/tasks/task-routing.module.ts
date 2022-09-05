@@ -7,6 +7,8 @@ import { TaskListComponent } from "./task-list/task-list.component";
 import { TasksComponent } from "./tasks/tasks.component";
 import { TaskReportComponent } from "./task-report/task-report.component";
 import { TaskSamplesComponent } from "./task-samples/task-samples.component";
+import { TopicComponent } from "./topic/topic.component";
+import { TopicDetailComponent } from "./topic-detail/topic-detail.component";
 
 const routes: Routes = [
   {
@@ -38,6 +40,16 @@ const routes: Routes = [
         data: { "link": "/tasks/task-samples" },
         path: 'task-samples',
         component: TaskSamplesComponent
+      },
+      {
+        data: { "link": "/tasks/topic" },
+        path: 'topic',
+        component: TopicComponent
+      },
+      {
+        data: { "link": "/tasks/topic-detail" },
+        path: 'topic-detail',
+        component: TopicDetailComponent
       },
       // {
       //   data: { "link": "/user/change-password" },
