@@ -37,10 +37,8 @@
                     </div>
                 </div>
                 <div class="col-3">
-                    <div class="card text-white bg-warning kichthuoc mb-3"
-                        style="max-width: 20rem;">
-                        <div class="card-body d-flex justify-content-center
-                            flex-column align-items-center ">
+                    <div class="card text-white bg-warning kichthuoc mb-3"style="max-width: 20rem;">
+                        <div class="card-body d-flex justify-content-center flex-column align-items-center ">
                             <i class='uil-chart-line'></i>
                             <div class="indicator">
                                 <span class="text">93%</span>
@@ -96,13 +94,11 @@
                 </div>
             </div>
             <!--công việc-->
-            <div class="accordion custom-accordion"
-                id="custom-accordion-one">
+            <div class="accordion custom-accordion"id="custom-accordion-one">
                 <div class="card mb-2">
                     <div class="card-header" id="headingFour">
                         <h5 class="m-0">
-                            <div class="mb-2 d-flex
-                                justify-content-between">
+                            <div class="mb-2 d-flex justify-content-between">
                                 <div>
                                     <i class='uil-clipboard-alt'></i>
                                     <span class="text">Công việc</span>
@@ -112,42 +108,27 @@
                             </div>
                         </h5>
                     </div>
-                    <div id="collapseTrue" class="collapse show"
-                        aria-labelledby="headingFour"
-                        data-bs-parent="#custom-accordion-one">
+                    <div id="collapseTrue" class="collapse show" aria-labelledby="headingFour"data-bs-parent="#custom-accordion-one">
                         <div class="card-body">
                             <ul class="nav nav-tabs mb-3">
                                 <li class="nav-item">
                                     <a href="#assigned" data-bs-toggle="tab"
                                         aria-expanded="false"
                                         class="nav-link">
-                                        <i class="mdi mdi-home-variant
-                                            d-md-none
-                                            d-block"></i>
-                                        <span class="d-none d-md-block">Được
-                                            giao</span>
+                                        <i class="mdi mdi-home-variant d-md-none d-block"></i>
+                                        <span class="d-none d-md-block">Được giao</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#transfer" data-bs-toggle="tab"
-                                        aria-expanded="true" class="nav-link
-                                        active">
-                                        <i class="mdi mdi-account-circle
-                                            d-md-none
-                                            d-block"></i>
-                                        <span class="d-none d-md-block">
-                                            Chuyển giao</span>
+                                    <a href="#transfer" data-bs-toggle="tab"aria-expanded="true" class="nav-link active">
+                                        <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                                        <span class="d-none d-md-block"> Chuyển giao</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#seen" data-bs-toggle="tab"
-                                        aria-expanded="false"
-                                        class="nav-link">
-                                        <i class="mdi mdi-settings-outline
-                                            d-md-none
-                                            d-block"></i>
-                                        <span class="d-none d-md-block">Được
-                                            xem</span>
+                                    <a href="#seen" data-bs-toggle="tab" aria-expanded="false"class="nav-link">
+                                        <i class="mdi mdi-settings-outline d-md-none d-block"></i>
+                                        <span class="d-none d-md-block">Được xem</span>
                                     </a>
                                 </li>
                             </ul>
@@ -165,8 +146,7 @@
                                     </div>
 
                                 </div>
-                                <div class="tab-pane show active"
-                                    id="transfer">
+                                <div class="tab-pane show active" id="transfer">
                                     <div class="row mb-2">
                                         <div class="col-4"> <canvas
                                                 baseChart
@@ -193,12 +173,7 @@
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-end">
-                                    <button
-                                        [routerLink]="'/social/notification'"
-                                        type="button" class="btn btn-info">
-                                        Xem tiếp
-                                        <i class='uil-angle-double-right'></i>
-                                    </button>
+                                    <button [routerLink]="'/social/notification'" type="button" class="btn btn-info"> Xem tiếp<i class='uil-angle-double-right'></i></button>
                                 </div>
                             </div>
                         </div>
@@ -206,13 +181,11 @@
                 </div>
             </div>
             <!--Văn bản-->
-            <div class="accordion custom-accordion"
-                id="custom-accordion-one">
+            <div class="accordion custom-accordion"id="custom-accordion-one">
                 <div class="card mb-2">
                     <div class="card-header" id="headingFour">
                         <h5 class="m-0">
-                            <div class="mb-2 d-flex
-                                justify-content-between">
+                            <div class="mb-2 d-flex justify-content-between">
                                 <div>
                                     <i class='uil-notes'></i>
                                     <span class="text">Văn bản</span>
@@ -222,9 +195,7 @@
                             </div>
                         </h5>
                     </div>
-                    <div id="collapseDocument" class="collapse show"
-                        aria-labelledby="headingFour"
-                        data-bs-parent="#custom-accordion-one">
+                    <div id="collapseDocument" class="collapse show" aria-labelledby="headingFour" data-bs-parent="#custom-accordion-one">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-4"> <canvas baseChart
@@ -235,11 +206,7 @@
                                         [type]="barChartType"></canvas></div>
                             </div>
                             <div class="d-flex justify-content-end">
-                                <button
-                                    [routerLink]="'/social/notification'"
-                                    type="button" class="btn btn-info">
-                                    Xem tiếp
-                                    <i class='uil-angle-double-right'></i>
+                                <button [routerLink]="'/social/notification'"type="button" class="btn btn-info"> Xem tiếp <i class='uil-angle-double-right'></i>
                                 </button>
                             </div>
                         </div>
@@ -247,25 +214,20 @@
                 </div>
             </div>
             <!--Lịch-->
-            <div class="accordion custom-accordion"
-                id="custom-accordion-one">
+            <div class="accordion custom-accordion" id="custom-accordion-one">
                 <div class="card mb-2">
                     <div class="card-header" id="headingFour">
                         <h5 class="m-0">
-                            <div class="mb-2 d-flex
-                                justify-content-between">
+                            <div class="mb-2 d-flex justify-content-between">
                                 <div>
                                     <i class=' uil-calendar-alt'></i>
                                     <span class="text">Lịch</span>
                                 </div>
-                                <app-expand-button
-                                    [id_expand]="'collapseCalendar'"></app-expand-button>
+                                <app-expand-button [id_expand]="'collapseCalendar'"></app-expand-button>
                             </div>
                         </h5>
                     </div>
-                    <div id="collapseCalendar" class="collapse show"
-                        aria-labelledby="headingFour"
-                        data-bs-parent="#custom-accordion-one">
+                    <div id="collapseCalendar" class="collapse show" aria-labelledby="headingFour" data-bs-parent="#custom-accordion-one">
                         <div class="card-body">
                             <div>
                                 <ul class="nav nav-tabs mb-3">
@@ -281,28 +243,19 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#calendar"
-                                            data-bs-toggle="tab"
-                                            aria-expanded="true"
-                                            class="nav-link active">
-                                            <i class="mdi mdi-account-circle
-                                                d-md-none d-block"></i>
+                                        <a href="#calendar" data-bs-toggle="tab" aria-expanded="true"class="nav-link active">
+                                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
                                             <span class="d-none d-md-block">Lịch</span>
                                         </a>
                                     </li>
                                 </ul>
 
                                 <div class="tab-content">
-                                    <div class="tab-pane"
-                                        id="personal-calendar">
-                                        <table id="basic-datatable"
-                                            class="table-centered table
-                                            table-bordered dt-responsive
-                                            nowrap w-100">
+                                    <div class="tab-pane"id="personal-calendar">
+                                        <table id="basic-datatable" class="table-centered table table-bordered dt-responsive nowrap w-100">
                                             <thead>
                                                 <tr>
-                                                    <th colspan="4">Lịch
-                                                        tuần</th>
+                                                    <th colspan="4">Lịch tuần</th>
                                                 </tr>
                                                 <tr>
                                                     <th>Ngày</th>
@@ -327,19 +280,9 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="tab-pane show active"
-                                        id="calendar">
-                                        lịch thêm vào đây
-                                    </div>
+                                    <div class="tab-pane show active" id="calendar"> lịch thêm vào đây</div>
                                     <div class="d-flex justify-content-end">
-                                        <button
-                                            [routerLink]="'/social/notification'"
-                                            type="button" class="btn
-                                            btn-info">
-                                            Xem tiếp
-                                            <i
-                                                class='uil-angle-double-right'></i>
-                                        </button>
+                                        <button [routerLink]="'/social/notification'" type="button" class="btn btn-info"> Xem tiếp <i class='uil-angle-double-right'></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -348,50 +291,36 @@
                 </div>
             </div>
             <!--Tinh tức-->
-            <div class="accordion custom-accordion"
-                id="custom-accordion-one">
+            <div class="accordion custom-accordion"id="custom-accordion-one">
                 <div class="card mb-2">
                     <div class="card-header" id="headingFour">
                         <h5 class="m-0">
-                            <div class="mb-2 d-flex
-                                justify-content-between">
+                            <div class="mb-2 d-flex justify-content-between">
                                 <div>
                                     <i class='uil-postcard'></i>
                                     <span class="text">Tin tức</span>
                                 </div>
-                                <app-expand-button
-                                    [id_expand]="'collapseNews'"></app-expand-button>
+                                <app-expand-button [id_expand]="'collapseNews'"></app-expand-button>
                             </div>
                         </h5>
                     </div>
-                    <div id="collapseNews" class="collapse show"
-                        aria-labelledby="headingFour"
-                        data-bs-parent="#custom-accordion-one">
+                    <div id="collapseNews" class="collapse show" aria-labelledby="headingFour" data-bs-parent="#custom-accordion-one">
                         <div class="card-body">
                             <div>
                                 <div class="list-group">
                                     <div class="list-group-item">
                                         <div class="d-flex">
-                                            <div
-                                                class="uil-arrow-circle-right">
-                                                <a
-                                                    href="http://localhost:4200/social/news">Thông
-                                                    báo nghĩ lễ quốc khánh</a>
+                                            <div class="uil-arrow-circle-right">
+                                                <a href="http://localhost:4200/social/news">Thông báo nghĩ lễ quốc khánh</a>
                                             </div>
-                                            (<div class="uil-user-circle">Phạm
-                                                Minh
-                                                Nhẫn,02/09/2022</div>
+                                            (<div class="uil-user-circle">Phạm Minh Nhẫn,02/09/2022</div>
                                             <div class="uil-eye">22</div>)
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
-                                <button
-                                    [routerLink]="'/social/notification'"
-                                    type="button" class="btn btn-info">
-                                    Xem tiếp
-                                    <i class='uil-angle-double-right'></i>
+                                <button [routerLink]="'/social/notification'" type="button" class="btn btn-info">Xem tiếp <i class='uil-angle-double-right'></i>
                                 </button>
                             </div>
                         </div>
@@ -405,20 +334,16 @@
                 <div class="card mb-2">
                     <div class="card-header" id="headingFour">
                         <h5 class="m-0">
-                            <div class="mb-2 d-flex
-                                justify-content-between">
+                            <div class="mb-2 d-flex justify-content-between">
                                 <div>
                                     <i class=' uil-clipboard-alt'></i>
                                     <span class="text">Công việc quan tâm :</span>
                                 </div>
-                                <app-expand-button
-                                    [id_expand]="'collapseWorknews'"></app-expand-button>
+                                <app-expand-button [id_expand]="'collapseWorknews'"></app-expand-button>
                             </div>
                         </h5>
                     </div>
-                    <div id="collapseWorknews" class="collapse show"
-                        aria-labelledby="headingFour"
-                        data-bs-parent="#custom-accordion-one">
+                    <div id="collapseWorknews" class="collapse show" aria-labelledby="headingFour" data-bs-parent="#custom-accordion-one">
                         <div class="card-body">
                             ...
                         </div>
@@ -430,23 +355,18 @@
                 <div class="card mb-2">
                     <div class="card-header" id="headingFour">
                         <h5 class="m-0">
-                            <div class="mb-2 d-flex
-                                justify-content-between">
+                            <div class="mb-2 d-flex justify-content-between">
                                 <div>
                                     <i class=' uil-chart-pie-alt'></i>
                                     <span class="text">Công việc được giao :</span>
                                 </div>
-                                <app-expand-button
-                                    [id_expand]="'collapseWork'"></app-expand-button>
+                                <app-expand-button [id_expand]="'collapseWork'"></app-expand-button>
                             </div>
                         </h5>
                     </div>
-                    <div id="collapseWork" class="collapse show"
-                        aria-labelledby="headingFour"
-                        data-bs-parent="#custom-accordion-one">
+                    <div id="collapseWork" class="collapse show" aria-labelledby="headingFour" data-bs-parent="#custom-accordion-one">
                         <div class="card-body">
-                            <canvas baseChart [data]="doughnutChartData"
-                                [type]="doughnutChartType"></canvas>
+                            <canvas baseChart [data]="doughnutChartData"[type]="doughnutChartType"></canvas>
                         </div>
                     </div>
                 </div>

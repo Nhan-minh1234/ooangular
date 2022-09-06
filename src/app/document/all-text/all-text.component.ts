@@ -12,14 +12,17 @@ export class AllTextComponent implements OnInit {
   originalTaskList
   taskList
   searchKey
-  alltextsData
+  incomingtextsData
   count = 500;
   config
+  counts = 10;
   page = 0;
   pageSize = 10;
   pageSizes = [10, 20, 30];
-  incomingnamMoi
-  newalltextDuLieu = ['Giám đốc', 'Trưởng phòng', 'Nhân viên CNTT']
+  incomingtextsnamMoi =[]
+  incomingtextsDuLieu = ['Giám đốc', 'Trưởng phòng', 'Nhân viên CNTT']
+
+  //----//
 
   constructor(public generalService: GeneralService, private api: HttpClient,) {
   }
@@ -27,6 +30,7 @@ export class AllTextComponent implements OnInit {
   ngOnInit(): void {
     this.taoDuLieu()
     this.tinhNam()
+
 
   }
   getLabel(key) {
@@ -71,19 +75,23 @@ export class AllTextComponent implements OnInit {
   }
   taoDuLieu() {
     this.api.get('https://6315b3ad33e540a6d382505e.mockapi.io/giatrimoi').subscribe((x) => {
-      this.alltextsData = x
+      this.incomingtextsData = x
       this.config = {
         id: 'paging',
         itemsPerPage: this.pageSize,
         currentPage: this.page,
-        totalItems: this.alltextsData.length
+        totalItems: this.incomingtextsData.length
       }
     })
-    console.log(this.alltextsData)
+    console.log(this.incomingtextsData)
   }
+
+  //--//
+ 
+  //--//
   tinhNam() {
     for (let i = 0; i <= 20; i++) {
-      this.incomingnamMoi.push(2022 - i)
+      this.incomingtextsnamMoi.push(2022 - i)
     }
 
   }
@@ -99,6 +107,8 @@ export class AllTextComponent implements OnInit {
     this.page = 0;
     this.taoDuLieu();
   }
+  //---//
+  
 
 }
 
