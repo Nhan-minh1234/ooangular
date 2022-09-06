@@ -96,8 +96,8 @@
                     </select>
                 </div>
                 <div class="d-grid">
-                    <button [routerLink]="'/document/new-document'"  type = "button"  class  =  "btn btn-primary mb-1" > Thêm văn bản đến </button >
-                    <button type = "button"  class = "btn btn-sm btn-info mb-1" data-bs-toggle="modal" data-bs-target="#standard-modal" > Chuyển đến xem </button >
+                    <button [routerLink]="'/document/new-document'"  type = "button"  class  =  "btn btn-info mb-1" > Thêm văn bản đến </button >
+                    <button type = "button"  class = "btn btn-sm btn-warning mb-1" data-bs-toggle="modal" data-bs-target="#standard-modal" > Chuyển đến xem </button >
                 </div>
             </div>
         </div>
@@ -243,12 +243,36 @@
                 </div>
                 <div class="col-3">
                     <div  class = "d-grid" >
-                        <button [routerLink]="'/document/new-text-go'"  type = "button"  class = "btn btn-primary mb-2" > Thêm văn bản đi </button >
+                        <button [routerLink]="'/document/new-text-go'"  type = "button"  class = "btn btn-success mb-2" > Thêm văn bản đi </button >
                     </div>
-                    <div class="content-box">
+                    <div class="content-box mb-2">
                         <i class="uil-books"></i>
                         <span>Thư mục văn bản :</span>
                     </div>
+                    <!--Cây dữ liệu-->
+                    <ul>
+                        <li><i class="uil-bag"> ỦY BAN NHÂN DÂN</i>
+                            <ul>
+                                <li class=" uil-comment-alt-message">Văn bản hành chính</li>
+                                <li class=" uil-comment-alt-message">Văn bản nội vụ</li>
+                                <li class=" uil-comment-alt-message">Văn bản tuyệt mật</li>
+                            </ul>
+                        </li>
+                        <li><i class="uil-book-reader">CẤP XÃ HÀNH CHÍNH</i>
+                            <ul>
+                                <li class="uil-snowflake-alt">Văn bản tài nguyên môi trường</li>
+                                <li class="uil-cloud-sun-rain">Công văn khí tượng</li>
+                                <li class="uil-wind">Văn bản xử lý vi phạm môi trường
+                                    <ul>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                     </ul>
+                     <!--kết thúc dữ liệu cây-->
                 </div>
             </div>
         </div>
@@ -326,12 +350,36 @@
                         </ul>
                     </div>
                     <div class = "d-grid" >
-                        <button [routerLink]="'/document/new-document'"  type = "button"  class = "btn btn-primary mb-1" > Thêm văn bản nội bộ </button >
+                        <button [routerLink]="'/document/new-document'"  type = "button"  class = "btn btn-success   mb-1" > Thêm văn bản nội bộ </button >
                     </div>
-                    <div class="content-box">
+                    <div class="content-box mb-2">
                         <i class="uil-books"></i>
                         <span>Thư mục văn bản :</span>
                     </div>
+                     <!--Cây dữ liệu-->
+                     <ul>
+                        <li><i class="uil-bag"> ỦY BAN NHÂN DÂN</i>
+                            <ul>
+                                <li class=" uil-comment-alt-message">Văn bản hành chính</li>
+                                <li class=" uil-comment-alt-message">Văn bản nội vụ</li>
+                                <li class=" uil-comment-alt-message">Văn bản tuyệt mật</li>
+                            </ul>
+                        </li>
+                        <li><i class="uil-book-reader">CẤP XÃ HÀNH CHÍNH</i>
+                            <ul>
+                                <li class="uil-snowflake-alt">Văn bản tài nguyên môi trường</li>
+                                <li class="uil-cloud-sun-rain">Công văn khí tượng</li>
+                                <li class="uil-wind">Văn bản xử lý vi phạm môi trường
+                                    <ul>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                     </ul>
+                     <!--kết thúc dữ liệu cây-->
                 </div>
             </div>
         </div>
