@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import data from './internal-text.language'
-import { Router } from '@angular/router';;
+import { Router } from '@angular/router';import { combineAll } from 'rxjs/operators';
+;
 
 @Component({
   selector: 'app-internal-text',
@@ -13,10 +14,13 @@ export class InternalTextComponent implements OnInit {
 
   ngOnInit(): void {
     this.taoDuLieu()
+    this.tinhNam()
   }
   editable = true;
   internaltextsData = []
   documentSandbox;
+  internalTextnamMoi = []
+  internalTextDuLieu=['Giám đốc','Trưởng phòng','Nhân viên CNTT']
   currentTab = true;
 
   spinnerLoading = false;
@@ -24,14 +28,14 @@ export class InternalTextComponent implements OnInit {
   page = 0;
   pageSize = 10;
   pageSizes = [10, 20, 30];
-  count = 500;
+  count =5;
 
   config
 
   taoDuLieu(){
     for (let i = 0; i < this.count; i++) {
       let GiaTriMoi = {
-      'numerical_order':i+1,
+      'nume_rical_order':i+1,
       'text_number': 'Số VB',
       'abstract': 'Trích yếu',
       'recipients': 'Nơi nhận',
@@ -47,6 +51,12 @@ export class InternalTextComponent implements OnInit {
       currentPage: this.page,
       totalItems: this.internaltextsData.length
     }
+}
+tinhNam(){
+  for ( let i=0; i<=20; i++){
+    this.internalTextnamMoi.push(2022-i)
+  }
+
 }
 handlePageChange(event): void {
   this.page = event;

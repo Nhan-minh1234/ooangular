@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { WizardComponent } from 'angular-archwizard';
 import { GeneralService } from 'src/app/services/general.service';
@@ -9,12 +9,14 @@ import data from './new-file-cabinet.language';
   styleUrls: ['./new-file-cabinet.component.css']
 })
 export class NewFileCabinetComponent implements OnInit {
+  @ViewChild(WizardComponent)
 
   public wizard: WizardComponent;
   wizardStep = 0;
   spinnerLoading = false;
   newfileCabinetData = {
-    
+
+    title:'',
     description: '',
     location: '',
     invited: '',
@@ -30,7 +32,14 @@ export class NewFileCabinetComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.wizardStep)
     this.onAsigneeGroupChange(null)
-    this.dualListUpdateForAssignee(null);
+  }
+  check(){
+    if (this.newfileCabinetData.title===''){
+      this.generalService.showErrorToast(2, 'Các trường đánh dấu (*) không được bỏ trống');
+    }
+    else{
+      this.wizard.goToNextStep()
+    }
   }
   goBack() {
     this._location.back();

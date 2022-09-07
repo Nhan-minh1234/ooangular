@@ -27,12 +27,10 @@
                 <h4 class="page-title">{{getLabel('pageTitle')}}</h4>
             </div>
         </div>
-        <div class="col-2 my-auto" style="position:fixed;right:0; top:15%;">
-            <abbr style="cursor: pointer;" [title]="getLabel('newBtn')">
-                <!--<img (click)="openNewTaskModal()" style="width:40px;height:auto; float: right !important;"
-                    src="assets/imgs/plus.png" />-->
-                    <input (click)="openNewEvent()" type="submit" name="ctl25$DangKy" value="{{getLabel('newFile')}}" id="ctl25_DangKy" class="btn btn-primary btn-block" style="width:100%;" />
-                
+     <div class="col-2 my-auto">
+            <abbr style="cursor: pointer;" [title]="getLabel('newTask')">
+                <img (click)="openNewEvent()" style="width:40px;height:auto; float: right !important;"
+                    src="assets/imgs/plus.png" />
             </abbr>
         </div>
     </div>
@@ -74,13 +72,6 @@
                                         class="nav-link rounded-0 active">
                                         <i class="mdi mdi-information d-md-none d-block"></i>
                                         <span class="d-none d-md-block">Thông tin</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#assigneeTab" data-bs-toggle="tab" aria-expanded="true"
-                                        class="nav-link rounded-0">
-                                        <i class="mdi mdi-key d-md-none d-block"></i>
-                                        <span class="d-none d-md-block">Danh sách tham gia</span>
                                     </a>
                                 </li>
                             </ul>

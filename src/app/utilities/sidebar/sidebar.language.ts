@@ -3,17 +3,7 @@ let data = [
     "id": "tasks",
     "EN": {
       "title": "Tasks",
-      "items": [
-        "Task list",
-        "Task report",
-        "Task Autocomplete",
-        "Report",
-        "Báo cáo định kỳ",
-        "Project",
-        "Project group",
-        "Trao đổi"
-      ]
-
+      "items": ["Task list", "Task report", "Task Autocomplete", "Report", "Periodical report", "Project", "Project group", "Trao đổi"]
     },
     "VN": {
       "title": "Công Việc",
@@ -33,11 +23,12 @@ let data = [
       '/task-report',
       '/task-samples',
       "/report",
+      "/periodic-report",
       "/project",
-      "",
-      "",
-      ""
+      "/project-group",   
+      "/topic"
     ],
+
     'icon': ' uil-receipt-alt'
   },
   {
@@ -48,8 +39,7 @@ let data = [
       "items": [
         "Event list",
         "New event",
-        "Event Sample",
-        "Location",
+        "Event Sample"
       ]
     },
     "VN": {
@@ -57,15 +47,14 @@ let data = [
       "items": [
         "Danh sách lịch",
         "Đăng ký lịch",
-        "Lịch tuần mẫu",
-        "Địa điểm"
+        "Lịch tuần mẫu"
       ]
     },
     "routing": [
       '/event-list',
       '/new-event',
-      '/event-sample',
-      '/location'
+      '/event-sample'
+      
 
     ],
 
@@ -76,15 +65,17 @@ let data = [
     "EN": {
       "title": "Client",
       "items": [
+        "Customers",
         "Contract",
         "Catalog",
         "Report",
-        "Search",
+        "Search"
       ]
     },
     "VN": {
       "title": "Khách hàng",
       "items": [
+        "Khách hàng",
         "Hợp đồng",
         "Danh mục",
         "Báo cáo",
@@ -92,6 +83,7 @@ let data = [
       ]
     },
     "routing": [
+      '/customers',
       '/contract',
       '/catalog',
       '/report',
@@ -119,26 +111,9 @@ let data = [
     "id": "document",
     "EN": {
       "title": "Van ban [Eng]",
-      "items": [
-        "Inoming Text",
-        "Text go",
-        "Internal Text",
-        "Search",
-        "Create Folder",
-        "Text Source",
-        "Text Inheritance"
-      ]
+      "items": ["Inoming Text","Text go","Internal Text","Search","Create Folder","Text Source","Text Inheritance"]
     },
-    "VN": {
-      "title": "Văn bản",
-      "items": [
-        "Văn bản đến",
-        "Văn bản đi",
-        "Văn bản nội bộ",
-        "Tìm kiếm",
-        "Tạo thư mục",
-        "Nguồn văn bản",
-        "Kế thừa văn bản"
+    "VN": {"title": "Văn bản","items": ["Văn bản đến","Văn bản đi","Văn bản nội bộ","Tìm kiếm","Tạo thư mục","Nguồn văn bản","Kế thừa văn bản"
       ]
     },
     "routing": [
@@ -150,14 +125,14 @@ let data = [
       '/text-source',
       '/text-inheritance'
     ],
-    'icon': 'uil-globe'
+    'icon': 'uil-notes'
   },
   {
-    "id": "documents",
+    "id": "sign-documents",
     "EN": {
       "title": "Sign Documents",
       "items": [
-        "Document signing",
+        "sign process",
         "Signator list"
 
       ]
@@ -171,10 +146,8 @@ let data = [
       ]
     },
     "routing": [
-      '/Document signing',
-      '/Signator',
-      '/news',
-
+      '/sign-process',
+      '/signator-list'
     ],
     'icon': 'uil-notes'
   },

@@ -8,6 +8,8 @@ import { DualListComponent } from './dual-list/dual-list.component';
 import { NgChartsModule } from 'ng2-charts';
 import { AvatarTooltipComponent } from './avatar-tooltip/avatar-tooltip.component';
 import { NewItemButtonComponent } from './new-item-button/new-item-button.component';
+import { FormsModule } from '@angular/forms';
+import { CalendarComponent } from './calendar/calendar.component';
 
 @NgModule({
   declarations: [
@@ -17,10 +19,12 @@ import { NewItemButtonComponent } from './new-item-button/new-item-button.compon
     DualListComponent,
     AvatarTooltipComponent,
     NewItemButtonComponent,
+    CalendarComponent
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
   exports: [
     HeaderComponent,
@@ -29,7 +33,8 @@ import { NewItemButtonComponent } from './new-item-button/new-item-button.compon
     DualListComponent,
     AvatarTooltipComponent,
     NewItemButtonComponent,
-    NgChartsModule
+    NgChartsModule,
+    CalendarComponent
   ]
 })
 export class UtilitiesModule { }

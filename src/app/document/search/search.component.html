@@ -1,3 +1,5 @@
+
+<div class="ootoppage1 kichthuoc mb-2 row">Nhập thông tin tìm kiếm</div>
 <div class="col-lg-9">
     <div class="row">
         <div class="col-4">
@@ -145,16 +147,45 @@
         </div>
     </div>
 </div>
-<div class="col-8">
-    <div class="mb-3 row">
-        <div class="col-8">
-            <label class="form-label"> (-- không tìm theo Từ ngày --> Đến ngày,
-                xin hãy vui lòng bỏ trống hai ô này --) </label>
-        </div>
-    </div>
-</div>
+<!--lời chỉ dẫn-->
+            <div class=" d-flex justify-content-center">
+                <div class="col-9">
+                    <div class="text-center col-9 mb-2">
+                        <font color="#999999" style="font-size: 8pt">
+                            <b>
+                                <i>( Nếu không tìm theo </i>
+                            </b>
+                        </font>
+                        <b>
+                            <font color="#FF0000" style="font-size: 8pt">Từ ngày --&gt; Đến ngày</font>
+                            <font color="#999999" style="font-size: 8pt"><i>, xin vui lòng bỏ trống hai ô này )</i>
+                            </font>
+                        </b>
+                    </div>
+                        
+                    
+                </div>
+                
+            </div>
+           
+
+            <!--nú lênh nhanh-->
+            <div class="btnOO d-flex justify-content-center">
+                <div class="col-9">
+                <input type="submit" name="ctl22$Tim" value="Tìm" id="ctl22_Tim"  (click)="tuyChon()"   style="width:20%;">
+                <input type="submit" name="ctl22$btnReset" value="Làm mới" id="ctl22_btnReset" class="btnOO ms-2" style="width:20%;">
+                <input type="submit" name="ctl22$btnExportfile" value="Xuất File" id="ctl22_btnExportfile" class="btnOO ms-2" style="width:20%;">
+                </div>
+            </div>
+
+            
+
+            <div class="TableOO" align="center">
+                <span id="ctl22_lblThongBao" style="color:Red;font-weight:bold;font-style:italic;"></span>
+            </div>
+        
 <!--Nút lệnh tìm kiếm -->
-<div class="col-lg-9">
+<div class="col-lg-9" *ngIf="search_new">
     <div class="row">
         <div class="mb-3 row">
             <table id="alternative-page-datatable" class="table dt-responsive
@@ -200,5 +231,6 @@
             </div>   
 
 <div class="col-3">
+    
 
 </div>

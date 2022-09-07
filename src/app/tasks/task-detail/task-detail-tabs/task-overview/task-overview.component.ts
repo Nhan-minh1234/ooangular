@@ -7,29 +7,76 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
   styleUrls: ['./task-overview.component.css', '../../task-detail.component.css']
 })
 export class TaskOverviewComponent implements OnInit {
+  dateSelectedEvents
+  getEvents(a) {
+    this.dateSelectedEvents = a
+  }
   editorConfig: AngularEditorConfig = {
-    height: '200px',
+    height: '150px',
     editable: true,
   }
-  public chartLabels: string[] = ['Còn hạn', 'Gần hạn', 'Quá hạn', 'Đề xuất kết thúc'];
-  public doughnutChartData: ChartData<'doughnut'> = {
+  events = [{
+    fulldate: 'Wed Sep 07 2022',
+    items: [
+      {
+        title: 'Branding Logo',
+        id: 'idk',
+        author: 'Nguyen Hoai Thuong'
+      },
+      {
+        title: 'Design main Dashboard',
+        id: 'idk',
+        author: 'Nguyen Hoai Thuong'
+      },
+    ]
+  },
+  {
+    fulldate: 'Mon Sep 19 2022',
+    items: [
+      {
+        title: 'User Module Testing',
+        id: 'idk',
+        author: 'Nguyen Hoai Thuong'
+      },
+    ]
+  },
+  {
+    fulldate: 'Thu Sep 22 2022',
+    items: [
+      {
+        title: 'To check User Management',
+        id: 'idk',
+        author: 'Nguyen Hoai Thuong'
+      }, {
+        title: 'To check User Management 1',
+        id: 'idk',
+        author: 'Nguyen Hoai Thuong'
+      }, {
+        title: 'To check User Management 2',
+        id: 'idk',
+        author: 'Nguyen Hoai Thuong'
+      },
+    ]
+  }
+  ]
+  public chartLabels: string[] = ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'];
+  public doughnutChartData: ChartConfiguration['data'] = {
     labels: this.chartLabels,
     datasets: [
-      { data: [350, 450, 100, 100] },
+      { data: [5, 9, 8, 1, 6, 5, 11], label: 'Quá hạn', fill: 'origin' },
+      { data: [12, 19, 10, 11, 16, 5, 10], label: 'Kết thúc', fill: 'origin' },
     ]
   };
   public ChartConfig: ChartConfiguration['options'] = {
     elements: {
       line: {
-        tension: 0.4
+        tension: 0
       }
     },
     // We use these empty structures as placeholders for dynamic theming.
     scales: {
       x: {},
-      y: {
-        min: 10
-      }
+      y: {}
     },
     plugins: {
       legend: { display: true },
@@ -38,7 +85,7 @@ export class TaskOverviewComponent implements OnInit {
   public chartOption: ChartOptions = {
     color: 'red',
   }
-  public doughnutChartType: ChartType = 'doughnut';
+  public chartType: ChartType = 'line';
   constructor() { }
 
   ngOnInit(): void {

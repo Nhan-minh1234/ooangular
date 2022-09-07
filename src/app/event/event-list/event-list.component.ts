@@ -3,6 +3,8 @@ import { GeneralService } from 'src/app/services/general.service';
 import { HttpClient } from '@angular/common/http';
 import data from './event.language'
 import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-event-list',
   templateUrl: './event-list.component.html',

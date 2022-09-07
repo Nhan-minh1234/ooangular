@@ -17,6 +17,12 @@ import { TaskReportComponent } from './task-report/task-report.component';
 import { DonutChartComponent } from '../utilities/donut-chart/donut-chart.component';
 import { ReportComponent } from './report/report.component';
 import { ProjectComponent } from './project/project.component';
+import { MorePeojectComponent } from './more-peoject/more-peoject.component';
+import { ProjectListComponent } from './project-list/project-list.component';
+import { ProjectGroupComponent } from './project-group/project-group.component';
+import { AddGroupComponent } from './add-group/add-group.component';
+import { PassGroupComponent } from './pass-group/pass-group.component';
+import { PeriodicalReportComponent } from './periodical-report/periodical-report.component';
 import { TaskSettingComponent } from './task-detail/task-detail-tabs/task-setting/task-setting.component';
 import { TaskOverviewComponent } from './task-detail/task-detail-tabs/task-overview/task-overview.component';
 import { TaskFilesComponent } from './task-detail/task-detail-tabs/task-files/task-files.component';
@@ -29,6 +35,9 @@ import { TaskTargetManagerComponent } from './task-detail/task-detail-tabs/task-
 import { TaskSamplesComponent } from './task-samples/task-samples.component';
 import { TaskSampleDetailComponent } from './task-sample-detail/task-sample-detail.component';
 import { TaskSampleManagerComponent } from './task-sample-manager/task-sample-manager.component';
+import { TopicComponent } from './topic/topic.component';
+import { TopicDetailComponent } from './topic-detail/topic-detail.component';
+
 @NgModule({
   declarations: [
     TaskListComponent,
@@ -39,6 +48,12 @@ import { TaskSampleManagerComponent } from './task-sample-manager/task-sample-ma
     DonutChartComponent,
     ReportComponent,
     ProjectComponent,
+    MorePeojectComponent,
+    ProjectListComponent,
+    ProjectGroupComponent,
+    AddGroupComponent,
+    PassGroupComponent,
+    PeriodicalReportComponent,
     TaskSettingComponent,
     TaskOverviewComponent,
     TaskFilesComponent,
@@ -49,7 +64,9 @@ import { TaskSampleManagerComponent } from './task-sample-manager/task-sample-ma
     TaskTargetManagerComponent,
     TaskSamplesComponent,
     TaskSampleDetailComponent,
-    TaskSampleManagerComponent
+    TaskSampleManagerComponent,
+    TopicComponent,
+    TopicDetailComponent
   ],
   imports: [
     CommonModule,
