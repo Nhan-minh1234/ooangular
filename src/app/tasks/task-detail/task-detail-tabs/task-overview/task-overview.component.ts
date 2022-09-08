@@ -7,6 +7,12 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
   styleUrls: ['./task-overview.component.css', '../../task-detail.component.css']
 })
 export class TaskOverviewComponent implements OnInit {
+  activityTypes = [
+    { typeid: 'type1', typename: 'Type 1', typeColor: 'success', status: true },
+    { typeid: 'type2', typename: 'Type 2', typeColor: 'danger', status: true },
+    { typeid: 'type3', typename: 'Type 3', typeColor: 'primary', status: true },
+    { typeid: 'type4', typename: 'Type 4', typeColor: 'warning', status: true },
+  ]
   dateSelectedEvents
   getEvents(a) {
     this.dateSelectedEvents = a
@@ -59,6 +65,7 @@ export class TaskOverviewComponent implements OnInit {
     ]
   }
   ]
+  nextEvent = []
   public chartLabels: string[] = ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'];
   public doughnutChartData: ChartConfiguration['data'] = {
     labels: this.chartLabels,
@@ -89,6 +96,9 @@ export class TaskOverviewComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.nextEvent = this.events.filter(x =>
+      new Date(x.fulldate).getTime() >= new Date(new Date().toDateString()).getTime()
+    )
   }
 
 }
