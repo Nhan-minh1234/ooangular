@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { title } from 'process';
+import { Y } from 'angular-mydatepicker';
 
 @Component({
   selector: 'app-search',
@@ -12,7 +13,8 @@ import { title } from 'process';
 export class SearchComponent implements OnInit {
 
   keylabel
-  searchdata
+  searchdata=[]
+  apiUrl=['https://62fde3c541165d66bfb3a622.mockapi.io/api/projectlist','https://62fde3c541165d66bfb3a622.mockapi.io/api/project']
   result=[]
   constructor(private router: Router, private activaterouter: ActivatedRoute, private httpClient: HttpClient) { }
 
@@ -23,19 +25,24 @@ export class SearchComponent implements OnInit {
     this.getData()
   }
 
-  getData() {
-    this.httpClient.get('https://62fde3c541165d66bfb3a622.mockapi.io/api/projectlist').subscribe(x => {
-      this.searchdata = x
-      this.search(this.keylabel)
-      console.log(this.searchdata)
-      console.log(this.result)
+  async getData() {
+    this.apiUrl.forEach((x,index)=>{
+      this.httpClient.get(x).subscribe(i => {
+        this.searchdata[index]=i
+        this.search(this.keylabel,index)
+        console.log(this.result)
+      })
     })
+ 
   }
-  search(label) {
-    this.searchdata.forEach(element => {
+  search(label,index) {
+    this.result[index]=[]
+    this.searchdata[index].forEach(element => {
       if(element.name.search(label)>-1){
-        this.result.push(element)
+        console.log(element.name.search(label))
+        this.result[index].push(element)
       }
     });
   }
+  
 }
