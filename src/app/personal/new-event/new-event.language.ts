@@ -29,7 +29,7 @@ let data = {
         'previousStep': 'Quay lại',
         'finishCol': 'Kết thúc',
         'enterInfomation':'1.Nhập thông tin lịch',
-        'relatedList':'2.Danh sách liên quan'
+        'relatedList':'Chia sẻ'
     }
 };
 export default data;
