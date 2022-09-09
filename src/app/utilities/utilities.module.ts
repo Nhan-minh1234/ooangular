@@ -10,6 +10,7 @@ import { AvatarTooltipComponent } from './avatar-tooltip/avatar-tooltip.componen
 import { NewItemButtonComponent } from './new-item-button/new-item-button.component';
 import { FormsModule } from '@angular/forms';
 import { CalendarComponent } from './calendar/calendar.component';
+import { DropzoneComponent } from './dropzone/dropzone.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CalendarComponent } from './calendar/calendar.component';
     DualListComponent,
     AvatarTooltipComponent,
     NewItemButtonComponent,
-    CalendarComponent
+    CalendarComponent,
+    DropzoneComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +36,8 @@ import { CalendarComponent } from './calendar/calendar.component';
     AvatarTooltipComponent,
     NewItemButtonComponent,
     NgChartsModule,
-    CalendarComponent
+    CalendarComponent,
+    DropzoneComponent
   ]
 })
 export class UtilitiesModule { }
