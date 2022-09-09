@@ -25,8 +25,8 @@ let data = [
       "/report",
       "/periodic-report",
       "/project",
-      "/project-group",
-    
+      "/project-group",   
+      "/topic"
     ],
 
     'icon': ' uil-receipt-alt'
