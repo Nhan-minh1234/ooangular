@@ -1,6 +1,6 @@
 <div class="row">
     <div class="d-flex justify-content-between">
-        <h3>Danh sách công việc</h3>
+        <h3 class="text-dark">Danh sách công việc</h3>
         <div class="w-40">
             <div class="input-group mb-3">
                 <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
@@ -11,13 +11,14 @@
     <div class="col-4" *ngFor="let item of kanbanData">
         <div class="card task-status" style="height: 95%;">
             <div class="card-body">
-                <h4 class="card-title mb-0 border-bottom border-3 task-status-title border-{{item.status_color}}">
+                <h4
+                    class="card-title mb-0 border-bottom border-3 text-dark task-status-title border-{{item.status_color}}">
                     {{item.status}}
                     {{item.targets.length}}</h4>
                 <div dragula="HANDLES" [(dragulaModel)]="item.targets" class="h-100">
                     <div class="card border rounded mt-3" *ngFor="let target of item.targets" draggable="false">
                         <div class="card-body">
-                            <h4 class="card-title-mb-0 d-flex justify-content-between">
+                            <h4 class="card-title-mb-0 d-flex justify-content-between text-dark">
                                 <label class="pointer" data-bs-toggle="modal"
                                     data-bs-target="#target_modal">{{target.target_title}}</label>
                                 <span class="handle uil-apps"></span>
