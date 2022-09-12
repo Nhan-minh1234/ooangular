@@ -50,8 +50,8 @@ const routes: Routes = [
         data: { "link": "/tasks/task-report" },
         path: 'task-report',
         component: TaskReportComponent
-      },
-    {
+      }, 
+      {
         data: { "link": "/tasks/project-group" },
         path: 'project-group',
         component: ProjectGroupComponent
