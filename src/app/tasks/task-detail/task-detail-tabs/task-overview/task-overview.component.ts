@@ -70,8 +70,8 @@ export class TaskOverviewComponent implements OnInit {
   public doughnutChartData: ChartConfiguration['data'] = {
     labels: this.chartLabels,
     datasets: [
-      { data: [5, 9, 8, 1, 6, 5, 11], label: 'Quá hạn', fill: 'origin' },
-      { data: [12, 19, 10, 11, 16, 5, 10], label: 'Kết thúc', fill: 'origin' },
+      { data: [5, 9, 8, 1, 6, 5, 11], label: 'Quá hạn' },
+      { data: [12, 19, 10, 11, 16, 5, 10], label: 'Kết thúc' },
     ]
   };
   public ChartConfig: ChartConfiguration['options'] = {

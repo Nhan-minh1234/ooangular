@@ -20,9 +20,6 @@ export class NotificationComponent implements OnInit {
   ngOnInit(): void {
     this.gData()
   }
-  uploadFile() {
-    document.getElementById("files_upload").click();
-  }
   gData() {
     this.notificationData = []
     for (let i = 0; i <= this.count; i++) {

@@ -28,7 +28,8 @@
             </div>
         </div>
         <div class="col-2 my-auto">
-            <abbr data-bs-toggle="modal" data-bs-target="#library-manager-modal" style="cursor: pointer;" [title]="'Thêm mới'">
+            <abbr data-bs-toggle="modal" data-bs-target="#library-manager-modal" style="cursor: pointer;"
+                [title]="'Thêm mới'">
                 <img style="width:40px;height:auto; float: right !important;" src="assets/imgs/plus.png" />
             </abbr>
         </div>
@@ -157,7 +158,7 @@
         </div>
         <div class="modal fade" id="library-manager-modal" tabindex="-1" role="dialog"
             aria-labelledby="scrollableModalTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="scrollableModalTitle">Thư viện</h5>
@@ -198,14 +199,8 @@
                                     <i class="uil-times h3 text-danger pointer me-3"></i>
                                 </div>
                             </div>
-                            <div (click)="uploadFile()"
-                                class="file-update-area rounded d-flex justify-content-center align-items-center pointer">
-                                <i class="h3 uil-file-upload">
-                                </i>
-                                <label class="h4">
-                                    Thêm tệp tin mới
-                                </label>
-                                <input type="file" id="files_upload" style="display:none">
+                            <div>
+                                <app-dropzone></app-dropzone>
                             </div>
                         </div>
                     </div>
