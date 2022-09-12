@@ -4,30 +4,13 @@ let data = [
     "EN": {
       "title": "Tasks",
       "items": ["Task list", "Task report", "Task Autocomplete", "Report", "Periodical report", "Project", "Project group", "Trao đổi"]
+
     },
     "VN": {
       "title": "Công Việc",
-      "items": [
-        "Danh Sách Công Việc",
-        "Thống kê",
-        "Công việc mẫu",
-        "Báo cáo",
-        "Báo cáo định kỳ",
-        "Dự án công việc",
-        "Nhóm công việc",
-        "Trao đổi"
-      ]
+      "items": ["Danh Sách Công Việc", "Thống kê", "Công việc mẫu", "Báo cáo", "Báo cáo định kỳ", "Dự án công việc", "Nhóm công việc", "Trao đổi"]
     },
-    'routing': [
-      '/task-list',
-      '/task-report',
-      '/task-samples',
-      "/report",
-      "/project",
-      "",
-      "",
-      ""
-    ],
+    'routing': ['/task-list', '/task-report', '/task-autocomplete', "/report", "/periodical-report" ,"/project", "", "", ""],
     'icon': ' uil-receipt-alt'
   },
   {
@@ -109,12 +92,13 @@ let data = [
     "id": "document",
     "EN": {
       "title": "Van ban [Eng]",
-      "items": ["Inoming Text","Text go","Internal Text","Search","Create Folder","Text Source","Text Inheritance"]
+      "items": ["all-text", "Inoming Text","Text go","Internal Text","Search","Create Folder","Text Source","Text Inheritance"]
     },
-    "VN": {"title": "Văn bản","items": ["Văn bản đến","Văn bản đi","Văn bản nội bộ","Tìm kiếm","Tạo thư mục","Nguồn văn bản","Kế thừa văn bản"
+    "VN": {"title": "Văn bản","items": [ "Tất cả văn bản","Văn bản đến","Văn bản đi","Văn bản nội bộ","Tìm kiếm","Tạo thư mục","Nguồn văn bản","Kế thừa văn bản"
       ]
     },
-    "routing": [
+    "routing":  [
+      '/all-text',
       '/incoming-text',
       '/text-go',
       '/internal-text',
@@ -132,7 +116,7 @@ let data = [
       "items": [
         "Document signing",
         "Signator list"
-
+        
       ]
     },
     "VN": {
@@ -140,14 +124,14 @@ let data = [
       "items": [
         "Trình ký văn bản",
         "Danh sách trình ký"
-
+        
       ]
     },
     "routing": [
       '/Document signing',
       '/Signator',
       '/news',
-
+     
     ],
     'icon': 'uil-notes'
   },
@@ -166,35 +150,17 @@ let data = [
       "items": [
         "Lịch cá nhân",
         "Tủ hồ sơ",
-        "Danh thiếp"
+        "Danh thiếp"        
       ]
     },
     "routing": [
       '/event',
       '/file-cabinet',
-      '/business-card'
+      '/business-card'    
     ],
     'icon': 'uil-smile'
-  },
-  {
-    "id": 'admin',
-    "VN": {
-      'title': "Admin",
-      'items': [
-        'Người Dùng',
-      ]
-    },
-    "EN": {
-      'title': "Admin",
-      'items': [
-        'Users',
-      ]
-    },
-    "routing": [
-      '/users'
-    ],
-    "icon": "uil-padlock"
   }
+
 ];
 
 export default data;

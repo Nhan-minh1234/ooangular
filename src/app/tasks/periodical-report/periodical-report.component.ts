@@ -11,5 +11,6 @@ export class PeriodicalReportComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  periodicalreportDuLieu=['Giám đốc','Trưởng phòng','Nhân viên CNTT']
 
 }

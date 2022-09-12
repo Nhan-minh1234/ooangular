@@ -14,7 +14,7 @@
         </div>
     </div>
     <aw-wizard>
-        <aw-wizard-step stepTitle="{{getLabel('enterInformation')}}">
+        <aw-wizard-step stepTitle="Hồ sơ">
             <div class="container">
                 <div class="row">
                    
@@ -22,8 +22,8 @@
                    
                     
                     <div class="mb-3">
-                        <label for="example-textarea" class="form-label ipt">{{getLabel('nameCol')}}</label>
-                        <textarea class="form-control" id="example-textarea" rows="1"></textarea>
+                        <label for="example-textarea" class="form-label ipt">{{getLabel('nameCol')}}<span class="requiredField"></span></label>
+                        <textarea [(ngModel)]="newfileCabinetData.title" class="form-control" id="example-textarea" rows="1"></textarea>
                     </div>
                    
                  
@@ -40,10 +40,10 @@
                 </div>
             </div>
             <div class="btn_list">
-                <button type="button" awNextStep class="btn btn-primary">Next Step</button>
+                <button type="button" (click)='check()' class="btn btn-primary">Next Step</button>
             </div>
         </aw-wizard-step>
-        <aw-wizard-step stepTitle="{{getLabel('relatedList')}}" awOptionalStep>
+        <aw-wizard-step stepTitle="{{getLabel('relatedList')}}">
             <div class="card">
                 <div class="card-body">
                     <div style="margin: 0 10px 30px 30px;">

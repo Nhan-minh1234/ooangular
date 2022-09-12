@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { WizardComponent } from 'angular-archwizard';
 import { GeneralService } from 'src/app/services/general.service';
 import data from './new-event.language';
+import { ApiservicesService } from 'src/app/services/api.service';
+
 
 @Component({
   selector: 'app-new-event',
@@ -10,7 +12,8 @@ import data from './new-event.language';
   styleUrls: ['./new-event.component.css']
 })
 export class NewEventComponent implements OnInit {
-  
+
+  @ViewChild(WizardComponent)
   public wizard: WizardComponent;
   wizardStep = 0;
   spinnerLoading = false;
@@ -22,18 +25,31 @@ export class NewEventComponent implements OnInit {
     invited: '',
     note: '',
     file: []
+    
   }
+
   chosenAssigneelList: any[] = [];
   allUserInStep2List
   majorAssignee
   groupKeyChosenInStep2 = 'all'
-  constructor(private _location: Location, public generalService: GeneralService) { }
-
+  
+  constructor(private _location: Location, public generalService: GeneralService, public apiservicesserver:ApiservicesService) { }
+ 
+  
   ngOnInit(): void {
     console.log(this.wizardStep)
-    this.onAsigneeGroupChange(null)
-    this.dualListUpdateForAssignee(null);
+    this.onAsigneeGroupChange(null);
+   
   }
+  check(){
+    if (this.newEventData.start===''||this.newEventData.end===''||this.newEventData.description===''){
+      this.generalService.showErrorToast(2, 'Các trường đánh dấu (*) không được bỏ trống');
+    }
+    else{
+      this.wizard.goToNextStep()
+    }
+  }
+  
   goBack() {
     this._location.back();
   }
@@ -46,9 +62,9 @@ export class NewEventComponent implements OnInit {
       this.allUserInStep2List = this.generalService.allUsersWithGroups[`${this.groupKeyChosenInStep2}`]
     }
   }
-  dualListUpdateForAssignee(event) {
-    this.allUserInStep2List = event.leftList;
-    this.chosenAssigneelList = event.rightList
+  dualListUpdateForAssignee(newevent) {
+    this.allUserInStep2List = newevent.leftList;
+    this.chosenAssigneelList = newevent.rightList
     // if(this.groupKeyChosenInStep2 == 'all')
     // {
     //   for(let i=0; i< this.allUserInStep2List.length; ++i)

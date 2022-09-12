@@ -5,7 +5,7 @@
         </div>
     </div>
 
-    <table class="table table-centered mb-0">
+    <table class="table table-hover table-centered mb-0">
         <thead>
             <tr>
                 <th>Tên</th>
@@ -16,7 +16,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let i of eventSampleData" data-bs-toggle="modal" data-bs-target="#event-sample-modal">
+            <tr *ngFor="let i of eventSampleData" data-bs-toggle="modal" class="pointer" data-bs-target="#event-sample-modal">
                 <td>{{i.name}}</td>
                 <td>{{i.date}}</td>
                 <td>14h00</td>

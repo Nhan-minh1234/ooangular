@@ -10,6 +10,7 @@ import { TextInheritanceComponent } from './text-inheritance/text-inheritance.co
 import { TextSourceComponent } from './text-source/text-source.component';
 import { NewDocumentComponent } from './new-document/new-document.component';
 import { NewTextGoComponent } from './new-text-go/new-text-go.component';
+import { AllTextComponent } from './all-text/all-text.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,11 @@ const routes: Routes = [
     data: { 'link': '/document' },
     component: DocumentComponent,
     children: [
+      {
+        data: { "link": "/document/all-text" },
+        path: 'all-text',
+        component: AllTextComponent
+      },
       {
         data: { "link": "/document/incoming-text" },
         path: 'incoming-text',

@@ -1,0 +1,91 @@
+<div class="container-fluid">
+    <ngx-loading [show]="spinnerLoading"
+        [config]="{ primaryColour: 'whitesmoke', backdropBorderRadius: '3px', fullScreenBackdrop: true }"></ngx-loading>
+    <!-- start page title -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thông Báo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                </div>
+
+                <div class="modal-body">
+                    <p>Có lỗi xảy ra khi kết nối đến máy chủ. Xin vui lòng thử lại</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-1 my-auto">
+            <img (click)="goBack()" style="cursor: pointer;opacity:0.5; width:30px;height:auto; margin:auto"
+                src="assets/imgs/left.png" />
+        </div>
+
+        <div class="col-10">
+            <div class="page-title-box">
+                <h4 class="page-title">Nhóm công việc đang xem</h4>
+            </div>
+        </div>
+
+    <div class="row">
+        <div class="col-9">
+
+            <table id="basic-datatable" class="table dt-responsive nowrap w-100">
+                <thead>
+                    <tr>
+                        <th><span type="checkbox" title="Chọn/bỏ chọn tất cả"><input 
+                                    type="checkbox" name="công việc" /></span></th>
+                        <th> Công việc chưa thuộc nhóm </th>
+                        <th> Ngày bắt đàu </th>
+                        <th> Ngày hoàn thành </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of passGroupData | paginate: config" data-bs-toggle="modal"
+                    data-bs-target="#scrollable-modal">
+                        <td><span type="checkbox" title="Chọn/bỏ chọn tất cả"><input (change)="addlist(item.id,$event)" type="checkbox"
+                                    name="công việc" /></span></td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.start|date:"dd/MM/yyyy"}}</td>
+                        <td>{{item.end|date:"dd/MM/yyyy"}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-3">
+            <div class="list-group">
+                <div class="list-group-item list-group-item-custom-dark">
+                    Bộ lọc
+                </div>
+                <div class="list-group-item list-group-item-primary">
+                    <td>Nhóm 1</td>
+                       Nhóm 2
+                    <td>Nhóm 3</td>
+                       Nhóm 4
+                    <td>Nhóm 5</td>
+                </div>
+            </div>
+            
+        
+            
+    </div>
+    <div class="list row">
+        <div class="col-md-8">
+            <pagination-controls id="paging" [previousLabel]="getLabel('previousBtn')" [nextLabel]="getLabel('nextBtn')"
+                responsive="true" responsive="true" (pageChange)="handlePageChange($event)"></pagination-controls>
+        </div>
+        <div class="col-md-4">
+            {{getLabel("itemsPerPage")}}:
+            <select style="border: solid 1px rgb(230, 229, 229);" (change)="handlePageSizeChange($event)">
+                <option *ngFor="let size of pageSizes" [ngValue]="size">
+                    {{ size }}
+                </option>
+            </select>
+        </div>
+    </div>
