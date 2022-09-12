@@ -12,10 +12,9 @@ let data = [
     },
     'routing': [
       '/task-list',
-      '/task-report',
-      '/task-autocomplete',
+      '/task-report',      
       '/task-samples',
-      "/report",
+      "/new-report",
       "/periodic-report",
       "/project",
       "/project-group",   

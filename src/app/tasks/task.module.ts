@@ -68,7 +68,7 @@ import { TopicDetailComponent } from './topic-detail/topic-detail.component';
     TaskSampleDetailComponent,
     TaskSampleManagerComponent,
     NewReportComponent,
-    ImportReportComponent
+    ImportReportComponent,
     TopicComponent,
     TopicDetailComponent
   ],
