@@ -15,6 +15,9 @@ import { TaskSamplesComponent } from "./task-samples/task-samples.component";
 import { PeriodicalReportComponent } from "./periodical-report/periodical-report.component";
 import { NewReportComponent } from "./new-report/new-report.component";
 import { ImportReportComponent } from "./import-report/import-report.component";
+import { TopicComponent } from "./topic/topic.component";
+import { TopicDetailComponent } from "./topic-detail/topic-detail.component";
+
 
 const routes: Routes = [
   {
@@ -62,7 +65,8 @@ const routes: Routes = [
         path: 'new-report',
         component: NewReportComponent
       },
-    {
+      {
+
         data: { "link": "/tasks/project-group" },
         path: 'project-group',
         component: ProjectGroupComponent
@@ -87,7 +91,16 @@ const routes: Routes = [
         path: 'task-samples',
         component: TaskSamplesComponent
       },
-      
+      {
+        data: { "link": "/tasks/topic" },
+        path: 'topic',
+        component: TopicComponent
+      },
+      {
+        data: { "link": "/tasks/topic-detail" },
+        path: 'topic-detail',
+        component: TopicDetailComponent
+      },
       // {
       //   data: { "link": "/user/change-password" },
       //   path:'change-password',

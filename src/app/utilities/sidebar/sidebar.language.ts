@@ -10,7 +10,17 @@ let data = [
       "title": "Công Việc",
       "items": ["Danh Sách Công Việc", "Thống kê", "Công việc mẫu", "Báo cáo", "Báo cáo định kỳ", "Dự án công việc", "Nhóm công việc", "Trao đổi"]
     },
-    'routing': ['/task-list', '/task-report', '/task-autocomplete', "/report", "/periodical-report" ,"/project", "", "", ""],
+    'routing': [
+      '/task-list',
+      '/task-report',
+      '/task-autocomplete',
+      '/task-samples',
+      "/report",
+      "/periodic-report",
+      "/project",
+      "/project-group",   
+      "/topic"
+    ],
     'icon': ' uil-receipt-alt'
   },
   {

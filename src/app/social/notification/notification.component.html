@@ -28,7 +28,8 @@
             </div>
         </div>
         <div class="col-2 my-auto">
-            <abbr data-bs-toggle="modal" data-bs-target="#notification-manager-modal" style="cursor: pointer;" [title]="'Thêm mới'">
+            <abbr data-bs-toggle="modal" data-bs-target="#notification-manager-modal" style="cursor: pointer;"
+                [title]="'Thêm mới'">
                 <img style="width:40px;height:auto; float: right !important;" src="assets/imgs/plus.png" />
             </abbr>
         </div>
@@ -250,8 +251,8 @@
     </div>
 </div>
 <!--MODAL 2-->
-<div class="modal fade" id="notification-manager-modal" tabindex="-1" role="dialog" aria-labelledby="scrollableModalTitle"
-    aria-hidden="true">
+<div class="modal fade" id="notification-manager-modal" tabindex="-1" role="dialog"
+    aria-labelledby="scrollableModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -298,11 +299,8 @@
                                         <i class="uil-times h3 text-danger pointer"></i>
                                     </div>
                                 </div>
-                                <div (click)="uploadFile()"
-                                    class="list-group-item pointer mt-2 file-update-area d-flex justify-content-center align-items-center">
-                                    <i class="uil-file-upload me-1 h2"></i>
-                                    <label>Thêm tập tin mới</label>
-                                    <input type="file" id="files_upload" style="display:none">
+                                <div>
+                                    <app-dropzone></app-dropzone>
                                 </div>
                             </div>
                         </div>
