@@ -9,8 +9,10 @@ import { NgChartsModule } from 'ng2-charts';
 import { AvatarTooltipComponent } from './avatar-tooltip/avatar-tooltip.component';
 import { NewItemButtonComponent } from './new-item-button/new-item-button.component';
 import { FormsModule } from '@angular/forms';
+import { ExpandButtonComponent } from './expand-button/expand-button.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { DropzoneComponent } from './dropzone/dropzone.component';
+
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { DropzoneComponent } from './dropzone/dropzone.component';
     DualListComponent,
     AvatarTooltipComponent,
     NewItemButtonComponent,
+    ExpandButtonComponent,
     CalendarComponent,
     DropzoneComponent
   ],
@@ -36,6 +39,7 @@ import { DropzoneComponent } from './dropzone/dropzone.component';
     AvatarTooltipComponent,
     NewItemButtonComponent,
     NgChartsModule,
+    ExpandButtonComponent,
     CalendarComponent,
     DropzoneComponent
   ]
