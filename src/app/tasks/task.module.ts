@@ -66,7 +66,8 @@ import { ImportReportComponent } from './import-report/import-report.component';
     TaskSampleDetailComponent,
     TaskSampleManagerComponent,
     NewReportComponent,
-    ImportReportComponent
+    ImportReportComponent,
+
   ],
   imports: [
     CommonModule,
