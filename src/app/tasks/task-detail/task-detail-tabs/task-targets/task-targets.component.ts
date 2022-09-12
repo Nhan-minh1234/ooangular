@@ -27,7 +27,7 @@ export class TaskTargetsComponent implements OnInit {
         {
           target_title: 'User Module Testing',
           target_description: 'First, a disclaimer takes a couple hours',
-          users: ['Nguyen Hoai Thuong', 'Thuong Hoai Nguyen', 'Thuong Hoai Nguyen', 'Thuong Hoai Nguyen', 'Thuong Hoai Nguyen', 'Thuong Hoai Nguyen']
+          users: ['Thuong Hoai Nguyen', 'Thuong Hoai Nguyen', 'Thuong Hoai Nguyen', 'Thuong Hoai Nguyen']
         }
       ]
     },
@@ -43,7 +43,7 @@ export class TaskTargetsComponent implements OnInit {
         {
           target_title: 'User Module Testing',
           target_description: 'First, a disclaimer takes a couple hours',
-          users: ['Nguyen Hoai Thuong', 'Thuong Hoai Nguyen', 'Thuong Hoai Nguyen', 'Thuong Hoai Nguyen', 'Thuong Hoai Nguyen', 'Thuong Hoai Nguyen']
+          users: ['Nguyen Hoai Thuong', 'Thuong Hoai Nguyen', 'Thuong Hoai Nguyen', 'Thuong Hoai Nguyen', 'Thuong Hoai Nguyen']
         }
       ]
     },
@@ -59,7 +59,7 @@ export class TaskTargetsComponent implements OnInit {
         {
           target_title: 'User Module Testing',
           target_description: 'First, a disclaimer takes a couple hours',
-          users: ['Nguyen Hoai Thuong', 'Thuong Hoai Nguyen', 'Thuong Hoai Nguyen', 'Thuong Hoai Nguyen', 'Thuong Hoai Nguyen', 'Thuong Hoai Nguyen']
+          users: ['Thuong Hoai Nguyen']
         }
       ]
     }

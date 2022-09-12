@@ -142,13 +142,7 @@
 
                             <div class="mb-3">
                                 <label class="form-label">Thêm File:</label>
-                                <input id="fileList" type="file" multiple (change)="handleFileInput($event.target.files)" class="form-control">
-                                <ol *ngIf="fileToUpload!=null" class="list-group list-group-numbered">
-                                    <li *ngFor="let file of fileToUpload; index as i" class="list-group-item">
-                                        {{file.name}}<span (click)="removeFileFromUploadList(i)" style="    float: right;
-                                        font-weight: bold; cursor: pointer;
-                                        color: #fa6767;">X</span></li>
-                                </ol>
+                                <app-dropzone></app-dropzone>
                             </div>
                         </div>
                     </div>

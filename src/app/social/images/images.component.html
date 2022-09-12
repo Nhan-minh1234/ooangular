@@ -135,12 +135,8 @@
                                             class="img-fluid" alt="test.img">
                                     </div>
                                 </div>
-                                <div *ngIf="editable" class="col-lg-4 col-sm-12 mb-3">
-                                    <input type="file" id="uploadimages" style="display:none">
-                                    <div (click)="uploadFile()" class="file_upload_area">
-                                        <div><i class="uil-cloud-upload display-6"></i></div>
-                                        <h4>Thêm hình ảnh</h4>
-                                    </div>
+                                <div *ngIf="editable" class="col-lg-12 col-sm-12 mb-3">
+                                    <app-dropzone></app-dropzone>
                                 </div>
                             </div>
                         </div>
