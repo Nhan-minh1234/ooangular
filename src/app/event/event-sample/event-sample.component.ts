@@ -10,9 +10,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./event-sample.component.css']
 })
 export class EventSampleComponent implements OnInit {
-  eventSampleData = []
+  eventSampleData
   spinnerLoading = false;
-  eventListData
   editable = true
   page = 0;
   pageSize = 10;
@@ -24,24 +23,14 @@ export class EventSampleComponent implements OnInit {
   constructor(private httpClient: HttpClient, private el: ElementRef, public generalService: GeneralService, private router: Router) { }
 
   ngOnInit(): void {
-    this.data()
+    this.gData();
+
   }
   getLabel(key) {
     return data[`${this.generalService.currentLanguage.Code}`][`${key}`]
   }
-  data() {
-    for (let i = 0; i < 10; i++){
-      let d = {
-        name: `Lê thị chung ${i}`,
-        date: '01/01/2022',
-        time: '14h00',
-        description: 'none',
-        location: 'Hà Nội'
-      }
-      this.eventSampleData.push(d);
-    };
-  }
-  seeDetail(obj){
+
+  seeDetail(obj) {
     this.editable = true;
   }
   editEvent() {
@@ -57,7 +46,25 @@ export class EventSampleComponent implements OnInit {
     this.page = 0;
     this.count = 0;
     this.pageSize = 10;
-    this.data();
+    this.gData();
+  }
+  async gData() {
+    this.spinnerLoading = true;
+    this.httpClient.get('https://6316eb5bcb0d40bc4146ca46.mockapi.io/sample-event').subscribe(i => {
+      this.eventSampleData = i;
+      console.log(i)
+      this.config = {
+        id: 'paging',
+        itemsPerPage: this.pageSize,
+        currentPage: this.page,
+        totalItems: this.eventSampleData.length
+      }
+      this.spinnerLoading = false;
+
+    })
+
   }
 
 }
+
+
