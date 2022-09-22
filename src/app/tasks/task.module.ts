@@ -35,6 +35,8 @@ import { TaskTargetManagerComponent } from './task-detail/task-detail-tabs/task-
 import { TaskSamplesComponent } from './task-samples/task-samples.component';
 import { TaskSampleDetailComponent } from './task-sample-detail/task-sample-detail.component';
 import { TaskSampleManagerComponent } from './task-sample-manager/task-sample-manager.component';
+import { NewReportComponent } from './new-report/new-report.component';
+import { ImportReportComponent } from './import-report/import-report.component';
 import { TopicComponent } from './topic/topic.component';
 import { TopicDetailComponent } from './topic-detail/topic-detail.component';
 
@@ -65,6 +67,8 @@ import { TopicDetailComponent } from './topic-detail/topic-detail.component';
     TaskSamplesComponent,
     TaskSampleDetailComponent,
     TaskSampleManagerComponent,
+    NewReportComponent,
+    ImportReportComponent,
     TopicComponent,
     TopicDetailComponent
   ],

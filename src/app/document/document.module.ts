@@ -14,6 +14,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { NewTextGoComponent } from './new-text-go/new-text-go.component';
 import { UtilitiesModule } from '../utilities/utilities.module';
 import { FormsModule } from '@angular/forms';
+import { AllTextComponent } from './all-text/all-text.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FormsModule } from '@angular/forms';
     TextInheritanceComponent,
     TextSourceComponent,
     NewDocumentComponent,
-    NewTextGoComponent
+    NewTextGoComponent,
+    AllTextComponent
 
   ],
   imports: [
