@@ -55,7 +55,7 @@
                     <tr *ngFor="let i of incomingtextsData |paginate: config">
                         <td>{{i.id}}</td>
                         <td>{{i.abstract}}</td>
-                        <td>{{i.recipients}}</td>
+                        <td ><a [routerLink]="'/document/detail-document'">{{i.recipients}}</a> </td>
                         <td>{{i.release_date}}</td>
                         <td>{{i.drafting_place|date:"dd/MM/yyyy"}}</td>
                         <td>{{i.text_number}}</td>
@@ -300,21 +300,23 @@
                     <div class="container">
                         <table id = "basic-datatable" class = "table table-bordered dt-responsive nowrap w-100 " >
                             <thead > 
-                                <tr> 
+                                <tr > 
                                     <th > STT </th>
                                     <th > Số VB </th > 
+                                    <th > Trích yếu </th > 
                                     <th > Nơi nhận </th > 
                                     <th > Ngày PH </th > 
-                                    <th > Nơi soạn thảo </th >  
-                                </tr> 
+                                    <th > Nơi soạn thảo </th > 
+                                </tr > 
                             </thead >
                             <tbody>
                                 <tr *ngFor="let i of incomingtextsData |paginate: config">
                                     <td>{{i.id}}</td>
-                                    <td>2 </td>
-                                    <td>3</td>
-                                    <td>4</td>
-                                    <td>5</td>
+                                    <td>{{i.abstract}}</td>
+                                    <td ><a [routerLink]="'/document/detail-document'">{{i.recipients}}</a> </td>
+                                    <td>{{i.release_date}}</td>
+                                    <td>{{i.drafting_place|date:"dd/MM/yyyy"}}</td>
+                                    <td>{{i.text_number}}</td>
                                 </tr>
                             </tbody>
                         </table>
