@@ -11,6 +11,7 @@ import { NewItemButtonComponent } from './new-item-button/new-item-button.compon
 import { FormsModule } from '@angular/forms';
 import { CalendarComponent } from './calendar/calendar.component';
 import { DropzoneComponent } from './dropzone/dropzone.component';
+import { GanttComponent } from './gantt/gantt.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { DropzoneComponent } from './dropzone/dropzone.component';
     AvatarTooltipComponent,
     NewItemButtonComponent,
     CalendarComponent,
-    DropzoneComponent
+    DropzoneComponent,
+    GanttComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +39,8 @@ import { DropzoneComponent } from './dropzone/dropzone.component';
     NewItemButtonComponent,
     NgChartsModule,
     CalendarComponent,
-    DropzoneComponent
+    DropzoneComponent,
+    GanttComponent
   ]
 })
 export class UtilitiesModule { }
