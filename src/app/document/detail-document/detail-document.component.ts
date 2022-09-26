@@ -29,6 +29,7 @@ export class DetailDocumentComponent implements OnInit {
   count = 500;
 
   config
+  fileToUpload
 
   taoDuLieu() {
     this.api.get('https://6315b3ad33e540a6d382505e.mockapi.io/giatrimoi').subscribe((x) => {
@@ -59,6 +60,10 @@ handlePageSizeChange(event): void {
   this.pageSize = event.target.value;
   this.page = 0;
   this.taoDuLieu();
+}
+handleFileInput(files: FileList) {
+  this.fileToUpload = Array.from(files);
+  console.log(this.fileToUpload)
 }
 
 }
