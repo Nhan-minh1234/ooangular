@@ -12,7 +12,8 @@ import { FormsModule } from '@angular/forms';
 import { ExpandButtonComponent } from './expand-button/expand-button.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { DropzoneComponent } from './dropzone/dropzone.component';
-import { GanttComponent } from './gantt/gantt.component';
+import { GanttComponent } from './gantt-chart/gantt/gantt.component';
+import { GanttRowComponent } from './gantt-chart/gantt-row/gantt-row.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { GanttComponent } from './gantt/gantt.component';
     ExpandButtonComponent,
     CalendarComponent,
     DropzoneComponent,
-    GanttComponent
+    GanttComponent,
+    GanttRowComponent
   ],
   imports: [
     CommonModule,

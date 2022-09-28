@@ -1,0 +1,40 @@
+<div class="card">
+    <div class="card-body">
+        <div class="row border border-dark">
+            <div class="col-md-2 col-sm-4 fw-bold gantt-gap pb-3" style="border-right:1px solid black">
+                <div class="row bg-primary text-light">
+                    <span>Tháng</span>
+                </div>
+                <div class="row bg-primary text-light">
+                    <span>Ngày</span>
+                </div>
+                <div class="row text-dark" *ngFor="let item of data">
+                    <span>{{item.taskTitle}}</span>
+
+                </div>
+                <!-- <div class="row text-dark">
+                    <span>Công việc 2</span>
+                </div> -->
+            </div>
+            <div class="col-md-10 col-sm-8 gantt gantt-gap pb-3">
+                <div class="row gantt-row text-light bg-primary fw-bold">
+                    <div style="grid-column-start: 1;grid-column-end: 32; text-align: center">
+                        <label class="month">Tháng 10</label>
+                    </div>
+                </div>
+                <div class="row gantt-row text-dark"
+                    [ngStyle]="{'grid-template-columns': 'repeat('+ganttData.length+', 50px)'}">
+                    <div class="dayofmonth" *ngFor="let item of ganttData">
+                        {{item|date:'dd'}}
+                    </div>
+                </div>
+                <app-gantt-row [ngStyle]="{'grid-template-columns': 'repeat('+ganttData.length+', 50px)'}"
+                    *ngFor="let item of data" class="row gantt-row"
+                    [col_start]="getDifferenceInDays(minDate,item.startAt)===0?1:getDifferenceInDays(minDate,item.startAt)"
+                    [col_end]="getDifferenceInDays(minDate,item.startAt) + getDifferenceInDays(item.startAt,item.endAt) + 1">
+                </app-gantt-row>
+                <!-- <app-gantt-row class="row gantt-row" [col_start]="7" [col_end]="7" [col]="31"> </app-gantt-row> -->
+            </div>
+        </div>
+    </div>
+</div>
