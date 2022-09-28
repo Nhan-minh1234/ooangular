@@ -17,18 +17,26 @@
                 </div> -->
             </div>
             <div class="col-md-10 col-sm-8 gantt gantt-gap pb-3">
-                <div class="row gantt-row text-light bg-primary fw-bold">
-                    <div style="grid-column-start: 1;grid-column-end: 32; text-align: center">
-                        <label class="month">Tháng 10</label>
-                    </div>
+                <div class="row gantt-row text-light bg-primary fw-bold"
+                    [ngStyle]="{'grid-template-columns': 'repeat('+totalCol+', 50px)'}">
+                    <ng-container *ngFor="let item of ganttData">
+                        <div class="test" [ngStyle]="{
+                            'grid-column-start':getDifferenceInDays(minDate,item.list[0])+1,
+                            'grid-column-end':(item.list.length + 1 + getDifferenceInDays(minDate,item.list[0])),
+                            'text-align': 'center'}">
+                            <label class="month">{{item.month|date:'MM-YYYY'}}</label>
+                        </div>
+                    </ng-container>
                 </div>
                 <div class="row gantt-row text-dark"
-                    [ngStyle]="{'grid-template-columns': 'repeat('+ganttData.length+', 50px)'}">
-                    <div class="dayofmonth" *ngFor="let item of ganttData">
-                        {{item|date:'dd'}}
-                    </div>
+                    [ngStyle]="{'grid-template-columns': 'repeat('+totalCol+', 50px)'}">
+                    <ng-container *ngFor="let item of ganttData">
+                        <div class="dayofmonth" *ngFor="let i of item.list">
+                            {{i|date:'dd'}}
+                        </div>
+                    </ng-container>
                 </div>
-                <app-gantt-row [ngStyle]="{'grid-template-columns': 'repeat('+ganttData.length+', 50px)'}"
+                <app-gantt-row [ngStyle]="{'grid-template-columns': 'repeat('+totalCol+', 50px)'}"
                     *ngFor="let item of data" class="row gantt-row"
                     [col_start]="getDifferenceInDays(minDate,item.startAt)===0?1:getDifferenceInDays(minDate,item.startAt)"
                     [col_end]="getDifferenceInDays(minDate,item.startAt) + getDifferenceInDays(item.startAt,item.endAt) + 1">

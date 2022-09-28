@@ -11,12 +11,14 @@
     display: grid;
 }
 
-.moth {
+.month {
     position: sticky;
     right: 0;
     left: 0;
 }
-
+.test{
+    border-right: 1px solid black;
+}
 .gantt-gap>.row {
     padding: 8px 0px;
     border-bottom: 1px solid black;

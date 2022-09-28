@@ -1,5 +1,5 @@
+import * as moment from 'moment';
 import { Component, OnInit } from '@angular/core';
-
 @Component({
   selector: 'app-gantt',
   templateUrl: './gantt.component.html',
@@ -18,32 +18,47 @@ export class GanttComponent implements OnInit {
   },
   {
     startAt: '2022-10-21',
-    endAt: '2022-12-01',
+    endAt: '2022-11-02',
     taskTitle: 'Task 3',
   }]
   ganttData = []
   minDate
+  dateMonthData = {
+    totalDay: 0,
+    minDate: '',
+    maxDate: '',
+  }
+  totalCol = 0
   constructor() { }
 
   ngOnInit(): void {
     this.getDays(this.data)
-    let b = {}
-    this.ganttData.forEach(x => {
-      let a = x.getFullYear() + '-' + x.getMonth()
-      b[a] = (b[a] || 0) + 1
-    })
   }
   getDays(data) {
     let startAt = [...data.map(a => { return new Date(a.startAt) })]
     let endAt = [...data.map(a => { return new Date(a.endAt) })]
     let minDate = new Date(Math.min.apply(null, startAt))
     let maxDate = new Date(Math.max.apply(null, endAt))
-    this.minDate = minDate.toISOString().slice(0, 10)
-    let count = this.getDifferenceInDays(minDate, maxDate)
-    for (let i = 0; i <= count; i++) {
-      let date = new Date(minDate.setDate(minDate.getDate() + 1))
-      this.ganttData.push(date)
+    minDate.setDate(1)
+    this.minDate = moment(minDate).format("YYYY-MM-DD")
+    let monthDiff = maxDate.getUTCMonth() - minDate.getUTCMonth()
+    var a = moment(minDate)
+    var b = moment(maxDate)
+    for (let i = 0; i <= monthDiff; i++) {
+      let month = minDate.getUTCMonth() + 1
+      let year = minDate.getFullYear()
+      let obj = {
+        month: year + '-' + month,
+        list: []
+      }
+      while (minDate.getUTCMonth() + 1 === month) {
+        obj.list.push(moment(minDate).format('YYYY-MM-DD'))
+        minDate.setDate(minDate.getDate() + 1)
+      }
+      this.ganttData.push(obj)
+      this.totalCol = this.totalCol + this.ganttData[i].list.length
     }
+    console.log(this.getDifferenceInDays(this.minDate, this.ganttData[0].list[0]) + this.ganttData[0].list.length)
   }
   getDifferenceInDays(min, max) {
     let minDate = new Date(min)
