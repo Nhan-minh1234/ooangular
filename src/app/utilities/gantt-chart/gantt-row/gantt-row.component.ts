@@ -12,6 +12,7 @@ export class GanttRowComponent implements OnInit {
   @Input() col_end: number = 10
   //@Input() col: number = 32
   //@Input() task_title: string = "Công Việc"
+  @Input() isNode: boolean = false
   constructor() { }
 
   ngOnInit(): void {

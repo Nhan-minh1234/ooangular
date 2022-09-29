@@ -7,18 +7,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GanttComponent implements OnInit {
   data = [{
-    startAt: '2022-10-09',
-    endAt: '2022-10-13',
+    startAt: '2022-10-11',
+    endAt: '2022-10-23',
     taskTitle: 'Task 1',
   },
   {
-    startAt: '2022-10-14',
-    endAt: '2022-10-20',
+    startAt: '2022-10-09',
+    endAt: '2022-12-10',
     taskTitle: 'Task 2',
   },
   {
-    startAt: '2022-10-21',
-    endAt: '2022-11-02',
+    startAt: '2022-10-12',
+    endAt: '2022-10-22',
+    taskTitle: 'Task 3',
+  },
+  {
+    startAt: '2022-11-03',
+    endAt: '2022-11-20',
+    taskTitle: 'Task 3',
+  },
+  {
+    startAt: '2022-11-23',
+    endAt: '2022-12-02',
     taskTitle: 'Task 3',
   }]
   ganttData = []
@@ -33,6 +43,7 @@ export class GanttComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDays(this.data)
+
   }
   getDays(data) {
     let startAt = [...data.map(a => { return new Date(a.startAt) })]
@@ -58,7 +69,14 @@ export class GanttComponent implements OnInit {
       this.ganttData.push(obj)
       this.totalCol = this.totalCol + this.ganttData[i].list.length
     }
-    console.log(this.getDifferenceInDays(this.minDate, this.ganttData[0].list[0]) + this.ganttData[0].list.length)
+    this.scrollToCurrentTask()
+  }
+  scrollToCurrentTask() {
+    document.querySelector('a[data-bs-toggle="tab"][href="#targets"]').addEventListener('shown.bs.tab', function () {
+      let bar = document.querySelector("#bar-node")
+      let gantt = document.querySelector(".gantt")
+      gantt.scrollLeft = (bar as HTMLElement).offsetLeft / 2
+    })
   }
   getDifferenceInDays(min, max) {
     let minDate = new Date(min)
