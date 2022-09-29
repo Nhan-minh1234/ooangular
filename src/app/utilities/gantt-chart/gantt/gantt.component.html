@@ -1,0 +1,48 @@
+<div class="card">
+    <div class="card-body">
+        <div class="row border border-dark">
+            <div class="col-md-2 col-sm-4 fw-bold gantt-gap pb-3" style="border-right:1px solid black">
+                <div class="row bg-primary text-light">
+                    <span>Tháng</span>
+                </div>
+                <div class="row bg-primary text-light">
+                    <span>Ngày</span>
+                </div>
+                <div class="row text-dark" *ngFor="let item of data">
+                    <span>{{item.taskTitle}}</span>
+
+                </div>
+                <!-- <div class="row text-dark">
+                    <span>Công việc 2</span>
+                </div> -->
+            </div>
+            <div class="col-md-10 col-sm-8 gantt gantt-gap pb-3">
+                <div class="row gantt-row text-light bg-primary fw-bold"
+                    [ngStyle]="{'grid-template-columns': 'repeat('+totalCol+', 50px)'}">
+                    <ng-container *ngFor="let item of ganttData">
+                        <div class="test" [ngStyle]="{
+                            'grid-column-start':getDifferenceInDays(minDate,item.list[0])+1,
+                            'grid-column-end':(item.list.length + 1 + getDifferenceInDays(minDate,item.list[0])),
+                            'text-align': 'center'}">
+                            <label class="month">{{item.month|date:'MM, YYYY'}}</label>
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="row gantt-row text-dark"
+                    [ngStyle]="{'grid-template-columns': 'repeat('+totalCol+', 50px)'}">
+                    <ng-container *ngFor="let item of ganttData">
+                        <div class="dayofmonth" *ngFor="let i of item.list">
+                            {{i|date:'dd'}}
+                        </div>
+                    </ng-container>
+                </div>
+                <app-gantt-row [ngStyle]="{'grid-template-columns': 'repeat('+totalCol+', 50px)'}"
+                    *ngFor="let item of data" class="row gantt-row" [isNode]="minDate===item.startAt"
+                    [col_start]="getDifferenceInDays(minDate,item.startAt)+1"
+                    [col_end]="getDifferenceInDays(minDate,item.startAt) + getDifferenceInDays(item.startAt,item.endAt) + 2">
+                </app-gantt-row>
+                <!-- <app-gantt-row class="row gantt-row" [col_start]="7" [col_end]="7" [col]="31"> </app-gantt-row> -->
+            </div>
+        </div>
+    </div>
+</div>

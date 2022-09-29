@@ -8,21 +8,69 @@
             </div>
         </div>
     </div>
-    <div class="col-4" *ngFor="let i of[0,1,2,3,4,5,6,7,8,9]">
-        <div class="card intro rounded">
+    <div class="col-md-4 col-sm-12">
+        <div class="card intro rounded ribbon-box">
             <div class="card-body">
-                <div class="d-flex flex-column justify-content-between align-items-center">
-                    <img src="assets/images/users/avatar-2.jpg" class="avatar-md rounded-circle" alt="avatar">
-                    <h4 class="text-dark mb-0">Nguyễn Hoài Thương {{i}}</h4>
-                    <i>Team kĩ thuật</i>
-                    <div class="d-flex justify-content-evenly w-75 mt-3">
-                        <div class="task-report">
-                            <h4><i class="uil-receipt-alt"></i>20</h4>
-                            <b>Công việc</b>
+                <h4 class="card-title mb-0 border-bottom border-3 text-dark users-status-title border-success">
+                    Đã xử lý
+                </h4>
+                <div class="list-group mt-1">
+                    <div class="list-group-item" *ngFor="let i of [1,1]">
+                        <div class="d-flex align-items-center">
+                            <img src="assets/images/users/avatar-2.jpg" class="avatar-sm rounded-circle" alt="avatar">
+                            <div class="ms-1 d-flex flex-column">
+                                <h5 class="text-dark mb-0">Nguyễn Hoài Thương {{i}}</h5>
+                                <i class="fs-6">Xem 1 lần, lần cuối: 11/08/2022 10:08</i>
+                            </div>
                         </div>
-                        <div class="task-report">
-                            <h4><i class="uil-receipt-alt text-success"></i>10</h4>
-                            <b>Hoàn thành</b>
+                        <div class="text-end">
+                            <span class="badge bg-primary me-1">Kĩ thuật</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-12">
+        <div class="card intro rounded ribbon-box">
+            <div class="card-body">
+                <h4 class="card-title mb-0 border-bottom border-3 text-dark users-status-title border-primary">
+                    Đang xử lý
+                </h4>
+                <div class="list-group mt-1">
+                    <div class="list-group-item" *ngFor="let i of [1,1]">
+                        <div class="d-flex align-items-center">
+                            <img src="assets/images/users/avatar-2.jpg" class="avatar-sm rounded-circle" alt="avatar">
+                            <div class="ms-1 d-flex flex-column">
+                                <h5 class="text-dark mb-0">Nguyễn Hoài Thương {{i}}</h5>
+                                <i class="fs-6">Xem 1 lần, lần cuối: 11/08/2022 10:08</i>
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <span class="badge bg-primary me-1">Kĩ thuật</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-12">
+        <div class="card intro rounded ribbon-box">
+            <div class="card-body">
+                <h4 class="card-title mb-0 border-bottom border-3 text-dark users-status-title border-danger">
+                    Chưa xử lý
+                </h4>
+                <div class="list-group mt-1">
+                    <div class="list-group-item" *ngFor="let i of [1,1]">
+                        <div class="d-flex align-items-center">
+                            <img src="assets/images/users/avatar-2.jpg" class="avatar-sm rounded-circle" alt="avatar">
+                            <div class="ms-1 d-flex flex-column">
+                                <h5 class="text-dark mb-0">Nguyễn Hoài Thương {{i}}</h5>
+                                <i class="fs-6">Xem 1 lần, lần cuối: 11/08/2022 10:08</i>
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <span class="badge bg-primary me-1">Kĩ thuật</span>
                         </div>
                     </div>
                 </div>
@@ -30,22 +78,30 @@
         </div>
     </div>
 </div>
-<nav>
-    <ul class="pagination">
-        <li class="page-item">
-            <a class="page-link" href="javascript: void(0);" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-            </a>
-        </li>
-        <li class="page-item"><a class="page-link" href="javascript: void(0);">1</a></li>
-        <li class="page-item"><a class="page-link" href="javascript: void(0);">2</a></li>
-        <li class="page-item"><a class="page-link" href="javascript: void(0);">3</a></li>
-        <li class="page-item"><a class="page-link" href="javascript: void(0);">4</a></li>
-        <li class="page-item"><a class="page-link" href="javascript: void(0);">5</a></li>
-        <li class="page-item">
-            <a class="page-link" href="javascript: void(0);" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-            </a>
-        </li>
-    </ul>
-</nav>
+<div class="row">
+    <div class="d-flex justify-content-between">
+        <h3 class="text-dark">Danh sách được xem</h3>
+        <div class="w-40">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <span class="input-group-text text-primary"><i class="uil-search-alt"></i></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4" *ngFor="let i of [1,2,3,4]">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <img src="assets/images/users/avatar-2.jpg" class="avatar-sm rounded-circle" alt="avatar">
+                    <div class="ms-1 d-flex flex-column">
+                        <h5 class="text-dark mb-0">Nguyễn văn A</h5>
+                        <i class="fs-6">Xem 1 lần, lần cuối: 11/08/2022 10:08</i>
+                    </div>
+                </div>
+                <div class="text-end">
+                    <span class="badge bg-primary me-1">Quản lý</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

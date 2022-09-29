@@ -32,7 +32,7 @@
 @keyframes intro {
     0% {
         opacity: 0;
-        margin-top: 20px;
+        margin-top: 10px;
     }
 
     100% {
@@ -42,5 +42,6 @@
 }
 
 .intro {
-    animation: intro 0.3s linear;
+    animation: intro 0.3s ease-out;
+    animation-timing-function: cubic-bezier(0.25,0.1,0.25,1)
 }
