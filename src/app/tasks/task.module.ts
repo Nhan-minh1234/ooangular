@@ -69,12 +69,8 @@ import { TopicDetailComponent } from './topic-detail/topic-detail.component';
     TaskSampleManagerComponent,
     NewReportComponent,
     ImportReportComponent,
-<<<<<<< HEAD
-
-=======
     TopicComponent,
     TopicDetailComponent
->>>>>>> 8d5d6b2b07438edd218c5333e07956a5f076ebf3
   ],
   imports: [
     CommonModule,
