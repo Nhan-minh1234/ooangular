@@ -16,6 +16,7 @@ export class SidebarComponent implements OnInit {
   }
 
   routeNavigator(route) {
+    console.log(route)
     this.router.navigate([route]);
     this.router.isActive(route, true);
   }

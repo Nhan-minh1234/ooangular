@@ -22,7 +22,7 @@ let data = {
         'previousStep': 'Quay lại',
         'finishCol': 'Kết thúc',
         'enterInfomation':'1.Nhập dữ liệu hồ sơ',
-        'relatedList':'2.Danh sách liên quan'
+        'relatedList':'2.Danh sách được chia sẻ'
     }
 };
 export default data;

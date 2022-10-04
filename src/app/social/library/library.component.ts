@@ -23,9 +23,6 @@ export class LibraryComponent implements OnInit {
   ngOnInit(): void {
     this.gData()
   }
-  uploadFile() {
-    document.getElementById("files_upload").click();
-  }
   lookup() {
     this.editable = false;
   }

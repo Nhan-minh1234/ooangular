@@ -22,7 +22,7 @@ let data = {
         'previousStep': 'Quay lại',
         'finishCol': 'Kết thúc',
         'enterInfomation':'1.Thêm trình ký',
-        'relatedList':'2.Danh sách liên quan'
+        'relatedList':'2.Người ký'
     }
 };
 export default data;

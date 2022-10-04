@@ -103,7 +103,7 @@ export class NewTaskComponent implements OnInit {
   ngOnDestroy(): void {
   }
   goBack() {
-    this.router.navigate(['/tasks/task-list']);
+    this.location.back()
   }
   getProjectList() {
 

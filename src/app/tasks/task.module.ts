@@ -37,6 +37,8 @@ import { TaskSampleDetailComponent } from './task-sample-detail/task-sample-deta
 import { TaskSampleManagerComponent } from './task-sample-manager/task-sample-manager.component';
 import { NewReportComponent } from './new-report/new-report.component';
 import { ImportReportComponent } from './import-report/import-report.component';
+import { TopicComponent } from './topic/topic.component';
+import { TopicDetailComponent } from './topic-detail/topic-detail.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,12 @@ import { ImportReportComponent } from './import-report/import-report.component';
     TaskSampleManagerComponent,
     NewReportComponent,
     ImportReportComponent,
+<<<<<<< HEAD
 
+=======
+    TopicComponent,
+    TopicDetailComponent
+>>>>>>> 8d5d6b2b07438edd218c5333e07956a5f076ebf3
   ],
   imports: [
     CommonModule,
