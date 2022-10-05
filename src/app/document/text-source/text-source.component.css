@@ -1,3 +1,11 @@
 .kichthuoc{
     font-size: 18px;
 }
+.idcangiua {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding: 10px;
+        margin: 10px auto;
+    }
