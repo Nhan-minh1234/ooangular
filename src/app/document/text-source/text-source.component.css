@@ -9,3 +9,10 @@
         padding: 10px;
         margin: 10px auto;
     }
+    .border-color{
+        border-color: #127b90;
+    }
+    .border-style{
+        border-style: solid;
+    }
+    
