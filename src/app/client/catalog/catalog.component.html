@@ -20,11 +20,11 @@
                                 <td class="table-user">
                                     {{item[keyFilter.key]}}
                                 </td>
-                                <td class="table-action">
-                                    <a href="javascript: void(0);" class="action-icon"> <i
-                                            class="mdi mdi-pencil"></i></a>
-                                    <a href="javascript: void(0);" class="action-icon"> <i
-                                            class="mdi mdi-delete"></i></a>
+                                <td align="center" style="width: 20%;">
+                                    <button type="submit" name="ctl22$DANHMUC$ctl02$btnDel" 
+                                    value="Xóa" class="btn btn-danger rounded-pill" onclick="return confirm('Bạn chắc chắn xóa ?');" id="ctl22_DANHMUC_btnDel_0">
+                                    <i class="uil-trash-alt"></i></button>
+                                    <button type="button" class="btn btn-danger rounded-pill"><i class="uil-edit-alt"></i></button>
                                 </td>
                             </tr>
                         </tbody>
@@ -32,27 +32,14 @@
         </div>
         <div class="col-3">
             <div class="list-group">
-                <div class="list-group-item list-group-item-custom-dark">
-                    Bộ lọc
-                </div>
-                <div (click)="filter('loaikhach','Loại khách hàng')" class="list-group-item pointer">
-                    Loại khách hàng 
-                </div>
-                
-                <div (click)="filter('doanhnghiep','Loại doanh nghiệp')" class="list-group-item pointer">
-                    Loại doanh nghiệp
-                </div>
-                
-                <div (click)="filter('nganhnghe','Loại ngành nghề')" class="list-group-item pointer">
-                    Loại ngành nghề 
-                </div>
-                
-                <div (click)="filter('hopdong','Loại hợp đồng')" class="list-group-item pointer">
-                    Loại hợp đồng
-                </div>                
-                <div (click)="filter('sanpham','Loại sản phẩm')" class="list-group-item pointer">
-                    Loại sản phẩm - dịch vụ
-                </div>
+                <label for="example-multiselect" class="form-label list-group-item list-group-item-custom-dark">Bộ lọc</label>
+                    <select id="example-multiselect" multiple class="form-control">
+                        <option (click)="filter('loaikhach','Loại khách hàng')" class="list-group-item pointer">Loại khách hàng </option>
+                        <option (click)="filter('doanhnghiep','Loại doanh nghiệp')" class="list-group-item pointer">Loại doanh nghiệp</option>
+                        <option (click)="filter('nganhnghe','Loại ngành nghề')" class="list-group-item pointer">Loại ngành nghề </option>
+                        <option (click)="filter('hopdong','Loại hợp đồng')" class="list-group-item pointer">Loại hợp đồng </option>
+                        <option (click)="filter('sanpham','Loại sản phẩm')" class="list-group-item pointer">Loại sản phẩm - dịch vụ</option>
+                    </select>
             </div>
         </div>
     </div>

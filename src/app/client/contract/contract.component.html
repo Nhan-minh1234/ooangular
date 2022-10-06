@@ -4,11 +4,11 @@
             <h4 class="page-title">Danh sách hợp đồng</h4>
         </div>
     </div>
-
-    <table class="table mb-0">
+    <table id = "basic-datatable"  class = "table table-bordered table-striped
+    border-color border-style table-hover table-centered mb-2 dt-responsive nowrap w-100" >
         <thead>
-            <tr>
-                <th scope="col">STT</th>
+            <tr  class="table-success">
+                <th scope="col" class="d-flex justify-content-center">STT</th>
                 <th scope="col">Số hợp đồng</th>
                 <th scope="col">Ngày ký</th>
                 <th scope="col">Giá trị</th>
@@ -19,11 +19,11 @@
         <tbody>
             <tr *ngFor="let item of contractListData | paginate: config" data-bs-toggle="modal"
                 data-bs-target="#scrollable-modal">
-                <th scope="row">{{item.id}}</th>
-                <td>{{item.contract_number}}</td>
+                <td scope="row" align="center">{{item.id}}</td>
+                <td >{{item.contract_number}}</td>
                 <td>{{item.date}}</td>
-                <td>{{item.value}}</td>
-                <td>{{item.customers}}</td>
+                <td style="width: 10%;">{{item.value}}</td>
+                <td style="width: 20%;">{{item.customers}}</td>
 
             </tr>
         </tbody>

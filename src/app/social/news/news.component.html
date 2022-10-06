@@ -22,15 +22,18 @@
     </div>
 
     <div class="row">
-        <div class="col-10">
+        <div class="col-9">
             <div class="page-title-box">
                 <h4 class="page-title">{{getLabel('pageTitle')}}</h4>
             </div>
         </div>
-        <div class="col-2 my-auto">
-            <abbr data-bs-toggle="modal" data-bs-target="#new-news-modal" style="cursor: pointer;" [title]="'Thêm mới'">
-                <img style="width:40px;height:auto; float: right !important;" src="assets/imgs/plus.png" />
-            </abbr>
+        <div class="col-3 my-auto">
+            <div class="list-group">
+                <button  type="button" class="btn btn-danger rounded" 
+            data-bs-toggle="modal" data-bs-target="#new-news-modal" 
+            style="cursor: pointer;"src="assets/imgs/plus.png"> 
+            Thêm mới</button>
+            </div>
         </div>
     </div>
     <div id="new-news-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
@@ -122,12 +125,12 @@
         </div>
     </div>
     <!-- /////////////////// Pagination -->
-    <div class="list row">
-        <div class="col-md-9">
+    <div class="list row col-9">
+        <div class="col-md-8">
             <pagination-controls id="paging" [previousLabel]="getLabel('previousBtn')" [nextLabel]="getLabel('nextBtn')"
                 responsive="true" responsive="true" (pageChange)="handlePageChange($event)"></pagination-controls>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             {{getLabel("itemsPerPage")}}:
             <select style="border: solid 1px rgb(230, 229, 229);" (change)="handlePageSizeChange($event)">
                 <option *ngFor="let size of pageSizes" [ngValue]="size">

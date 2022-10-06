@@ -72,19 +72,19 @@
     <!--End page title-->
     <div class="row">
         <div class="col-9">
-            <table id="basic-datatable" class="table table-hover table-bordered table-centered mb-0">
+            <table id="basic-datatable" class="table table-hover table-bordered table-centered mb-2">
                 <thead class="table-dark">
                     <tr>
                         <th>{{getLabel('imgCol')}}</th>
-                        <th>Action</th>
+                        <th >Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="myTableRow" *ngFor="let item of imagesData | paginate: config">
-                        <td>
+                        <td style="width: 100%;">
                             {{item.title}}
                         </td>
-                        <td class="table-action">
+                        <td class="table-action" style="width: 50%;">
                             <div class="d-flex">
                                 <div id="tooltip-lookup">
                                     <button type="button" class="btn btn-primary" data-bs-container="#tooltip-lookup"
@@ -181,7 +181,7 @@
         </div>
     </div>
     <!-- /////////////////// Pagination -->
-    <div class="list row">
+    <div class="list row col-9">
         <div class="col-md-8">
             <pagination-controls id="paging" [previousLabel]="getLabel('previousBtn')" [nextLabel]="getLabel('nextBtn')"
                 responsive="true" responsive="true" (pageChange)="handlePageChange($event)"></pagination-controls>

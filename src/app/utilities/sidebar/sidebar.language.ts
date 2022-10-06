@@ -14,7 +14,7 @@ let data = [
       '/task-list',
       '/task-report',      
       '/task-samples',
-      "/new-report",
+      "/report",
       "/periodical-report",
       "/project",
       "/project-group",   

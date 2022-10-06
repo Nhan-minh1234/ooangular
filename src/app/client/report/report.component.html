@@ -1,175 +1,180 @@
-<div class="container-fluid">
-    <div class="col-11">
-        <div class="page-title-box">
-            <h4 class="page-title">Báo cáo</h4>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-9 row"> 
-            <div class="mb-3 col-6">
-                <label for="example-select" class="form-label">Loại khách hàng</label>
-                <select class="form-select" id="example-select">
-                    <option>Tất cả</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-            </div>
-            <div class="mb-3 col-6">
-                <label for="example-select" class="form-label">Loại hợp đồng</label>
-                <select class="form-select" id="example-select">
-                    <option>Tất cả</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-            </div>
-            <div class="mb-3 col-6">
-                <label for="example-select" class="form-label">Loại hình</label>
-                <select class="form-select" id="example-select">
-                    <option>Tất cả</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-            </div>
-            <div class="mb-3 col-6">
-                <label for="example-select" class="form-label">Ngành nghề</label>
-                <select class="form-select" id="example-select">
-                    <option>Tất cả</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-            </div>
-            <div class="mb-3 col-6">
-                <label for="example-select" class="form-label">Tỉnh/Thành</label>
-                <select (change)="setProvincesCode($event.target.value)" class="form-select" id="example-select">
-                    <option [value]="item.codename" *ngFor="let item of countryData">{{item.name}}</option>
-                </select>
-            </div>
-            <div class="mb-3 col-6">
-                <label for="example-select" class="form-label">Quận/Huyện</label>
-                <select class="form-select" id="example-select">
-                    <option *ngFor="let item of districtsData">{{item.name}}</option>
-                </select>
-            </div>>
-
-            <div class="row">
-                <div class="mb-3 col-9 row">
-                    <div class="mb-3 col-6">
-                        <th>Sản phẩm</th>
-                        <ul class="list-group mb-3">
-                            <li class="list-group-item  ">
-                                <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                                First checkbox
-                            </li>
-                            <li class="list-group-item ">
-                                <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                                Second checkbox
-                            </li>
-                            <li class="list-group-item ">
-                                <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                                Third checkbox
-                            </li>
-                            <li class="list-group-item ">
-                                <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                                Fourth checkbox
-                            </li>
-                        </ul>
+<!--Làm mới lại tính năng báo cáo trong modul Khách hàng-->
+<div class="list-group-item active mb-3">
+    <b>BÁO CÁO</b> </div>
+<div class="row">
+    <div class="col-lg-9">
+        <div class="row">
+            <div class="col-6">
+                <div class="mb-2 row">
+                    <div class="col-4">
+                        <label for="simpleinput" class="form-label"> Loại khách hàng :</label>
                     </div>
-                    <div class="mb-3 col-6">
-                        <div class="mb-3 ">
-                            <label for="example-select" class="form-label">Giá trị hợp đồng</label>
-                            <select class="form-select" id="example-select">
-                                <option></option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>  
-                        <div class="mb-3 ">
-                            <label for="example-number" class="form-label">Từ</label>
-                            <input class="form-control" id="example-number" type="number" >
-                        </div>       
-                        <div class="mb-3 ">
-                            <label for="example-number" class="form-label">Đến</label>
-                            <input class="form-control" id="example-number" type="number" >
-                        </div>       
+                    <div class="col-8">
+                        <select class="form-select" id="example-select">
+                            <option> Tất cả </option>
+                            <option> Bệnh viện </option>
+                            <option> Cá nhân - thuế </option>
+                            <option> Đối tác </option>
+                        </select>
                     </div>
-                    <div class="mb-3 ">
-                        <label for="simpleinput" class="form-label">Ngày thành lập:</label>
-                        <div class="mb-3 col-6">Từ:
-                            <input  class="form-control" id="example-date"
-                                type="date" name="date" >
-                        </div>
-                        <div class="mb-3 col-6">Đến:
-                            <input  class="form-control" id="example-date"
-                                type="date" name="date">
-                        </div>
-                    </div>                    
                 </div>
             </div>
-
-        </div>
-        <div class="col-3">
-            <div class= "d-grid">
-                    <button type="button" (click)="eData()" class="btn btn-primary">Tìm kiếm</button>
+            <!---->
+            <div class="col-6">
+                <div class="mb-2 row">
+                    <div class="col-4">
+                        <label class="form-label"> Loại hợp đồng : </label>
+                    </div>
+                    <div class="col-8">
+                        <select class="form-select" id="example-select">
+                            <option> Tất cả </option>
+                            <option> Kiểm định </option>
+                            <option> Tư vấn </option>
+                            <option> Bảo trì </option>
+                        </select>
+                    </div>
+                </div>
             </div>
-            <div  class = "d-grid" >
-                <button type = "button"  class = "btn btn-primary" > Xuất File </button >
+            <!---->
+            <div class="col-6">
+                <div class="mb-2 row">
+                    <div class="col-4">
+                        <label for="simpleinput" class="form-label"> Loại hÌnh  :</label>
+                    </div>
+                    <div class="col-8">
+                        <select class="form-select" id="example-select">
+                            <option> Tất cả </option>
+                            <option> Bệnh viện </option>
+                            <option> Cá nhân  </option>
+                            <option> Cổ phần </option>
+                        </select>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        
-            <div class="list-group-item col-lg-12 mb-3">
+            <!---->
+            <div class="col-6">
+                <div class="mb-2 row">
+                    <div class="col-4">
+                        <label class="form-label"> Ngành nghề : </label>
+                    </div>
+                    <div class="col-8">
+                        <select class="form-select" id="example-select">
+                            <option> Tất cả </option>
+                            <option> Bệnh viện </option>
+                            <option> Vận tải </option>
+                            <option> Xây dựng </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!---->
+            <div class="col-6">
+                <div class="row mb-2">
+                    <div class=" col-4">
+                        <label for="example-select" class="form-label">Tỉnh/Thành</label>
+                    </div>
+                    <div class="col-8">
+                        <select (change)="setProvincesCode($event.target.value)" class="form-select" id="example-select">
+                            <option [value]="item.codename" *ngFor="let item of countryData">{{item.name}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!---->
+            <div class="col-6">
+                <div class="row mb-2">
+                    <div class=" col-4">
+                        <label for="example-select" class="form-label">Quận/Huyện</label>
+                    </div>
+                    <div class="col-8">
+                        <select class="form-select" id="example-select">
+                            <option *ngFor="let item of districtsData">{{item.name}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!---->
+            <div class="col-6">
+                <th>Sản phẩm</th>
+                    <ul class="list-group mb-2">
+                        <li class="list-group-item mb-1 ">
+                            <input class="form-check-input mb-1" type="checkbox" value="" aria-label="...">
+                                First checkbox
+                        </li>
+                        <li class="list-group-item mb-1 ">
+                            <input class="form-check-input mb-1" type="checkbox" value="" aria-label="...">
+                                Second checkbox
+                        </li>
+                        <li class="list-group-item mb-1 ">
+                            <input class="form-check-input mb-1" type="checkbox" value="" aria-label="...">
+                                Third checkbox
+                        </li>
+                        <li class="list-group-item mb-1 ">
+                            <input class="form-check-input mb-1" type="checkbox" value="" aria-label="...">
+                                Fourth checkbox
+                        </li>
+                    </ul>
+            </div>
+            <!---->
+            <div class="col-6">
+                <th class="mb-2" >Giá trị HD ( chọn đơn vị tính )</th>
+                    <div class="mb-2">
+                        <input type="text" id="example-palaceholder" class="form-control mb-2" placeholder="Từ">
+                        <input type="text" id="example-palaceholder" class="form-control mb-2" placeholder="Đến">
+                    </div>
+                <th class="mb-2" >Ngày thành lập </th>
+                    <div class="mb-2">
+                        <input class="form-control mb-2" id="example-date" type="date" name="date">
+                        <input class="form-control" id="example-date" type="date" name="date">
+                    </div>
+            </div>
+            <!---->
+            <div class="list-group-item col-12 mb-2">
                 <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
                 <label class="text-danger">Tất cả</label>
             </div>
-            <div class="list-group-item col-3 mb-3">
+            <div class="list-group-item col-3 mb-2">
                 <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
                 First checkbox
             </div>
-            <div class="list-group-item col-3 mb-3">
+            <div class="list-group-item col-3 mb-2">
                 <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
                 First checkbox
             </div>
-            <div class="list-group-item col-3 mb-3">
+            <div class="list-group-item col-3 mb-2">
                 <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
                 First checkbox
             </div>
-            <div class="list-group-item col-3 mb-3">
+            <div class="list-group-item col-3 mb-2">
                 <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
                 First checkbox
             </div>
-            <div class="list-group-item col-3 mb-3">
+            <div class="list-group-item col-3 mb-2">
                 <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
                 First checkbox
             </div>
-            <div class="list-group-item col-3 mb-3">
+            <div class="list-group-item col-3 mb-2">
                 <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
                 First checkbox
             </div>
-            <div class="list-group-item col-3 mb-3">
-                <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                First checkbox
-            </div><div class="list-group-item col-3 mb-3">
+            <div class="list-group-item col-3 mb-2">
                 <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
                 First checkbox
             </div>
+            <div class="list-group-item col-3 mb-2">
+                <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                First checkbox
+            </div>
+        </div>
     </div>
+    <div class="col-3">
+        <div>
+            <input type="submit" name="ctl22$Tim" class="btn btn-danger mb-2 " value="Tìm" id="ctl22_Tim"  (click)="eData()"   style="width:100%;">
+            <input type="submit" name="ctl22$btnExportfile" value="Xuất File" id="ctl22_btnExportfile" class="btn btn-danger" style="width:100%;">
+        </div>
+    </div>
+</div>
     <div *ngIf="customersListData" class="row">
         <table class="table mb-0">
             <thead>
@@ -191,4 +196,4 @@
             </tbody>
         </table>
     </div>
-</div>
+    
