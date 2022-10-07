@@ -11,6 +11,11 @@ import { Options } from 'selenium-webdriver';
 export class DashboardLayoutComponent implements OnInit {
 
   constructor(public generalServ: GeneralService) { }
+  dateSelectedEvents
+  getEvents(a) {
+    this.dateSelectedEvents = a
+  }
+  events = []
 
   ngOnInit(): void {
   }

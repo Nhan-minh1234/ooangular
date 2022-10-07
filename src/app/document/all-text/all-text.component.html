@@ -4,19 +4,19 @@
         <li class="nav-item">
             <a href="#incoming-text" data-bs-toggle="tab" aria-expanded="false" class="nav-link rounded-0 active">
                 <i class="mdi mdi-home-variant d-md-none d-block"></i>
-                <span class="d-none d-md-block kichthuocnho">Văn bản đến</span>
+                <span class="d-none d-md-block kichthuocnho"><b>Văn bản đến</b></span>
             </a>
         </li>
         <li class="nav-item">
             <a href="#text-go" data-bs-toggle="tab" aria-expanded="true" class="nav-link rounded-0 ">
                 <i class="mdi mdi-account-circle d-md-none d-block"></i>
-                <span class="d-none d-md-block kichthuocnho">Văn bản đi</span>
+                <span class="d-none d-md-block kichthuocnho"><b>Văn bản đi</b></span>
             </a>
         </li>
         <li class="nav-item">
             <a href="#internal-text" data-bs-toggle="tab" aria-expanded="false" class="nav-link rounded-0">
                 <i class="mdi mdi-settings-outline d-md-none d-block"></i>
-                <span class="d-none d-md-block kichthuocnho">Văn bản nội bộ</span>
+                <span class="d-none d-md-block kichthuocnho"><b>Văn bản nội bộ</b></span>
             </a>
         </li>
     </ul>
@@ -37,20 +37,23 @@
                 </div>
             </div>
             <!--Nội dung-->
-            <div class="list-group-item active mb-3"><i >DANH SÁCH VĂN BẢN ĐẾN</i></div>
+            <div class="list-group-item active mb-3"><i ><b>DANH SÁCH VĂN BẢN ĐẾN</b></i></div>
             <div class="row">
                 <div class="col-9">
-                    <table  id = "basic-datatable"  class = "table table-bordered table-striped
-                    border-color border-style table-hover table-centered mb-2 dt-responsive nowrap w-100" > 
-                    <tbody > 
-                        <tr > 
+                    <table  id = "basic-datatable"  class = "table table-bordered table-striped border-color
+                    border-style table-hover table-centered mb-2 dt-responsive nowrap w-100" > 
+                    <thead>
+                        <tr class="table-success" > 
                             <th  class="d-flex justify-content-center"  > STT </th>
                             <th > Số VB </th > 
                             <th >Trích yếu </th > 
                             <th > Nơi nhận </th > 
                             <th > Ngày PH </th > 
                             <th > Nơi soạn thảo </th > 
-                        </tr > 
+                        </tr >
+                    </thead>
+                         
+                    <tbody class="border-color"> 
                         <tr *ngFor="let i of incomingtextsData |paginate: config">
                             <td align="center">{{i.id}}</td>
                             <td >{{i.abstract}}</td>
@@ -105,7 +108,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" id="standard-modalLabel">CHẾ ĐỘ XEM</h4>
+                            <h4 class="modal-title" id="standard-modalLabel"><b>CHẾ ĐỘ XEM</b></h4>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
                         </div>
                     <div class="modal-body">
@@ -202,21 +205,23 @@
             </div>
             <!--Nội dung-->
             <div class="container-fluid">
-                <div class="list-group-item active mb-2"> <i>DANH SÁCH VĂN BẢN ĐI</i></div> 
+                <div class="list-group-item active mb-2"> <i><b>DANH SÁCH VĂN BẢN ĐI</b></i></div> 
                 <div class="row">
                     <div class="col-9">
-                        <table  id = "basic-datatable"  class = "table table-bordered table-striped
-                        border-color border-style table-hover table-centered mb-2 dt-responsive nowrap w-100" > 
-                            <tbody> 
-                                <tr > 
+                        <table  id = "basic-datatable"  class = "table table-bordered table-striped border-color
+                         border-style table-hover table-centered mb-2 dt-responsive nowrap w-100" > 
+                            <thead>
+                                <tr class="table-success"> 
                                     <th class="d-flex justify-content-center" > STT </th>
                                     <th > Số VB </th > 
                                     <th > Trích yếu </th > 
                                     <th > Nơi nhận </th > 
                                     <th > Ngày PH </th > 
                                     <th > Nơi soạn thảo </th > 
-                                </tr > 
-                            
+                                </tr >
+                            </thead> 
+
+                            <tbody class="border-color">
                                 <tr *ngFor="let i of incomingtextsData |paginate: config">
                                     <td align="center">{{i.id}}</td>
                                     <td>{{i.abstract}}</td>
@@ -293,22 +298,24 @@
             </div>
             <!--Nội dung-->
             <div class="container-fluid">
-                <div class="list-group-item active mb-2"> <i>DANH SÁCH VĂN BẢN NỘI BỘ</i></div> 
+                <div class="list-group-item active mb-2"> <i><b>DANH SÁCH VĂN BẢN NỘI BỘ</b></i></div> 
                 <div class="row">
                     <div class="col-9">
                         <div class="container">
-                            <table id = "basic-datatable" class = "table table-bordered table-striped
-                             border-color border-style table-hover table-centered mb-0 dt-responsive nowrap w-100 " >
-                                <tbody> 
-                                    <tr > 
+                            <table id = "basic-datatable" class = "table table-bordered table-striped border-color
+                             border-style table-hover table-centered mb-0 dt-responsive nowrap w-100 " >
+                                 <thead>
+                                    <tr class="table-success" > 
                                         <th class="d-flex justify-content-center" > STT </th>
                                         <th > Số VB </th > 
                                         <th > Trích yếu </th > 
                                         <th > Nơi nhận </th > 
                                         <th > Ngày PH </th > 
                                         <th > Nơi soạn thảo </th > 
-                                    </tr > 
-                               
+                                    </tr >
+                                 </thead>
+                                     
+                                <tbody class="border-color">
                                     <tr 
                                     *ngFor="let i of incomingtextsData |paginate: config">
                                         <td align="center">{{i.id}}</td>

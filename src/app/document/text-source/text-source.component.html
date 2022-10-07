@@ -1,15 +1,17 @@
-<div class="list-group-item active mb-2">NGUỒN VĂN BẢN</div>
+<div class="list-group-item active mb-2"><b>NGUỒN VĂN BẢN</b></div>
 <div class="row">
 	<div class="col-9">
-		<table  id = "basic-datatable"  class ="table table-bordered 
+		<table  id = "basic-datatable"  class ="table table-bordered border-color 
 			border-color border-style dt-responsive nowrap w-100 mb-2" > 
-			<tbody>
-				<tr class="header"> 
+			<thead>
+				<tr class="header table-success"> 
 					<th  class="d-flex justify-content-center" scope="col" > STT </th>
 					<th scope="col"> TÊN NGUỒN VĂN BẢN </th > 
 					<th scope="col">&nbsp;</th >  
 				</tr >
+			</thead>
 				
+			<tbody class="border-color">	
 				<tr class="normal" *ngFor="let i of textsourceDuLieu |paginate: config">
 					<td align="center" style="width: 10%;">
 					<span style="display:inline-block;width:100%;">{{i.nume_rical_order}}</span></td>

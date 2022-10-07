@@ -20,18 +20,21 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-10">
+        <div class="col-9">
             <div class="page-title-box">
                 <h4 class="page-title">Công việc mẫu</h4>
             </div>
         </div>
-        <div class="col-2 my-auto">
-            <abbr style="cursor: pointer;" [title]="'Thêm mới'" data-bs-toggle="modal"
-                data-bs-target="#task-sample-manager-modal">
-                <img style="width:40px;height:auto; float: right !important;" src="assets/imgs/plus.png" />
-            </abbr>
+        <div class="col-3 my-auto">
+            <div class="list-group">
+                <button  type="button" class="btn btn-success rounded" 
+            data-bs-toggle="modal" data-bs-target="#task-sample-manager-modal" 
+            style="cursor: pointer;"src="assets/imgs/plus.png"> 
+            Thêm mới</button>
+            </div>
         </div>
     </div>
+    
     <div class="row">
         <div class="col-9">
             <table class="table table-centered table-striped table-centered mb-0 table-hover">

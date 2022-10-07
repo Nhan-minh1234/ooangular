@@ -20,19 +20,22 @@
             </div>
         </div>
     </div>
-
     <div class="row">
-        <div class="col-10">
+        <div class="col-9">
             <div class="page-title-box">
                 <h4 class="page-title">{{getLabel('pageTitle')}}</h4>
             </div>
         </div>
-        <div class="col-2 my-auto">
-            <abbr data-bs-toggle="modal" data-bs-target="#standard-modal" style="cursor: pointer;" [title]="'Thêm mới'">
-                <img style="width:40px;height:auto; float: right !important;" src="assets/imgs/plus.png" />
-            </abbr>
+        <div class="col-3 my-auto">
+            <div class="list-group">
+                <button  type="button" class="btn btn-success rounded" 
+            data-bs-toggle="modal" data-bs-target="#standard-modal" 
+            style="cursor: pointer;"src="assets/imgs/plus.png"> 
+            Thêm mới</button>
+            </div>
         </div>
     </div>
+    
     <div id="image-folder-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-lg">

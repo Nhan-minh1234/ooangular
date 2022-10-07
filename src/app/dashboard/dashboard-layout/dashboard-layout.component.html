@@ -280,7 +280,8 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="tab-pane show active" id="calendar"> lịch thêm vào đây</div>
+                                    <div class="tab-pane show active" id="calendar"> 
+                                        <app-calendar [eventList]="events" (getEvents)="getEvents($event)"></app-calendar></div>
                                     <div class="d-flex justify-content-end">
                                         <button [routerLink]="'/social/notification'" type="button" class="btn btn-info"> Xem tiếp <i class='uil-angle-double-right'></i></button>
                                     </div>

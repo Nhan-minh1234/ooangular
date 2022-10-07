@@ -22,20 +22,22 @@
     </div>
 
     <div class="row">
-        <div class="col-10">
+        <div class="col-9">
             <div class="page-title-box">
                 <h4 class="page-title">{{getLabel('pageTitle')}}</h4>
             </div>
         </div>
-        <div class="col-2 my-auto" style="position:fixed;right:0; top:15%;">
-            <abbr style="cursor: pointer;" [title]="getLabel('newBtn')">
-                <!--<img (click)="openNewTaskModal()" style="width:40px;height:auto; float: right !important;"
-                    src="assets/imgs/plus.png" />-->
-                <img (click)="openNewEvent()" style="width:40px;height:auto; float: right !important;"
-                    src="assets/imgs/plus.png" />
-            </abbr>
+        <div class="col-3 my-auto">
+            <div class="list-group">
+                <button  type="button" class="btn btn-success rounded" 
+            data-bs-toggle="modal" data-bs-target="#new-news-modal" 
+            style="cursor: pointer;" [title]="getLabel('newBtn')" img (click)="openNewEvent()" src="assets/imgs/plus.png"> 
+            Thêm mới sự kiện</button>
+            </div>
         </div>
     </div>
+
+    
     <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
         <li (click)="changeTabs(true)" class="nav-item">
             <a data-bs-toggle="tab" aria-expanded="false" class="nav-link rounded-0 active">
