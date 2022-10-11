@@ -39,10 +39,11 @@
     <!--End page title-->
     <div class="row mb-3">
         <div class="col-9">
-            <table class="table table-centered table-bordered mb-0">
+            <table id = "basic-datatable"  class = "table table-bordered table-striped
+                border-color border-style table-hover table-centered mb-2 dt-responsive nowrap w-100" >
                 <thead class="table-dark">
                     <tr>
-                        <th>Thông báo</th>
+                        <th >Thông báo</th>
                         <th>Lượt xem</th>
                     </tr>
                 </thead>
@@ -75,7 +76,7 @@
                 <div class="list-group-item">
                     <input type="text" class="form-control" placeholder="Tìm kiếm" />
                 </div>
-                <a class="list-group-item list-group-item-primary hover" data-bs-toggle="collapse" href="#dateCollapse"
+                <a class="list-group-item list-group-item-primary hover mb-1" data-bs-toggle="collapse" href="#dateCollapse"
                     aria-expanded="false">
                     Theo ngày đăng
                     <i class="mdi mdi-chevron-down accordion-arrow"></i>

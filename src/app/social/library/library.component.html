@@ -43,17 +43,17 @@
             dt-responsive nowrap w-100 mb-2">
                 <thead class="table-dark">
                     <tr>
-                        <th>{{getLabel('numberCol')}}</th>
-                        <th>{{getLabel('descriptionCol')}}</th>
-                        <th>{{getLabel('dateCol')}}</th>
+                        <th class="d-flex justify-content-center">{{getLabel('numberCol')}}</th>
+                        <th >{{getLabel('descriptionCol')}}</th>
+                        <th class="d-flex justify-content-center" >{{getLabel('dateCol')}}</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="myTableRow" (click)="lookup()" data-bs-toggle="modal"
                         data-bs-target="#library-detail-modal" *ngFor="let item of libraryData | paginate: config">
-                        <td>{{item.number}}</td>
+                        <td class="d-flex justify-content-center">{{item.number}}</td>
                         <td>{{item.des}}</td>
-                        <td>{{item.date|date:'dd/MM/yyyy'}}</td>
+                        <td class="d-flex justify-content-center">{{item.date|date:'dd/MM/yyyy'}}</td>
                     </tr>
                 </tbody>
             </table>
