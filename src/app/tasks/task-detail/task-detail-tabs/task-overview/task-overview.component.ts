@@ -22,7 +22,7 @@ export class TaskOverviewComponent implements OnInit {
     editable: true,
   }
   events = [{
-    fulldate: 'Wed Sep 07 2022',
+    fulldate: '2022-10-10',
     items: [
       {
         title: 'Branding Logo',
@@ -37,7 +37,7 @@ export class TaskOverviewComponent implements OnInit {
     ]
   },
   {
-    fulldate: 'Mon Sep 19 2022',
+    fulldate: '2022-10-29',
     items: [
       {
         title: 'User Module Testing',
@@ -47,7 +47,7 @@ export class TaskOverviewComponent implements OnInit {
     ]
   },
   {
-    fulldate: 'Thu Sep 22 2022',
+    fulldate: '2022-10-30',
     items: [
       {
         title: 'To check User Management',
