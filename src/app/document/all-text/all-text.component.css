@@ -13,3 +13,9 @@
 .font-letter{
     flood-color:#127b90
 }
+.content-table thead tr {
+    background-color: #0091ff;
+    color: aliceblue;
+    text-align: left;
+    font-weight: bold;
+}

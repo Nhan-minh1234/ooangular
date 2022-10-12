@@ -30,21 +30,23 @@
     
     <div class="row">
         <div class="col-10">
-    <table id="basic-datatable" class="table table-striped table-hover dt-responsive nowrap w-100">
+            <table  id = "basic-datatable"  class = "table table-bordered table-striped border-color-style
+             table-hover table-centered mb-2 dt-responsive nowrap w-100 content-table" >
         <thead>
             <tr>
-                <th>STT</th>
+                <th  class="d-flex justify-content-center" >STT</th>
                 <th>Tên dự án</th>
                 <th>Tình trạng</th>
-            
+                <th></th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let item of eventListData | paginate: config" data-bs-toggle="modal"
             data-bs-target="#scrollable-modal" (click)="seeDetail(item)">
-                <td>{{item.number}}</td>
-                <td>{{item.name}}</td>
-                <td>{{item.status}}</td>
+                <td class="text-center" style="width: 10%;">{{item.number}}</td>
+                <td >{{item.name}}</td>
+                <td >{{item.status}}</td>
+                <td ></td>
             </tr>
             <tr>
                 <td><select [(ngModel)]="newlist.number"  name="" id="">
@@ -56,6 +58,7 @@
                 <td>
                     <input (click)="clicknew()" type="submit" name="" value="Thêm mới"  />
                 </td>
+                <td></td>
             </tr>
             <div class="modal fade" id="scrollable-modal" tabindex="-1" role="dialog"
             aria-labelledby="scrollableModalTitle" aria-hidden="true">
@@ -80,23 +83,29 @@
                             <div class="tab-pane  show active" id="detailTab">
 
                                 <div class="row">
-                                    <div class="mb-3 col-12">
-                                        <label for="simpleinput" class="form-label">STT</label>
-                                        <input [readonly]="editable" type="text" id="simpleinput"
+                                    <div class="mb-2 row">
+                                        <label for="simpleinput" class="form-label col-3">STT</label>
+                                        <div class="col-9">
+                                            <input [readonly]="editable" type="text" id="simpleinput"
                                             [(ngModel)]="eventDetail.title" class="form-control">
+                                        </div>
                                     </div>
                                    
-                                    <div class="mb-3 col-12">
-                                        <label for="simpleinput" class="form-label">Tên dự án</label>
-                                        <textarea class="form-control" [readonly]="editable" id="example-textarea"
+                                    <div class="mb-2 row">
+                                        <label for="simpleinput" class="form-label col-3">Tên dự án</label>
+                                        <div class="col-9">
+                                            <textarea class="form-control" [readonly]="editable" id="example-textarea"
                                             [(ngModel)]="eventDetail.description" rows="1"></textarea>
+                                        </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="example-fileinput" class="form-label">Tình trạng</label>
-                                        <select class="form-select" id="example-select" >
-                                            <option >Đã xử lý</option>
-                                            <option>Chưa xử lý</option>
-                                        </select>
+                                    <div class="mb-2 row">
+                                        <label for="example-fileinput" class="form-label col-3">Tình trạng</label>
+                                        <div class="col-9">
+                                            <select class="form-select" id="example-select" >
+                                                <option >Đã xử lý</option>
+                                                <option>Chưa xử lý</option>
+                                            </select>
+                                        </div>
                                     </div>
                                   
                                 </div>
