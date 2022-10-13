@@ -11,12 +11,12 @@
 				</tr >
 			</thead>
 				
-			<tbody class="border-color">	
+			<tbody>	
 				<tr class="normal" *ngFor="let i of textsourceDuLieu |paginate: config">
-					<td align="center" style="width: 10%;">
+					<td class="text-center" style="width: 10%;">
 					<span style="display:inline-block;width:100%;">{{i.nume_rical_order}}</span></td>
-					<td align="left" style="width: 50%;  font-size: 18px;">{{i.textsource_name}}</td>
-					<td align="center" style="width: 20%;">
+					<td>{{i.textsource_name}}</td>
+					<td class="text-center" style="width: 20%;">
 						<button type="submit" name="ctl22$DANHMUC$ctl02$btnDel" 
 						value="Xóa" class="btn btn-danger rounded-pill" onclick="return confirm('Bạn chắc chắn xóa ?');" id="ctl22_DANHMUC_btnDel_0">
 						<i class="uil-trash-alt"></i></button>
@@ -38,7 +38,7 @@
 	</div>
 	<div class="col-3">
 		<div class = "d-grid">
-			<div class=" list-group-item list-group-item-primary" align="center"style="font-size: 16px;" >
+			<div class=" list-group-item list-group-item background text-center"style="font-size: 16px;" >
 				BỘ LỌC
 			</div>
 			<div class="list-group-item list-group-item-custom">
