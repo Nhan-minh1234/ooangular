@@ -31,9 +31,10 @@
     <div class="row">
         <div class="col-9">
 
-            <table id="basic-datatable" class="table dt-responsive nowrap w-100">
+            <table  id = "basic-datatable"  class = "table table-bordered table-striped border
+            border-style table-hover table-centered mb-2 dt-responsive nowrap w-100 content-table" >
                 <thead>
-                    <tr>
+                    <tr >
                         <th><span type="checkbox" title="Chọn/bỏ chọn tất cả"><input 
                                     type="checkbox" name="công việc" /></span></th>
                         <th> Công việc thuộc dự án </th>
@@ -56,15 +57,15 @@
         </div>
         <div class="col-3">
             <abbr style="width:200px;height:auto; float: right !important; ;" class="row">
-                <button [routerLink]="'/tasks/project-list'" type="button" class="btn btn-primary mb-2"> Thêm/sửa/xóa dự án
+                <button [routerLink]="'/tasks/project-list'" type="button" class="btn btn-danger mb-2"> Thêm/sửa/xóa dự án
                 </button> 
-                <button [routerLink]="" type="button" class="btn btn-primary mb-2"> Đưa CV vào dự
+                <button [routerLink]="" type="button" class="btn btn-danger mb-2"> Đưa CV vào dự
                     án </button>
-                <button (click)="test()" type="button" class="btn btn-primary"> Xóa CV khỏi dự án
+                <button (click)="test()" type="button" class="btn btn-danger"> Xóa CV khỏi dự án
                 </button>
             </abbr>
     </div>
-    <div class="list row">
+    <div class=" col-9 row">
         <div class="col-md-8">
             <pagination-controls id="paging" [previousLabel]="getLabel('previousBtn')" [nextLabel]="getLabel('nextBtn')"
                 responsive="true" responsive="true" (pageChange)="handlePageChange($event)"></pagination-controls>

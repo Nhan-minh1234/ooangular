@@ -1,120 +1,127 @@
 <div class="container-fluid">
     <div class="list-group-item active mb-2">NHẬP VĂN BẢN</div>
     <div>
-        <div>
+        <div class="border-bottom" style="color:Red">
             <input type="checkbox" class="form-check-input" id="customCheck1">
             KHẨN
         </div>
-    <form class="form-horizontal">
-        <div class="row">
-            <div class="row col-6 mb-1">
-                <label class="col-4 col-form-label">Số TT: </label>
-                <div class="col-8"><input type="email" class="form-control" id="SoTT"></div>
-            </div>
-            <div class="row col-6 mb-1">
-                <label class="col-4 col-form-label">Lưu bản cứng:  </label>
-                <div class="col-8"> 
-                    <select class="form-select" id="example-select">
-                        <option>Chọn phòng ban</option>
-                        <option>Giám đốc</option>
-                        <option>Phòng Tổ Chức Hành Chính</option>
-                        <option>Phòng Kĩ Thuật</option>
-                        <option>Phòng Kinh Doanh</option>
-                        <option>Phòng Nhân Sự</option>
-                        <option>Phòng Tài Chính-Kế toán</option>
-                        <option>Phòng Truyền Thông</option>
-                    </select>
+        <table  id = "basic-datatable"  class = "table dt-responsive nowrap w-100" >
+            <div class="row">
+                <div class="row col-6 border-bottom">
+                    <label class="col-4 col-form-label">Số TT: </label>
+                    <div class="col-8"><input type="email" class="form-control" id="SoTT"></div>
                 </div>
-            </div>
-            <!---->
-            <div class="row col-6 mb-1">
-                <label class="col-4 col-form-label">Nơi gửi:   </label>
-                <div class="col-8"> 
-                    <input type="text" class="form-control" id="Noigui">
+                <div class="row col-6 border-bottom">
+                    <label class="col-4 col-form-label">Lưu bản cứng:  </label>
+                    <div class="col-8"> 
+                        <select class="form-select" id="example-select">
+                            <option>Chọn phòng ban</option>
+                            <option>Giám đốc</option>
+                            <option>Phòng Tổ Chức Hành Chính</option>
+                            <option>Phòng Kĩ Thuật</option>
+                            <option>Phòng Kinh Doanh</option>
+                            <option>Phòng Nhân Sự</option>
+                            <option>Phòng Tài Chính-Kế toán</option>
+                            <option>Phòng Truyền Thông</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="row col-6 mb-1">
-                <label class="col-4 col-form-label">Ngày gửi:  </label>
-                <div class="col-8"><input class="form-control" id="example-date" type="date" name="date"></div>
-            </div>
-            <!---->
-            <div class="row col-6 mb-1">
-                <label class="col-4 col-form-label">Số văn bản:  </label>
-                <div class="col-8"> 
-                    <input type="text" class="form-control" id="Sovanban">
+                <!---->
+                <div class="row col-6 border-bottom">
+                    <label class="col-4 col-form-label">Nơi gửi:   </label>
+                    <div class="col-8"> 
+                        <input type="text" class="form-control" id="Noigui">
+                    </div>
                 </div>
-            </div>
-            <div class="row col-6 mb-1">
-                <label class="col-4 col-form-label">Thư mục: </label>
-                <div class="col-8"> 
-                    <input type="text" class="form-control" id="Noinhan">
+                <div class="row col-6 border-bottom">
+                    <label class="col-4 col-form-label">Ngày gửi:  </label>
+                    <div class="col-8"><input class="form-control" id="example-date" type="date" name="date"></div>
                 </div>
-            </div>
-            <!---->
-            <div class="row col-6 mb-1">
-                <label class="col-4 col-form-label">Nơi phát hành: </label>
-                <div class="col-8"> 
-                    <input type="text" class="form-control" id="Noiphathanh">
+                <!---->
+                <div class="row col-6 border-bottom">
+                    <label class="col-4 col-form-label">Số văn bản:  </label>
+                    <div class="col-8"> 
+                        <input type="text" class="form-control" id="Sovanban">
+                    </div>
                 </div>
-            </div>
-            <!---->
-            <div class="row col-6 mb-1">
-                <label class="col-4 col-form-label">Ngày đến: </label>
-                <div class="col-8"><input class="form-control" id="example-date" type="date" name="date"></div>
-            </div>
-            <!---->
-            <div class="row col-6 mb-1">
-                <label class="col-4 col-form-label">Người ký:  </label>
-                <div class="col-8"> 
-                    <input type="text" class="form-control" id="Nguoiky">
+                <div class="row col-6 border-bottom">
+                    <label class="col-4 col-form-label">Thư mục: </label>
+                    <div class="col-8"> 
+                        <input type="text" class="form-control" id="Noinhan">
+                    </div>
                 </div>
-            </div>
-            <div class="row col-6 mb-1">
-                <label class="col-4 col-form-label">Ngày ký: </label>
-                <div class="col-8"><input class="form-control" id="example-date" type="date" name="date"></div>
-            </div>
-            <!---->
-            <div class="row col-6 mb-1">
-                <label class="col-4 col-form-label">Chọn nguồn VB </label>
-                <div class="col-8"> 
-                    <select class="form-select" id="example-select">
-                        <option>Chọn nguồn VB</option>
-                        <option>Giám đốc</option>
-                        <option>Phòng Tổ Chức Hành Chính</option>
-                        <option>Phòng Kĩ Thuật</option>
-                        <option>Phòng Kinh Doanh</option>
-                        <option>Phòng Nhân Sự</option>
-                        <option>Phòng Tài Chính-Kế toán</option>
-                        <option>Phòng Truyền Thông</option>
-                    </select>
+                <!---->
+                <div class="row col-6 border-bottom">
+                    <label class="col-4 col-form-label">Nơi phát hành: </label>
+                    <div class="col-8"> 
+                        <input type="text" class="form-control" id="Noiphathanh">
+                    </div>
                 </div>
-            </div>
-            <div class="row col-6 mb-1">
-                <label class="col-4 col-form-label">Thời hạn xử lý: </label>
-                <div class="col-8"><input class="form-control" id="example-date" type="date" name="date"></div>
-            </div>
-            <!---->
-            <div class="row  mb-1">
-                <label for="example-textarea" class="form-label">Trích yếu: </label>
-                <textarea class="form-control" id="example-textarea" rows="2"></textarea>
-            </div>
-            <!---->
-            <div class="row  mb-1">
-                <label for="example-textarea" class="form-label">Ghi chú: </label>
-                <textarea class="form-control" id="example-textarea" rows="2"></textarea>
-            </div>
-            <!---->
-            <div class="row  mb-1">
-                <label for="example-textarea" class="form-label">Đính kèm:  </label>
-                    <input type="file" multiple (change)="handleFileInput($event.target.files)" id="fileList"
-                            class="form-control">
-                        <ol class="list-group list-group-numbered">
-                            <li *ngFor="let file of newDocumentData.file; index as i" class="list-group-item">
-                                {{file.name}}<span (click)="removeFile(i)" style="float: right; font-weight:
-                                bold; cursor: pointer; color: #fa6767;">X</span></li>
-                        </ol>
+                <!---->
+                <div class="row col-6 border-bottom">
+                    <label class="col-4 col-form-label">Ngày đến: </label>
+                    <div class="col-8"><input class="form-control" id="example-date" type="date" name="date"></div>
                 </div>
-            </div>
+                <!---->
+                <div class="row col-6 border-bottom">
+                    <label class="col-4 col-form-label">Người ký:  </label>
+                    <div class="col-8"> 
+                        <input type="text" class="form-control" id="Nguoiky">
+                    </div>
+                </div>
+                <div class="row col-6 border-bottom">
+                    <label class="col-4 col-form-label">Ngày ký: </label>
+                    <div class="col-8"><input class="form-control" id="example-date" type="date" name="date"></div>
+                </div>
+                <!---->
+                <div class="row col-6 border-bottom">
+                    <label class="col-4 col-form-label">Chọn nguồn VB </label>
+                    <div class="col-8"> 
+                        <select class="form-select" id="example-select">
+                            <option>Chọn nguồn VB</option>
+                            <option>Giám đốc</option>
+                            <option>Phòng Tổ Chức Hành Chính</option>
+                            <option>Phòng Kĩ Thuật</option>
+                            <option>Phòng Kinh Doanh</option>
+                            <option>Phòng Nhân Sự</option>
+                            <option>Phòng Tài Chính-Kế toán</option>
+                            <option>Phòng Truyền Thông</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row col-6 border-bottom">
+                    <label class="col-4 col-form-label">Thời hạn xử lý: </label>
+                    <div class="col-8"><input class="form-control" id="example-date" type="date" name="date"></div>
+                </div>
+                <!---->
+                <div class="row border-bottom">
+                    <label for="example-textarea" class=" col-2 col-form-label">Trích yếu: </label>
+                    <div class="col-10">
+                        <textarea class="form-control" id="example-textarea" rows="2"></textarea>
+                    </div>
+                </div>
+                <!---->
+                <div class="row border-bottom  ">
+                    <label for="example-textarea" class="col-2 col-form-label">Ghi chú: </label>
+                    <div class="col-10">
+                        <textarea class="form-control" id="example-textarea" rows="2"></textarea>
+                    </div>
+                </div>
+                <!---->
+                <div class="row border-bottom">
+                    <label for="example-textarea" class="col-2 col-form-label">Đính kèm:  </label>
+                    <div class="col-10">
+                        <input type="file" multiple (change)="handleFileInput($event.target.files)" id="fileList"class="form-control">
+                            <ol class="list-group list-group-numbered">
+                                <li *ngFor="let file of newDocumentData.file; index as i" class="list-group-item">
+                                    {{file.name}}<span (click)="removeFile(i)" style="float: right; font-weight:
+                                    bold; cursor: pointer; color: #fa6767;">X</span>
+                                </li>
+                            </ol>
+                    </div>
+                    </div>
+                </div>
+        </table>
             <!---->
             <div class="list-group-item active mb-2"><i class="d-flex justify-content-center">DANH SÁCH ĐƯỢC XEM</i></div> 
             <!---->
@@ -191,7 +198,6 @@
               <input class="form-control mb-1" id="exampleFormControlInput1" placeholder="Tìm người dùng">
           </div>
       </div>
-    </div>  
     </div>
     <div class="btnOO d-flex justify-content-center">
         <div class="col-9">

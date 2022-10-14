@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 export class LoginComponent implements OnInit {
 
   username = 'administrator';
-  password = 'oo1234@2018';
+  password = 'oo';
   isRememberPassword = true;
   isLoggingIn = false;
 

@@ -12,8 +12,8 @@ export class NewsComponent implements OnInit {
   spinnerLoading = false;
 
   page = 0
-  pageSize = 10
-  pageSizes = [10, 20, 30]
+  pageSize = 6
+  pageSizes = [6, 12, 36]
   count = 100;
   config
   constructor(private el: ElementRef, public generalService: GeneralService) { }

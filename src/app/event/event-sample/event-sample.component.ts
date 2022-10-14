@@ -14,10 +14,11 @@ export class EventSampleComponent implements OnInit {
   spinnerLoading = false;
   editable = true
   page = 0;
-  pageSize = 10;
-  pageSizes = [10, 20, 30];
+  pageSize = 5;
+  pageSizes = [5, 10, 15];
   count = 500;
   currentTab = true
+  
 
   config
   constructor(private httpClient: HttpClient, private el: ElementRef, public generalService: GeneralService, private router: Router) { }
@@ -63,6 +64,15 @@ export class EventSampleComponent implements OnInit {
 
     })
 
+  }
+  handlePageChange(event): void {
+    this.page = event;
+    this.gData();
+  }
+  handlePageSizeChange(event): void {
+    this.pageSize = event.target.value;
+    this.page = 0;
+    this.gData();
   }
 
 }

@@ -20,19 +20,22 @@
             </div>
         </div>
     </div>
-
     <div class="row">
-        <div class="col-10">
+        <div class="col-9">
             <div class="page-title-box">
                 <h4 class="page-title">{{getLabel('pageTitle')}}</h4>
             </div>
         </div>
-        <div class="col-2 my-auto">
-            <abbr data-bs-toggle="modal" data-bs-target="#standard-modal" style="cursor: pointer;" [title]="'Thêm mới'">
-                <img style="width:40px;height:auto; float: right !important;" src="assets/imgs/plus.png" />
-            </abbr>
+        <div class="col-3 my-auto">
+            <div class="list-group">
+                <button  type="button" class="btn btn-success rounded" 
+            data-bs-toggle="modal" data-bs-target="#standard-modal" 
+            style="cursor: pointer;"src="assets/imgs/plus.png"> 
+            Thêm mới</button>
+            </div>
         </div>
     </div>
+    
     <div id="image-folder-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-lg">
@@ -72,19 +75,20 @@
     <!--End page title-->
     <div class="row">
         <div class="col-9">
-            <table id="basic-datatable" class="table table-hover table-bordered table-centered mb-0">
-                <thead class="table-dark">
+            <table  id = "basic-datatable"  class = "table table-bordered table-striped border
+            border-style table-hover table-centered mb-2 dt-responsive nowrap w-100 content-table" >
+                <thead >
                     <tr>
                         <th>{{getLabel('imgCol')}}</th>
-                        <th>Action</th>
+                        <th class="d-flex justify-content-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="myTableRow" *ngFor="let item of imagesData | paginate: config">
-                        <td>
+                        <td style="width: 100%;">
                             {{item.title}}
                         </td>
-                        <td class="table-action">
+                        <td class="table-action" style="width: 50%;">
                             <div class="d-flex">
                                 <div id="tooltip-lookup">
                                     <button type="button" class="btn btn-primary" data-bs-container="#tooltip-lookup"
@@ -155,7 +159,7 @@
 
         <div class="col-3">
             <div class="list-group">
-                <div class="list-group-item list-group-item-custom-dark">
+                <div class="list-group-item list-group-item background">
                     Bộ lọc
                 </div>
                 <div class="list-group-item list-group-item-primary">
@@ -181,7 +185,7 @@
         </div>
     </div>
     <!-- /////////////////// Pagination -->
-    <div class="list row">
+    <div class="list row col-9">
         <div class="col-md-8">
             <pagination-controls id="paging" [previousLabel]="getLabel('previousBtn')" [nextLabel]="getLabel('nextBtn')"
                 responsive="true" responsive="true" (pageChange)="handlePageChange($event)"></pagination-controls>

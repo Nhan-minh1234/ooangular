@@ -36,6 +36,8 @@ export class BusinessCardComponent implements OnInit {
   count = 500;
 
   config
+  keyFilter = 
+  {key:"nhomcongviec",label:"Nhóm công việc"}
   constructor(private httpClient: HttpClient,  public generalService: GeneralService, private router: Router) { }
 
   ngOnInit(): void {
@@ -88,7 +90,9 @@ export class BusinessCardComponent implements OnInit {
     this.page = 0;
     this.gData();
   }
-
+  filter(type,label) {
+    this.keyFilter = {key:type,label:label}
+  }
  
 
 }
