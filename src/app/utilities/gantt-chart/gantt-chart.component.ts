@@ -23,7 +23,7 @@ export class GanttChartComponent implements OnInit {
   },
   {
     startAt: '2022-11-03',
-    endAt: '2023-11-20',
+    endAt: '2022-11-20',
     taskTitle: 'Task 3',
   },
   {
@@ -173,7 +173,7 @@ export class GanttChartComponent implements OnInit {
     gantt.scrollLeft = (bar as HTMLElement).offsetLeft / 2
   }
   addEvent() {
-    document.querySelector('a[data-bs-toggle="tab"][href="#targets"]').addEventListener('shown.bs.tab', function () {
+    document.querySelector('a[data-bs-toggle="tab"][href="#targets"]')?.addEventListener('shown.bs.tab', function () {
       let bar = document.querySelector(".bar-node")
       let gantt = document.querySelector(".gantt")
       gantt.scrollLeft = (bar as HTMLElement).offsetLeft / 2
