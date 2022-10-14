@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { ExpandButtonComponent } from './expand-button/expand-button.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { DropzoneComponent } from './dropzone/dropzone.component';
+import { GanttChartComponent } from './gantt-chart/gantt-chart.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { DropzoneComponent } from './dropzone/dropzone.component';
     NewItemButtonComponent,
     ExpandButtonComponent,
     CalendarComponent,
-    DropzoneComponent
+    DropzoneComponent,
+    GanttChartComponent,
   ],
   imports: [
     CommonModule,
@@ -41,7 +43,8 @@ import { DropzoneComponent } from './dropzone/dropzone.component';
     NgChartsModule,
     ExpandButtonComponent,
     CalendarComponent,
-    DropzoneComponent
+    DropzoneComponent,
+    GanttChartComponent,
   ]
 })
 export class UtilitiesModule { }
