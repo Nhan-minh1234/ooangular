@@ -8,59 +8,74 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-9">
+                    <div class="col-8">
                         <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-lg-6 col-sm-12">
-                                        <h6>ASSIGNED TO</h6>
-                                        <div class="d-flex">
-                                            <div class="avatar-sm avatar-group" *ngFor="let user of [1,2,3,4,5]">
-                                                <img src="assets/images/users/avatar-2.jpg" alt="image"
-                                                    class="img-fluid avatar-sm rounded-circle img-thumbnail">
+                            <div class="card-body text-dark">
+                                <h4 class="card-title">
+                                    Tổng quan
+                                </h4>
+                                <ul class="fs-4">
+                                    <li class="row mt-3">
+                                        <div class="col-6 row">
+                                            <div class="col-auto">
+                                                <i class="uil-calendar-alt text-primary"></i>
+                                                <b class="ms-1">Ngày bắt đầu:</b>
                                             </div>
+                                            <div class="col-auto">15/09/2022</div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-6 col-sm-12">
-                                        <h6>DUE DATE</h6>
-                                        <label>2022</label>
-                                    </div>
-                                    <div class="col-12">
-                                        <h5>Overview:</h5>
-                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio expedita
-                                            similique
-                                            laborum
-                                            sapiente. Repellat asperiores optio porro quasi dolor, sequi nostrum
-                                            sapiente
-                                            corrupti earum
-                                            modi alias maiores cupiditate inventore praesentium labore error corporis?
-                                            Sit,
-                                            distinctio
-                                            quam doloribus corrupti, quidem sed eligendi, ducimus odit temporibus
-                                            accusantium
-                                            voluptas.
-                                            Voluptatum eaque tempore sequi quam corrupti adipisci quos numquam harum
-                                            minus
-                                            libero
-                                            perspiciatis, excepturi rerum aspernatur illo rem atque obcaecati distinctio
-                                            veniam.
-                                            Pariatur reprehenderit eveniet ullam ratione natus maxime cumque voluptates
-                                            quae
-                                            sapiente
-                                            nostrum, cum est? Optio eveniet numquam ipsum eaque in, ducimus dignissimos
-                                            inventore
-                                            quaerat quis, maiores voluptatibus repellendus nisi est nostrum explicabo.
-                                        </p>
-                                    </div>
-                                </div>
+                                        <div class="col-6 row">
+                                            <div class="col-auto">
+                                                <i class="uil-check-circle text-primary"></i>
+                                                <b class="ms-1">Ngày kết thúc:</b>
+                                            </div>
+                                            <div class="col-auto">15/10/2022</div>
+                                        </div>
+                                    </li>
+                                    <li class="row mt-3">
+                                        <div class="col-3"><b>Tình trạng</b></div>
+                                        <div class="col-9"><b>Chưa hoàn thành</b></div>
+                                    </li>
+                                    <li class="row mt-3">
+                                        <div class="col-3"><b>Dự án:</b></div>
+                                        <div class="col-9">Xây dựng Phiên bản Online Office Mới</div>
+                                    </li>
+                                    <li class="row mt-3">
+                                        <div class="col-3"><b>Khách hàng:</b></div>
+                                        <div class="col-9">--N/A--</div>
+                                    </li>
+                                    <li class="row mt-3">
+                                        <div class="col-3"><b>Thuộc nhóm:</b></div>
+                                        <div class="col-9">--N/A--</div>
+                                    </li>
+                                    <li class="row mt-3">
+                                        <div class="col-3"><b>Tệp đính kèm:</b></div>
+                                        <div class="col-9">--N/A--</div>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-
+                        <div class="card">
+                            <div class="card-body text-dark">
+                                <h4 class="card-title">
+                                    Nội dung
+                                </h4>
+                                <p class="fs-4">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae id harum
+                                    mollitia aut, nihil dolor modi non? Repellendus excepturi et illum rerum harum sed
+                                    molestias. Consectetur sint sed modi? Animi accusamus distinctio, sequi provident
+                                    aut maxime quia incidunt dolorum architecto eveniet placeat impedit rem harum.
+                                    Quisquam, optio? Tenetur illum alias corrupti laboriosam, voluptas deleniti officia
+                                    aliquid porro ut illo corporis id reiciendis quis unde minus commodi, cupiditate
+                                    labore soluta libero dolorum veniam dicta delectus similique vel? Quis iste facere
+                                    vitae neque, iure distinctio repudiandae sint nulla, quam perferendis est, cum
+                                    aliquam vero voluptates blanditiis voluptate nostrum! Iste reiciendis enim libero.
+                                </p>
+                            </div>
+                        </div>
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-12">
-                                        <h5 class="card-title-mb-0">Comments</h5>
+                                        <h5 class="card-title-mb-0">Thảo luận</h5>
                                         <hr>
                                         <div class="row">
                                             <div class="d-flex" *ngFor="let i of [1,1,1]">
@@ -95,51 +110,17 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-4 text-dark">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title-mb-0">Danh sách tệp tin</h4>
-                                <div data-simplebar style="max-height: 250px;" class="list-group">
-                                    <div class="list-group-item"
-                                        *ngFor="let i of [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="d-flex align-items-center">
-                                                <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png"
-                                                    width="50px" alt="">
-                                                <div class="ms-2">
-                                                    <h5>Name.pdf</h5>
-                                                    <i>23MB</i>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div class="pointer">
-                                                    <i class="uil-file-download-alt text-success h3"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title-mb-0">Danh sách tham gia</h4>
-                                <div data-simplebar style="max-height: 250px;" class="list-group">
-                                    <div class="list-group-item" *ngFor="let i of [1,1,1,1,1]">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="d-flex align-items-center">
-                                                <img src="assets/images/users/avatar-2.jpg" alt="image"
-                                                    class="img-fluid avatar-sm rounded-circle img-thumbnail">
-                                                <div class="ms-2">
-                                                    <h5>NGUYEN HOAI THUONG</h5>
-                                                    <i>Đang xử lí</i>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div class="pointer">
-                                                    <i class="uil-eye text-success h3"></i>
-                                                </div>
+                                <h4 class="card-title">Thực hiện chính</h4>
+                                <div class="list-group">
+                                    <div class="list-group-item">
+                                        <div class="d-flex align-items-center">
+                                            <img src="assets/images/users/avatar-4.jpg" class="avatar-sm rounded-circle"
+                                                alt="avatar">
+                                            <div class="ms-1 d-flex flex-column">
+                                                <h5 class="text-dark mb-0">Nguyễn văn A</h5>
                                             </div>
                                         </div>
                                     </div>
@@ -148,22 +129,71 @@
                         </div>
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title-mb-0">Danh sách được xem</h4>
+                                <div class="card-title d-flex justify-content-between">
+                                    <div class="col-auto">
+                                        <h4>Danh sách tham gia</h4>
+                                    </div>
+                                    <div class="col-auto">
+                                        <input type="text" id="simpleinput" placeholder="Tìm kiếm" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-evenly mt-3">
+                                    <div class="form-check">
+                                        <input type="radio" checked id="solved-radio" name="customRadio"
+                                            class="form-check-input pointer border border-primary">
+                                        <label class="form-check-label pointer" for="solved-radio">Đã xử lý</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" id="solving-radio" name="customRadio"
+                                            class="form-check-input pointer border border-primary">
+                                        <label class="form-check-label pointer" for="solving-radio">Đang xử lý</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" id="notsolve-radio" name="customRadio"
+                                            class="form-check-input pointer border border-primary">
+                                        <label class="form-check-label pointer" for="notsolve-radio">Chưa xử lý</label>
+                                    </div>
+                                </div>
+                                <div data-simplebar style="max-height: 250px;" class="list-group mt-3">
+                                    <div class="list-group-item" *ngFor="let i of [1,1,1,1,1]">
+                                        <div class="d-flex align-items-center">
+                                            <img src="assets/images/users/avatar-1.jpg" class="avatar-sm rounded-circle"
+                                                alt="avatar">
+                                            <div class="ms-1 d-flex flex-column">
+                                                <h5 class="text-dark mb-0">Nguyễn văn A</h5>
+                                                <i class="fs-6">Xem 1 lần, lần cuối: 11/08/2022 10:08</i>
+                                            </div>
+                                        </div>
+                                        <div class="text-end">
+                                            <span class="badge bg-primary me-1">IT</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title d-flex justify-content-between">
+                                    <div class="col-auto">
+                                        <h4>Danh sách được xem</h4>
+                                    </div>
+                                    <div class="col-auto">
+                                        <input type="text" id="simpleinput" placeholder="Tìm kiếm" class="form-control">
+                                    </div>
+                                </div>
                                 <div data-simplebar style="max-height: 250px;" class="list-group">
                                     <div class="list-group-item" *ngFor="let i of [1,1,1,1,1]">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="d-flex align-items-center">
-                                                <img src="assets/images/users/avatar-2.jpg" alt="image"
-                                                    class="img-fluid avatar-sm rounded-circle img-thumbnail">
-                                                <div class="ms-2">
-                                                    <h5>NGUYEN HOAI THUONG</h5>
-                                                </div>
+                                        <div class="d-flex align-items-center">
+                                            <img src="assets/images/users/avatar-3.jpg" class="avatar-sm rounded-circle"
+                                                alt="avatar">
+                                            <div class="ms-1 d-flex flex-column">
+                                                <h5 class="text-dark mb-0">Nguyễn văn A</h5>
+                                                <i class="fs-6">Xem 1 lần, lần cuối: 11/08/2022 10:08</i>
                                             </div>
-                                            <div>
-                                                <div class="pointer">
-                                                    <i class="uil-eye text-success h3"></i>
-                                                </div>
-                                            </div>
+                                        </div>
+                                        <div class="text-end">
+                                            <span class="badge bg-primary me-1">IT</span>
+                                            <span class="badge bg-primary me-1">Quản lý</span>
                                         </div>
                                     </div>
                                 </div>
