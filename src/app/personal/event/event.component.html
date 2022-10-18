@@ -154,9 +154,13 @@
         </table>
         </div>
         <div class="col-3">
-            <div class="list-group-item list-group-item background mb-2">
-                <b class="d-flex justify-content-center"> Lịch </b> 
+            <div class="border mb-1">
+                <div class="list-group-item list-group-item background mb-2">
+                    <b class="d-flex justify-content-center"> Lịch </b>
+                </div>
+                <app-calendar [eventList]="events" (getEvents)="getEvents($event)"></app-calendar>
             </div>
+            
             <div class="list-group-item list-group-item background-1">
                 <b class="d-flex justify-content-center"> Tham khảo lịch </b> 
             </div>
