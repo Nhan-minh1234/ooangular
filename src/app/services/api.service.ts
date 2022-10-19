@@ -18,7 +18,8 @@ export class ApiservicesService {
     createNewTask: '/api/Tasks/CreateNewTask',
     getAllUserGroups: '/api/Groups/GetAllGroups',
     uploadFile: '/api/File/Upload?subDirectory=',
-    downloadFile: '/api/File/Download'
+    downloadFile: '/api/File/Download',
+    getAllRights:'/api/Rights/GetAllRights'
   }
 
   constructor(private httpClient: HttpClient, private router: Router, private generalService: GeneralService) {
@@ -52,6 +53,7 @@ export class ApiservicesService {
     if (this.generalService.userData != null) {
       header['Authorization'] = 'Bearer ' + this.generalService.userData.token;
     }
+    
     return new Promise((resolve, reject) => {
       //use angular http        
       if (method == 'get') {

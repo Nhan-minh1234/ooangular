@@ -65,6 +65,9 @@ export class BusinessCardComponent implements OnInit {
   openAddBusinessCard() {
     this.router.navigate(['/personal/add-business-card']);
   }
+  openAddWorkGroup() {
+    this.router.navigate(['/personal/add-workgroup']);
+  }
   async gData() {
     this.spinnerLoading = true;
     this.httpClient.get('https://62e7546c69bd03090f7b852b.mockapi.io/Event?status=' + this.currentTab).subscribe(i => {

@@ -38,9 +38,8 @@ export class UserManagerComponent implements OnInit {
       'title': 'Phòng kỹ thuật'
     }
   ]
-  @Input() user: Object
+  @Input() user: any
   constructor() { }
   ngOnInit(): void {
   }
-
 }
