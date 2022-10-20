@@ -51,26 +51,29 @@
                                 <div class="row mb-3">
                                     <label class="col-3 col-form-label">Họ và tên:</label>
                                     <div class="col-9">
-                                        <input [readonly]="true" type="text" id="simpleinput" placeholder="Họ và tên"
-                                        [(ngModel)]="user.fullName" class="form-control">
+                                        <input type="text" id="simpleinput" placeholder="Họ và tên"
+                                        [value]="user.fullName" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label class="col-3 col-form-label">Chức danh:</label>
                                     <div class="col-9">
-                                        <input type="text" class="form-control" placeholder="Chức danh">
+                                        <input [readonly]="true" type="text" id="simpleinput" placeholder="Chức danh"
+                                                        [value]="user.title" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label class="col-3 col-form-label">Email:</label>
                                     <div class="col-9">
-                                        <input type="email" class="form-control" placeholder="Email">
+                                        <input type="text" id="simpleinput" placeholder="Email"
+                                        [value]="user.email" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label class="col-3 col-form-label">Điện thoại:</label>
                                     <div class="col-9">
-                                        <input type="text" class="form-control" placeholder="Điện thoại">
+                                        <input type="text" id="simpleinput" placeholder="Điện thoại"
+                                        [value]="user.phone" class="form-control">
                                     </div>
                                 </div>
                             </form>
@@ -89,10 +92,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="list-group" data-simplebar style="max-height: 55vh;">
-                            <div *ngFor="let item of rights" class="list-group-item">
+                        <div class="list-group" *ngIf="managerData" data-simplebar style="max-height: 55vh;">
+                            <div *ngFor="let item of managerData" class="list-group-item">
                                 <div class="row">
-                                    <div class="col-9">{{item.title}}</div>
+                                    <div class="col-9">{{item.rightName}}</div>
                                     <div class="col-3 form-check form-switch">
                                         <input type="checkbox" class="form-check-input" checked='true'
                                             id="customSwitch1">
@@ -101,8 +104,8 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="tab-pane" id="group_tab">
-
                         <h4>Danh sách phân nhóm</h4>
                         <div class="list-group">
                             <div class="list-group-item list-group-item-custom-dark">
