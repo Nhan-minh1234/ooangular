@@ -25,7 +25,8 @@ export class UserManagerComponent implements OnInit {
   @Input() user: any
   constructor(private httpClient: HttpClient, private api: ApiservicesService, private generalService: GeneralService) { }
   ngOnInit(): void {
-    this.DataDulieu()
+    this.DataDulieu();
+    this.UserIdData()
   }
   async DataDulieu() {
     try {
@@ -37,5 +38,14 @@ export class UserManagerComponent implements OnInit {
       this.managerData = Array.from(result)
     } catch { }
 
+  }
+  async UserIdData(){
+    try {
+      let res
+      let result
+      res = await this.api.httpCall(this.api.apiLists.getAllRights, {}, {}, 'get', true);
+      result = <any>res
+      this.userData = Array.from(result.data)
+    } catch {}
   }
 }

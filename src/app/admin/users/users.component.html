@@ -63,10 +63,10 @@
                     <i class="mdi mdi-chevron-down accordion-arrow"></i>
                 </a>
                 <div class="collapse list-group" id="department">
-                    <div class="list-group-item" *ngFor="let item of [1,1,1,1,1]; let i = index">
+                    <div class="list-group-item" *ngFor="let item of userData; let i = groupChinhName">
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="departmentCheck{{i}}">
-                            <label class="form-check-label pointer" for="departmentCheck{{i}}">{{item}}</label>
+                            <label class="form-check-label pointer" for="departmentCheck{{i}}">{{item.groupChinhName}}</label>
                         </div>
                     </div>
                 </div>
@@ -76,10 +76,10 @@
                     <i class="mdi mdi-chevron-down accordion-arrow"></i>
                 </a>
                 <div class="collapse list-group" id="permission">
-                    <div class="list-group-item" *ngFor="let item of [1,1,1,1,1]; let i = index">
+                    <div class="list-group-item" *ngFor="let item of userData; let i = title">
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="permissionCheck{{i}}">
-                            <label class="form-check-label pointer" for="permissionCheck{{i}}">{{item}}</label>
+                            <label class="form-check-label pointer" for="permissionCheck{{i}}">{{item.title}}</label>
                         </div>
                     </div>
                 </div>
