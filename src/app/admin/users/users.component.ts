@@ -9,19 +9,30 @@ import { GeneralService } from 'src/app/services/general.service';
 })
 export class UsersComponent implements OnInit {
 
+  userId='U0001'
   adminData
   userData
-  usereditDetail = {}
+  userIdData
+  usereditDetail = {} //biến tạm //
   userDetail( userData ){
     this.usereditDetail={...userData}
   }
   
-  constructor(private httpClient: HttpClient, private api: ApiservicesService, private generalService: GeneralService) { }
+    constructor(private httpClient: HttpClient, private api: ApiservicesService, private generalService: GeneralService) { }
 
   ngOnInit(): void {
     this.GetUserData();
-    this.UserIdData()
-
+    this.permissionData()
+  }
+  async permissionData(){
+    try {
+      let res
+      let result
+      res = await this.api.httpCall(this.api.apiLists.getAllRightsByUserld+ this.usereditDetail , {}, {}, 'get', true);
+      result = <any>res
+      this.userData = Array.from(result.data)
+    } catch {}
+    
   }
   async GetUserData(){
     try {
@@ -32,14 +43,4 @@ export class UsersComponent implements OnInit {
       this.userData = Array.from(result.data)
     } catch {}
   }
-  async UserIdData(){
-    try {
-      let res
-      let result
-      res = await this.api.httpCall(this.api.apiLists.getAllRightsByUserId,{}, {PageNumber:1,PageSize:10}, 'get', true);
-      result = <any>res
-      this.userData = Array.from(result.data)
-    } catch {}
-  }
-
 }
