@@ -1,4 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ApiservicesService } from 'src/app/services/api.service';
+import { GeneralService } from 'src/app/services/general.service';
 
 @Component({
   selector: 'app-user-manager',
@@ -6,28 +9,9 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./user-manager.component.css']
 })
 export class UserManagerComponent implements OnInit {
-  rights = [
-    {
-      'id': 'pheDuyetDonVi',
-      'title': 'Phê duyệt lịch đơn vị'
-    },
-    {
-      'id': 'dkLichDonVi',
-      'title': 'Đăng ký lịch đơn vị'
-    },
-    {
-      'id': 'qtAllUser',
-      'title': 'Quản trị tất cả người dùng'
-    },
-    {
-      'id': 'dkLichTuan',
-      'title': 'Đăng ký lịch tuần'
-    },
-    {
-      'id': 'duyetLichTuan',
-      'title': 'Duyệt lịch tuần'
-    },
-  ]
+  
+  userData
+  managerData 
   group = [
     {
       'id': 'pBoss',
@@ -38,9 +22,30 @@ export class UserManagerComponent implements OnInit {
       'title': 'Phòng kỹ thuật'
     }
   ]
-  @Input() user: Object
-  constructor() { }
+  @Input() user: any
+  constructor(private httpClient: HttpClient, private api: ApiservicesService, private generalService: GeneralService) { }
   ngOnInit(): void {
+    this.DataDulieu();
+    this.UserIdData()
   }
+  async DataDulieu() {
+    try {
+      let res
+      let result
+      res = await this.api.httpCall(this.api.apiLists.getAllRights, {}, {}, 'get', true);
+      result = <any>res
+      console.log(result)
+      this.managerData = Array.from(result)
+    } catch { }
 
+  }
+  async UserIdData(){
+    try {
+      let res
+      let result
+      res = await this.api.httpCall(this.api.apiLists.getAllRights, {}, {}, 'get', true);
+      result = <any>res
+      this.userData = Array.from(result.data)
+    } catch {}
+  }
 }

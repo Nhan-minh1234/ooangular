@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 export class LoginComponent implements OnInit {
 
   username = 'administrator';
-  password = 'oo';
+  password = 'oo1234@2018';
   isRememberPassword = true;
   isLoggingIn = false;
 
@@ -48,7 +48,6 @@ export class LoginComponent implements OnInit {
         this.toaster.success('', 'Đăng nhập thành công!', {
           timeOut: 2000,
         });
-
         console.log(res)
         let result = <any>res
         result['password'] = this.password

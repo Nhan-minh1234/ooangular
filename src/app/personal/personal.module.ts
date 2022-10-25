@@ -14,6 +14,7 @@ import { NewEventComponent } from './new-event/new-event.component';
 import { CircleProgressOptions, NgCircleProgressModule } from 'ng-circle-progress';
 import { NewFileCabinetComponent } from './new-file-cabinet/new-file-cabinet.component';
 import { AddBusinessCardComponent } from './add-business-card/add-business-card.component';
+import { AddWorkgroupComponent } from './add-workgroup/add-workgroup.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AddBusinessCardComponent } from './add-business-card/add-business-card.
     BusinessCardComponent,
     NewEventComponent,
     NewFileCabinetComponent,
-    AddBusinessCardComponent
+    AddBusinessCardComponent,
+    AddWorkgroupComponent
 
 
 

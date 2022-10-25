@@ -18,6 +18,7 @@ import { AdminComponent } from './admin/admin/admin.component';
 
 
 
+
 @NgModule({
 
   declarations: [
@@ -28,7 +29,7 @@ import { AdminComponent } from './admin/admin/admin.component';
     ClientComponent,
     SignDocumentsComponent,
     SearchComponent,
-    AdminComponent
+    AdminComponent,
   
   ],
   imports: [

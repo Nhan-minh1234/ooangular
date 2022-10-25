@@ -154,34 +154,40 @@
         </table>
         </div>
         <div class="col-3">
-            <div class="list-group-item list-group-item background mb-2">
-                <b class="d-flex justify-content-center"> Lịch </b> 
+            <div class="border mb-1">
+                <div class="list-group-item list-group-item background mb-2">
+                    <b class="d-flex justify-content-center"> Lịch </b>
+                </div>
+                <app-calendar [eventList]="events" (getEvents)="getEvents($event)"></app-calendar>
             </div>
-            <div class="list-group-item list-group-item background-1">
-                <b class="d-flex justify-content-center"> Tham khảo lịch </b> 
+            <div class="border">
+                <div class="list-group-item list-group-item background-1">
+                    <b class="d-flex justify-content-center"> Tham khảo lịch </b> 
+                </div>
+                <div>
+                    <select class="form-select" id="example-select">
+                        <option>--Chọn bộ phận--</option>
+                        <option>Tất cả mọi người</option>
+                        <option>Ban giám đốc</option>
+                        <option>Phòng Tổ Chức Hành Chính</option>
+                        <option>Phòng Kĩ Thuật</option>
+                    </select>
+                </div>
+                <div>
+                    <select class="form-select" id="example-select">
+                        <option>--Chọn người--</option>
+                        <option>Giám Đốc</option>
+                        <option>Phó Giám Đốc</option>
+                        <option>Trưởng phòng</option>
+                    </select>
+                </div>
             </div>
-            <div>
-                <select class="form-select" id="example-select">
-                    <option>--Chọn bộ phận--</option>
-                    <option>Tất cả mọi người</option>
-                    <option>Ban giám đốc</option>
-                    <option>Phòng Tổ Chức Hành Chính</option>
-                    <option>Phòng Kĩ Thuật</option>
-                </select>
-            </div>
-            <div>
-                <select class="form-select" id="example-select">
-                    <option>--Chọn người--</option>
-                    <option>Giám Đốc</option>
-                    <option>Phó Giám Đốc</option>
-                    <option>Trưởng phòng</option>
-                </select>
-            </div>
+            
         </div>
     </div>
     
     <!-- /////////////////// Pagination -->
-    <div class="list row">
+    <div class="list row col-9">
         <div class="col-md-8">
             <pagination-controls id="paging" [previousLabel]="getLabel('previousBtn')" [nextLabel]="getLabel('nextBtn')"
                 responsive="true" responsive="true" (pageChange)="handlePageChange($event)"></pagination-controls>
