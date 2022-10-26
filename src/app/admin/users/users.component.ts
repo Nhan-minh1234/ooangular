@@ -28,11 +28,12 @@ export class UsersComponent implements OnInit {
     try {
       let res
       let result
-      res = await this.api.httpCall(this.api.apiLists.getAllRightsByUserld+ this.usereditDetail , {}, {}, 'get', true);
+      res = await this.api.httpCall(this.api.apiLists.getAllRightsByUserld+ "U0001", {}, {}, 'get', true);
       result = <any>res
       this.userData = Array.from(result.data)
     } catch {}
-    
+    console.log(this.userData)
+    console.log("res")
   }
   async GetUserData(){
     try {
