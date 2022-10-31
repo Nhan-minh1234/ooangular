@@ -6,18 +6,9 @@
             </div>
         </div>
     </div>
+    <!--Tìm kiếm-->
     <div class="row">
-        <div class="col-9 mb-2">
-            <div class="input-group">
-                <input (keyup)="search()" type="text" class="form-control"
-                    [placeholder]="getLabel('searchPlaceholer')" [(ngModel)]="searchKey" />
-                <div class="input-group-append">
-                    <button  class="btn btn-outline-secondary" type="button" (click)="search()">
-                        <i class="uil-search-alt"></i> {{getLabel("searchBtn")}}
-                    </button>
-                </div>
-            </div>
-        </div>
+        <div class="col-9"></div>
         <div class="col-3 my-auto mb-2">
             <div class="list-group">
                 <button  type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#user-manager-modal"
