@@ -10,7 +10,7 @@ import { GeneralService } from 'src/app/services/general.service';
 })
 export class UsersComponent implements OnInit {
 
-  originalTaskList
+  originalUser
   taskList
   searchKey
   userId
@@ -38,6 +38,7 @@ export class UsersComponent implements OnInit {
     } catch {}
     console.log(this.userId)
   }
+  
   async GetUserData(){
     try {
       let res
@@ -52,17 +53,17 @@ export class UsersComponent implements OnInit {
     return data[`${this.generalService.currentLanguage.Code}`][`${key}`]
   }
   search() {
-    if (this.originalTaskList != null) {
+    if (this.originalUser != null) {
       let self = this;
       if (this.searchKey != '')
-        this.taskList = this.originalTaskList.filter(function (v, i) {
+        this.taskList = this.originalUser.filter(function (v, i) {
           if (self.removeAccents(v.chude.toLowerCase()).indexOf(self.removeAccents(self.searchKey)) >= 0
             || self.removeAccents(v.nguoiTaoHoTen.toLowerCase()).indexOf(self.removeAccents(self.searchKey)) >= 0) {
             return true;
           } else false;
         });
       else
-        this.taskList = Array.from(this.originalTaskList)
+        this.taskList = Array.from(this.originalUser)
     }
   }
   removeAccents(str) {

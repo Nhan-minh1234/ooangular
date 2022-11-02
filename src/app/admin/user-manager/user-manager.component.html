@@ -104,7 +104,7 @@
                             </div>
                         </div>
                     </div>
-                    
+                    <!---->
                     <div class="tab-pane" id="group_tab">
                         <h4>Danh sách phân nhóm</h4>
                         <div class="list-group">
@@ -119,18 +119,16 @@
                             </div>
                         </div>
                         <div class="list-group" data-simplebar style="max-height: 55vh;">
-                            <div class="list-group-item" *ngFor="let item of userData; let i = title">
+                            <div *ngFor="let item of group" class="list-group-item">
                                 <div class="row">
                                     <div class="col-9">{{item.title}}</div>
                                     <div class="col-3 form-check form-switch">
                                         <input type="checkbox" class="form-check-input" checked='true'
-                                            id="customSwitch1 {{i}}">
-                                        <label class="form-check-label pointer" for="permissionCheck{{i}}">{{item.title}}</label>
+                                            id="customSwitch1">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
                     </div>
                 </div>
             </div>
