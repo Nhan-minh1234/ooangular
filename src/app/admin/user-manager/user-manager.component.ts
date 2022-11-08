@@ -11,6 +11,7 @@ import { GeneralService } from 'src/app/services/general.service';
 export class UserManagerComponent implements OnInit {
   
   userData
+  userIdDelete
   managerData 
   group = [
     {
@@ -26,7 +27,8 @@ export class UserManagerComponent implements OnInit {
   constructor(private httpClient: HttpClient, private api: ApiservicesService, private generalService: GeneralService) { }
   ngOnInit(): void {
     this.DataDulieu();
-    this.UserIdData()
+    this.UserIdData();
+    this.DeleteUser()
   }
   async DataDulieu() {
     try {
@@ -46,6 +48,15 @@ export class UserManagerComponent implements OnInit {
       res = await this.api.httpCall(this.api.apiLists.getAllRights, {}, {}, 'get', true);
       result = <any>res
       this.userData = Array.from(result.data)
+    } catch {}
+  }
+  async DeleteUser() {
+    try{
+      let res
+      let result
+      res = await this.api.httpCall(this.api.apiLists.getAllRights, {}, {}, 'post', true);
+      result = <any>res
+      this.userIdDelete = Array.from(result.data)
     } catch {}
   }
 }

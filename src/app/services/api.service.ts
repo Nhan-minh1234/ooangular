@@ -17,10 +17,13 @@ export class ApiservicesService {
     getTaskDetail: '/api/Tasks/GetTaskDetail/',
     createNewTask: '/api/Tasks/CreateNewTask',
     getAllUserGroups: '/api/Groups/GetAllGroups',
-    uploadFile: '/api/File/Upload?subDirectory=',
+    uploadFile: '/api/File/Upload?subDirectory',
     downloadFile: '/api/File/Download',
     getAllRights:'/api/Rights/GetAllRights',
-    getAllRightsByUserld:'/api/Users/GetAllRightsByUserId/'
+    getAllRightsByUserld:'/api/Users/GetAllRightsByUserId',
+    deleteUser:'/api/Users/DeleteUser',
+    upDateUser:'/api/Users/UpdateUser',
+    addNewUser:'/api/Users/AddNewUser'
   }
 
   constructor(private httpClient: HttpClient, private router: Router, private generalService: GeneralService) {
