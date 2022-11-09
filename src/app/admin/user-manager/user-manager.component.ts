@@ -11,7 +11,9 @@ import { GeneralService } from 'src/app/services/general.service';
 export class UserManagerComponent implements OnInit {
   
   userData
-  userIdDelete
+  userDuLieu //nhóm
+  newUser //thêm mới user
+  userIdDelete //xóa user
   managerData 
   group = [
     {
@@ -28,7 +30,9 @@ export class UserManagerComponent implements OnInit {
   ngOnInit(): void {
     this.DataDulieu();
     this.UserIdData();
-    this.DeleteUser()
+    this.DeleteUser();
+    this.newUser();
+    this.GetUserData
   }
   async DataDulieu() {
     try {
@@ -50,13 +54,35 @@ export class UserManagerComponent implements OnInit {
       this.userData = Array.from(result.data)
     } catch {}
   }
+  //xoa
   async DeleteUser() {
     try{
       let res
       let result
-      res = await this.api.httpCall(this.api.apiLists.getAllRights, {}, {}, 'post', true);
+      res = await this.api.httpCall(this.api.apiLists.deleteUser+"?"+"userId"+"="+"U0037", {}, {}, 'post', true);
       result = <any>res
       this.userIdDelete = Array.from(result.data)
+      console.log(res)
+    } catch {}
+  }
+  //them
+  async newUserId() {
+    try{
+      let res
+      let result
+      res = await this.api.httpCall(this.api.apiLists.addNewUser,{},{}, 'post', true);
+      result = <any>res
+      this.newUser = Array.from(result.data)
+    } catch {}
+  }
+  //nhóm phòng ban
+  async GetUserData(){
+    try {
+      let res
+      let result
+      res = await this.api.httpCall(this.api.apiLists.getAllUsers,{}, {PageNumber:1,PageSize:10}, 'get', true);
+      result = <any>res
+      this.userDuLieu = Array.from(result.data)
     } catch {}
   }
 }
