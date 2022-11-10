@@ -10,21 +10,84 @@ import { GeneralService } from 'src/app/services/general.service';
 })
 export class UserManagerComponent implements OnInit {
   
+  userId
   userData
   userDuLieu //nhóm
   newUser //thêm mới user
   userIdDelete //xóa user
   managerData 
-  group = [
+  groupNew = [
     {
-      'id': 'pBoss',
-      'title': 'Ban Giám Đốc'
+      'groupId': 'GP001',
+      'groupName': 'Ban Giám Đốc'
     },
     {
-      'id': 'pIT',
-      'title': 'Phòng kỹ thuật'
-    }
+      'groupId': 'GP002',
+      'groupName': 'Phòng Tài chính Kế Toán'
+    },
+    {
+      'groupId': 'GP003',
+      'groupName': 'Phòng Tổ Chức Hành Chính'
+    },
+    {
+      'groupId': 'GP005',
+      'groupName': 'Phòng Kỹ Thuật'
+    },
+    {
+      'groupId': 'GP026',
+      'groupName': ' Phòng Kinh Doanh '
+    },
+    {
+      'groupId': 'GP032',
+      'groupName': 'Phòng Thoát Nước Mưa'
+    },
+    {
+      'groupId': 'GP033',
+      'groupName': 'Phòng Kế Hoạch Tài Vụ'
+    },
+    {
+      'groupId': 'GP035',
+      'groupName': 'Phòng Hành Chính Quản Trị'
+    },
+    {
+      'groupId': 'GP036',
+      'groupName': 'Phòng Thủy Nông'
+    },
+  
   ]
+  newUserName=  
+  {
+    "userName": "",
+    "fullName": "",
+    "password": "",
+    "groupIdChinh": "",
+    "title": "",
+    "email": "",
+    "phone": "",
+    "isLeader": 0,
+    "nguoiTao": "",
+    "rights": [],
+    "groups": []
+  }
+  newmanager(event,rightId){
+    var newcheck = event.target.checked
+    if (newcheck === true) {this.newUserName.rights.push({"rightId":rightId})}
+    else {this.newUserName.rights.forEach((x,i)=>{
+      if (x.rightId===rightId){this.newUserName.rights.splice(i,1) }
+    })}
+    console.log(this.newUserName)
+  }
+  newgroup(event,groupId){
+    var newcheck = event.target.checked
+    if (newcheck === true) {this.newUserName.groups.push({"groupId":groupId})}
+    else {this.newUserName.groups.forEach((x,i)=>{
+      if (x.groupId==groupId){this.newUserName.groups.splice(i,1)}
+    })}
+    console.log(this.newUserName)
+  }
+  newgroupIdChinh(event){
+    this.newUserName.groupIdChinh=event.target.value
+  }
   @Input() user: any
   constructor(private httpClient: HttpClient, private api: ApiservicesService, private generalService: GeneralService) { }
   ngOnInit(): void {
@@ -32,8 +95,10 @@ export class UserManagerComponent implements OnInit {
     this.UserIdData();
     this.DeleteUser();
     this.newUser();
-    this.GetUserData
+    this.GetUserData();
+    this.permissionData('U0003')
   }
+  //api quyền của user
   async DataDulieu() {
     try {
       let res
@@ -43,8 +108,20 @@ export class UserManagerComponent implements OnInit {
       console.log(result)
       this.managerData = Array.from(result)
     } catch { }
-
   }
+  //quyền tổng của người user
+  async permissionData(userId){
+    try {
+      let res
+      let result
+      res = await this.api.httpCall(this.api.apiLists.getAllRightsByUserld + userId , {}, {}, 'get', true);
+      result = <any>res
+      this.userData = Array.from(result.data)
+      console.log(res)
+    } catch {}
+  }
+  ///////
+  
   async UserIdData(){
     try {
       let res
@@ -65,14 +142,16 @@ export class UserManagerComponent implements OnInit {
       console.log(res)
     } catch {}
   }
+  
   //them
   async newUserId() {
     try{
       let res
       let result
-      res = await this.api.httpCall(this.api.apiLists.addNewUser,{},{}, 'post', true);
+      res = await this.api.httpCall(this.api.apiLists.addNewUser,{},this.newUserName, 'post', true);
       result = <any>res
       this.newUser = Array.from(result.data)
+      console.log(this.newUserName)
     } catch {}
   }
   //nhóm phòng ban
@@ -85,4 +164,6 @@ export class UserManagerComponent implements OnInit {
       this.userDuLieu = Array.from(result.data)
     } catch {}
   }
+
+
 }

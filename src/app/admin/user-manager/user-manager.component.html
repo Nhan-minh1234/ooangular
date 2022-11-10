@@ -86,7 +86,7 @@
                                 <div class="row">
                                     <div class="col-9">Danh sách phân quyền</div>
                                     <div class="col-3 form-check form-switch">
-                                        <input type="checkbox" class="form-check-input" checked='true'
+                                        <input type="checkbox" class="form-check-input" 
                                             id="customSwitch1">
                                     </div>
                                 </div>
@@ -97,7 +97,7 @@
                                 <div class="row">
                                     <div class="col-9">{{item.rightName}}</div>
                                     <div class="col-3 form-check form-switch">
-                                        <input type="checkbox" class="form-check-input" checked='true'
+                                        <input type="checkbox" class="form-check-input"  (change)="newmanager($event,item.rightId)"
                                             id="customSwitch1">
                                     </div>
                                 </div>
@@ -112,18 +112,18 @@
                                 <div class="row">
                                     <div class="col-9">Danh sách phân nhóm</div>
                                     <div class="col-3 form-check form-switch">
-                                        <input type="checkbox" class="form-check-input" checked='true'
+                                        <input type="checkbox" class="form-check-input" 
                                             id="customSwitch1">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="list-group" data-simplebar style="max-height: 55vh;">
-                            <div *ngFor="let item of group" class="list-group-item">
+                            <div *ngFor="let item of groupNew" class="list-group-item">
                                 <div class="row">
-                                    <div class="col-9">{{item.title}}</div>
+                                    <div class="col-9">{{item.groupName}}</div>
                                     <div class="col-3 form-check form-switch">
-                                        <input type="checkbox" class="form-check-input" checked='true'
+                                        <input type="checkbox" class="form-check-input" (change)="newgroup($event,item.groupId)"
                                             id="customSwitch1">
                                     </div>
                                 </div>
@@ -158,28 +158,28 @@
             <div class="modal-body">
                 <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
                     <li class="nav-item">
-                        <a href="#overview_tab" data-bs-toggle="tab" aria-expanded="false"
+                        <a href="#overview_tab_new" data-bs-toggle="tab" aria-expanded="false"
                             class="nav-link rounded-0 active">
                             <i class="mdi mdi-home-variant d-md-none d-block"></i>
                             <span class="d-none d-md-block">Thông tin người dùng</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#second_tab" data-bs-toggle="tab" aria-expanded="true" class="nav-link rounded-0">
+                        <a href="#second_tab_new" data-bs-toggle="tab" aria-expanded="true" class="nav-link rounded-0">
                             <i class="mdi mdi-account-circle d-md-none d-block"></i>
                             <span class="d-none d-md-block">Phân quyền</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#group_tab" data-bs-toggle="tab" aria-expanded="false" class="nav-link rounded-0">
+                        <a href="#group_tab_new" data-bs-toggle="tab" aria-expanded="false" class="nav-link rounded-0">
                             <i class="mdi mdi-settings-outline d-md-none d-block"></i>
-                            <span class="d-none d-md-block">Phân nhóm mới</span>
+                            <span class="d-none d-md-block">Phân nhóm</span>
                         </a>
                     </li>
                 </ul>
 
                 <div class="tab-content">
-                    <div class="tab-pane show active" id="overview_tab">
+                    <div class="tab-pane show active" id="overview_tab_new">
                         <div class="row">
                             <form class="form-horizontal">
                                 <div class="row mb-3">
@@ -193,29 +193,32 @@
                                 <div class="row mb-3">
                                     <label class="col-3 col-form-label">Tên đăng nhập:(*)</label>
                                     <div class="col-9">
-                                        <input [readonly]="true" type="text" id="simpleinput" placeholder="Tên đăng nhập"
-                                                        [value]="user.userName" class="form-control">
+                                        <input  type="text" name="userName" id="simpleinput" placeholder="Tên đăng nhập"
+                                                [(ngModel)]="newUserName.userName" class="form-control">
                                     </div>
-                                </div><div class="row mb-3">
+                                </div>
+                                <div class="row mb-3">
                                     <label class="col-3 col-form-label">Mật khẩu:(*)</label>
                                     <div class="col-9">
-                                        <input [readonly]="true" type="text" id="simpleinput" placeholder="Tên đăng nhập"
-                                                        [value]="user.password" class="form-control">
+                                        <input  type="text" name="password" id="simpleinput" placeholder="Tên đăng nhập"
+                                                        [(ngModel)]="newUserName.password" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label class="col-3 col-form-label">Họ và tên:(*)</label>
                                     <div class="col-9">
-                                        <input type="text" id="simpleinput" placeholder="Họ và tên"
-                                        [value]="user.fullName" class="form-control">
+                                        <input type="text" name="fullName" id="simpleinput" placeholder="Họ và tên"
+                                        [(ngModel)]="newUserName.fullName" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label class="col-3 col-form-label">Nhóm:(*)</label>
                                     <div class="col-9">
                                         <div class="mb-2">
-                                            <select class="form-select" id="example-select">
-                                                <option *ngFor="let item of userDuLieu">{{item.groupChinhName}}</option>
+                                            <select class="form-select" name="groupIdchinh"
+                                            (change)="newgroupIdChinh($event)" id="example-select" >
+                                                <option *ngFor="let item of groupNew" [value]="item.groupId"
+                                                >{{item.groupName}}</option>
                                             </select>
                                         </div>
                                         
@@ -228,35 +231,35 @@
                                 <div class="row mb-3">
                                     <label class="col-3 col-form-label">Chức danh:</label>
                                     <div class="col-9">
-                                        <input  type="text" id="simpleinput" placeholder="Chức danh"
-                                                        [value]="user.title" class="form-control">
+                                        <input  type="text" name="title" id="simpleinput" placeholder="Chức danh"
+                                                        [(ngModel)]="newUserName.title" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label class="col-3 col-form-label">Email:</label>
                                     <div class="col-9">
-                                        <input type="text" id="simpleinput" placeholder="Email"
-                                        [value]="user.email" class="form-control">
+                                        <input type="text" name="email" id="simpleinput" placeholder="Email"
+                                        [(ngModel)]="newUserName.email" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label class="col-3 col-form-label">Điện thoại:</label>
                                     <div class="col-9">
-                                        <input type="text" id="simpleinput" placeholder="Điện thoại"
-                                        [value]="user.phone" class="form-control">
+                                        <input type="text" name="phone" id="simpleinput" placeholder="Điện thoại"
+                                        [(ngModel)]="newUserName.phone" class="form-control">
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
-                    <div class="tab-pane" id="second_tab">
+                    <div class="tab-pane" id="second_tab_new">
                         <h4>Danh sách phân quyền</h4>
                         <div class="list-group">
                             <div class="list-group-item list-group-item-custom-dark">
                                 <div class="row">
                                     <div class="col-9">Danh sách phân quyền</div>
                                     <div class="col-3 form-check form-switch">
-                                        <input type="checkbox" class="form-check-input" checked='true'
+                                        <input type="checkbox" class="form-check-input" 
                                             id="customSwitch1">
                                     </div>
                                 </div>
@@ -267,7 +270,7 @@
                                 <div class="row">
                                     <div class="col-9">{{item.rightName}}</div>
                                     <div class="col-3 form-check form-switch">
-                                        <input type="checkbox" class="form-check-input" checked='true'
+                                        <input type="checkbox" class="form-check-input" (change)="newmanager($event,item.rightId)"
                                             id="customSwitch1">
                                     </div>
                                 </div>
@@ -275,32 +278,39 @@
                         </div>
                     </div>
                     <!---->
-                    <div class="tab-pane" id="group_tab">
+                    <div class="tab-pane" id="group_tab_new">
                         <h4>Danh sách phân nhóm</h4>
                         <div class="list-group">
                             <div class="list-group-item list-group-item-custom-dark">
                                 <div class="row">
                                     <div class="col-9">Danh sách phân nhóm</div>
                                     <div class="col-3 form-check form-switch">
-                                        <input type="checkbox" class="form-check-input" checked='true'
+                                        <input type="checkbox" class="form-check-input" 
                                             id="customSwitch1">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="list-group" data-simplebar style="max-height: 55vh;">
-                            <div *ngFor="let item of group" class="list-group-item">
+                            <div *ngFor="let item of groupNew" class="list-group-item">
                                 <div class="row">
-                                    <div class="col-9">{{item.title}}</div>
+                                    <div class="col-9">{{item.groupName}}</div>
                                     <div class="col-3 form-check form-switch">
-                                        <input type="checkbox" class="form-check-input" checked='true'
-                                            id="customSwitch1">
+                                        <input type="checkbox" class="form-check-input" (change)="newgroup($event,item.groupId)"
+                                             id="customSwitch1">
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Đóng</button>
+                <!-- <button type="button" class="btn btn-light" data-bs-dismiss="modal" data-bs-toggle="modal"
+                    data-bs-target="#user-detail-modal">Quay lại</button> -->
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="newUserId()">
+                    Lưu</button>
             </div>
         </div>
     </div>

@@ -43,7 +43,7 @@ export class UsersComponent implements OnInit {
     try {
       let res
       let result
-      res = await this.api.httpCall(this.api.apiLists.getAllUsers,{}, {PageNumber:1,PageSize:20}, 'get', true);
+      res = await this.api.httpCall(this.api.apiLists.getAllUsers,{}, {PageNumber:1,PageSize:50}, 'get', true);
       result = <any>res
       this.userData = Array.from(result.data)
     } catch {}
