@@ -11,11 +11,13 @@ import { GeneralService } from 'src/app/services/general.service';
 export class UserManagerComponent implements OnInit {
   
   userId
+  userUpdate //update
   userData
   userDuLieu //nhóm
   newUser //thêm mới user
   userIdDelete //xóa user
   managerData 
+  @Input ()quyencuaUser: any
   groupNew = [
     {
       'groupId': 'GP001',
@@ -96,9 +98,10 @@ export class UserManagerComponent implements OnInit {
     this.DeleteUser();
     this.newUser();
     this.GetUserData();
-    this.permissionData('U0003')
+    this.permissionData('U0003');
+   /* this.upDateUserId();*/
   }
-  //api quyền của user
+  //api tất cả các  quyền của user
   async DataDulieu() {
     try {
       let res
@@ -109,7 +112,7 @@ export class UserManagerComponent implements OnInit {
       this.managerData = Array.from(result)
     } catch { }
   }
-  //quyền tổng của người user
+  //quyền của người dùng
   async permissionData(userId){
     try {
       let res
@@ -120,8 +123,17 @@ export class UserManagerComponent implements OnInit {
       console.log(res)
     } catch {}
   }
-  ///////
-  
+  //so sanh quyền
+  sosanhUser(phanquyen){
+    var sosanhquyen = false
+    this.managerData.forEach((x)=>{
+      if (x.rightId===phanquyen) {
+        sosanhquyen = true
+      }
+    })
+    return sosanhquyen ;
+  } 
+///
   async UserIdData(){
     try {
       let res
@@ -131,6 +143,7 @@ export class UserManagerComponent implements OnInit {
       this.userData = Array.from(result.data)
     } catch {}
   }
+  
   //xoa
   async DeleteUser() {
     try{
@@ -164,6 +177,16 @@ export class UserManagerComponent implements OnInit {
       this.userDuLieu = Array.from(result.data)
     } catch {}
   }
-
+  // Update user name
+   /*async upDateUserId() {
+    try {
+      let res
+      let result
+      res = await this.api.httpCall(this.api.apiLists.upDateUser,{},this.newUserName,'post',true);
+      result = <any>res
+      this.userUpdate = Array.from(result.data)
+      console.log(this.newUserName)
+    } catch{}
+   }*/
 
 }

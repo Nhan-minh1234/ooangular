@@ -26,19 +26,13 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.GetUserData();
-    this.permissionData()
-  }
-  async permissionData(){
-    try {
-      let res
-      let result
-      res = await this.api.httpCall(this.api.apiLists.getAllRightsByUserld+ this.userId, {}, {}, 'get', true);
-      result = <any>res
-      this.userData = Array.from(result.data)
-    } catch {}
-    console.log(this.userId)
+    this.individualData('U0042')
+    
   }
   
+  //quyền cho từng user
+  
+
   async GetUserData(){
     try {
       let res
@@ -48,6 +42,18 @@ export class UsersComponent implements OnInit {
       this.userData = Array.from(result.data)
     } catch {}
   }
+  // Phân quyền cho user theo userId
+  // quyền của tưng user
+  async individualData(userId){
+    try{
+      let res
+      let result
+      res= await this.api.httpCall(this.api.apiLists.getAllRightsByUserld + userId,{},{},'get', true);
+      result= <any>res
+      console.log(res)
+    }catch{}
+  }
+  
   ////////////////////////////////////////////////
   getLabel(key) {
     return data[`${this.generalService.currentLanguage.Code}`][`${key}`]
@@ -89,4 +95,7 @@ export class UsersComponent implements OnInit {
     }
     return str;
   }
+
+  //phân trang
+  
 }

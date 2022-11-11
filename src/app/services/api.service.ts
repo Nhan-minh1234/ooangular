@@ -20,7 +20,7 @@ export class ApiservicesService {
     uploadFile: '/api/File/Upload?subDirectory',
     downloadFile: '/api/File/Download',
     getAllRights:'/api/Rights/GetAllRights/',
-    getAllRightsByUserld:'/api/Users/GetAllRightsByUserId',
+    getAllRightsByUserld:'/api/Users/GetAllRightsByUserId/',
     deleteUser:'/api/Users/DeleteUser',
     upDateUser:'/api/Users/UpdateUser',
     addNewUser:'/api/Users/AddNewUser'
