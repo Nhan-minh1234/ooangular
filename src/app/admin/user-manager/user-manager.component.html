@@ -95,9 +95,10 @@
                         <div class="list-group" *ngIf="managerData" data-simplebar style="max-height: 55vh;">
                             <div *ngFor="let item of managerData" class="list-group-item">
                                 <div class="row">
-                                    <div class="col-9">{{item.rightName}}</div>
+                                    <div class="col-9">{{item.rightName }}</div>
                                     <div class="col-3 form-check form-switch">
-                                        <input type="checkbox" class="form-check-input"  (change)="newmanager($event,item.rightId)"
+                                        <input type="checkbox" class="form-check-input"  [checked]="sosanhUser(item.rightId)" 
+                                        (change)="newmanager($event,item.rightId)"
                                             id="customSwitch1">
                                     </div>
                                 </div>
@@ -136,7 +137,7 @@
                 <button type="button" class="btn btn-light" data-bs-dismiss="modal">Đóng</button>
                 <!-- <button type="button" class="btn btn-light" data-bs-dismiss="modal" data-bs-toggle="modal"
                     data-bs-target="#user-detail-modal">Quay lại</button> -->
-                <button type="button" class="btn btn-success" data-bs-dismiss="modal">Lưu</button>
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal" >Lưu</button>
                 <button type="button" class="btn btn-warning">Đặt lại mật khẩu</button>
                 <button type="submit" name="ctl22$DANHMUC$ctl02$btnDel"  
 				value="Xóa" class="btn btn-danger" onclick="return confirm('Bạn chắc chắn xóa ?');" 

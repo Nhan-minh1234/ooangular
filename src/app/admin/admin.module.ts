@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
 import { AdminRoutingModule } from './admin-routing.module';
 import { UsersComponent } from './users/users.component';
@@ -17,7 +18,7 @@ import { UserAdministrationComponent } from './user-administration/user-administ
   imports: [
     CommonModule,
     AdminRoutingModule,
-    FormsModule
+    NgxPaginationModule,FormsModule
   ]
 })
 export class AdminModule { }

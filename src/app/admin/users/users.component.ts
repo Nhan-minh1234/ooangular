@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import data from './users.language';
 import { ApiservicesService } from 'src/app/services/api.service';
 import { GeneralService } from 'src/app/services/general.service';
+
+
+
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -18,6 +21,17 @@ export class UsersComponent implements OnInit {
   userData
   userIdData
   usereditDetail = {} //biến tạm //
+  //phân trang
+  spinmerLoading = false
+  count = 100;
+  config
+  counts = 10;
+  page = 0;
+  pageSize = 10;
+  pageSizes = [10, 20, 30];
+  paginationConfig
+
+  //
   userDetail( userData ){
     this.usereditDetail={...userData}
   }
@@ -26,33 +40,35 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.GetUserData();
-    this.individualData('U0042')
-    
   }
   
   //quyền cho từng user
-  
-
   async GetUserData(){
+    this.spinmerLoading = true
+    let options ={
+      PageNumber : this.page,
+      PageSize : this.pageSize,
+      isPaging : true
+    }
     try {
       let res
       let result
-      res = await this.api.httpCall(this.api.apiLists.getAllUsers,{}, {PageNumber:1,PageSize:50}, 'get', true);
+      res = await this.api.httpCall(this.api.apiLists.getAllUsers,{}, options, 'get', true);
       result = <any>res
       this.userData = Array.from(result.data)
-    } catch {}
+      this.paginationConfig = {
+        id: 'paginationControl',
+        itemsPerPage: this.pageSize,
+        currentPage: this.page,
+        totalItems: this.count
+      }
+      this.spinmerLoading = false;
+    } catch (error){
+      this.spinmerLoading = false
+    }
   }
-  // Phân quyền cho user theo userId
-  // quyền của tưng user
-  async individualData(userId){
-    try{
-      let res
-      let result
-      res= await this.api.httpCall(this.api.apiLists.getAllRightsByUserld + userId,{},{},'get', true);
-      result= <any>res
-      console.log(res)
-    }catch{}
-  }
+  //
+
   
   ////////////////////////////////////////////////
   getLabel(key) {
@@ -95,7 +111,15 @@ export class UsersComponent implements OnInit {
     }
     return str;
   }
+// phân trang
+handlePageChange(event): void {
+  this.page = event;
+  this.GetUserData();
+}
+handlePageSizeChange(event): void {
+  this.pageSize = event.target.value;
+  this.page = 0;
+  this.GetUserData();
+}
 
-  //phân trang
-  
 }

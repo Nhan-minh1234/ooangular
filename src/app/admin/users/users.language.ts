@@ -1,11 +1,15 @@
 let data = {
     "EN":{
         "searchBtn": "Search",
-        "searchPlaceholer": "Search..."
+        "searchPlaceholer": "Search...",
+        "nextBtn": 'Next',
+        "previousBtn": 'Previous'
     },
     "VN":{
         "searchBtn": "Tìm Kiếm",
-        "searchPlaceholer": "Tìm Kiếm..."
+        "searchPlaceholer": "Tìm Kiếm...",
+        "nextBtn": 'Trang sau',
+        "previousBtn": 'Trang trước'
     }
 }
 export default data;

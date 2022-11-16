@@ -12,12 +12,15 @@ export class UserManagerComponent implements OnInit {
   
   userId
   userUpdate //update
+  userDataName
   userData
   userDuLieu //nhóm
   newUser //thêm mới user
   userIdDelete //xóa user
   managerData 
+  deleteGroupUser //xóa 1 nhóm khỏi người dùng
   @Input ()quyencuaUser: any
+  
   groupNew = [
     {
       'groupId': 'GP001',
@@ -93,13 +96,14 @@ export class UserManagerComponent implements OnInit {
   @Input() user: any
   constructor(private httpClient: HttpClient, private api: ApiservicesService, private generalService: GeneralService) { }
   ngOnInit(): void {
+    this.individualData('U0042');
     this.DataDulieu();
     this.UserIdData();
-    this.DeleteUser();
+    this.DeleteUser(); // xóa người dùng
     this.newUser();
-    this.GetUserData();
-    this.permissionData('U0003');
-   /* this.upDateUserId();*/
+
+    
+    this.deleteGroup('U0042')
   }
   //api tất cả các  quyền của user
   async DataDulieu() {
@@ -113,20 +117,21 @@ export class UserManagerComponent implements OnInit {
     } catch { }
   }
   //quyền của người dùng
-  async permissionData(userId){
-    try {
+  async individualData(userId){
+    try{
       let res
       let result
-      res = await this.api.httpCall(this.api.apiLists.getAllRightsByUserld + userId , {}, {}, 'get', true);
-      result = <any>res
-      this.userData = Array.from(result.data)
+      res= await this.api.httpCall(this.api.apiLists.getAllRightsByUserld + userId,{},{},'get', true);
+      result= <any>res
+      this.userDataName = Array.from(result)
       console.log(res)
-    } catch {}
+    }catch{}
   }
   //so sanh quyền
-  sosanhUser(phanquyen){
+  sosanhUser(phanquyen ){
     var sosanhquyen = false
-    this.managerData.forEach((x)=>{
+    this.userDataName.forEach((x)=>{
+
       if (x.rightId===phanquyen) {
         sosanhquyen = true
       }
@@ -134,6 +139,8 @@ export class UserManagerComponent implements OnInit {
     return sosanhquyen ;
   } 
 ///
+
+//
   async UserIdData(){
     try {
       let res
@@ -155,7 +162,17 @@ export class UserManagerComponent implements OnInit {
       console.log(res)
     } catch {}
   }
-  
+  // xóa một nhóm ra khỏi người dùng
+  async deleteGroup(userId){
+    try{
+      let res
+      let result
+      res = await this.api.httpCall(this.api.apiLists.removeOneSelectedGroupFromUser + userId,{},{},'post',true);
+      result = <any>res
+      this.deleteGroupUser = Array.from(result.data)
+      console.log('U0042')
+    } catch{}
+  }
   //them
   async newUserId() {
     try{
@@ -168,25 +185,7 @@ export class UserManagerComponent implements OnInit {
     } catch {}
   }
   //nhóm phòng ban
-  async GetUserData(){
-    try {
-      let res
-      let result
-      res = await this.api.httpCall(this.api.apiLists.getAllUsers,{}, {PageNumber:1,PageSize:10}, 'get', true);
-      result = <any>res
-      this.userDuLieu = Array.from(result.data)
-    } catch {}
-  }
-  // Update user name
-   /*async upDateUserId() {
-    try {
-      let res
-      let result
-      res = await this.api.httpCall(this.api.apiLists.upDateUser,{},this.newUserName,'post',true);
-      result = <any>res
-      this.userUpdate = Array.from(result.data)
-      console.log(this.newUserName)
-    } catch{}
-   }*/
+
+  //
 
 }
