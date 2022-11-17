@@ -21,6 +21,7 @@ export class ApiservicesService {
     downloadFile: '/api/File/Download',
     getAllRights:'/api/Rights/GetAllRights/',
     getAllRightsByUserld:'/api/Users/GetAllRightsByUserId/',
+    getAllGroupsByUserld:'/api/Users/GetAllGroupsByUserId/{userId}', // nhóm theo userId
     deleteUser:'/api/Users/DeleteUser',
     upDateUser:'/api/Users/UpdateUser',
     addNewUser:'/api/Users/AddNewUser',

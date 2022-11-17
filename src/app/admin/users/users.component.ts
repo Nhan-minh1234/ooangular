@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import data from './users.language';
 import { ApiservicesService } from 'src/app/services/api.service';
 import { GeneralService } from 'src/app/services/general.service';
-
+declare var bootstrap: any
 
 
 @Component({
@@ -13,9 +13,8 @@ import { GeneralService } from 'src/app/services/general.service';
 })
 export class UsersComponent implements OnInit {
 
-  originalUser
-  taskList
-  searchKey
+  users
+  searchKey ='';
   userId
   adminData
   userData
@@ -30,6 +29,8 @@ export class UsersComponent implements OnInit {
   pageSize = 10;
   pageSizes = [10, 20, 30];
   paginationConfig
+  myModal
+  
 
   //
   userDetail( userData ){
@@ -40,6 +41,10 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.GetUserData();
+    this.myModal = new bootstrap.Modal(document.getElementById('myModal'), {
+      keyboard: false
+    })
+    console.log(this.myModal)
   }
   
   //quyền cho từng user
@@ -53,9 +58,11 @@ export class UsersComponent implements OnInit {
     try {
       let res
       let result
-      res = await this.api.httpCall(this.api.apiLists.getAllUsers,{}, options, 'get', true);
+      res = await this.api.httpCall(this.api.apiLists.getAllUsers ,{}, options, 'get', true);
       result = <any>res
       this.userData = Array.from(result.data)
+      this.users = Array.from(this.userData)
+      this.count = result.totalRecords
       this.paginationConfig = {
         id: 'paginationControl',
         itemsPerPage: this.pageSize,
@@ -65,6 +72,7 @@ export class UsersComponent implements OnInit {
       this.spinmerLoading = false;
     } catch (error){
       this.spinmerLoading = false
+      this.myModal.toggle()
     }
   }
   //
@@ -75,17 +83,17 @@ export class UsersComponent implements OnInit {
     return data[`${this.generalService.currentLanguage.Code}`][`${key}`]
   }
   search() {
-    if (this.originalUser != null) {
+    if (this.userData != null) {
       let self = this;
       if (this.searchKey != '')
-        this.taskList = this.originalUser.filter(function (v, i) {
-          if (self.removeAccents(v.chude.toLowerCase()).indexOf(self.removeAccents(self.searchKey)) >= 0
-            || self.removeAccents(v.nguoiTaoHoTen.toLowerCase()).indexOf(self.removeAccents(self.searchKey)) >= 0) {
+        this.users = this.userData.filter(function (v, i) {
+          if (self.removeAccents(v.userName.toLowerCase()).indexOf(self.removeAccents(self.searchKey)) >= 0
+            || self.removeAccents(v.fullName.toLowerCase()).indexOf(self.removeAccents(self.searchKey)) >= 0) {
             return true;
           } else false;
         });
       else
-        this.taskList = Array.from(this.originalUser)
+        this.users = Array.from(this.userData)
     }
   }
   removeAccents(str) {

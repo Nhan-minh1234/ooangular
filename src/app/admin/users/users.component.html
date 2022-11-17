@@ -31,9 +31,9 @@
                         <th>Phòng ban</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody *ngIf="users!=null">
                     <tr (click)="userDetail(item)" class="pointer" data-bs-toggle="modal" data-bs-target="#user-manager-modal"
-                        *ngFor="let item of userData |paginate: paginationConfig">
+                        *ngFor="let item of users |paginate: paginationConfig">
                         <td></td>
                         <td>{{item.userName}}</td>
                         <td>{{item.fullName}}</td>
@@ -46,7 +46,7 @@
             <!--Phân trang tại đây-->
             <div class="list row">
                 <div class="col-md-8">
-                    <pagination-controls id="paginationControl" [previousLabel]="'quay lại'" [nextLabel]="'tiếp tục'"
+                    <pagination-controls id="paginationControl" [previousLabel]="' << Quay lại '" [nextLabel]="'Tiếp tục >>'"
                     responsive="true" responsive="true" (pageChange)="handlePageChange($event)"></pagination-controls>
                 </div>
                 <div class="col-md-4">
@@ -67,7 +67,6 @@
                     Tìm theo tên:
                 </div>
                 <div class="list-group-item">
-<!---->
                     <input (keyup)="search()" type="text" class="form-control"
                     [placeholder]="getLabel('searchPlaceholer')" (click)="search()" [(ngModel)]="searchKey" />
                 </div>

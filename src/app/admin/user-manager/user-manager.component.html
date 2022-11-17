@@ -119,12 +119,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="list-group" data-simplebar style="max-height: 55vh;">
+                        <div class="list-group" *ngIf="groupNew" data-simplebar style="max-height: 55vh;">
                             <div *ngFor="let item of groupNew" class="list-group-item">
                                 <div class="row">
                                     <div class="col-9">{{item.groupName}}</div>
                                     <div class="col-3 form-check form-switch">
-                                        <input type="checkbox" class="form-check-input" (change)="newgroup($event,item.groupId)"
+                                        <input type="checkbox" class="form-check-input" 
+                                        (change)="newgroup($event,item.groupId)"
                                             id="customSwitch1">
                                     </div>
                                 </div>
@@ -140,8 +141,8 @@
                 <button type="button" class="btn btn-success" data-bs-dismiss="modal" >Lưu</button>
                 <button type="button" class="btn btn-warning">Đặt lại mật khẩu</button>
                 <button type="submit" name="ctl22$DANHMUC$ctl02$btnDel"  
-				value="Xóa" class="btn btn-danger" onclick="return confirm('Bạn chắc chắn xóa ?');" 
-                id="ctl22_DANHMUC_btnDel_0">Xoá người dùng</button>
+				value="Xóa" class="btn btn-danger"
+                id="ctl22_DANHMUC_btnDel_0"  >Xoá người dùng</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -292,7 +293,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="list-group" data-simplebar style="max-height: 55vh;">
+                        <div class="list-group"*ngIf="groupNew" data-simplebar style="max-height: 55vh;">
                             <div *ngFor="let item of groupNew" class="list-group-item">
                                 <div class="row">
                                     <div class="col-9">{{item.groupName}}</div>
