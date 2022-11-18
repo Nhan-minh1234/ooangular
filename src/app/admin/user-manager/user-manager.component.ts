@@ -10,11 +10,12 @@ import { GeneralService } from 'src/app/services/general.service';
 })
 export class UserManagerComponent implements OnInit {
   
+  
   userId
   userUpdate //update
   userDataName
   userData
-  newUser //thêm mới user
+  newUser// Thêm mới người dùng
   userIdDelete //xóa user
   managerData 
   deleteGroupUser //xóa 1 nhóm khỏi người dùng
@@ -96,11 +97,12 @@ export class UserManagerComponent implements OnInit {
   @Input() user: any
   constructor(private httpClient: HttpClient, private api: ApiservicesService, private generalService: GeneralService ) { }
   ngOnInit(): void {
+    
+    this.themMoiUser( );
     this.individualData(this.user.userId);
     this.DataDulieu();
-    this.UserIdData();
-    this.DeleteUser(); // xóa người dùng
-    this.newUser();
+   /* this.UserIdData();
+   /* this.DeleteUser(); // xóa người dùng*/
     this.individualgroupUserId(this.user.userId)
   }
   ngOnChanges(user,userId: SimpleChanges): void {
@@ -153,6 +155,7 @@ async individualgroupUserId(userId : string){
   }catch{}
 }
 // so sánh nhóm userId
+/*
 sosanhgroup(group){
   var sosanhnhom = false
   this.theGroupsName.forEach((x)=>{
@@ -175,18 +178,18 @@ sosanhgroup(group){
   }
   
   //xoa người dùng
-  async DeleteUser() {
+  /*async DeleteUser() {
     try{
       let res
       let result
-      res = await this.api.httpCall(this.api.apiLists.deleteUser+"?"+"userId"+"="+"userId", {}, {}, 'post', true);
+      res = await this.api.httpCall(this.api.apiLists.deleteUser+"?"+"userId"+"="+"U0055", {}, {}, 'post', true);
       result = <any>res
       this.userIdDelete = Array.from(result.data)
       console.log(res)
     } catch {}
-  }
-  //them
-  async newUserId() {
+  }*/
+  // Thêm mới người dùng
+  async themMoiUser() {
     try{
       let res
       let result
