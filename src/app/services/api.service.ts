@@ -26,7 +26,8 @@ export class ApiservicesService {
     upDateUser:'/api/Users/UpdateUser',
     addNewUser:'/api/Users/AddNewUser',
     removeOneSelectedGroupFromUser:'/api/Users/RemoveOneSelectedGroupFromUser', // xóa 1 nhóm khỏi người dùng
-    assignOneRightToUser:'/api/Users/AssignOneRightToUser' //gán quyền cho người dùng
+    assignOneRightToUser:'/api/Users/AssignOneRightToUser' , //gán quyền cho người dùng
+    getUserByUserName : '/api/Users/GetUserByUserName/{userName}' // Lấy thông tin chi tiết người dùng theo Username
   }
 
   constructor(private httpClient: HttpClient, private router: Router, private generalService: GeneralService) {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input,SimpleChanges} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import data from './users.language';
 import { ApiservicesService } from 'src/app/services/api.service';
@@ -15,10 +15,8 @@ export class UsersComponent implements OnInit {
 
   users
   searchKey ='';
-  userId
-  adminData
   userData
-  userIdData
+  detailUser //thông tin người dùng theo userName
   usereditDetail = {} //biến tạm //
   //phân trang
   spinmerLoading = false
@@ -30,24 +28,28 @@ export class UsersComponent implements OnInit {
   pageSizes = [10, 20, 30];
   paginationConfig
   myModal
-  
-
   //
   userDetail( userData ){
     this.usereditDetail={...userData}
-  }
-  
+  } 
+  @Input() user: any // biến tạm user
     constructor(private httpClient: HttpClient, private api: ApiservicesService, private generalService: GeneralService) { }
 
   ngOnInit(): void {
     this.GetUserData();
+    this.userDetails(this.user.userName);
     this.myModal = new bootstrap.Modal(document.getElementById('myModal'), {
       keyboard: false
     })
     console.log(this.myModal)
+    
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    this.userDetails(this.user.userName)
+    
   }
   
-  //quyền cho từng user
+  // Danh sách người dùng có phân trang trên hệ thống
   async GetUserData(){
     this.spinmerLoading = true
     let options ={
@@ -75,7 +77,16 @@ export class UsersComponent implements OnInit {
       this.myModal.toggle()
     }
   }
-  //
+  // Lấy thông tin chi tiết người dùng theo Username
+  async userDetails(userName : string){
+    try {
+      let res
+      let result
+      res = await this.api.httpCall(this.api.apiLists.getUserByUserName + userName, {},{},'get', true);
+      result = <any>res
+      this.detailUser = Array.from (result)
+    } catch {}
+  }
 
   
   ////////////////////////////////////////////////

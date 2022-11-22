@@ -140,9 +140,9 @@
                     data-bs-target="#user-detail-modal">Quay lại</button> -->
                 <button type="button" class="btn btn-success" data-bs-dismiss="modal" >Lưu</button>
                 <button type="button" class="btn btn-warning">Đặt lại mật khẩu</button>
-                <button type="submit" name="ctl22$DANHMUC$ctl02$btnDel"  
-				value="Xóa" class="btn btn-danger"
-                id="ctl22_DANHMUC_btnDel_0"  >Xoá người dùng</button>
+                <button type="submit" name="ctl22$DANHMUC$ctl02$btnDel" value="Xóa" class="btn btn-danger" 
+                id="ctl22_DANHMUC_btnDel_0"  (click)="xoaUser()">
+                Xoá người dùng</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -311,7 +311,7 @@
                 <button type="button" class="btn btn-light" data-bs-dismiss="modal">Đóng</button>
                 <!-- <button type="button" class="btn btn-light" data-bs-dismiss="modal" data-bs-toggle="modal"
                     data-bs-target="#user-detail-modal">Quay lại</button> -->
-                <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="themMoiUser()">
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal"  (click)="themMoiUser()"> 
                     Lưu</button>
             </div>
         </div>
