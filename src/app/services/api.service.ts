@@ -22,7 +22,7 @@ export class ApiservicesService {
     getAllRights:'/api/Rights/GetAllRights/',
     getAllRightsByUserld:'/api/Users/GetAllRightsByUserId/',
     getAllGroupsByUserld:'/api/Users/GetAllGroupsByUserId/{userId}', // nhóm theo userId
-    deleteUser:'/api/Users/DeleteUser',
+    deleteUser:'/api/Users/DeleteUser', // Xóa người dùng
     upDateUser:'/api/Users/UpdateUser',
     addNewUser:'/api/Users/AddNewUser',
     removeOneSelectedGroupFromUser:'/api/Users/RemoveOneSelectedGroupFromUser', // xóa 1 nhóm khỏi người dùng

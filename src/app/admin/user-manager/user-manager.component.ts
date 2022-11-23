@@ -1,4 +1,4 @@
-import { Component, Input, OnInit,SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit,SimpleChanges , } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApiservicesService } from 'src/app/services/api.service';
 import { GeneralService } from 'src/app/services/general.service';
@@ -13,11 +13,14 @@ export class UserManagerComponent implements OnInit {
   
   deleteUser // xóa user
   userDataName // so sánh quyền
-  newUser// Thêm mới người dùng
-  managerData 
+  themMoi// Thêm mới người dùng
+  managerData // Quyền người dùng
   deleteGroupUser //xóa 1 nhóm khỏi người dùng
   theGroupsName // nhóm theo userId
-  @Input ()quyencuaUser: any
+
+
+
+  @Input ()quyencuaUser: any ; 
   
   groupNew = [
     {
@@ -91,14 +94,16 @@ export class UserManagerComponent implements OnInit {
   newgroupIdChinh(event){
     this.newUserName.groupIdChinh=event.target.value
   }
-  @Input() user: any
+  @Input() user: any 
   constructor(private httpClient: HttpClient, private api: ApiservicesService, private generalService: GeneralService ) { }
   ngOnInit(): void {
+
     this.DataDulieu(); // Tất cả các quyền của user
-    this.themMoiUser( ); // thêm mới userId
-    this.newUser();// thêm mới user
+    this.addUserName(); // Thêm người dùng
+    this.themMoi(); // Thêm người dùng
     this.individualData(this.user.userId); // quyền theo userId
-    this.individualgroupUserId(this.user.userId) // group theo userId
+    this.individualgroupUserId(this.user.userId); // group theo userId
+
   }
   // Nguồn so sánh 
   ngOnChanges(user,userId: SimpleChanges): void {
@@ -106,6 +111,17 @@ export class UserManagerComponent implements OnInit {
     this.individualgroupUserId(this.user.userId)
   }
   
+  // Thêm mới người dùng
+async addUserName(){
+  try{
+    let res
+    let result
+    res = await this.api.httpCall(this.api.apiLists.addNewUser,{},this.newUserName,'post',true);
+    result = <any>res
+    this.themMoi = Array.from(result)
+    console.log(this.newUserName)
+  } catch{}
+}  
   //api tất cả các  quyền của user
   async DataDulieu() {
     try {
@@ -115,8 +131,9 @@ export class UserManagerComponent implements OnInit {
       result = <any>res
       console.log(result)
       this.managerData = Array.from(result)
-    } catch { }
+    } catch {}
   }
+
   //quyền của người dùng theo userId
   async individualData(userId : string){
     try{
@@ -139,30 +156,19 @@ export class UserManagerComponent implements OnInit {
     })
     return sosanhquyen ;
   } 
-   // Thêm mới người dùng
-   async themMoiUser() {
-    try{
-      let res
-      let result
-      res = await this.api.httpCall(this.api.apiLists.addNewUser,{},this.newUserName, 'post', true);
-      result = <any>res
-      this.newUser = Array.from(result.data)
-      console.log(this.newUserName)
-    } catch {}
-  }
+
 //nhóm người dùng theo UserId
 async individualgroupUserId(userId : string){
   try{
     let res
     let result
-    res = await this.api.httpCall(this.api.apiLists.getAllGroupsByUserld + userId,{},{},'get',true);
+    res = await this.api.httpCall(this.api.apiLists + userId,{},{},'get',true);
     result=<any>res
     this.theGroupsName = Array.from(result)
     console.log(this.individualgroupUserId)
   }catch{}
 }
 // so sánh nhóm userId
-
 sosanhgroup(group){
   var sosanhnhom = false
   this.theGroupsName.forEach((x)=>{
@@ -172,16 +178,15 @@ sosanhgroup(group){
   })
   return sosanhnhom ;
 }
- 
-  // Xóa thông tin người dùng
-  async xoaUser(){
-    try {
-      let res
-      let result
-      res = await this.api.httpCall( this.api.apiLists.deleteUser, {}, {}, 'post', true);
-      result = <any>res
-      this.deleteUser = Array.from(result)
-    }catch {}
-  }
+ // Xóa thông tin người dùng
+async xoaUser(){
+  try {
+    let res
+    let result
+    res = await this.api.httpCall( this.api.apiLists.deleteUser, {}, {}, 'post', true);
+    result = <any>res
+    this.deleteUser = Array.from(result)
+  }catch {}
+}
 
 }

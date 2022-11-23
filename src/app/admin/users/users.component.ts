@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import data from './users.language';
 import { ApiservicesService } from 'src/app/services/api.service';
 import { GeneralService } from 'src/app/services/general.service';
+import { EventEmitter } from 'stream';
 declare var bootstrap: any
 
 
@@ -33,6 +34,7 @@ export class UsersComponent implements OnInit {
     this.usereditDetail={...userData}
   } 
   @Input() user: any // biến tạm user
+
     constructor(private httpClient: HttpClient, private api: ApiservicesService, private generalService: GeneralService) { }
 
   ngOnInit(): void {
@@ -77,17 +79,6 @@ export class UsersComponent implements OnInit {
       this.myModal.toggle()
     }
   }
-  // Lấy thông tin chi tiết người dùng theo Username
-  async userDetails(userName : string){
-    try {
-      let res
-      let result
-      res = await this.api.httpCall(this.api.apiLists.getUserByUserName + userName, {},{},'get', true);
-      result = <any>res
-      this.detailUser = Array.from (result)
-    } catch {}
-  }
-
   
   ////////////////////////////////////////////////
   getLabel(key) {
@@ -140,5 +131,16 @@ handlePageSizeChange(event): void {
   this.page = 0;
   this.GetUserData();
 }
+
+  // Lấy thông tin chi tiết người dùng theo Username
+  async userDetails(userName : string){
+    try {
+      let res
+      let result
+      res = await this.api.httpCall(this.api.apiLists.getUserByUserName + userName, {},{},'get', true);
+      result = <any>res
+      this.detailUser = Array.from (result)
+    } catch {}
+  }
 
 }

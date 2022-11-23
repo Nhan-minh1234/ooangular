@@ -140,8 +140,7 @@
                     data-bs-target="#user-detail-modal">Quay lại</button> -->
                 <button type="button" class="btn btn-success" data-bs-dismiss="modal" >Lưu</button>
                 <button type="button" class="btn btn-warning">Đặt lại mật khẩu</button>
-                <button type="submit" name="ctl22$DANHMUC$ctl02$btnDel" value="Xóa" class="btn btn-danger" 
-                id="ctl22_DANHMUC_btnDel_0"  (click)="xoaUser()">
+                <button type="button"  value="Xóa" class="btn btn-danger" data-bs-dismiss="modal">
                 Xoá người dùng</button>
             </div>
         </div><!-- /.modal-content -->
@@ -202,7 +201,7 @@
                                 <div class="row mb-3">
                                     <label class="col-3 col-form-label">Mật khẩu:(*)</label>
                                     <div class="col-9">
-                                        <input  type="text" name="password" id="simpleinput" placeholder="Tên đăng nhập"
+                                        <input  type="text" name="password" id="simpleinput" placeholder="Mật khẩu"
                                                         [(ngModel)]="newUserName.password" class="form-control">
                                     </div>
                                 </div>
@@ -309,9 +308,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light" data-bs-dismiss="modal">Đóng</button>
-                <!-- <button type="button" class="btn btn-light" data-bs-dismiss="modal" data-bs-toggle="modal"
-                    data-bs-target="#user-detail-modal">Quay lại</button> -->
-                <button type="button" class="btn btn-success" data-bs-dismiss="modal"  (click)="themMoiUser()"> 
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal"  (click)="addUserName()"> 
                     Lưu</button>
             </div>
         </div>
