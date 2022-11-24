@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { GeneralService } from './general.service';
 import { timeout, catchError } from 'rxjs/operators';
+import { UserDetailComponent } from '../admin/user-detail/user-detail.component';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class ApiservicesService {
     login: '/api/Users/token',
     getUserByID: '/api/Users/GetUserByUserId/',
     getAllUsers: '/api/Users/GetAllUsers',
-    updateUserInfo: '/api/Users/UpdateUser',
+    updateUserInfo: '/api/Users/UpdateUser', //cập nhật thông tin người dùng / 
     getTasks:'/api/Tasks/GetAllTasks/',
     getTaskDetail: '/api/Tasks/GetTaskDetail/',
     createNewTask: '/api/Tasks/CreateNewTask',
@@ -21,13 +22,15 @@ export class ApiservicesService {
     downloadFile: '/api/File/Download',
     getAllRights:'/api/Rights/GetAllRights/',
     getAllRightsByUserld:'/api/Users/GetAllRightsByUserId/',
-    getAllGroupsByUserld:'/api/Users/GetAllGroupsByUserId/{userId}', // nhóm theo userId
+    getAllGroupsByUserld:'/api/Users/GetAllGroupsByUserId/', // nhóm theo userId
     deleteUser:'/api/Users/DeleteUser', // Xóa người dùng
-    upDateUser:'/api/Users/UpdateUser',
-    addNewUser:'/api/Users/AddNewUser',
-    removeOneSelectedGroupFromUser:'/api/Users/RemoveOneSelectedGroupFromUser', // xóa 1 nhóm khỏi người dùng
-    assignOneRightToUser:'/api/Users/AssignOneRightToUser' , //gán quyền cho người dùng
-    getUserByUserName : '/api/Users/GetUserByUserName/{userName}' // Lấy thông tin chi tiết người dùng theo Username
+    addNewUser:'/api/Users/AddNewUser/', // thêm người dùng
+    removeOneSelectedGroupFromUser:'/api/Users/RemoveOneSelectedGroupFromUser', // xóa 1 nhóm khỏi người dùng /
+    assignMultiRightsToUser:'/api/Users/AssignMultiRightsToUser' , //gán quyền cho người dùng /
+    removeAllRightFromUser:'/api/Users/RemoveOneRightFromUser', //Xóa tất cả quyền khỏi người dùng /
+    assignMultiGroupsToUser:'/api/Users/AssignOneGroupToUser', // gán nhiều nhóm/phòng ban cho người dùng /
+​    removeMultiSelectedGroupsFromUser:'/api/Users/RemoveMultiSelectedGroupsFromUser', //xóa nhiều nhóm được chỉ định cho khỏi người dùng /
+    getUserByUserName : '/api/Users/GetUserByUserName/' // Lấy thông tin chi tiết người dùng theo Username 
   }
 
   constructor(private httpClient: HttpClient, private router: Router, private generalService: GeneralService) {
@@ -194,6 +197,7 @@ export class ApiservicesService {
 
     }
   }
+ 
 
  
 }

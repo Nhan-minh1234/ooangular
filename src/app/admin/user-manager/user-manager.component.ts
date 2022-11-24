@@ -1,8 +1,10 @@
-import { Component, Input, OnInit,SimpleChanges , } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, Input, OnInit,SimpleChanges } from '@angular/core';
 import { ApiservicesService } from 'src/app/services/api.service';
 import { GeneralService } from 'src/app/services/general.service';
 import { async } from 'rxjs';
+import { trigger } from '@angular/animations';
+import { HttpClient } from '@angular/common/http';
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-user-manager',
@@ -11,13 +13,13 @@ import { async } from 'rxjs';
 })
 export class UserManagerComponent implements OnInit {
   
-  deleteUser // xóa user
+  xoaUser // xóa user
   userDataName // so sánh quyền
   themMoi// Thêm mới người dùng
   managerData // Quyền người dùng
   deleteGroupUser //xóa 1 nhóm khỏi người dùng
   theGroupsName // nhóm theo userId
-
+  updateUser  // Cập nhật user
 
 
   @Input ()quyencuaUser: any ; 
@@ -95,15 +97,9 @@ export class UserManagerComponent implements OnInit {
     this.newUserName.groupIdChinh=event.target.value
   }
   @Input() user: any 
-  constructor(private httpClient: HttpClient, private api: ApiservicesService, private generalService: GeneralService ) { }
+  constructor(private _http:HttpClient, private api: ApiservicesService, private generalService: GeneralService ) { }
   ngOnInit(): void {
-
     this.DataDulieu(); // Tất cả các quyền của user
-    this.addUserName(); // Thêm người dùng
-    this.themMoi(); // Thêm người dùng
-    this.individualData(this.user.userId); // quyền theo userId
-    this.individualgroupUserId(this.user.userId); // group theo userId
-
   }
   // Nguồn so sánh 
   ngOnChanges(user,userId: SimpleChanges): void {
@@ -112,16 +108,16 @@ export class UserManagerComponent implements OnInit {
   }
   
   // Thêm mới người dùng
-async addUserName(){
-  try{
-    let res
-    let result
-    res = await this.api.httpCall(this.api.apiLists.addNewUser,{},this.newUserName,'post',true);
-    result = <any>res
-    this.themMoi = Array.from(result)
-    console.log(this.newUserName)
-  } catch{}
-}  
+  async addUserName(){
+    try{
+      let res
+      let result
+      res = await this.api.httpCall(this.api.apiLists.addNewUser,{},this.newUserName,'post', true);
+      result = <any>res
+      console.log(result)
+      this.themMoi=Array.from(result)
+    } catch{}
+  } 
   //api tất cả các  quyền của user
   async DataDulieu() {
     try {
@@ -149,44 +145,55 @@ async addUserName(){
   sosanhUser(phanquyen ){
     var sosanhquyen = false
     this.userDataName.forEach((x)=>{
-
       if (x.rightId===phanquyen) {
         sosanhquyen = true
       }
     })
     return sosanhquyen ;
   } 
-
+// Xóa thông tin người dùng
+async deleteUserName(userId :string){
+  try{
+    let res
+    let result
+    res = await this.api.httpCall(this.api.apiLists.deleteUser +'?'+'userId'+'='+userId,{},{},'post',true);
+    result=<any>res
+    this.xoaUser = Array.from(result)
+    console.log(res)
+  } catch{}
+}
+// Cập nhật thông tin người dùng 
+async updateUserName(){
+  try{
+    let res
+    let result
+    res = await this.api.httpCall(this.api.apiLists.updateUserInfo,{},this.newUserName,'post',true);
+    result=<any>res
+    this.updateUser =Array.from(result)
+    console.log(result)
+  } catch{}
+}
 //nhóm người dùng theo UserId
 async individualgroupUserId(userId : string){
   try{
     let res
     let result
-    res = await this.api.httpCall(this.api.apiLists + userId,{},{},'get',true);
+    res = await this.api.httpCall(this.api.apiLists.getAllGroupsByUserld + userId,{},{},'get',true);
     result=<any>res
     this.theGroupsName = Array.from(result)
-    console.log(this.individualgroupUserId)
+    console.log(res)
   }catch{}
 }
 // so sánh nhóm userId
-sosanhgroup(group){
+sosanhGroup(group){
   var sosanhnhom = false
   this.theGroupsName.forEach((x)=>{
-    if (x.groupId === group) {
+    if (x.groupId===group) {
       sosanhnhom = true
     }
   })
   return sosanhnhom ;
 }
- // Xóa thông tin người dùng
-async xoaUser(){
-  try {
-    let res
-    let result
-    res = await this.api.httpCall( this.api.apiLists.deleteUser, {}, {}, 'post', true);
-    result = <any>res
-    this.deleteUser = Array.from(result)
-  }catch {}
-}
+
 
 }

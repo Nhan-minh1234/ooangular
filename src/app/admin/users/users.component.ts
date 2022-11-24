@@ -1,4 +1,4 @@
-import { Component, OnInit, Input,SimpleChanges} from '@angular/core';
+import { Component, OnInit, Input,Output,SimpleChanges} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import data from './users.language';
 import { ApiservicesService } from 'src/app/services/api.service';
@@ -34,16 +34,10 @@ export class UsersComponent implements OnInit {
     this.usereditDetail={...userData}
   } 
   @Input() user: any // biến tạm user
-
     constructor(private httpClient: HttpClient, private api: ApiservicesService, private generalService: GeneralService) { }
 
   ngOnInit(): void {
     this.GetUserData();
-    this.userDetails(this.user.userName);
-    this.myModal = new bootstrap.Modal(document.getElementById('myModal'), {
-      keyboard: false
-    })
-    console.log(this.myModal)
     
   }
   ngOnChanges(changes: SimpleChanges): void {
