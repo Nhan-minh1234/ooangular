@@ -13,5 +13,10 @@ export class AvatarTooltipComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  GetName(name) {
+    var arrName = name.split(' ')
+    var count = arrName.length-1
+    var lastname = arrName[count]
+    return lastname.slice(0,1)
+  }
 }
