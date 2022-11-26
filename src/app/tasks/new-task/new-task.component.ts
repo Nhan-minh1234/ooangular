@@ -7,6 +7,9 @@ import { GeneralService } from 'src/app/services/general.service';
 import * as moment from 'moment';
 import { WizardComponent } from 'angular-archwizard';
 import { Location, LocationChangeEvent } from '@angular/common';
+import { TaskProjectModels } from 'src/app/Model/TasksProjectModels';
+import { createNewTask } from 'src/app/Model/TaskModels';
+import { TaskCategoryResponse } from 'src/app/Model/TaskCategory';
 
 
 @Component({
@@ -15,27 +18,20 @@ import { Location, LocationChangeEvent } from '@angular/common';
   styleUrls: ['./new-task.component.css']
 })
 export class NewTaskComponent implements OnInit {
-  @ViewChild(WizardComponent)
-  public wizard: WizardComponent;
-  spinnerLoading = false
-  htmlContent = '';
-  project = ''
-  projectList
-  customer = ''
-  customerList
-  taskGroup = ''
-  taskGroupList
-  sampleTask = ''
-  sampleTaskList
-  taskName = ''
-  startDate
-  endDate
-  unknownTimeCheck = false
-  fileToUpload
   public myDatePickerOptions: IAngularMyDpOptions = {
     dateFormat: 'dd/mm/yyyy',
   };
-
+  @ViewChild(WizardComponent)
+  public wizard: WizardComponent;
+  spinnerLoading = false
+  taskGroup = ''
+  sampleTask = ''
+  //sampleTaskList
+  unknownTimeCheck = false
+  fileToUpload
+  newTaskData = new createNewTask()
+  tasksProject: Array<TaskProjectModels>
+  taskGroupList: Array<TaskCategoryResponse>
   editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: false,
@@ -45,11 +41,120 @@ export class NewTaskComponent implements OnInit {
     placeholder: 'Nhập nội dung...',
   };
 
+  allUser
+  chosenAssigneelList: Array<any>;
+  chosenViewerList: Array<any>;
+  groupKeyChosen = 'all'
+  majorAssignee
+
   step1BtnClicked = false
   step2BtnClicked = false
   step3BtnClicked = false
 
   constructor(private location: Location, private router: Router, private api: ApiservicesService, public generalService: GeneralService) { }
+
+  ngOnInit(): void {
+    this.newTaskData.nguoiTao = this.generalService.userData.userID
+    this.GetUserByKey(null);
+    this.getAllTasksProject()
+    this.getAllGroupCreatedByUser()
+  }
+  async getAllTasksProject() {
+    var res = await this.api.httpCall(this.api.apiLists.GetAllTasksProject, {}, {}, 'get', true)
+    this.tasksProject = <Array<TaskProjectModels>>res
+  }
+  async getAllGroupCreatedByUser() {
+    var res = await this.api.httpCall(this.api.apiLists.GetAllTasksCategoryByUserId, {}, {}, 'get', true)
+    this.taskGroupList = <Array<TaskCategoryResponse>>res
+  }
+  GetUserByKey(e) {
+    if (e == null || this.groupKeyChosen == 'all') {
+      this.allUser = this.generalService.cloneAnything(this.generalService.allUsers);
+    }
+    else {
+      this.allUser = this.generalService.allUsersWithGroups[`${this.groupKeyChosen}`]
+    }
+  }
+  goBack() {
+    this.location.back()
+  }
+  handleFileInput(files: FileList) {
+    this.fileToUpload = Array.from(files);
+    console.log(this.fileToUpload)
+  }
+  removeFileFromUploadList(index) {
+    this.fileToUpload.splice(index, 1);
+    const dt = new DataTransfer()
+    const input = document.getElementById('fileList') as HTMLInputElement
+    const { files } = input
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i]
+      if (index !== i)
+        dt.items.add(file) // here you exclude the file. thus removing it.
+    }
+
+    input.files = dt.files
+  }
+
+  dualListUpdateForAssignee(event) {
+    this.allUser = event.leftList;
+    this.chosenAssigneelList = event.rightList;
+
+    //kiem tra xem majorAssignee đã chọn trước đó còn trong list chosen hay ko.
+    if (this.majorAssignee != null) {
+      let check = false;
+      for (let i = 0; i < this.chosenAssigneelList.length; ++i) {
+        if (this.majorAssignee == this.chosenAssigneelList[i]) { check = true; break; }
+      }
+      if (!check)
+        this.majorAssignee = null
+    }
+    this.newTaskData.participants = []
+    event.rightList.forEach(e => {
+      if (e.userId !== this.newTaskData.nguoiTao) {
+        this.newTaskData.participants.push({ nguoiXuLy: e.userId })
+      }
+    });
+  }
+  dualListUpdateForWatchable(event) {
+    this.allUser = event.leftList;
+    this.chosenViewerList = event.rightList
+    this.newTaskData.viewers = []
+    event.rightList.forEach(e => {
+      this.newTaskData.viewers.push({ nguoiDuocXem: e.userId })
+    });
+  }
+
+  async createNewTask() {
+    /*if (this.fileToUpload != null && this.fileToUpload.length > 0) {
+      try {
+        await this.api.postFile(this.fileToUpload, this.api.apiLists.uploadFile, {}, (result as any).mscv, false)
+      } catch (error) {
+
+      }
+    }*/
+    this.spinnerLoading = true
+    var res = await this.api.httpCall(this.api.apiLists.createNewTask, {}, this.newTaskData, 'post', true)
+    var result = <any>res
+    if (this.taskGroup !== '' && result.modelResponse.isValid) {
+      var addgroup = await this.api.httpCall(this.api.apiLists.AddCategoryToTask + `?ctID=${this.taskGroup}&mscv=${result.mscv}`, {}, {}, 'post', true)
+      var rs = <any>addgroup
+      this.generalService.showErrorToast(rs.status ? 1 : 0, rs.message);
+    }
+    if (result.modelResponse.isValid) {
+      this.generalService.showErrorToast(1, "Tạo công việc mới thành công");
+      this.router.navigate([`/tasks/task-detail/${result.mscv}`])
+    }
+    this.spinnerLoading = false
+  }
+  selectMajorAssign() {
+    this.newTaskData.nguoiXuLyChinh = this.majorAssignee.userId
+    this.newTaskData.participants = this.newTaskData.participants.filter(x => {
+      return x.nguoiXuLy !== this.majorAssignee.userId
+    })
+  }
+  //STEP STEP STEP STEP
   wizardNavbtnClicked(step, direction) {
     if (step == 1) {
       this.step1BtnClicked = true
@@ -75,11 +180,8 @@ export class NewTaskComponent implements OnInit {
     else if (direction == 'previous')
       this.wizard.goToPreviousStep();
   }
-
-
-  /////////////////////// Step 1
   step1Validator() {
-    if (this.taskName == '' || this.startDate == null || this.endDate == null || this.htmlContent == null) {
+    if (this.newTaskData.chude == '' || this.newTaskData.ngayBatDau == null || this.newTaskData.ngayHoanThanhDuKien == null || this.newTaskData.noidung == null) {
       this.generalService.showErrorToast(2, 'Các trường đánh dấu (*) không được bỏ trống');
       return false;
     }
@@ -89,95 +191,6 @@ export class NewTaskComponent implements OnInit {
     }
     else
       return true
-  }
-  onStartDateChanged(event: IMyDateModel) {
-    console.log(event.singleDate)
-  }
-  onEndDateChanged(event: IMyDateModel) {
-    console.log(event.singleDate)
-  }
-  ngOnInit(): void {
-    this.onAsigneeGroupChange(null)
-    this.onWatchableGroupChange(null)
-  }
-  ngOnDestroy(): void {
-  }
-  goBack() {
-    this.location.back()
-  }
-  getProjectList() {
-
-  }
-  getCustomerList() {
-
-  }
-  getTaskGroupList() {
-
-  }
-  getSampleTaskist() {
-
-  }
-  compareTwoDates() {
-    let start = moment(this.startDate.singleDate.formatted, 'DD-MM-YYYY')
-    let end = moment(this.endDate.singleDate.formatted, 'DD-MM-YYYY')
-    let diff = end.diff(start, 'days', false);
-    if (diff < 0)
-      return false
-    else
-      return true
-  }
-  handleFileInput(files: FileList) {
-    this.fileToUpload = Array.from(files);
-    console.log(this.fileToUpload)
-  }
-  removeFileFromUploadList(index) {
-    this.fileToUpload.splice(index, 1);
-    const dt = new DataTransfer()
-    const input = document.getElementById('fileList') as HTMLInputElement
-    const { files } = input
-
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i]
-      if (index !== i)
-        dt.items.add(file) // here you exclude the file. thus removing it.
-    }
-
-    input.files = dt.files
-  }
-  ////////////////////////Step 2
-
-  allUserInStep2List
-  chosenAssigneelList: any[] = [];
-  groupKeyChosenInStep2 = 'all'
-  majorAssignee
-  dualListUpdateForAssignee(event) {
-    this.allUserInStep2List = event.leftList; this.chosenAssigneelList = event.rightList
-    // if(this.groupKeyChosenInStep2 == 'all')
-    // {
-    //   for(let i=0; i< this.allUserInStep2List.length; ++i)
-    //   {
-    //     if(!this.containsObject(this.allUserInStep2List[i],this.generalService.allUsers))
-    //     this.allUserInStep2List.splice(i,1);
-    //   }
-    // }
-    // else
-    // {
-    //   for(let i=0; i< this.allUserInStep2List.length; ++i)
-    //   {
-    //     if(!this.containsObject(this.allUserInStep2List[i],this.generalService.allUsersWithGroups[`${this.groupKeyChosenInStep2}`]))
-    //     this.allUserInStep2List.splice(i,1);
-    //   }
-    // }
-
-    //kiem tra xem majorAssignee đã chọn trước đó còn trong list chosen hay ko.
-    if (this.majorAssignee != null) {
-      let check = false;
-      for (let i = 0; i < this.chosenAssigneelList.length; ++i) {
-        if (this.majorAssignee == this.chosenAssigneelList[i]) { check = true; break; }
-      }
-      if (!check)
-        this.majorAssignee = null
-    }
   }
   step2Validator() {
     if (this.chosenAssigneelList.length == 0) {
@@ -191,120 +204,14 @@ export class NewTaskComponent implements OnInit {
     else
       return true
   }
-
-  onAsigneeGroupChange(e) {
-    console.log(this.groupKeyChosenInStep2);
-    if (e == null || this.groupKeyChosenInStep2 == 'all') {
-      this.allUserInStep2List = this.generalService.cloneAnything(this.generalService.allUsers);
-    }
-    else {
-      this.allUserInStep2List = this.generalService.allUsersWithGroups[`${this.groupKeyChosenInStep2}`]
-    }
-  }
-  //////////////////////////Step 3
-
-  allUserInStep3List
-  chosenWatchablelList: any[] = [
-  ];
-  groupKeyChosenInStep3 = 'all'
-  isUrgentTask = false;
-  dualListUpdateForWatchable(event) {
-    this.allUserInStep3List = event.leftList; this.chosenWatchablelList = event.rightList
-    // if(this.groupKeyChosenInStep3 == 'all')
-    // {
-    //   for(let i=0; i< this.allUserInStep3List.length; ++i)
-    //   {
-    //     if(!this.containsObject(this.allUserInStep3List[i],this.generalService.allUsers))
-    //     this.allUserInStep2List.splice(i,1);
-    //   }
-    // }
-    // else
-    // {
-    //   for(let i=0; i< this.allUserInStep3List.length; ++i)
-    //   {
-    //     if(!this.containsObject(this.allUserInStep3List[i],this.generalService.allUsersWithGroups[`${this.groupKeyChosenInStep3}`]))
-    //     this.allUserInStep3List.splice(i,1);
-    //   }
-    // }
-  }
-  step3Validator() {
-    // if (this.chosenWatchablelList.length==0) {
-    //   this.generalService.showErrorToast(2, 'Vui lòng chọn danh sách người tham gia xử lý');
-    //   return false;
-    // }
-    // else if (this.majorAssignee==null) {
-    //   this.generalService.showErrorToast(2, 'Vui lòng chọn người xử lý chính');
-    //   return false;
-    // }
-    // else
-    //   return true
-  }
-
-  onWatchableGroupChange(e) {
-    console.log(this.groupKeyChosenInStep3);
-    if (e == null || this.groupKeyChosenInStep3 == 'all') {
-      this.allUserInStep3List = this.generalService.cloneAnything(this.generalService.allUsers);
-    }
-    else {
-      this.allUserInStep3List = this.generalService.allUsersWithGroups[`${this.groupKeyChosenInStep3}`]
-    }
-  }
-
-  async createNewTask() {
-    this.spinnerLoading = true
-    let body = {
-      "chude": this.taskName,
-      "msda": '',
-      "noidung": this.htmlContent,
-      "ngayBatDau": this.startDate.singleDate.date.month + '/' + this.startDate.singleDate.date.day + '/' + this.startDate.singleDate.date.year,
-      "ngayHoanThanhDuKien": this.endDate.singleDate.date.month + '/' + this.endDate.singleDate.date.day + '/' + this.endDate.singleDate.date.year,
-      "nguoiXuLyChinh": this.majorAssignee.userId,
-      "laCongViecKhan": this.isUrgentTask,
-      "nguoiTao": this.generalService.userData.userID,
-      "participants": [
-      ],
-      "viewers": [
-      ]
-    }
-    this.chosenAssigneelList.forEach(element => {
-      if (element.userId != this.majorAssignee.userId)
-        body.participants.push({
-          "nguoiXuLy": element.userId
-        })
-    }
-    );
-    this.chosenWatchablelList.forEach(element =>
-      body.viewers.push({
-        "nguoiDuocXem": element.userId
-      })
-    );
-    try {
-      let result = await this.api.httpCall(this.api.apiLists.createNewTask, {}, body, 'post', true);
-      this.spinnerLoading = false
-      this.generalService.showErrorToast(1, 'Tạo công việc mới thành công.')
-      this.location.back()
-      debugger
-      if (this.fileToUpload != null && this.fileToUpload.length > 0) {
-        try {
-          await this.api.postFile(this.fileToUpload, this.api.apiLists.uploadFile, {}, (result as any).mscv, false)
-        } catch (error) {
-
-        }
-      }
-    } catch (error) {
-      this.spinnerLoading = false
-    }
-  }
-
-  containsObject(obj, list) {
-    var i;
-    for (i = 0; i < list.length; i++) {
-      if (list[i] === obj) {
-        return true;
-      }
-    }
-
-    return false;
+  compareTwoDates() {
+    let start = moment(this.newTaskData.ngayBatDau, 'DD-MM-YYYY')
+    let end = moment(this.newTaskData.ngayHoanThanhDuKien, 'DD-MM-YYYY')
+    let diff = end.diff(start, 'days', false);
+    if (diff < 0)
+      return false
+    else
+      return true
   }
 }
 

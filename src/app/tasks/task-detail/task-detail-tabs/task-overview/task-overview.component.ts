@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ChartData, ChartConfiguration, ChartType, ChartOptions } from 'chart.js';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { TaskDetailModel } from 'src/app/Model/TaskModels';
+import { ApiservicesService } from 'src/app/services/api.service';
+import { GeneralService } from 'src/app/services/general.service';
+import { TaskHistoryRequestModel } from 'src/app/Model/TasksHistoryModels';
 @Component({
   selector: 'app-task-overview',
   templateUrl: './task-overview.component.html',
@@ -13,6 +17,9 @@ export class TaskOverviewComponent implements OnInit {
     { typeid: 'type3', typename: 'Type 3', typeColor: 'primary', status: true },
     { typeid: 'type4', typename: 'Type 4', typeColor: 'warning', status: true },
   ]
+  taskHistory = new TaskHistoryRequestModel();
+  @Input() TaskDetail: TaskDetailModel
+  @Output() reloadData = new EventEmitter();
   dateSelectedEvents
   getEvents(a) {
     this.dateSelectedEvents = a
@@ -93,12 +100,22 @@ export class TaskOverviewComponent implements OnInit {
     color: 'red',
   }
   public chartType: ChartType = 'line';
-  constructor() { }
+  constructor(private api: ApiservicesService, private generalService: GeneralService) { }
 
   ngOnInit(): void {
     this.nextEvent = this.events.filter(x =>
       new Date(x.fulldate).getTime() >= new Date(new Date().toDateString()).getTime()
     )
+  }
+  async addAComment(): Promise<void> {
+    if (this.taskHistory.noiDung !== "" && this.taskHistory.noiDung !== undefined) {
+      this.taskHistory.mscv = this.TaskDetail.mscv;
+      this.taskHistory.danhSachNguoiXuLyKeTiepHoTen = "";
+      this.taskHistory.nguoiPhanHoi = this.generalService.userData.userID;
+      this.taskHistory.thoiGian = new Date().toISOString();
+      var res = await this.api.httpCall(this.api.apiLists.AddNewTaskHistory, {}, this.taskHistory, 'post', true);
+      this.reloadData.emit();
+    }
   }
 
 }
