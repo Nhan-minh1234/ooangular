@@ -13,14 +13,31 @@ export class ApiservicesService {
     getUserByID: '/api/Users/GetUserByUserId/',
     getAllUsers: '/api/Users/GetAllUsers',
     updateUserInfo: '/api/Users/UpdateUser',
-    getTasks:'/api/Tasks/GetAllTasks/',
+    getTasks: '/api/Tasks/GetAllTasks/',
     getTaskDetail: '/api/Tasks/GetTaskDetail/',
     createNewTask: '/api/Tasks/CreateNewTask',
     getAllUserGroups: '/api/Groups/GetAllGroups',
     uploadFile: '/api/File/Upload?subDirectory=',
     downloadFile: '/api/File/Download',
+
+    GetAllTasksCategoryByUserId: '/api/Tasks/GetAllTasksCategoryByUserId',
+    UpdateTaskTitle: '/api/Tasks/UpdateTaskTitle',
+    AddCategoryToTask: '/api/Tasks/AddCategoryToTask',
+    AssignNewParticipantToTask: '/api/Tasks/AssignNewParticipantToTask',
+    AssignNewViewerToTask: '/api/Tasks/AssignNewViewerToTask',
+    DelayTask: '/api/Tasks/DelayTask',
+    AssignNewListParticipantToTask: '/api/Tasks/AssignNewListParticipantToTask',
+    AssignNewListViewerToTask: '/api/Tasks/AssignNewListViewerToTask',
+    FollowATask: '/api​/Tasks​/FollowATask',
+    ChangeMajorAssignment: '/api/Tasks/ChangeMajorAssignment',
+    RequestFinishATask: '/api/Tasks/RequestFinishATask',
+    FinishATask: '/api/Tasks/FinishATask',
+    AddNewTaskHistory: '/api/Tasks/AddNewTaskHistory',
+    GetAllTasksProject: '/api/Tasks/GetAllTasksProject'
+
     getAllRights:'/api/Rights/GetAllRights',
     getAllRightsByUserld:'/api/Users/GetAllRightsByUserId/'
+
   }
 
   constructor(private httpClient: HttpClient, private router: Router, private generalService: GeneralService) {
@@ -70,8 +87,8 @@ export class ApiservicesService {
             resolve(res);
           }, (err) => {
             console.log(err)
-            if(showErr)
-            this.generalService.showErrorToast(0,'Đã xảy ra lỗi kết nối với hệ thống. Xin vui lòng thử lại.')
+            if (showErr)
+              this.generalService.showErrorToast(0, 'Đã xảy ra lỗi kết nối với hệ thống. Xin vui lòng thử lại.')
             reject(err);
           });
       }
@@ -88,8 +105,8 @@ export class ApiservicesService {
             resolve(res);
           }, (err) => {
             console.log(err)
-            if(showErr)
-            this.generalService.showErrorToast(0,'Đã xảy ra lỗi kết nối với hệ thống. Xin vui lòng thử lại.')
+            if (showErr)
+              this.generalService.showErrorToast(0, 'Đã xảy ra lỗi kết nối với hệ thống. Xin vui lòng thử lại.')
             reject(err);
           });
       }
@@ -106,8 +123,8 @@ export class ApiservicesService {
             resolve(res);
           }, (err) => {
             console.log(err)
-            if(showErr)
-            this.generalService.showErrorToast(0,'Đã xảy ra lỗi kết nối với hệ thống. Xin vui lòng thử lại.')
+            if (showErr)
+              this.generalService.showErrorToast(0, 'Đã xảy ra lỗi kết nối với hệ thống. Xin vui lòng thử lại.')
             reject(err);
           });
       }
@@ -124,8 +141,8 @@ export class ApiservicesService {
             resolve(res);
           }, (err) => {
             console.log(err)
-            if(showErr)
-            this.generalService.showErrorToast(0,'Đã xảy ra lỗi kết nối với hệ thống. Xin vui lòng thử lại.')
+            if (showErr)
+              this.generalService.showErrorToast(0, 'Đã xảy ra lỗi kết nối với hệ thống. Xin vui lòng thử lại.')
             reject(err);
           });
       }
@@ -142,8 +159,8 @@ export class ApiservicesService {
             resolve(res);
           }, (err) => {
             console.log(err)
-            if(showErr)
-            this.generalService.showErrorToast(0,'Đã xảy ra lỗi kết nối với hệ thống. Xin vui lòng thử lại.')
+            if (showErr)
+              this.generalService.showErrorToast(0, 'Đã xảy ra lỗi kết nối với hệ thống. Xin vui lòng thử lại.')
             reject(err);
           });
       }
@@ -151,8 +168,7 @@ export class ApiservicesService {
   }
 
 
-  async initDataFromServer()
-  {
+  async initDataFromServer() {
     this.getUserInfo();
     this.getAllUsers(null, null);
   }
@@ -180,7 +196,7 @@ export class ApiservicesService {
       let result = <any>res
       if (result.succeeded) {
         this.generalService.allUsers = result.data;
-        this.generalService.allUsersWithGroups = this.generalService.groupByKey(result.data,'groupChinhName')
+        this.generalService.allUsersWithGroups = this.generalService.groupByKey(result.data, 'groupChinhName')
         this.generalService.allUserGroupsKey = Object.keys(this.generalService.allUsersWithGroups)
       }
     } catch (error) {
@@ -188,5 +204,5 @@ export class ApiservicesService {
     }
   }
 
- 
+
 }
