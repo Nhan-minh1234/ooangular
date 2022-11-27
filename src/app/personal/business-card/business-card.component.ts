@@ -36,6 +36,8 @@ export class BusinessCardComponent implements OnInit {
   count = 500;
 
   config
+  keyFilter = 
+  {key:"nhomcongviec",label:"Nhóm công việc"}
   constructor(private httpClient: HttpClient,  public generalService: GeneralService, private router: Router) { }
 
   ngOnInit(): void {
@@ -63,6 +65,9 @@ export class BusinessCardComponent implements OnInit {
   openAddBusinessCard() {
     this.router.navigate(['/personal/add-business-card']);
   }
+  openAddWorkGroup() {
+    this.router.navigate(['/personal/add-workgroup']);
+  }
   async gData() {
     this.spinnerLoading = true;
     this.httpClient.get('https://62e7546c69bd03090f7b852b.mockapi.io/Event?status=' + this.currentTab).subscribe(i => {
@@ -88,7 +93,9 @@ export class BusinessCardComponent implements OnInit {
     this.page = 0;
     this.gData();
   }
-
+  filter(type,label) {
+    this.keyFilter = {key:type,label:label}
+  }
  
 
 }

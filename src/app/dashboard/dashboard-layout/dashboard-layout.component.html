@@ -31,7 +31,7 @@
                         <div class="card-body d-flex justify-content-center
                             flex-column align-items-center ">
                             <i class='uil-users-alt'></i>
-                            <h5 class="card-title">29</h5>
+                            <h5 class="card-title ">29</h5>
                             <p class="card-text">Members</p>
                         </div>
                     </div>
@@ -41,8 +41,7 @@
                         <div class="card-body d-flex justify-content-center flex-column align-items-center ">
                             <i class='uil-chart-line'></i>
                             <div class="indicator">
-                                <span class="text">93%</span>
-                                <i class='uil-top-arrow-from-top'></i>
+                                <i class="mdi mdi-arrow-up-bold"></i> 93%
                             </div>
                             <p class="card-text">Productivity</p>
                         </div>
@@ -280,7 +279,11 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="tab-pane show active" id="calendar"> lịch thêm vào đây</div>
+                                    <div class="tab-pane show active border mb-1" id="calendar">
+                                        <div>
+                                            <app-calendar [eventList]="events" (getEvents)="getEvents($event)"></app-calendar></div>
+                                        </div> 
+                                        
                                     <div class="d-flex justify-content-end">
                                         <button [routerLink]="'/social/notification'" type="button" class="btn btn-info"> Xem tiếp <i class='uil-angle-double-right'></i></button>
                                     </div>

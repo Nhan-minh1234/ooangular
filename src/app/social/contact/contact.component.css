@@ -8,3 +8,13 @@
 .list-group-item {
     font-weight: bold;
 }
+.content-table thead tr {
+    background-color: #0091ff;
+    color: aliceblue;
+    text-align: left;
+    font-weight: bold;
+}
+.background{
+    background-color: #24358c;
+    color: aliceblue;
+}

@@ -11,6 +11,7 @@ import { TextSourceComponent } from './text-source/text-source.component';
 import { NewDocumentComponent } from './new-document/new-document.component';
 import { NewTextGoComponent } from './new-text-go/new-text-go.component';
 import { AllTextComponent } from './all-text/all-text.component';
+import { DetailDocumentComponent } from './detail-document/detail-document.component';
 
 const routes: Routes = [
   {
@@ -67,6 +68,11 @@ const routes: Routes = [
         data: { "link": "/document/new-text-go" },
         path: 'new-text-go',
         component: NewTextGoComponent
+      },
+      {
+        data: { "link": "/document/detail-document" },
+        path: 'detail-document',
+        component: DetailDocumentComponent
       },
     ]
   }

@@ -15,6 +15,10 @@ import { NgChartsModule } from 'ng2-charts';
 import { SignDocumentsComponent } from './sign-documents/sign-documents.component';
 import { SearchComponent } from './search/search/search.component';
 import { AdminComponent } from './admin/admin/admin.component';
+
+
+
+
 @NgModule({
 
   declarations: [
@@ -25,7 +29,8 @@ import { AdminComponent } from './admin/admin/admin.component';
     ClientComponent,
     SignDocumentsComponent,
     SearchComponent,
-    AdminComponent
+    AdminComponent,
+  
   ],
   imports: [
     BrowserAnimationsModule,

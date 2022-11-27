@@ -22,35 +22,38 @@
     </div>
 
     <div class="row">
-        <div class="col-10">
+        <div class="col-9">
             <div class="page-title-box">
                 <h4 class="page-title">{{getLabel('pageTitle')}}</h4>
             </div>
         </div>
-        <div class="col-2 my-auto">
-            <abbr data-bs-toggle="modal" data-bs-target="#library-manager-modal" style="cursor: pointer;"
-                [title]="'Thêm mới'">
-                <img style="width:40px;height:auto; float: right !important;" src="assets/imgs/plus.png" />
-            </abbr>
+        <div class="col-3 my-auto">
+            <div class="list-group">
+                <button  type="button" class="btn btn-success rounded" 
+            data-bs-toggle="modal" data-bs-target="#library-manager-modal" 
+            style="cursor: pointer;"src="assets/imgs/plus.png"> 
+            Thêm mới</button>
+            </div>
         </div>
     </div>
     <!--End page title-->
     <div class="row">
         <div class="col-9">
-            <table id="basic-datatable" class="table table-striped table-hover dt-responsive nowrap w-100">
-                <thead class="table-dark">
+            <table  id = "basic-datatable"  class = "table table-bordered table-striped border
+            border-style table-hover table-centered mb-2 dt-responsive nowrap w-100 content-table" >
+                <thead>
                     <tr>
-                        <th>{{getLabel('numberCol')}}</th>
-                        <th>{{getLabel('descriptionCol')}}</th>
-                        <th>{{getLabel('dateCol')}}</th>
+                        <th class="d-flex justify-content-center">{{getLabel('numberCol')}}</th>
+                        <th >{{getLabel('descriptionCol')}}</th>
+                        <th class="d-flex justify-content-center" >{{getLabel('dateCol')}}</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="myTableRow" (click)="lookup()" data-bs-toggle="modal"
                         data-bs-target="#library-detail-modal" *ngFor="let item of libraryData | paginate: config">
-                        <td>{{item.number}}</td>
+                        <td class="d-flex justify-content-center" >{{item.number}}</td>
                         <td>{{item.des}}</td>
-                        <td>{{item.date|date:'dd/MM/yyyy'}}</td>
+                        <td class="d-flex justify-content-center">{{item.date|date:'dd/MM/yyyy'}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -218,7 +221,7 @@
         </div>
         <div class="col-3">
             <div class="list-group">
-                <div class="list-group-item list-group-item-custom-dark">
+                <div class="list-group-item list-group-item background">
                     Bộ lọc
                 </div>
                 <div class="list-group-item list-group-item-primary">
@@ -285,7 +288,7 @@
         </div>
     </div>
     <!-- /////////////////// Pagination -->
-    <div class="list row">
+    <div class="list row col-9">
         <div class="col-md-8">
             <pagination-controls id="paging" [previousLabel]="getLabel('previousBtn')" [nextLabel]="getLabel('nextBtn')"
                 responsive="true" responsive="true" (pageChange)="handlePageChange($event)"></pagination-controls>

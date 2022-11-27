@@ -21,18 +21,6 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-10">
-            <div class="page-title-box">
-                <h4 class="page-title">{{getLabel('pageTitle')}}</h4>
-            </div>
-        </div>
-        <div class="col-2 my-auto">
-            <abbr data-bs-toggle="modal" data-bs-target="#new-news-modal" style="cursor: pointer;" [title]="'Thêm mới'">
-                <img style="width:40px;height:auto; float: right !important;" src="assets/imgs/plus.png" />
-            </abbr>
-        </div>
-    </div>
     <div id="new-news-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -71,7 +59,22 @@
     </div>
     <!--End page title-->
     <div class="row">
-        <div class="col-lg-9 row">
+        <div class="col-9">
+            <div class="page-title-box">
+                <h4 class="page-title">{{getLabel('pageTitle')}}</h4>
+            </div>
+        </div>
+        <div class="col-3 my-auto">
+            <div class="list-group">
+                <button  type="button" class="btn btn-success rounded" 
+            data-bs-toggle="modal" data-bs-target="#new-news-modal" 
+            style="cursor: pointer;"src="assets/imgs/plus.png"> 
+            Thêm mới</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-9">
             <ng-container *ngFor="let item of newsData | paginate: config">
                 <div [routerLink]="['/social/news/detail/id']" class="col-12 row mb-3 border rounded">
                     <div class="col-2 d-flex align-items-center">
@@ -96,7 +99,7 @@
         </div>
         <div class="col-3">
             <div class="list-group">
-                <div class="list-group-item list-group-item-custom-dark">
+                <div class="list-group-item list-group-item background">
                     Bộ lọc
                 </div>
                 <div class="list-group-item list-group-item-primary">
@@ -122,12 +125,12 @@
         </div>
     </div>
     <!-- /////////////////// Pagination -->
-    <div class="list row">
-        <div class="col-md-9">
+    <div class="list row col-9">
+        <div class="col-md-8">
             <pagination-controls id="paging" [previousLabel]="getLabel('previousBtn')" [nextLabel]="getLabel('nextBtn')"
                 responsive="true" responsive="true" (pageChange)="handlePageChange($event)"></pagination-controls>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             {{getLabel("itemsPerPage")}}:
             <select style="border: solid 1px rgb(230, 229, 229);" (change)="handlePageSizeChange($event)">
                 <option *ngFor="let size of pageSizes" [ngValue]="size">
