@@ -20,7 +20,7 @@ export class UserManagerComponent implements OnInit {
   theGroupsName // nhóm theo userId
   capNhatUser// Cập nhật user
   Mltiple// Gán nhiều quyền
-
+  removeAllRight // Xóa tất cả các quyền khỏi người dùng
 
 
   @Input ()quyencuaUser: any ; 
@@ -101,7 +101,7 @@ export class UserManagerComponent implements OnInit {
   constructor(private _http:HttpClient, private api: ApiservicesService, private generalService: GeneralService ) { }
   ngOnInit(): void {
     this.DataDulieu(); // Tất cả các quyền của user
-    this.updateUserName()
+    this.removeAllRightUser()
   }
   // Nguồn so sánh 
   ngOnChanges(user,userId: SimpleChanges): void {
@@ -165,17 +165,17 @@ async deleteUserName(userId :string){
   } catch{}
 }
 // Cập nhật thông tin người dùng 
-async updateUserName(){
+/*async updateUserName(){
   try{
     let res
     let result
-    console.log(this.api.apiLists.updateUserInfo)
+    console.log('a')
     res = await this.api.httpCall(this.api.apiLists.updateUserInfo,{},{},'post',true);
     result=<any>res
     console.log(result)
     this.capNhatUser = Array.from(result)
   } catch{}
-}
+}*/
 // Gán nhiều quyền được chỉ định cho user
 async assignMultiple (userId, rightId){
   try{
@@ -186,6 +186,18 @@ async assignMultiple (userId, rightId){
     console.log(res)
     this.Mltiple = Array.from(result)
   }catch{}
+}
+// Xóa tất cả các quyền ra khỏi người dùng
+async removeAllRightUser(){
+  try {
+    let res
+    let result
+    console.log('a')
+    res = await this.api.httpCall(this.api.apiLists.removeAllRightFromUser,{},{},'post',true);
+    result=<any>res
+    console.log(res)
+    this.removeAllRight=Array.from(result)
+  } catch{}
 }
 //nhóm người dùng theo UserId
 async individualgroupUserId(userId : string){
@@ -208,5 +220,5 @@ sosanhGroup(group){
   })
   return sosanhnhom ;
 }
-
+// Ng thi kim phung
 }
