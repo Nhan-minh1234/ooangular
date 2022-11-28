@@ -33,7 +33,7 @@ export class ApiservicesService {
     RequestFinishATask: '/api/Tasks/RequestFinishATask',
     FinishATask: '/api/Tasks/FinishATask',
     AddNewTaskHistory: '/api/Tasks/AddNewTaskHistory',
-    GetAllTasksProject: '/api/Tasks/GetAllTasksProject'
+    GetAllTasksProject: '/api/Tasks/GetAllTasksProject',
 
     getAllRights:'/api/Rights/GetAllRights',
     getAllRightsByUserld:'/api/Users/GetAllRightsByUserId/'
