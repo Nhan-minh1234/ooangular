@@ -35,3 +35,15 @@ export class createNewTask {
     participants: Array<{ nguoiXuLy: string }> = []
     viewers: Array<{ nguoiDuocXem: string }> = []
 }
+export class TaskListResponseModel {
+    Chude: string;
+    Mscv: string;
+    NgayBatDau: string;
+    NgayKetThucDuKien: string;
+    NgayKetThucThucTe: string;
+    NguoiTaoUserId: string;
+    TinhTrang: string;
+    NguoiXuLyChinhUserId: string;
+    NguoiTaoHoTen: string = '';
+    NguoiXuLyChinhHoTen: string;
+}
