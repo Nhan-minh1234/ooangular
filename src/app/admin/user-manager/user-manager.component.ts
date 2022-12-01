@@ -22,6 +22,7 @@ export class UserManagerComponent implements OnInit {
   Mltiple// Gán nhiều quyền
   removeAllRight // Xóa tất cả các quyền khỏi người dùng
   assignMultiGroup // gán nhiều nhóm cho người dùng
+  xoaNhom // Xóa nhiều nhóm
 
   @Input ()quyencuaUser: any ; 
   
@@ -78,6 +79,18 @@ export class UserManagerComponent implements OnInit {
     "rights": [],
     "groups": []
   }
+  update=
+  {
+    "userId": "U0055",
+    "fullName": "Gia tri Ao",
+    "groupIdChinh": "GP005",
+    "title": "Nv",
+    "email": "motgiatri",
+    "phone": "0011223355",
+    "active": 0,
+    "nguoiTao": "",
+    "isLeader": 0
+  }
   newmanager(event,rightId){
     var newcheck = event.target.checked
     if (newcheck === true) {this.newUserName.rights.push({"rightId":rightId})}
@@ -97,17 +110,16 @@ export class UserManagerComponent implements OnInit {
   newgroupIdChinh(event){
     this.newUserName.groupIdChinh=event.target.value
   }
-  @Input() user: any ;  User
+  @Input() user: any 
   constructor(private _http:HttpClient, private api: ApiservicesService, private generalService: GeneralService ) { }
   ngOnInit(): void {
     this.DataDulieu(); // Tất cả các quyền của user
+    this.updateUserName()    
   }
   // Nguồn so sánh 
-  ngOnChanges(user,userId: SimpleChanges): void {
+  ngOnChanges(user,userId,rightId: SimpleChanges): void {
     this.individualData(this.user.userId);
-    this.individualgroupUserId(this.user.userId)
-    this.assignMultiple (this.user.rightId)
-
+    /*this.individualgroupUserId(this.user.userId)*/ // Lỗi API
   }
   
   // Thêm mới người dùng
@@ -165,24 +177,33 @@ async deleteUserName(userId :string){
     console.log(res)
   } catch{}
 }
+
 // Cập nhật thông tin người dùng 
-async updateUserName(userId : string){
+async updateUserName(){
   try{
     let res
     let result
-    res = await this.api.httpCall(this.api.apiLists.updateUserInfo,{},userId,'post',true);
+    // Sao e lại truyền this.update vào header? this.update này là nội dung update có phải ko, vậy thì phải truyền nó trong body.
+    // dạ nó là nội dung update ạ
+    // api này có yêu cầu truyền token thì chú truyền thêm vào.
+    // Dạ vẫn báo lỗi ạ
+
+    res = await this.api.httpCall(this.api.apiLists.updateUserInfo,{},this.update, 'post',true);
     result=<any>res
+    console.log('a')
     console.log(result)
     this.capNhatUser = Array.from(result)
   } catch{}
 }
 
+/*
 // Gán nhiều quyền được chỉ định cho user
-async assignMultiple ( rightId){
+async assignMultiple (userId,rightId){
   try{
     let res
     let result
-    res = await this.api.httpCall( this.api.apiLists.assignMultiRightsToUser + rightId,{},{},'post',true);
+    console.log(this.api.apiLists.assignMultiRightsToUser)
+    res = await this.api.httpCall( this.api.apiLists.assignMultiRightsToUser,{},rightId,'post',true);
     result =<any>res
     console.log(res)
     this.Mltiple = Array.from(result)
@@ -204,20 +225,32 @@ async assignMultiGroupsUser(){
   try{
     let res
     let result
-    console.log('a')
     res = await this.api.httpCall(this.api.apiLists.assignMultiGroupsToUser,{},{},'post',true);
     result = <any>res
     console.log(res)
     this.assignMultiGroup=Array.from(result)
   }catch{}
 }
+// Xóa nhiều nhóm khỏi người dùng
+async removeMultiGroupUser(){
+  try{
+    let res
+    let result
+    res = await this.api.httpCall(this.api.apiLists.removeMultiSelectedGroupsFromUser,{},{},'post',true);
+    result = <any>res
+    console.log(result)
+    this.xoaNhom = Array.from(result)
+  }catch{}
+  
+}
+/* lỗi api
 //nhóm người dùng theo UserId
 async individualgroupUserId(userId : string){
   try{
     let res
     let result
-    console.log('a')
-    res = await this.api.httpCall(this.api.apiLists + userId,{},{},'get',true);
+    console.log(this.api.apiLists.getAllGroupsByUserld + userId)
+    res = await this.api.httpCall(this.api.apiLists.getAllGroupsByUserld+'?'+'userId'+'='+ userId,{},{},'get',true);
     result=<any>res
     this.theGroupsName = Array.from(result)
     console.log(res)
@@ -232,6 +265,6 @@ sosanhGroup(group){
     }
   })
   return sosanhnhom ;
-}
+}*/
 
 }

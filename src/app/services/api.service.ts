@@ -20,15 +20,15 @@ export class ApiservicesService {
     getAllUserGroups: '/api/Groups/GetAllGroups',
     uploadFile: '/api/File/Upload?subDirectory',
     downloadFile: '/api/File/Download',
-    getAllRights:'/api/Rights/GetAllRights/',
+    getAllRights:'/api/Rights/GetAllRights/', 
     getAllRightsByUserld:'/api/Users/GetAllRightsByUserId/',
     getAllGroupsByUserld:'/api/Users/GetAllGroupsByUserId/', // nhóm theo userId
-    deleteUser:'/api/Users/DeleteUser', // Xóa người dùng
-    addNewUser:'/api/Users/AddNewUser/', // thêm người dùng
+    deleteUser:'/api/Users/DeleteUser', // Xóa người dùng 'rồi '
+    addNewUser:'/api/Users/AddNewUser/', // thêm người dùng 'rồi '
     removeOneSelectedGroupFromUser:'/api/Users/RemoveOneSelectedGroupFromUser', // xóa 1 nhóm khỏi người dùng /
-    assignMultiRightsToUser:'/api/Users/AssignMultiRightsToUser' , //gán quyền cho người dùng /
-    removeAllRightFromUser:'/api/Users/RemoveOneRightFromUser', //Xóa tất cả quyền khỏi người dùng /
-    assignMultiGroupsToUser:'/api/Users/AssignOneGroupToUser', // gán nhiều nhóm/phòng ban cho người dùng /
+    assignMultiRightsToUser:'/api/Users/AssignMultiRightsToUser' , //gán nhiều quyền cho người dùng / r
+    removeAllRightFromUser:'/api/Users/RemoveOneRightFromUser', //Xóa tất cả quyền khỏi người dùng / r
+    assignMultiGroupsToUser:'/api/Users/AssignOneGroupToUser', // gán nhiều nhóm/phòng ban cho người dùng / 
 ​    removeMultiSelectedGroupsFromUser:'/api/Users/RemoveMultiSelectedGroupsFromUser', //xóa nhiều nhóm được chỉ định cho khỏi người dùng /
     getUserByUserName : '/api/Users/GetUserByUserName/' // Lấy thông tin chi tiết người dùng theo Username 
   }
@@ -60,6 +60,7 @@ export class ApiservicesService {
 
   }
   httpCall(url, header, body, method, showErr) {
+    //Ở đây đã có code sẵn truyền.
     url = this.generalService.appConfig.API_BASE_URL + url;
     if (this.generalService.userData != null) {
       header['Authorization'] = 'Bearer ' + this.generalService.userData.token;
