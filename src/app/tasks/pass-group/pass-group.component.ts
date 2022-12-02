@@ -14,7 +14,7 @@ import { TaskCategoryResponse } from 'src/app/Model/TaskCategory';
 })
 export class PassGroupComponent implements OnInit {
 
-  deleteList = []
+  ListToAdd = []
   spinnerLoading = false;
   passGroupData: Array<TaskListResponseModel>
   categoryData: Array<TaskCategoryResponse> = []
@@ -63,7 +63,7 @@ export class PassGroupComponent implements OnInit {
     //this.api.httpCall(this.api.apiLists.GetAllTasksNotInAnyCategory, { headers }, {}, 'get', true); not work idk why
   }
   async addTasksToCategory() {
-    var res = await this.api.httpCall(this.api.apiLists.AddTasksToCategory + `?categoryId=${this.currentCategory.idnhomCv}`, {}, this.deleteList, 'post', true);
+    var res = await this.api.httpCall(this.api.apiLists.AddTasksToCategory + `?categoryId=${this.currentCategory.idnhomCv}`, {}, this.ListToAdd, 'post', true);
     var result = <any>res
     this.generalService.showErrorToast(result.status ? 1 : 0, result.message);
     this.gData();
@@ -84,9 +84,9 @@ export class PassGroupComponent implements OnInit {
 
   addlist(id, x) {
     if (x.target.checked) {
-      this.deleteList.push(id)
+      this.ListToAdd.push(id)
     } else {
-      this.deleteList = this.deleteList.filter((e) => {
+      this.ListToAdd = this.ListToAdd.filter((e) => {
         e !== id
       })
     }

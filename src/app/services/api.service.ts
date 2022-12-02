@@ -27,7 +27,7 @@ export class ApiservicesService {
     DelayTask: '/api/Tasks/DelayTask',
     AssignNewListParticipantToTask: '/api/Tasks/AssignNewListParticipantToTask',
     AssignNewListViewerToTask: '/api/Tasks/AssignNewListViewerToTask',
-    FollowATask: '/api​/Tasks​/FollowATask',
+    FollowATask: '/api/Tasks/FollowATask',
     ChangeMajorAssignment: '/api/Tasks/ChangeMajorAssignment',
     RequestFinishATask: '/api/Tasks/RequestFinishATask',
     FinishATask: '/api/Tasks/FinishATask',
@@ -40,13 +40,17 @@ export class ApiservicesService {
     CreateNewTasksCategory: '/api/Tasks/CreateNewTasksCategory',
     GetAllTasksByCategory: '/api/Tasks/GetAllTasksByCategory',
     RemoveListOfTasksFromCategory: '/api/Tasks/RemoveListOfTasksFromCategory',
-    GetAllTasksNotInAnyCategory: '​/api​/Tasks​/GetAllTasksNotInAnyCategory',
+    GetAllTasksNotInAnyCategory: '/api/Tasks/GetAllTasksNotInAnyCategory',
     AddTasksToCategory: '/api/Tasks/AddTasksToCategory',
-    GetAllTasksByProjectId: '​/api​/Tasks​/GetAllTasksByProjectId',
+    GetAllTasksByProjectId: '/api/Tasks/GetAllTasksByProjectId',
     UpdateTasksProject: '/api/Tasks/UpdateTasksProject',
     CreateATasksProject: '/api/Tasks/CreateATasksProject',
     DeleteTasksProject: '/api/Tasks/DeleteTasksProject',
-    RemoveTasksFromProject: 'api/Tasks/RemoveTasksFromProject'
+    RemoveTasksFromProject: 'api/Tasks/RemoveTasksFromProject',
+    GetAllTasksNotInAnyProject: '/api/Tasks/GetAllTasksNotInAnyProject',
+    AddTasksToProject: '/api/Tasks/AddTasksToProject',
+    GetAllTasksSample: '/api/Tasks/GetAllTasksSample',
+    TasksSampleDetail: '/api/Tasks/TasksSampleDetail'
   }
 
   constructor(private httpClient: HttpClient, private router: Router, private generalService: GeneralService) {

@@ -45,7 +45,6 @@ export class ProjectComponent implements OnInit {
     const headers = { 'Authorization': `Bearer ${this.generalService.userData.token}` }
     var baseURL = this.generalService.appConfig.API_BASE_URL
     this.httpClient.get(`${baseURL}/api/Tasks/GetAllTasksByProjectId?projectId=${this.currentProject.msda}`, { headers }).subscribe(res => {
-      console.log(res)
       this.spinnerLoading = false;
       this.taskByProjectData = <Array<TaskListResponseModel>>res
       this.config = {

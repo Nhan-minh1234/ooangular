@@ -28,7 +28,7 @@
 
         <div class="col-10">
             <div class="page-title-box">
-                <h4 class="page-title">Bạn đang chọn nhóm: <b>{{currentCategory.tenNhomCv}}</b></h4>
+                <h4 class="page-title">Bạn đang chọn Dự án: <b class="text-primary">{{CurrentProject.tenDuAn}}</b></h4>
             </div>
         </div>
 
@@ -48,7 +48,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let item of passGroupData | paginate: config">
+                        <tr *ngFor="let item of TaskList | paginate: config">
                             <td><span type="checkbox" title="Chọn/bỏ chọn tất cả"><input
                                         (change)="addlist(item.mscv,$event)" type="checkbox" name="công việc" /></span>
                             </td>
@@ -60,12 +60,12 @@
                 </table>
                 <div class="list row">
                     <div class="col-md-8">
-                        <pagination-controls id="paging" [previousLabel]="getLabel('previousBtn')"
-                            [nextLabel]="getLabel('nextBtn')" responsive="true" responsive="true"
-                            (pageChange)="handlePageChange($event)"></pagination-controls>
+                        <pagination-controls id="paging" [previousLabel]="'Quay Lại'" [nextLabel]="'Tiếp tục'"
+                            responsive="true" responsive="true" (pageChange)="handlePageChange($event)">
+                        </pagination-controls>
                     </div>
                     <div class="col-md-4">
-                        {{getLabel("itemsPerPage")}}:
+                        Số dòng:
                         <select style="border: solid 1px rgb(230, 229, 229);" (change)="handlePageSizeChange($event)">
                             <option *ngFor="let size of pageSizes" [ngValue]="size">
                                 {{ size }}
@@ -81,7 +81,7 @@
                     </div>
                     <div class="list-group-item">
                         <div class="row">
-                            <button type="button" class="btn btn-primary" (click)="addTasksToCategory()"
+                            <button type="button" class="btn btn-primary" (click)="addTaskToProject()"
                                 [disabled]="ListToAdd.length > 0 ? false : true">Thêm danh sách CV
                                 vào nhóm</button>
                         </div>
@@ -90,9 +90,9 @@
                         Danh sách nhóm công việc
                     </div>
                     <div class="list-group-item list-group-item-primary d-flex flex-column gap-3">
-                        <label class="pointer" *ngFor="let item of categoryData" (click)="changeCategory(item)">
-                            {{item.stt}}. {{item.tenNhomCv}}
-                            <b *ngIf="currentCategory.idnhomCv === item.idnhomCv">(Đang
+                        <label class="pointer" *ngFor="let item of ProjectList" (click)="changeProject(item)">
+                            {{item.stt}}. {{item.tenDuAn}}
+                            <b *ngIf="CurrentProject.msda === item.msda">(Đang
                                 chọn)</b>
                         </label>
                     </div>
