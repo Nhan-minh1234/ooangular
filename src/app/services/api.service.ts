@@ -19,7 +19,6 @@ export class ApiservicesService {
     getAllUserGroups: '/api/Groups/GetAllGroups',
     uploadFile: '/api/File/Upload?subDirectory=',
     downloadFile: '/api/File/Download',
-
     GetAllTasksCategoryByUserId: '/api/Tasks/GetAllTasksCategoryByUserId',
     UpdateTaskTitle: '/api/Tasks/UpdateTaskTitle',
     AddCategoryToTask: '/api/Tasks/AddCategoryToTask',
@@ -28,16 +27,30 @@ export class ApiservicesService {
     DelayTask: '/api/Tasks/DelayTask',
     AssignNewListParticipantToTask: '/api/Tasks/AssignNewListParticipantToTask',
     AssignNewListViewerToTask: '/api/Tasks/AssignNewListViewerToTask',
-    FollowATask: '/api​/Tasks​/FollowATask',
+    FollowATask: '/api/Tasks/FollowATask',
     ChangeMajorAssignment: '/api/Tasks/ChangeMajorAssignment',
     RequestFinishATask: '/api/Tasks/RequestFinishATask',
     FinishATask: '/api/Tasks/FinishATask',
     AddNewTaskHistory: '/api/Tasks/AddNewTaskHistory',
-    GetAllTasksProject: '/api/Tasks/GetAllTasksProject'
-
-    getAllRights:'/api/Rights/GetAllRights',
-    getAllRightsByUserld:'/api/Users/GetAllRightsByUserId/'
-
+    GetAllTasksProject: '/api/Tasks/GetAllTasksProject',
+    getAllRights: '/api/Rights/GetAllRights',
+    getAllRightsByUserld: '/api/Users/GetAllRightsByUserId/',
+    UpdateTasksCategory: '/api/Tasks/UpdateTasksCategory',
+    DeleteATasksCategory: '/api/Tasks/DeleteATasksCategory',
+    CreateNewTasksCategory: '/api/Tasks/CreateNewTasksCategory',
+    GetAllTasksByCategory: '/api/Tasks/GetAllTasksByCategory',
+    RemoveListOfTasksFromCategory: '/api/Tasks/RemoveListOfTasksFromCategory',
+    GetAllTasksNotInAnyCategory: '/api/Tasks/GetAllTasksNotInAnyCategory',
+    AddTasksToCategory: '/api/Tasks/AddTasksToCategory',
+    GetAllTasksByProjectId: '/api/Tasks/GetAllTasksByProjectId',
+    UpdateTasksProject: '/api/Tasks/UpdateTasksProject',
+    CreateATasksProject: '/api/Tasks/CreateATasksProject',
+    DeleteTasksProject: '/api/Tasks/DeleteTasksProject',
+    RemoveTasksFromProject: 'api/Tasks/RemoveTasksFromProject',
+    GetAllTasksNotInAnyProject: '/api/Tasks/GetAllTasksNotInAnyProject',
+    AddTasksToProject: '/api/Tasks/AddTasksToProject',
+    GetAllTasksSample: '/api/Tasks/GetAllTasksSample',
+    TasksSampleDetail: '/api/Tasks/TasksSampleDetail'
   }
 
   constructor(private httpClient: HttpClient, private router: Router, private generalService: GeneralService) {
@@ -71,7 +84,7 @@ export class ApiservicesService {
     if (this.generalService.userData != null) {
       header['Authorization'] = 'Bearer ' + this.generalService.userData.token;
     }
-    
+
     return new Promise((resolve, reject) => {
       //use angular http        
       if (method == 'get') {
@@ -79,7 +92,7 @@ export class ApiservicesService {
           .pipe(
             timeout(this.defaultTimeout),
             catchError(e => {
-              return Promise.reject('TimeOut');;
+              return Promise.reject('TimeOut');
             })
           )
           .subscribe(res => {

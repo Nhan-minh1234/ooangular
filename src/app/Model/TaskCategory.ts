@@ -1,5 +1,5 @@
 export class TaskCategoryResponse {
-    stt: string;
+    stt: number;
     idnhomCv: string;
     tenNhomCv: string;
     iduser: string;

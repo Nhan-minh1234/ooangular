@@ -27,109 +27,78 @@
             </div>
         </div>
     </div>
-    
+
     <div class="row">
         <div class="col-10">
-            <table  id = "basic-datatable"  class = "table table-bordered table-striped border
-            border-style table-hover table-centered mb-2 dt-responsive nowrap w-100 content-table" >
-        <thead>
-            <tr>
-                <th>STT</th>
-                <th>Tên nhóm công việc</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of eventListData | paginate: config" data-bs-toggle="modal"
-            data-bs-target="#scrollable-modal" (click)="seeDetail(item)">
-                <td>{{item.number}}</td>
-                <td>{{item.name}}</td>
-                <td  class="text-center" style="width: 20%;">
-                    <button type="submit" name="ctl22$DANHMUC$ctl02$btnDel" 
-                    value="Xóa" class="btn btn-danger rounded-pill" onclick="return confirm('Bạn chắc chắn xóa ?');" id="ctl22_DANHMUC_btnDel_0">
-                    <i class="uil-trash-alt"></i></button>
-                    <button type="button" class="btn btn-danger rounded-pill"><i class="uil-edit-alt"></i></button>
-            </td>
-            </tr>
-            <tr>
-                <td><select [(ngModel)]="newlist.number"  name="" id="">
-                    <option *ngFor="let i of number()" >{{i}}</option>
-                    
-                </select></td>
-                <td><input  [(ngModel)]="newlist.name"  type="text" id="" style="width:100%;" />
-                </td>
-                <td>
-                    <input (click)="clicknew()" type="submit" name="" value="Thêm mới"  />
-                </td>
-            </tr>
-            <div class="modal fade" id="scrollable-modal" tabindex="-1" role="dialog"
-            aria-labelledby="scrollableModalTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="scrollableModalTitle">Chi tiết dự án</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
-                    </div>
-                    <div class="modal-body">
-                        <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
-                            <li class="nav-item">
-                                <a href="#detailTab" data-bs-toggle="tab" aria-expanded="false"
-                                    class="nav-link rounded-0 active">
-                                    <i class="mdi mdi-information d-md-none d-block"></i>
-                                    <span class="d-none d-md-block">Thông tin</span>
-                                </a>
-                            </li>
-                           
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane  show active" id="detailTab">
-
-                                <div class="row">
-                                    <div class="mb-3 col-12">
-                                        <label for="simpleinput" class="form-label">STT</label>
-                                        <input [readonly]="editable" type="text" id="simpleinput"
-                                            [(ngModel)]="eventDetail.title" class="form-control">
-                                    </div>
-                                   
-                                    <div class="mb-3 col-12">
-                                        <label for="simpleinput" class="form-label">Tên dự án</label>
-                                        <textarea class="form-control" [readonly]="editable" id="example-textarea"
-                                            [(ngModel)]="eventDetail.description" rows="1"></textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="example-fileinput" class="form-label">Tình trạng</label>
-                                        <select class="form-select" id="example-select" >
-                                            <option >Đã xử lý</option>
-                                            <option>Chưa xử lý</option>
-                                        </select>
-                                    </div>
-                                  
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="assigneeTab">
-                                <p>{{'working'|uppercase}}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                        <button *ngIf="!editable" type="button" class="btn btn-warning"
-                            (click)="cancelEditEvent()">Huỷ</button>
-                        <button *ngIf="!editable" (click)="close()" type="button" class="btn btn-success">Lưu</button>
-                        <button *ngIf="editable" type="button" class="btn btn-primary"
-                            (click)="editEvent()">Sửa</button>
-                        <button type="button" class="btn btn-danger" >Xóa</button>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-        </tbody>
-        </table>
+            <table id="basic-datatable"
+                class="table table-bordered table-striped border table-hover table-centered mb-2 dt-responsive nowrap content-table">
+                <thead>
+                    <tr class="text-center">
+                        <th>STT</th>
+                        <th>Tên nhóm công việc</th>
+                        <th>Tác vụ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of categoryData | paginate: config">
+                        <td class="text-center" style="width:10%;">
+                            <label *ngIf="categoryEditData.idnhomCv !== item.idnhomCv">
+                                {{item.stt}}
+                            </label>
+                            <select class="form-select" name="sttEdit" [(ngModel)]="categoryEditData.stt"
+                                *ngIf="categoryEditData.idnhomCv === item.idnhomCv">
+                                <option *ngFor="let i of numbers" [value]="i">{{i}}
+                                </option>
+                            </select>
+                        </td>
+                        <td>
+                            <label *ngIf="categoryEditData.idnhomCv !== item.idnhomCv">
+                                {{item.tenNhomCv}}
+                            </label>
+                            <input [(ngModel)]="categoryEditData.tenNhomCv"
+                                *ngIf="categoryEditData.idnhomCv === item.idnhomCv" type="text" name="tenNhomCvEdit"
+                                id="tenNhomCv" class=" form-control">
+                        </td>
+                        <td class="text-center gap-3 d-flex justify-content-center gap-3">
+                            <button type="button" *ngIf="categoryEditData.idnhomCv !== item.idnhomCv"
+                                (click)="categoryEdit(item)" class="btn btn-warning"><i
+                                    class="uil-edit-alt"></i></button>
+                            <button type="button" *ngIf="categoryEditData.idnhomCv !== item.idnhomCv"
+                                (click)="categroyDelete(item.idnhomCv)" class="btn btn-danger"><i
+                                    class="uil-trash-alt"></i></button>
+                            <button type="button" (click)="categorySaveEdit(item)"
+                                *ngIf="categoryEditData.idnhomCv === item.idnhomCv" class="btn btn-success">
+                                <i class="uil-check"></i>
+                            </button>
+                            <button type="button" (click)="categoryCancelEdit()"
+                                *ngIf="categoryEditData.idnhomCv === item.idnhomCv" class="btn btn-danger">
+                                <i class="uil-times"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select class="form-select" [(ngModel)]="categoryNewData.stt">
+                                <option *ngFor="let i of numbers">{{i}}</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="tenNhomCvNew" id="simpleinput" [(ngModel)]="categoryNewData.tenNhomCv"
+                                class="form-control">
+                        </td>
+                        <td class="d-flex justify-content-center">
+                            <button type="button" class="btn btn-primary" (click)="categroyCreateNew()">Thêm
+                                mới</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <div class="list row">
             <div class="col-md-8">
-                <pagination-controls id="paging" [previousLabel]="getLabel('previousBtn')" [nextLabel]="getLabel('nextBtn')"
-                    responsive="true" responsive="true" (pageChange)="handlePageChange($event)"></pagination-controls>
+                <pagination-controls id="paging" [previousLabel]="getLabel('previousBtn')"
+                    [nextLabel]="getLabel('nextBtn')" responsive="true" responsive="true"
+                    (pageChange)="handlePageChange($event)"></pagination-controls>
             </div>
             <div class="col-md-4">
                 {{getLabel("itemsPerPage")}}:
@@ -139,4 +108,3 @@
                     </option>
                 </select>
             </div>
-
