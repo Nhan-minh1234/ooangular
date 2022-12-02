@@ -27,31 +27,29 @@
         </div>
         <div class="col-3 my-auto">
             <div class="list-group">
-                <button  type="button" class="btn btn-success rounded" 
-            data-bs-toggle="modal" data-bs-target="#task-sample-manager-modal" 
-            style="cursor: pointer;"src="assets/imgs/plus.png"> 
-            Thêm mới</button>
+                <button type="button" class="btn btn-success rounded" data-bs-toggle="modal"
+                    data-bs-target="#task-sample-manager-modal" style="cursor: pointer;" src="assets/imgs/plus.png">
+                    Thêm mới</button>
             </div>
         </div>
     </div>
-    
+
     <div class="row">
         <div class="col-9">
-            <table  id = "basic-datatable"  class = "table table-bordered table-striped border-color
-            border-style table-hover table-centered mb-2 dt-responsive nowrap w-100 content-table" >
-                <thead >
-                    <tr >
+            <table id="basic-datatable" class="table table-bordered table-striped border-color
+            border-style table-hover table-centered mb-2 dt-responsive nowrap w-100 content-table">
+                <thead>
+                    <tr>
                         <th class="d-flex justify-content-center">STT </th>
                         <th>Tên công việc </th>
                         <th class="d-flex justify-content-center"> Lặp lại </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr data-bs-toggle="modal" data-bs-target="#task-sample-detail-modal"
-                        *ngFor="let item of taskSampleData|paginate: config" class="pointer">
-                        <td class="d-flex justify-content-center">{{item.number}}</td>
-                        <td >{{item.title}}</td>
-                        <td class="d-flex justify-content-center">{{item.isLoop}}</td>
+                    <tr *ngFor="let item of taskSampleData|paginate: config; let i = index" class="pointer">
+                        <td class="d-flex justify-content-center">{{i}}</td>
+                        <td><a [routerLink]="'/tasks/task-samples/detail/'+item.mscv">{{item.tenCV}}</a></td>
+                        <td class="d-flex justify-content-center">{{item.lapLai}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -111,5 +109,4 @@
         </div>
     </div>
 </div>
-<app-task-sample-detail></app-task-sample-detail>
 <app-task-sample-manager></app-task-sample-manager>

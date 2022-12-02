@@ -1,49 +1,33 @@
 import { Component, OnInit } from '@angular/core';
-
+import { TaskSampleResponseModel } from 'src/app/Model/TaskSampleModel';
+import { ApiservicesService } from 'src/app/services/api.service';
+import { GeneralService } from 'src/app/services/general.service';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-task-samples',
   templateUrl: './task-samples.component.html',
   styleUrls: ['./task-samples.component.css']
 })
 export class TaskSamplesComponent implements OnInit {
-  taskSampleData = []
+  taskSampleData: Array<TaskSampleResponseModel>
   spinnerLoading = false
   page = 0;
   pageSize = 10;
   pageSizes = [10, 20, 30];
-  count = 500;
-  config
-  constructor() { }
+  config: object = {
+    id: "paging",
+    itemsPerPage: this.pageSize,
+    currentPage: this.page,
+    totalItems: 0
+  }
+  constructor(private _location: Location, private api: ApiservicesService, private generalService: GeneralService) { }
 
   ngOnInit(): void {
     this.gData();
   }
-  gData() {
-    this.taskSampleData = []
-    for (let i = 0; i <= this.count; i++) {
-      let randomDate = () => {
-        let start = new Date(2012, 0, 1);
-        let end = new Date();
-        let date = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
-        return date;
-      }
-      let randomText = () => {
-        var result = '';
-        var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        var charactersLength = characters.length;
-        for (var i = 0; i < 20; i++) {
-          result += characters.charAt(Math.floor(Math.random() *
-            charactersLength));
-        }
-        return result;
-      }
-      let d = {
-        number: i,
-        title: randomText(),
-        isLoop: randomText()
-      }
-      this.taskSampleData.push(d);
-    }
+  async gData() {
+    var res = await this.api.httpCall(this.api.apiLists.GetAllTasksSample, {}, {}, 'get', true);
+    this.taskSampleData = <Array<TaskSampleResponseModel>>res
     this.config = {
       id: 'paging',
       itemsPerPage: this.pageSize,

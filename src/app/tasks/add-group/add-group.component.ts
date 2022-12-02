@@ -1,132 +1,99 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { WizardComponent } from 'angular-archwizard';
 import { GeneralService } from 'src/app/services/general.service';
 import data from './add-group.language';
+import { ApiservicesService } from 'src/app/services/api.service';
 import { Location } from '@angular/common';
+import { TaskCategoryResponse } from 'src/app/Model/TaskCategory';
 @Component({
   selector: 'app-add-group',
   templateUrl: './add-group.component.html',
   styleUrls: ['./add-group.component.css']
 })
 export class AddGroupComponent implements OnInit {
-
-  addGroupData = {
-    location: '',
-    description: '',
-
-    invited: '',
-    note: '',
-    file: []
-  }
-  editable = true;
-  eventDetail = {
-    "date": "",
-    "title": "",
-    "description": "",
-    "location": "",
-    "time_start": "",
-    "time_end": "",
-    "status": null,
-  }
-  eventSandbox;
-  currentTab = true;
-  @ViewChild(WizardComponent)
-  public wizard: WizardComponent;
-  wizardStep = 0;
   spinnerLoading = false;
-  eventListData
+  categoryData: Array<TaskCategoryResponse>;
+  numbers: Array<number> = []
+  categoryEditData: TaskCategoryResponse = {
+    idnhomCv: null,
+    iduser: null,
+    stt: 0,
+    tenNhomCv: null
+  }
+  categoryNewData = {
+    stt: 1,
+    tenNhomCv: ""
+  }
   page = 0;
   pageSize = 10;
   pageSizes = [10, 20, 30];
-  count = 500;
-newlist={
-  number:1,
-  name:'',
-  status: 'Chưa hoàn thành'
-}
   config
-  constructor(private httpClient: HttpClient, public generalService: GeneralService, private router: Router, private _location: Location) { }
+  constructor(private httpClient: HttpClient, private api: ApiservicesService, public generalService: GeneralService, private router: Router, private _location: Location) { }
 
   ngOnInit(): void {
     this.gData();
-  }
-  seeDetail(obj) {
-    this.editable = true;
-    this.eventDetail = { ...obj }
-  }
-  editEvent() {
-    this.editable = false;
-    this.eventSandbox = { ...this.eventDetail }
-  }
-  cancelEditEvent() {
-    this.editable = true;
-    this.eventDetail = { ...this.eventSandbox }
-  }
-  changeTabs(tab) {
-    this.currentTab = tab;
-    this.page = 0;
-    this.count = 0;
-    this.pageSize = 10;
-    this.gData();
+    this.gNumber();
   }
   async gData() {
     this.spinnerLoading = true;
-    this.httpClient.get('https://62fde3c541165d66bfb3a622.mockapi.io/api/project?sortby=number').subscribe(i => {
-      this.eventListData = i;
-      this.config = {
-        id: 'paging',
-        itemsPerPage: this.pageSize,
-        currentPage: this.page,
-        totalItems: this.eventListData.length
-      }
-      this.spinnerLoading = false;
-    })
+    var res = await this.api.httpCall(this.api.apiLists.GetAllTasksCategoryByUserId, {}, {}, 'get', true);
+    this.categoryData = <Array<TaskCategoryResponse>>res
+    this.config = {
+      id: 'paging',
+      itemsPerPage: this.pageSize,
+      currentPage: this.page,
+      totalItems: this.categoryData.length
+    }
+    this.spinnerLoading = false;
+  }
+  categoryEdit(item: TaskCategoryResponse) {
+    this.categoryEditData = { ...item };
+  }
+  categoryCancelEdit() {
+    this.categoryEditData.idnhomCv = null
+  }
+  async categorySaveEdit(item: TaskCategoryResponse) {
+    var res = await this.api.httpCall(this.api.apiLists.UpdateTasksCategory, {}, this.categoryEditData, 'post', true);
+    var result = <any>res
+    if (!result.status) {
+      this.generalService.showErrorToast(0, result.message);
+      return;
+    }
+    this.gData();
+    this.generalService.showErrorToast(1, result.message);
+    this.categoryEditData.idnhomCv = null;
+  }
+  async categroyCreateNew() {
+    var res = await this.api.httpCall(this.api.apiLists.CreateNewTasksCategory + `?stt=${this.categoryNewData.stt}&tennhom=${this.categoryNewData.tenNhomCv}`, {}, {}, 'post', true);
+    var result = <any>res
+    this.generalService.showErrorToast(result ? 1 : 0, result.message);
+    this.gData();
+  }
+  async categroyDelete(id: string) {
+    var res = await this.api.httpCall(this.api.apiLists.DeleteATasksCategory, {}, [id], 'post', true);
+    var result = <any>res
+    this.generalService.showErrorToast(result ? 1 : 0, result.message);
+    this.gData();
   }
   handlePageChange(event): void {
     this.page = event;
-    this.gData();
   }
 
   handlePageSizeChange(event): void {
     this.pageSize = event.target.value;
     this.page = 0;
-    this.gData();
-  }
-  handleFileInput(files: FileList) {
-    this.addGroupData.file = Array.from(files);
-    console.log(files)
   }
   goBack() {
     this._location.back();
   }
+  gNumber() {
+    for (let i = 1; i <= 100; i++) {
+      this.numbers.push(i)
+    }
+  }
+
   getLabel(key) {
     return data[`${this.generalService.currentLanguage.Code}`][`${key}`]
   }
-  number() {
-    let numbers = []
-    for (let i = 1; i <= 100; i++) {
-      numbers.push(i)
-    }
-
-    return numbers
-
-  }
-  clicknew(){
-    this.httpClient.post('https://62fde3c541165d66bfb3a622.mockapi.io/api/project',this.newlist).subscribe(i=>
-    {
-      this.generalService.showErrorToast(1, 'Đã thêm mới')
-     this.newlist={
-        number:1,
-        name:'',
-        status: 'chua hoan thanh'
-      }
-      this.gData()
-    }
-    
-    )
-  }
-
-
 }

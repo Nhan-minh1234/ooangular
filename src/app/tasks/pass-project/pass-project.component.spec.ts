@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MorePeojectComponent } from './more-peoject.component';
+import { PassProjectComponent } from './pass-project.component';
 
-describe('MorePeojectComponent', () => {
-  let component: MorePeojectComponent;
-  let fixture: ComponentFixture<MorePeojectComponent>;
+describe('PassProjectComponent', () => {
+  let component: PassProjectComponent;
+  let fixture: ComponentFixture<PassProjectComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MorePeojectComponent ]
+      declarations: [ PassProjectComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MorePeojectComponent);
+    fixture = TestBed.createComponent(PassProjectComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
