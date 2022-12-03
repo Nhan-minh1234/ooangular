@@ -17,7 +17,6 @@ import { TaskReportComponent } from './task-report/task-report.component';
 import { DonutChartComponent } from '../utilities/donut-chart/donut-chart.component';
 import { ReportComponent } from './report/report.component';
 import { ProjectComponent } from './project/project.component';
-import { MorePeojectComponent } from './more-peoject/more-peoject.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { ProjectGroupComponent } from './project-group/project-group.component';
 import { AddGroupComponent } from './add-group/add-group.component';
@@ -39,6 +38,7 @@ import { NewReportComponent } from './new-report/new-report.component';
 import { ImportReportComponent } from './import-report/import-report.component';
 import { TopicComponent } from './topic/topic.component';
 import { TopicDetailComponent } from './topic-detail/topic-detail.component';
+import { PassProjectComponent } from './pass-project/pass-project.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +50,6 @@ import { TopicDetailComponent } from './topic-detail/topic-detail.component';
     DonutChartComponent,
     ReportComponent,
     ProjectComponent,
-    MorePeojectComponent,
     ProjectListComponent,
     ProjectGroupComponent,
     AddGroupComponent,
@@ -70,7 +69,8 @@ import { TopicDetailComponent } from './topic-detail/topic-detail.component';
     NewReportComponent,
     ImportReportComponent,
     TopicComponent,
-    TopicDetailComponent
+    TopicDetailComponent,
+    PassProjectComponent
   ],
   imports: [
     CommonModule,

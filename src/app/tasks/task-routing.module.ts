@@ -9,6 +9,7 @@ import { TaskReportComponent } from "./task-report/task-report.component";
 import { ProjectComponent } from "./project/project.component";
 import { ProjectListComponent } from "./project-list/project-list.component";
 import { ProjectGroupComponent } from "./project-group/project-group.component";
+import { PassProjectComponent } from "./pass-project/pass-project.component";
 import { AddGroupComponent } from "./add-group/add-group.component";
 import { PassGroupComponent } from "./pass-group/pass-group.component";
 import { TaskSamplesComponent } from "./task-samples/task-samples.component";
@@ -17,6 +18,7 @@ import { NewReportComponent } from "./new-report/new-report.component";
 import { ImportReportComponent } from "./import-report/import-report.component";
 import { TopicComponent } from "./topic/topic.component";
 import { TopicDetailComponent } from "./topic-detail/topic-detail.component";
+import { TaskSampleDetailComponent } from "./task-sample-detail/task-sample-detail.component";
 
 
 const routes: Routes = [
@@ -92,6 +94,12 @@ const routes: Routes = [
         component: TaskSamplesComponent
       },
       {
+        data: { "link": "/tasks/task-samples/detail" },
+        path: 'task-samples/detail/:taskSampleId',
+        component: TaskSampleDetailComponent
+      }
+      ,
+      {
         data: { "link": "/tasks/topic" },
         path: 'topic',
         component: TopicComponent
@@ -101,6 +109,11 @@ const routes: Routes = [
         path: 'topic-detail',
         component: TopicDetailComponent
       },
+      {
+        data: { "link": "/tasks/pass-project" },
+        path: 'pass-project',
+        component: PassProjectComponent
+      }
       // {
       //   data: { "link": "/user/change-password" },
       //   path:'change-password',

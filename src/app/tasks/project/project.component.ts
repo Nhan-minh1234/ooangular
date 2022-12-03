@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { GeneralService } from 'src/app/services/general.service';
+import { ApiservicesService } from 'src/app/services/api.service';
 import data from './project.language';
-import { Console } from 'console';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { TaskListResponseModel } from 'src/app/Model/TaskModels';
+import { TaskProjectModels } from 'src/app/Model/TasksProjectModels';
 
 @Component({
   selector: 'app-project',
@@ -13,66 +14,59 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class ProjectComponent implements OnInit {
   editable = true;
-  deleteList = []
-
-  eventSandbox;
-  currentTab = true;
-  eventDetail = {
-    "date": "",
-    "title": "",
-    "description": "",
-    "location": "",
-    "time_start": "",
-    "time_end": "",
-    "status": null,
-  }
-
-
+  deleteList = [];
   spinnerLoading = false;
-  eventListData
+  projectData: Array<TaskProjectModels> = []
+  taskByProjectData: Array<TaskListResponseModel> = []
+  currentProject: TaskProjectModels = {
+    msda: null,
+    ngayBatDau: null,
+    ngayKetThuc: null,
+    stt: 0,
+    tenDuAn: "Không có dự án nào",
+    tinhTrang: 0
+  }
   page = 0;
   pageSize = 10;
   pageSizes = [10, 20, 30];
-  count = 500;
-
-  config
-  constructor(private httpClient: HttpClient, public generalService: GeneralService, private router: Router) { }
+  config: object = {
+    id: "paging",
+    itemsPerPage: this.pageSize,
+    currentPage: this.page,
+    totalItems: 0
+  }
+  constructor(private httpClient: HttpClient, private api: ApiservicesService, public generalService: GeneralService, private router: Router) { }
 
   ngOnInit(): void {
-    this.gData();
+    this.gProject();
   }
-  seeDetail(obj) {
-    this.editable = true;
-    this.eventDetail = { ...obj }
-  }
-  editProject() {
-    this.editable = false;
-
-  }
-  cancelEditProject() {
-    this.editable = true;
-
-  }
-  changeTabs(tab) {
-    this.currentTab = tab;
-    this.page = 0;
-    this.count = 0;
-    this.pageSize = 10;
-    this.gData();
-  }
-
   async gData() {
-    this.spinnerLoading = true;
-    this.httpClient.get('https://62fde3c541165d66bfb3a622.mockapi.io/api/projectlist').subscribe(i => {
-      this.eventListData = i;
+    this.spinnerLoading = true
+    const headers = { 'Authorization': `Bearer ${this.generalService.userData.token}` }
+    var baseURL = this.generalService.appConfig.API_BASE_URL
+    this.httpClient.get(`${baseURL}/api/Tasks/GetAllTasksByProjectId?projectId=${this.currentProject.msda}`, { headers }).subscribe(res => {
+      this.spinnerLoading = false;
+      this.taskByProjectData = <Array<TaskListResponseModel>>res
       this.config = {
-        id: 'paging',
+        id: "paging",
         itemsPerPage: this.pageSize,
         currentPage: this.page,
-        totalItems: this.eventListData.length
+        totalItems: this.taskByProjectData.length
       }
-      this.spinnerLoading = false;
-    })
+    });
+    //var res = await this.api.httpCall(this.api.apiLists.GetAllTasksByProjectId + `?projectId=${this.currentProject.msda}`, {}, {}, 'get', true);
+  }
+  async gProject() {
+    var res = await this.api.httpCall(this.api.apiLists.GetAllTasksProject + `?isPaging=${false}&pageNumber=${this.page}&pageSize=${this.pageSize}`, {}, {}, 'get', true)
+    this.projectData = <Array<TaskProjectModels>>res
+    if (this.projectData.length > 0) {
+      this.currentProject = { ...this.projectData[0] };
+    }
+    this.gData();
+  }
+  changeProject(item) {
+    this.currentProject = { ...item };
+    this.gData();
   }
   handlePageChange(event): void {
     this.page = event;
@@ -87,13 +81,13 @@ export class ProjectComponent implements OnInit {
       })
     }
   }
-  test() {
-    this.deleteList.forEach((e)=>{
-      this.httpClient.delete(`https://62fde3c541165d66bfb3a622.mockapi.io/api/projectlist/${e}`).subscribe((a)=>{
-        this.generalService.showErrorToast(2, 'da xoa')
-      this.gData() 
-    }
-      )
+  async RemoveTasksFromProject() {
+    const headers = { 'Authorization': `Bearer ${this.generalService.userData.token}` }
+    var baseURL = this.generalService.appConfig.API_BASE_URL
+    this.httpClient.post(baseURL + `/api/Tasks/RemoveTasksFromProject?msda=` + this.currentProject.msda, this.deleteList, { headers }).subscribe(res => {
+      var result = <any>res
+      this.generalService.showErrorToast(result.status ? 1 : 0, result.message)
+      this.gData();
     })
   }
   handlePageSizeChange(event): void {

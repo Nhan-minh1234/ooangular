@@ -20,37 +20,28 @@
             <aw-wizard navBarLayout="small">
                 <aw-wizard-step stepTitle="1. Thông Tin Công Việc">
                     <div style="height:30px"></div>
-
                     <div class="card">
                         <div class="card-body">
                             <div class="mb-3">
-                                <label class="form-label" for="validationCustom01">Dự Án: </label>
-                                <select [(ngModel)]="project" class="form-select" id="project-select">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                <label class="form-label" for="validationCustom01">Dự Án:</label>
+                                <select [(ngModel)]="newTaskData.msda" class="form-select" id="project-select">
+                                    <option [value]="null">Chọn dự án công việc</option>
+                                    <option [value]="item.msda" *ngFor="let item of tasksProject">{{item.tenDuAn}}
+                                    </option>
                                 </select>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="validationCustom02">Khách Hàng: </label>
-                                <select [(ngModel)]="customer" class="form-select" id="customer-select">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                <select class="form-select" id="customer-select">
+                                    <option>CHƯA CÓ</option>
                                 </select>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="validationCustom02">Nhóm Công Việc:</label>
                                 <select [(ngModel)]="taskGroup" class="form-select" id="taskGroup-select">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                    <option [value]="''">Chọn nhóm công việc</option>
+                                    <option [value]="item.idnhomCv" *ngFor="let item of taskGroupList">
+                                        {{item.tenNhomCv}}</option>
                                 </select>
                             </div>
                             <div class="mb-3">
@@ -65,7 +56,7 @@
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Tên Công Việc: <span class="requiredField">(*)</span></label>
+                                <label class="form-label">Tên Công Việc:<span class="requiredField">(*)</span></label>
                                 <!-- <input [class.is-invalid] = "taskName === '' && step1BtnClicked"
                                        [class.is-valid] = "taskName != '' && step1BtnClicked"
                                        [(ngModel)]="taskName" class="form-control" runat="server" name="taskName"
@@ -73,66 +64,25 @@
                                 <div class="invalid-feedback">
                                     Tên công việc không bỏ trống
                                 </div> -->
-                                <input [(ngModel)]="taskName" class="form-control" runat="server" name="taskName"
-                                    type="text" id="taskName" placeholder="">
+                                <input [(ngModel)]="newTaskData.chude" class="form-control" runat="server"
+                                    name="taskName" type="text" id="taskName" placeholder="">
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Nội Dung: <span class="requiredField">(*)</span></label>
-                                <angular-editor [config]="editorConfig" [(ngModel)]="htmlContent">
+                                <angular-editor [config]="editorConfig" [(ngModel)]="newTaskData.noidung">
                                 </angular-editor>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Ngày Bắt Đầu: <span class="requiredField">(*)</span></label>
-
-                                <div class="input-group">
-                                    <!-- input box -->
-                                    <input name="startDate" class="form-control" placeholder="Ngày Bắt Đầu:"
-                                        angular-mydatepicker #startDateID="angular-mydatepicker" [(ngModel)]="startDate"
-                                        [options]="myDatePickerOptions" (dateChanged)="onStartDateChanged($event)" />
-
-                                    <!-- clear date button -->
-                                    <div name="title" class="input-group-append">
-                                        <button class="btn btn-danger" *ngIf="startDate"
-                                            (click)="startDateID.clearDate()">
-                                            <i class="uil-multiply"></i>
-                                        </button>
-                                    </div>
-
-                                    <!-- toggle calendar button -->
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary" (click)="startDateID.toggleCalendar()">
-                                            <i class="uil-calender"></i>
-                                        </button>
-                                    </div>
-
-                                </div>
+                                <label class="form-label">Ngày Bắt Đầu:<span class="requiredField">(*)</span></label>
+                                <input class="form-control" type="date" [(ngModel)]="newTaskData.ngayBatDau"
+                                    name="ngaybatdau">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Ngày Kết Thúc: <span class="requiredField">(*)</span></label>
-
-                                <div class="input-group">
-                                    <!-- input box -->
-                                    <input name="endDate" class="form-control" placeholder="Ngày Kết Thúc:"
-                                        angular-mydatepicker #endDateID="angular-mydatepicker" [(ngModel)]="endDate"
-                                        [options]="myDatePickerOptions" (dateChanged)="onEndDateChanged($event)" />
-
-                                    <!-- clear date button -->
-                                    <div class="input-group-append">
-                                        <button class="btn btn-danger" *ngIf="endDate" (click)="endDateID.clearDate()">
-                                            <i class="uil-multiply"></i>
-                                        </button>
-                                    </div>
-
-                                    <!-- toggle calendar button -->
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary" (click)="endDateID.toggleCalendar()">
-                                            <i class="uil-calender"></i>
-                                        </button>
-                                    </div>
-
-                                </div>
+                                <input class="form-control" type="date" [(ngModel)]="newTaskData.ngayHoanThanhDuKien"
+                                    name="ngayketthuc">
                             </div>
                             <div class="form-check mb-3">
                                 <input [(ngModel)]="unknownTimeCheck" type="checkbox" class="form-check-input"
@@ -154,24 +104,24 @@
                         <div class="card-body">
                             <div style="margin: 0 10px 30px 30px;">
                                 <label class="form-label" for="groupOfAssignee">
-                                    Lựa chọn danh sách từ: </label>
-                                <select style="width: 50%;" (change)="onAsigneeGroupChange($event)"
-                                    [(ngModel)]="groupKeyChosenInStep2" class="form-select" id="groupOfAssignee">
+                                    Lựa chọn danh sách từ:</label>
+                                <select style="width: 50%;" (change)="GetUserByKey($event)" [(ngModel)]="groupKeyChosen"
+                                    class="form-select" id="groupOfAssignee">
                                     <option value="all" selected>Tất cả nhân viên</option>
                                     <option [ngValue]="groupKey"
                                         *ngFor="let groupKey of generalService.allUserGroupsKey">{{groupKey}}</option>
                                 </select>
                             </div>
 
-                            <app-dual-list (updateLists)="dualListUpdateForAssignee($event)"
-                                [leftList]="allUserInStep2List" [rightList]="chosenAssigneelList"></app-dual-list>
+                            <app-dual-list (updateLists)="dualListUpdateForAssignee($event)" [leftList]="allUser"
+                                [rightList]="chosenAssigneelList"></app-dual-list>
                             <div style="height:30px"></div>
 
                             <div style="margin: 0 10px 30px 30px;">
                                 <label class="form-label" for="majorAssignee"><span style="color: tomato;">(*)</span>
                                     Người Xử lý Chính: </label>
-                                <select style="width: 50%;" [(ngModel)]="majorAssignee" class="form-select"
-                                    id="majorAssignee">
+                                <select style="width: 50%;" (change)="selectMajorAssign()" [(ngModel)]="majorAssignee"
+                                    class="form-select" id="majorAssignee">
                                     <option selected>Chọn...</option>
                                     <option [ngValue]="assignee" *ngFor="let assignee of chosenAssigneelList">
                                         {{assignee.fullName}}</option>
@@ -193,23 +143,23 @@
                         <div class="card-body">
                             <div style="margin: 0 10px 30px 30px;">
                                 <label class="form-label" for="groupOfWatchable">
-                                    Lựa chọn danh sách từ: </label>
-                                <select style="width: 50%;" (change)="onWatchableGroupChange($event)"
-                                    [(ngModel)]="groupKeyChosenInStep3" class="form-select" id="groupOfWatchable">
+                                    Lựa chọn danh sách từ:</label>
+                                <select style="width: 50%;" (change)="GetUserByKey($event)" [(ngModel)]="groupKeyChosen"
+                                    class="form-select" id="groupOfWatchable">
                                     <option value="all" selected>Tất cả nhân viên</option>
                                     <option [ngValue]="groupKey"
                                         *ngFor="let groupKey of generalService.allUserGroupsKey">{{groupKey}}</option>
                                 </select>
                             </div>
 
-                            <app-dual-list (updateLists)="dualListUpdateForWatchable($event)"
-                                [leftList]="allUserInStep3List" [rightList]="chosenWatchablelList"></app-dual-list>
+                            <app-dual-list (updateLists)="dualListUpdateForWatchable($event)" [leftList]="allUser"
+                                [rightList]="chosenViewerList"></app-dual-list>
                             <div style="height:30px"></div>
 
                             <div style="margin: 0 20px 20px 30px;">
                                 <div class="form-check form-check-inline form-checkbox-danger">
-                                    <input [(ngModel)]="isUrgentTask" type="checkbox" class="form-check-input"
-                                        id="urgentCheck">
+                                    <input [(ngModel)]="newTaskData.laCongViecKhan" type="checkbox"
+                                        class="form-check-input" id="urgentCheck">
                                     <label class="form-check-label" for="urgentCheck" style="color:tomato">Khẩn</label>
                                 </div>
                                 <div class="form-check form-check-inline">
