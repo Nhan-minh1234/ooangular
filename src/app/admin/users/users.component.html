@@ -5,11 +5,16 @@
                 <h4 class="page-title">Danh sách người dùng</h4>
             </div>
         </div>
-        <div class="col-2 my-auto">
-            <abbr data-bs-toggle="modal" data-bs-target="#user-manager-modal" style="cursor: pointer;"
-                [title]="'Thêm mới'">
-                <img style="width:40px;height:auto; float: right !important;" src="assets/imgs/plus.png" />
-            </abbr>
+    </div>
+    <!--Tìm kiếm-->
+    <div class="row">
+        <div class="col-9"></div>
+        <div class="col-3 my-auto mb-2">
+            <div class="list-group">
+                <button  type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#user-manager-modal-new"
+            style="cursor: pointer;"src="assets/imgs/plus.png"> 
+            Thêm mới</button>
+            </div>
         </div>
     </div>
     <div class="row">
@@ -20,14 +25,16 @@
                     w-100 content-table">
                 <thead >
                     <tr>
+                        <th>Avatar</th>
                         <th>Tên đăng nhập</th>
                         <th>Họ và tên</th>
                         <th>Phòng ban</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody *ngIf="users!=null">
                     <tr (click)="userDetail(item)" class="pointer" data-bs-toggle="modal" data-bs-target="#user-manager-modal"
-                        *ngFor="let item of userData">
+                        *ngFor="let item of users |paginate: paginationConfig">
+                        <td></td>
                         <td>{{item.userName}}</td>
                         <td>{{item.fullName}}</td>
                         <td>
@@ -36,6 +43,20 @@
                     </tr>
                 </tbody>
             </table>
+            <!--Phân trang tại đây-->
+            <div class="list row">
+                <div class="col-md-8">
+                    <pagination-controls id="paginationControl" [previousLabel]="' << Quay lại '" [nextLabel]="'Tiếp tục >>'"
+                    responsive="true" responsive="true" (pageChange)="handlePageChange($event)"></pagination-controls>
+                </div>
+                <div class="col-md-4">
+                Số lượng thư mục
+                <select style="border: solid 1px rgb(230, 229, 229);" (change)="handlePageSizeChange($event)">
+                    <option *ngFor="let size of pageSizes" [ngValue]="size">{{ size }}</option>
+                </select>
+                </div>
+            </div>
+            <!---->
         </div>
         <div class="col-lg-3 col-sm-12 col-md-12 order-lg-3">
             <div class="list-group">
@@ -46,7 +67,8 @@
                     Tìm theo tên:
                 </div>
                 <div class="list-group-item">
-                    <input type="text" class="form-control" placeholder="Tìm kiếm" />
+                    <input (keyup)="search()" type="text" class="form-control"
+                    [placeholder]="getLabel('searchPlaceholer')" (click)="search()" [(ngModel)]="searchKey" />
                 </div>
                 <div class="list-group-item list-group-item-primary">
                     Tìm theo trạng thái:
