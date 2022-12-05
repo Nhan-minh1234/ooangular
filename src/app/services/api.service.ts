@@ -32,7 +32,7 @@ export class ApiservicesService {
     removeAllRightFromUser:'/api/Users/RemoveOneRightFromUser', //Xóa tất cả quyền khỏi người dùng / r
     assignMultiGroupsToUser:'/api/Users/AssignOneGroupToUser', // gán nhiều nhóm/phòng ban cho người dùng / 
 ​    removeMultiSelectedGroupsFromUser:'/api/Users/RemoveMultiSelectedGroupsFromUser', //xóa nhiều nhóm được chỉ định cho khỏi người dùng /
-    getUserByUserName : '/api/Users/GetUserByUserName/' // Lấy thông tin chi tiết người dùng theo Username 
+    getUserByUserName : '/api/Users/GetUserByUserName/', // Lấy thông tin chi tiết người dùng theo Username 
 
     GetAllTasksCategoryByUserId: '/api/Tasks/GetAllTasksCategoryByUserId',
     UpdateTaskTitle: '/api/Tasks/UpdateTaskTitle',
