@@ -29,7 +29,10 @@ export class UsersComponent implements OnInit {
   pageSizes = [10, 20, 30];
   paginationConfig
   myModal
-  //
+  // khóa user
+  khoaUser
+
+  ////
   userDetail( userData ){
     this.usereditDetail={...userData}
   } 
@@ -72,6 +75,17 @@ export class UsersComponent implements OnInit {
       this.spinmerLoading = false
       this.myModal.toggle()
     }
+  }
+  // Khóa Users
+  async LockUser({ userId }: { userId: string; }){
+    try{
+      let res
+      let result
+      res = await this.api.httpCall(this.api.apiLists +'?'+'userId'+'='+userId,{},{},'post',true);
+      result = <any>res
+      this.khoaUser = Array.from(result)
+      console.log(res)
+    } catch{}
   }
   
   ////////////////////////////////////////////////

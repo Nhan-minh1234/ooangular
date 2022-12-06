@@ -99,7 +99,7 @@ export class ApiservicesService {
     //Ở đây đã có code sẵn truyền.
     url = this.generalService.appConfig.API_BASE_URL + url;
     if (this.generalService.userData != null) {
-      header['Authorization'] = 'Bearer ' + this.generalService.userData.token;
+      header['Authorization'] = `Bearer ${this.generalService.userData.token}`;
     }
 
     return new Promise((resolve, reject) => {

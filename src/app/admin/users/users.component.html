@@ -9,18 +9,11 @@
     <!--Tìm kiếm-->
     <div class="row">
         <div class="col-9"></div>
-        <div class="row col-3">
-            <div class=" my-auto mb-2">
-                <div class="list-group">
-                    <button  type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#user-manager-modal-new"
-                style="cursor: pointer;"src="assets/imgs/plus.png"> 
-                Thêm mới</button>
-                </div>
-            </div>
-            <div class=" my-auto mb-2">
-                <div class="list-group">
-                    <button  type="button" class="btn btn-danger"> Khóa người dùng</button>
-                </div>
+        <div class="col-lg-3 my-auto mb-2">
+            <div class="list-group">
+                <button  type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#user-manager-modal-new"
+            style="cursor: pointer;"src="assets/imgs/plus.png"> 
+            Thêm mới</button>
             </div>
         </div>
     </div>
@@ -67,6 +60,16 @@
         </div>
         <div class="col-lg-3 col-sm-12 col-md-12 order-lg-3">
             <div class="list-group">
+                <div class=" my-auto mb-2">
+                    <div class="list-group">
+                        <button  type="button" class="btn btn-danger" (click)="LockUser(user.userId)"> Khóa người dùng</button>
+                    </div>
+                </div>
+                <div class=" my-auto mb-2">
+                    <div class="list-group">
+                        <button [routerLink]="'/admin/the-group-user'" type="button" class="btn btn-danger">Quản trị nhóm</button>
+                    </div>
+                </div>
                 <div class="list-group-item list-group-item background">
                     Bộ lọc
                 </div>
