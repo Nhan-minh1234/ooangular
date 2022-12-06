@@ -1,21 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import data from './text-go.language'
+import data from './text-go.language';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-text-go',
   templateUrl: './text-go.component.html',
-  styleUrls: ['./text-go.component.css']
+  styleUrls: ['./text-go.component.css'],
 })
 export class TextGoComponent implements OnInit {
-
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
-    this.taoDuLieu()
+    this.taoDuLieu();
   }
   editable = true;
-  textgosData = []
+  textgosData = [];
   documentSandbox;
   currentTab = true;
 
@@ -26,37 +25,34 @@ export class TextGoComponent implements OnInit {
   pageSizes = [10, 20, 30];
   count = 500;
 
-  config
+  config;
 
-  taoDuLieu(){
+  taoDuLieu() {
     for (let i = 0; i < this.count; i++) {
       let GiaTriMoi = {
-      'numerical_order':i+1,
-      'text_number': 'Số VB',
-      'abstract': 'Trích yếu',
-      'recipients': 'Nơi nhận',
-      'release_date': 'Ngày phát hành',
-      'drafting_place': 'Nơi soạn thảo',
-      
-      }
-      this.textgosData.push(GiaTriMoi)
-    };
+        numerical_order: i + 1,
+        text_number: 'Số VB',
+        abstract: 'Trích yếu',
+        recipients: 'Nơi nhận',
+        release_date: 'Ngày phát hành',
+        drafting_place: 'Nơi soạn thảo',
+      };
+      this.textgosData.push(GiaTriMoi);
+    }
     this.config = {
       id: 'paging',
       itemsPerPage: this.pageSize,
       currentPage: this.page,
-      totalItems: this.textgosData.length
-    }
+      totalItems: this.textgosData.length,
+    };
+  }
+  handlePageChange(event): void {
+    this.page = event;
+    this.taoDuLieu();
+  }
+  handlePageSizeChange(event): void {
+    this.pageSize = event.target.value;
+    this.page = 0;
+    this.taoDuLieu();
+  }
 }
-handlePageChange(event): void {
-  this.page = event;
-  this.taoDuLieu();
-}
-handlePageSizeChange(event): void {
-  this.pageSize = event.target.value;
-  this.page = 0;
-  this.taoDuLieu();
-}
-
-}
-

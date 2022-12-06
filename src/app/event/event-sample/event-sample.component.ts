@@ -1,34 +1,41 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { GeneralService } from 'src/app/services/general.service';
 import { HttpClient } from '@angular/common/http';
-import data from './event-sample.language'
+import data from './event-sample.language';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-event-sample',
   templateUrl: './event-sample.component.html',
-  styleUrls: ['./event-sample.component.css']
+  styleUrls: ['./event-sample.component.css'],
 })
 export class EventSampleComponent implements OnInit {
-  eventSampleData
+  eventSampleData;
   spinnerLoading = false;
-  editable = true
+  editable = true;
   page = 0;
   pageSize = 5;
   pageSizes = [5, 10, 15];
   count = 500;
-  currentTab = true
-  
+  currentTab = true;
 
-  config
-  constructor(private httpClient: HttpClient, private el: ElementRef, public generalService: GeneralService, private router: Router) { }
-
+  config;
+  constructor(
+    private httpClient: HttpClient,
+    private el: ElementRef,
+    public generalService: GeneralService,
+    private router: Router,
+    private _location: Location
+  ) {}
+  goBack() {
+    this._location.back();
+  }
   ngOnInit(): void {
     this.gData();
-
   }
   getLabel(key) {
-    return data[`${this.generalService.currentLanguage.Code}`][`${key}`]
+    return data[`${this.generalService.currentLanguage.Code}`][`${key}`];
   }
 
   seeDetail(obj) {
@@ -36,11 +43,9 @@ export class EventSampleComponent implements OnInit {
   }
   editEvent() {
     this.editable = false;
-
   }
   cancelEditEvent() {
     this.editable = true;
-
   }
   changeTabs(tab) {
     this.currentTab = tab;
@@ -51,19 +56,19 @@ export class EventSampleComponent implements OnInit {
   }
   async gData() {
     this.spinnerLoading = true;
-    this.httpClient.get('https://6316eb5bcb0d40bc4146ca46.mockapi.io/sample-event').subscribe(i => {
-      this.eventSampleData = i;
-      console.log(i)
-      this.config = {
-        id: 'paging',
-        itemsPerPage: this.pageSize,
-        currentPage: this.page,
-        totalItems: this.eventSampleData.length
-      }
-      this.spinnerLoading = false;
-
-    })
-
+    this.httpClient
+      .get('https://6316eb5bcb0d40bc4146ca46.mockapi.io/sample-event')
+      .subscribe((i) => {
+        this.eventSampleData = i;
+        console.log(i);
+        this.config = {
+          id: 'paging',
+          itemsPerPage: this.pageSize,
+          currentPage: this.page,
+          totalItems: this.eventSampleData.length,
+        };
+        this.spinnerLoading = false;
+      });
   }
   handlePageChange(event): void {
     this.page = event;
@@ -74,7 +79,4 @@ export class EventSampleComponent implements OnInit {
     this.page = 0;
     this.gData();
   }
-
 }
-
-
