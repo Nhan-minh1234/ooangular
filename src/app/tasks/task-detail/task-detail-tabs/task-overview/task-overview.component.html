@@ -79,45 +79,38 @@
                         </li>
                         <li class="row mb-1">
                             <div class="col-3"><b>Tạo bởi:</b></div>
-                            <div class="col-9 fw-bolder">Nguyễn Hồng Sơn</div>
+                            <div class="col-9 fw-bolder">{{TaskDetail.nguoiTao.hoTen}}</div>
                         </li>
                         <li class="row mb-1">
                             <div class="col-3"><b>Dự án:</b></div>
-                            <div class="col-9">Xây dựng Phiên bản Online Office Mới</div>
+                            <div class="col-9" *ngIf="TaskDetail.duAn==null">Công việc không thuộc dự án nào</div>
+                            <div class="col-9" *ngIf="TaskDetail.duAn!=null">{{TaskDetail.duAn.tenDuAn}}</div>
                         </li>
                         <li class="row mb-1">
                             <div class="col-3"><b>Khách hàng:</b></div>
-                            <div class="col-9">NULL</div>
+                            <div class="col-9" *ngIf="TaskDetail.khachHang!=null">{{TaskDetail.khachHang}}</div>
+                            <div class="col-9" *ngIf="TaskDetail.khachHang==null">N/A</div>
                         </li>
                         <li class="row mb-1">
                             <div class="col-3"><b>Nhóm công việc:</b></div>
-                            <div class="col-9">NULL</div>
+                            <div class="col-9" *ngIf="TaskDetail.nhomCongViec!=null">{{TaskDetail.nhomCongViec.tenNhom}}</div>
+                            <div class="col-9" *ngIf="TaskDetail.nhomCongViec==null">Không thuộc nhóm nào</div>
                         </li>
-                        <li class="row mb-1">
+                        <li class=" row mb-1">
                             <div class="col-3"><b>Thực hiện chính:</b></div>
-                            <div class="col-9">NULL</div>
+                            <div class="col-9">{{TaskDetail.nguoiChinh.hoTen}}</div>
                         </li>
                         <li class="row mb-1">
                             <div class="col-3"><b>Ngày bắt đầu:</b></div>
-                            <div class="col-9">01/08/2022</div>
+                            <div class="col-9">{{TaskDetail.ngayBatDau|date:"dd/MM/YYYY"}}</div>
                         </li>
                         <li class="row mb-1">
                             <div class="col-3"><b>Ngày kết thúc:</b></div>
-                            <div class="col-9">Không xác định</div>
+                            <div class="col-9">{{TaskDetail.ngayBatDau|date:"dd/MM/YYYY"}}</div>
                         </li>
                         <li class="row mb-1">
                             <div class="col-3"><b>Nội dung:</b></div>
-                            <div class="col-9">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Id dolores omnis ex ipsa
-                                voluptas modi cupiditate incidunt autem est explicabo, magnam deleniti dolorum nobis nam
-                                sit eligendi ipsum error quisquam magni obcaecati, hic aspernatur tempora fuga? Error
-                                adipisci laboriosam architecto harum saepe! Repellendus iusto inventore obcaecati. Qui
-                                enim, impedit culpa quidem sint adipisci amet inventore, nulla maiores facilis harum
-                                placeat ducimus velit perferendis nihil molestias exercitationem ad nisi accusamus
-                                necessitatibus. Dignissimos voluptas repudiandae iure veritatis aliquam qui doloribus
-                                harum numquam! Alias nihil praesentium ducimus aut nulla repellat ipsam corrupti
-                                repudiandae qui id a, exercitationem unde ullam delectus magnam reprehenderit
-                                consequatur!
+                            <div class="col-9" [innerHTML]="TaskDetail.noidung">
                             </div>
                         </li>
                     </ul>
@@ -244,31 +237,22 @@
             <div class="card-body">
                 <h4 class="card-title">Thảo luận</h4>
                 <div class="row">
-                    <div class="text-center load-more-comments"><i class="pointer">Hiển thị thêm bình luận</i></div>
-                    <div class="d-flex align-items-start" *ngFor="let i of [1,1,1,1]">
-                        <app-avatar-tooltip [fullname]="'Nguyễn Hoài Thương'" [size]="'sm'">
+                    <!-- <div class="text-center load-more-comments"><i class="pointer">Hiển thị thêm bình luận</i></div> -->
+                    <div class="d-flex align-items-start" *ngFor="let i of TaskDetail.nhatKyCongViec">
+                        <app-avatar-tooltip [fullname]="i.nguoiPhanHoi.hoTen" [size]="'sm'">
                         </app-avatar-tooltip>
                         <div class="ms-2 mb-3">
                             <div class="d-flex align-items-center">
-                                <h5>Nguyễn Hoài Thương</h5><i class="ms-1">5 phút trước</i>
+                                <h5>{{i.nguoiPhanHoi.hoTen}}</h5><i class="ms-1">{{i.thoiGianPhanHoi}}</i>
                             </div>
-                            <div>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium sapiente suscipit
-                                consequuntur. Excepturi molestiae quidem corporis ratione quas tempore deleniti
-                                voluptatibus impedit necessitatibus nisi maxime possimus, perspiciatis labore corrupti
-                                ab saepe inventore nobis optio totam accusantium pariatur neque fuga repellendus?
-                                Recusandae tempore adipisci, rem voluptatum culpa at aut fuga placeat laudantium
-                                corrupti sunt soluta excepturi dolore. Laborum, tempore quam obcaecati ad ipsam magni!
-                                Inventore, possimus eius harum quidem nihil non deleniti blanditiis, tenetur totam
-                                veniam accusamus impedit omnis illo corrupti, modi dignissimos fugiat beatae maiores
-                                porro quisquam dolorem. Provident quaerat doloribus at quos non est voluptatibus fuga ut
-                                eaque! Obcaecati.</div>
+                            <div [innerHTML]="i.noiDung"></div>
                         </div>
                     </div>
                 </div>
                 <div class="row mt-3">
-                    <angular-editor [config]="editorConfig"></angular-editor>
+                    <angular-editor [config]="editorConfig" [(ngModel)]="taskHistory.noiDung"></angular-editor>
                     <div class="d-flex justify-content-end mt-1">
-                        <button type="button" class="btn btn-success"><i class="uil-message"></i> </button>
+                        <button type="button" class="btn btn-success" (click)="addAComment()"><i class="uil-message"></i> </button>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { UserResponseModel } from 'src/app/Model/UserModels';
 
 @Component({
   selector: 'app-task-users',
@@ -8,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 export class TaskUsersComponent implements OnInit {
 
   constructor() { }
-
+  @Input() dsThamGia:Array<UserResponseModel>
+  @Input() dsDangXuLy:Array<UserResponseModel>
+  @Input() dsDaXuLy:Array<UserResponseModel>
+  @Input() dsChuaXuLy:Array<UserResponseModel>
+  @Input() dsDuocXem:Array<UserResponseModel>
   ngOnInit(): void {
   }
 
