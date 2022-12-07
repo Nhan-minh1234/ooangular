@@ -8,7 +8,18 @@
     </div>
     <!--Tìm kiếm-->
     <div class="row">
-        <div class="col-9"></div>
+        <div class="col-9">
+            <div class="input-group mb-2">
+                <input (keyup)="search()" type="text" class="form-control  "
+                        [placeholder]="getLabel('searchPlaceholer')" (click)="search()" [(ngModel)]="searchKey" />
+                <div class="input-group-append">
+                    <button  class="btn btn-success" type="button" (click)="search()">
+                        <i class="uil-search-alt"></i> {{getLabel("searchPlaceholer")}}
+                    </button>
+                </div>
+            </div>
+        </div>
+        
         <div class="col-lg-3 my-auto mb-2">
             <div class="list-group">
                 <button  type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#user-manager-modal-new"
@@ -62,31 +73,25 @@
             <div class="list-group">
                 <div class=" my-auto mb-2">
                     <div class="list-group">
-                        <button  type="button" class="btn btn-danger" (click)="LockUser(user.userId)"> Khóa người dùng</button>
+                        <button [routerLink]="'/admin/the-group-user'" type="button" class="btn btn-danger">Quản trị nhóm</button>
                     </div>
                 </div>
                 <div class=" my-auto mb-2">
                     <div class="list-group">
-                        <button [routerLink]="'/admin/the-group-user'" type="button" class="btn btn-danger">Quản trị nhóm</button>
+                        <button [routerLink]="'/admin/decentralization'" type="button" class="btn btn-danger">Phân nhóm quyền</button>
                     </div>
                 </div>
                 <div class="list-group-item list-group-item background">
                     Bộ lọc
                 </div>
                 <div class="list-group-item list-group-item-primary">
-                    Tìm theo tên:
-                </div>
-                <div class="list-group-item">
-                    <input (keyup)="search()" type="text" class="form-control"
-                    [placeholder]="getLabel('searchPlaceholer')" (click)="search()" [(ngModel)]="searchKey" />
-                </div>
-                <div class="list-group-item list-group-item-primary">
                     Tìm theo trạng thái:
                 </div>
                 <div class="list-group-item mb-1">
-                    <select class="form-select" id="example-select">
-                        <option>Đang hoạt động</option>
-                        <option>Đã khóa</option>
+                    <select class="form-select" id="example-select" name="Trạng thái"  >
+                        <option *ngFor="let item of statusName" [value]="item.status" 
+
+                        >{{item.statusname}}</option>
                     </select>
                 </div>
                 <a class="list-group-item list-group-item-primary pointer" data-bs-toggle="collapse" href="#department"

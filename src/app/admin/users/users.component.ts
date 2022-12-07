@@ -19,6 +19,7 @@ export class UsersComponent implements OnInit {
   userData
   detailUser //thông tin người dùng theo userName
   usereditDetail = {} //biến tạm //
+  statusUserName//trạng thái
   //phân trang
   spinmerLoading = false
   count = 100;
@@ -29,8 +30,17 @@ export class UsersComponent implements OnInit {
   pageSizes = [10, 20, 30];
   paginationConfig
   myModal
-  // khóa user
-  khoaUser
+ //trạng thái user
+ statusName=[
+  {
+    'status': '1',
+    'statusname': 'Đang hoạt động'
+  },
+  {
+    'status': '0',
+    'statusname': 'Đã khóa'
+  }
+ ]
 
   ////
   userDetail( userData ){
@@ -41,6 +51,7 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.GetUserData();
+    this.statusUser()
     
   }
   ngOnChanges(changes: SimpleChanges): void {
@@ -76,17 +87,7 @@ export class UsersComponent implements OnInit {
       this.myModal.toggle()
     }
   }
-  // Khóa Users
-  async LockUser({ userId }: { userId: string; }){
-    try{
-      let res
-      let result
-      res = await this.api.httpCall(this.api.apiLists +'?'+'userId'+'='+userId,{},{},'post',true);
-      result = <any>res
-      this.khoaUser = Array.from(result)
-      console.log(res)
-    } catch{}
-  }
+  
   
   ////////////////////////////////////////////////
   getLabel(key) {
@@ -150,5 +151,14 @@ handlePageSizeChange(event): void {
       this.detailUser = Array.from (result)
     } catch {}
   }
-
+// Lấy người dùng theo trạng thái
+async statusUser(){
+  try{
+    let res
+    let result
+    res = await this.api.httpCall(this.api.apiLists.getAllUsersByStatus,{},{},'get',true);
+    result = <any>res
+    this.statusUserName = Array.from(result)
+  }catch{}
+}
 }

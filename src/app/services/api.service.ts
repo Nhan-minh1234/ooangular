@@ -33,6 +33,11 @@ export class ApiservicesService {
     assignMultiGroupsToUser:'/api/Users/AssignOneGroupToUser', // gán nhiều nhóm/phòng ban cho người dùng / 
 ​    removeMultiSelectedGroupsFromUser:'/api/Users/RemoveMultiSelectedGroupsFromUser', //xóa nhiều nhóm được chỉ định cho khỏi người dùng /
     getUserByUserName : '/api/Users/GetUserByUserName/', // Lấy thông tin chi tiết người dùng theo Username 
+    lockUserById: '/api/Users/LockUserById', // Khóa User
+    getAllUsersByStatus:'/api/Users/GetAllUsersByStatus', // Trạng thái user
+    resetUserPasswordById:'/api/Users/ResetUserPasswordById',//reset mật khẩu
+    
+    
 
     GetAllTasksCategoryByUserId: '/api/Tasks/GetAllTasksCategoryByUserId',
     UpdateTaskTitle: '/api/Tasks/UpdateTaskTitle',

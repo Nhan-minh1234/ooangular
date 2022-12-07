@@ -8,7 +8,7 @@
                         w-100 content-table">
                 <thead >
                     <tr>
-                        <th>STT</th>
+                        <th style="width:5%">STT</th>
                         <th>Tên phòng ban/ nhóm/ đơn vị</th>
                         <th>Tên viết tắt</th>
                         <th></th>
@@ -16,12 +16,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr >
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td style="width: 10%;"><button type="button" class="btn btn-danger rounded-pill"><i class="uil-edit-alt"></i></button></td>
-                        <th style="width:5%"><input type="checkbox" class="form-check-input" id="customCheck1"></th>
+                    <tr *ngFor="let item of groupNew ">
+                        <td>{{item.STT}}</td>
+                        <td>{{item.groupName}}</td>
+                        <td>{{item.acronym}}</td>
+                        <td style="width: 10%;"><button type="button" [routerLink]="'/admin/edit-user'" class="btn btn-success rounded-pill"><i class="uil-edit-alt"></i></button></td>
+                        <th style="width:5%"><input  type="checkbox" class="form-check-input" id="customCheck1"></th>
                     </tr>
                 </tbody>
             </table>

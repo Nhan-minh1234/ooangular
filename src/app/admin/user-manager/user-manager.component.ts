@@ -23,6 +23,9 @@ export class UserManagerComponent implements OnInit {
   removeAllRight // Xóa tất cả các quyền khỏi người dùng
   assignMultiGroup // gán nhiều nhóm cho người dùng
   xoaNhom // Xóa nhiều nhóm
+  // khóa user
+  khoaUser
+  capnhatPassword// cập nhật
 
   @Input ()quyencuaUser: any ; 
   
@@ -91,18 +94,21 @@ export class UserManagerComponent implements OnInit {
     "nguoiTao": "U001",
     "isLeader": 0
   }
-  quyenvanhom={
-  "userId": "U0055",
+  ganquyen={
+  "userId": "",
   "rights": [
     {
-      "rightId": "ADM02"
-    }
-  ],
-  "groups": [
-    {
-      "groupId": "GP005"
+      "rightId": ""
     }
   ]
+  }
+  gannhom={
+    "userId": "",
+    "groups": [
+      {
+        "groupId": ""
+      }
+    ]
   }
 
 
@@ -119,7 +125,7 @@ export class UserManagerComponent implements OnInit {
     var newcheck = event.target.checked
     if (newcheck === true) {this.newUserName.groups.push({"groupId":groupId})}
     else {this.newUserName.groups.forEach((x,i)=>{
-      if (x.groupId==groupId){this.newUserName.groups.splice(i,1)}
+      if (x.groupId===groupId){this.newUserName.groups.splice(i,1)}
     })}
     console.log(this.newUserName)
   }
@@ -130,12 +136,13 @@ export class UserManagerComponent implements OnInit {
   constructor(private _http:HttpClient, private api: ApiservicesService, private generalService: GeneralService ) { }
   ngOnInit(): void {
     this.DataDulieu(); // Tất cả các quyền của user
+    this.resetPassword(this.user.userId)
   
   }
   // Nguồn so sánh 
   ngOnChanges(user,userId,rightId: SimpleChanges): void {
     this.individualData(this.user.userId);
-    /*this.individualgroupUserId(this.user.userId)*/ // Lỗi API
+    this.individualgroupUserId(this.user.userId)
   }
   
   // Thêm mới người dùng
@@ -182,6 +189,27 @@ export class UserManagerComponent implements OnInit {
     })
     return sosanhquyen ;
   } 
+  //nhóm người dùng theo UserId
+async individualgroupUserId(userId : string){
+  try{
+    let res
+    let result
+    res = await this.api.httpCall(this.api.apiLists.getAllGroupsByUserld+userId,{},{},'get',true);
+    result=<any>res
+    this.theGroupsName = Array.from(result)
+    console.log(res)
+  }catch{}
+}
+// so sánh nhóm userId
+sosanhGroup(group){
+  var sosanhnhom = false
+  this.theGroupsName.forEach((x)=>{
+    if (x.groupId===group) {
+      sosanhnhom = true
+    }
+  })
+  return sosanhnhom ;
+}
 // Xóa thông tin người dùng
 async deleteUserName(userId :string){
   try{
@@ -194,6 +222,30 @@ async deleteUserName(userId :string){
   } catch{}
 }
 
+// Khóa Users
+async LockUser(){
+  try{
+    let res
+    let result
+    console.log('a')
+    res = await this.api.httpCall(this.api.apiLists.lockUserById,{},{},'post',true);
+    result = <any>res
+    this.khoaUser = Array.from(result)
+    console.log(res)
+
+  } catch{}
+}
+// Reset mật khẩu người dùng
+async resetPassword(userId:string){
+  try{
+    let res
+    let result
+    res = await this.api.httpCall(this.api.apiLists.resetUserPasswordById+'?'+'userId'+'='+userId,{},{},'post',true);
+    result = <any>res
+    this.capnhatPassword = Array.from(result)
+    console.log(res)
+  }catch{}
+}
 // Cập nhật thông tin người dùng 
 async updateUserName(){
   try{
@@ -216,28 +268,26 @@ async updateUserName(){
     result=<any>res
     console.log(result)
     this.capNhatUser = Array.from(result)
+    console.log(this.capNhatUser)
   } catch{}
 }
-
-
 // Gán nhiều quyền được chỉ định cho user
 async assignMultiple (){
   try{
     let res
     let result
-    res = await this.api.httpCall( this.api.apiLists.assignMultiRightsToUser,{},this.quyenvanhom,'post',true);
+    res = await this.api.httpCall( this.api.apiLists.assignMultiRightsToUser,{},this.ganquyen,'post',true);
     result =<any>res
     console.log(res)
-    this.Mltiple = Array.from(result)
+    this.Mltiple = Array.from(result) 
   }catch{}
 }
-
 // Xóa tất cả các quyền ra khỏi người dùng
 async removeAllRightUser(){
   try {
     let res
     let result
-    res = await this.api.httpCall(this.api.apiLists.removeAllRightFromUser,{},this.quyenvanhom,'post',true);
+    res = await this.api.httpCall(this.api.apiLists.removeAllRightFromUser,{},this.ganquyen,'post',true);
     result=<any>res
     console.log(res)
     this.removeAllRight=Array.from(result)
@@ -248,46 +298,25 @@ async assignMultiGroupsUser(){
   try{
     let res
     let result
-    res = await this.api.httpCall(this.api.apiLists.assignMultiGroupsToUser,{},this.quyenvanhom,'post',true);
+    res = await this.api.httpCall(this.api.apiLists.assignMultiGroupsToUser,{},this.gannhom,'post',true);
     result = <any>res
     console.log(res)
     this.assignMultiGroup=Array.from(result)
   }catch{}
 }
 // Xóa nhiều nhóm khỏi người dùng
-async removeMultiGroupUser(){
+async removeMultiGroupUser(userId:string){
   try{
     let res
     let result
-    res = await this.api.httpCall(this.api.apiLists.removeMultiSelectedGroupsFromUser,{},this.quyenvanhom,'post',true);
+    res = await this.api.httpCall(this.api.apiLists.removeMultiSelectedGroupsFromUser,{},this.gannhom,'post',true);
     result = <any>res
     console.log(result)
     this.xoaNhom = Array.from(result)
   }catch{}
   
 }
-/* lỗi api
-//nhóm người dùng theo UserId
-async individualgroupUserId(userId : string){
-  try{
-    let res
-    let result
-    console.log(this.api.apiLists.getAllGroupsByUserld + userId)
-    res = await this.api.httpCall(this.api.apiLists.getAllGroupsByUserld+'?'+'userId'+'='+ userId,{},{},'get',true);
-    result=<any>res
-    this.theGroupsName = Array.from(result)
-    console.log(res)
-  }catch{}
-}
-// so sánh nhóm userId
-sosanhGroup(group){
-  var sosanhnhom = false
-  this.theGroupsName.forEach((x)=>{
-    if (x.groupId===group) {
-      sosanhnhom = true
-    }
-  })
-  return sosanhnhom ;
-}*/
+
+
 
 }
