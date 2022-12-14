@@ -110,6 +110,10 @@ export class UserManagerComponent implements OnInit {
       }
     ]
   }
+  khoaUserId={
+    "userId": "",
+    "active": 0
+  }
 
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -136,7 +140,7 @@ export class UserManagerComponent implements OnInit {
   constructor(private _http:HttpClient, private api: ApiservicesService, private generalService: GeneralService ) { }
   ngOnInit(): void {
     this.DataDulieu(); // Tất cả các quyền của user
-    this.resetPassword(this.user.userId)
+  
   
   }
   // Nguồn so sánh 
@@ -227,11 +231,12 @@ async LockUser(){
   try{
     let res
     let result
-    console.log('a')
-    res = await this.api.httpCall(this.api.apiLists.lockUserById,{},{},'post',true);
+    this.khoaUserId.userId=this.user.userId
+    this.khoaUserId.active=this.user.active
+    res = await this.api.httpCall(this.api.apiLists.lockUserById,{},this.khoaUserId,'post',true);
     result = <any>res
     this.khoaUser = Array.from(result)
-    console.log(res)
+    console.log(this.khoaUser)
 
   } catch{}
 }
@@ -240,10 +245,10 @@ async resetPassword(userId:string){
   try{
     let res
     let result
-    res = await this.api.httpCall(this.api.apiLists.resetUserPasswordById+'?'+'userId'+'='+userId,{},{},'post',true);
+    res = await this.api.httpCall(this.api.apiLists.resetUserPasswordById +'?'+'userId'+'='+userId,{},{},'post',true);
     result = <any>res
     this.capnhatPassword = Array.from(result)
-    console.log(res)
+    console.log(this.capnhatPassword)
   }catch{}
 }
 // Cập nhật thông tin người dùng 
@@ -267,6 +272,7 @@ async updateUserName(){
     res = await this.api.httpCall(this.api.apiLists.updateUserInfo,{},this.update, 'post',true);
     result=<any>res
     console.log(result)
+    console.log('a')
     this.capNhatUser = Array.from(result)
     console.log(this.capNhatUser)
   } catch{}

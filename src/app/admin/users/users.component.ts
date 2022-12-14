@@ -156,9 +156,19 @@ async statusUser(){
   try{
     let res
     let result
-    res = await this.api.httpCall(this.api.apiLists.getAllUsersByStatus,{},{},'get',true);
+    res = await this.api.httpCall(this.api.apiLists.getAllUsersByStatus,{},this.statusName,'get',true);
     result = <any>res
     this.statusUserName = Array.from(result)
   }catch{}
+}
+// so sánh lấy trạng thái người dùng theo user
+ssTrangthai(trangthai){
+var ssTrangthai=false
+this.statusUserName .forEach((x)=>{
+  if (x.status===trangthai){
+    ssTrangthai=true
+  }
+})
+return ssTrangthai
 }
 }

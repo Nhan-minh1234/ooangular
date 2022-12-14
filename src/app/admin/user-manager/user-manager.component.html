@@ -139,10 +139,10 @@
                 <!-- <button type="button" class="btn btn-light" data-bs-dismiss="modal" data-bs-toggle="modal"
                     data-bs-target="#user-detail-modal">Quay lại</button> -->
                 <button type="button" class="btn btn-success" data-bs-dismiss="modal"(click)="updateUserName()">Lưu</button>
-                <button type="button" class="btn btn-warning" (click)="resetPassword(user.userId)">Đặt lại mật khẩu</button>
+                <button type="button" class="btn btn-warning" data-bs-dismiss="modal" (click)="resetPassword(user.userId)">Đặt lại mật khẩu</button>
                 <button type="button"  value="Xóa"class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteUserName(user.userId)">
                 Xoá người dùng</button>
-                <button  type="button" value="Khóa" class="btn btn-danger" data-bs-dismiss="modal" > Khóa người dùng</button>       
+                <button  type="button" value="Khóa" class="btn btn-danger" data-bs-dismiss="modal" (click)="LockUser()"> Khóa người dùng</button>       
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
