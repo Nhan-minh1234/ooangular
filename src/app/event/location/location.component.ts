@@ -16,7 +16,6 @@ export class LocationComponent implements OnInit {
   @ViewChild('closebutton') closebutton;
   @ViewChild('closebuttonAdd') closebuttonAdd;
   isLoading = true;
-  editable = true;
   deletetable = true;
   nameLocationAdd!: string;
   desLocationAdd!: string;
@@ -26,16 +25,21 @@ export class LocationComponent implements OnInit {
     nameLocation: '',
     description: '',
   };
+  errors = '';
   idLocationDelete!: string;
   spinnerLoading = false;
   eventListData;
-  page = 0;
-  pageSize = 10;
-  pageSizes = [10, 20, 30];
-  count = 500;
   locationListAll: any;
+  ///pa
   config;
-  maxStt: number = 0;
+  editable = true;
+  page = 0;
+  pageSize = 5;
+  pageSizes = [5, 10, 15];
+  count = 500;
+  currentTab = true;
+
+  collection = { count: 60, data: [] };
   constructor(
     private httpClient: HttpClient,
     private el: ElementRef,
@@ -49,6 +53,9 @@ export class LocationComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getListLocationAll();
+  }
+  pageChanged(event) {
+    this.config.currentPage = event;
   }
   goBack() {
     this._location.back();
@@ -65,40 +72,72 @@ export class LocationComponent implements OnInit {
         'get',
         true
       );
-      this.maxStt = this.locationListAll.reduce(function (
-        accumulator,
-        element
-      ) {
-        return accumulator.stt > element.stt ? accumulator.stt : element.stt;
+      // console.log(this.locationListAll.length);
+      this.locationListAll.sort(function (a, b) {
+        return b.stt - a.stt;
       });
-      this.maxStt = this.maxStt + 1;
+      ///
+      this.config = {
+        itemsPerPage: 6,
+        currentPage: 1,
+        totalItems: this.locationListAll.count,
+      };
+      // this.config = {
+      //   id: 'paging2',
+      //   itemsPerPage: this.pageSize,
+      //   currentPage: this.page,
+      //   totalItems: this.locationListAll.length,
+      // };
       this.isLoading = false;
     } catch (e) {
       console.log(e.message);
     }
   }
+
   closeModalAdd() {
     this.nameLocationAdd = '';
     this.desLocationAdd = '';
   }
   async AddLocation() {
-    try {
-      await this.api.httpCall(
-        this.api.apiLists.AddLocation,
-        {},
-        {
-          stt: this.maxStt + 1,
-
-          tenĐiaiem: this.nameLocationAdd,
-          moTa: this.desLocationAdd,
-        },
-        'post',
-        true
-      );
-      this.getListLocationAll();
-      this.closebuttonAdd.nativeElement.click();
-    } catch (e) {
-      console.log(e.message);
+    if (this.nameLocationAdd) {
+      try {
+        this.errors = '';
+        await this.api.httpCall(
+          this.api.apiLists.AddLocation,
+          {},
+          {
+            stt: this.locationListAll.length + 1,
+            tenĐiaiem: this.nameLocationAdd,
+            moTa: this.desLocationAdd,
+          },
+          'post',
+          true
+        );
+        this.getListLocationAll();
+        this.closebuttonAdd.nativeElement.click();
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Thêm Thành Công',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } catch (e) {
+        console.log(e.message);
+      }
+    } else {
+      Swal.fire({
+        title: '<strong>Thiếu Thông Tin ?</strong>',
+        icon: 'warning',
+        html: `Vui lòng nhập đầy đủ các thông tin bắt buộc ! !`,
+        showCloseButton: true,
+        focusConfirm: true,
+        reverseButtons: true,
+        focusCancel: false,
+        confirmButtonText: `Hủy`,
+      }).then(async (result) => {
+        this.errors = 'Vui lòng nhập vào ô này !';
+      });
     }
   }
   GetLocationById(id: any, location: any, description: any, stt: any) {
@@ -128,6 +167,13 @@ export class LocationComponent implements OnInit {
         'post',
         true
       );
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Sửa Thành Công',
+        showConfirmButton: false,
+        timer: 1000,
+      });
       this.getListLocationAll();
     } catch (e) {
       console.log(e.message);
@@ -160,10 +206,35 @@ export class LocationComponent implements OnInit {
             true
           );
           this.getListLocationAll();
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Xóa Thành Công',
+            showConfirmButton: false,
+            timer: 1000,
+          });
         } catch (e) {
           console.log(e.message);
         }
       }
     });
+  }
+
+  ////pageSizes
+  handlePageChange(event): void {
+    this.page = event;
+    this.getListLocationAll();
+  }
+  handlePageSizeChange(event): void {
+    this.pageSize = event.target.value;
+    this.page = 0;
+    this.getListLocationAll();
+  }
+  changeTabs(tab) {
+    this.currentTab = tab;
+    this.page = 0;
+    this.count = 0;
+    this.pageSize = 10;
+    this.getListLocationAll();
   }
 }

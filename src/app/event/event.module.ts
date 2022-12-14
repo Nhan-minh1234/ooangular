@@ -12,8 +12,11 @@ import { FormsModule } from '@angular/forms';
 import { EventSampleComponent } from './event-sample/event-sample.component';
 import { LocationComponent } from './location/location.component';
 import { NewEventSampleComponent } from './new-event-sample/new-event-sample.component';
-
-
+import { EventSampleDetailComponent } from './event-sample-detail/event-sample-detail.component';
+import { UpdateSampleComponent } from './update-sample/update-sample.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CalendarComponent } from '../utilities/calendar/calendar.component';
+import { EventUpdateComponent } from './event-update/event-update.component';
 @NgModule({
   declarations: [
     EventComponent,
@@ -21,16 +24,20 @@ import { NewEventSampleComponent } from './new-event-sample/new-event-sample.com
     NewEventComponent,
     LocationComponent,
     EventSampleComponent,
-    NewEventSampleComponent
+    NewEventSampleComponent,
+    EventSampleDetailComponent,
+    UpdateSampleComponent,
+    EventUpdateComponent,
   ],
   imports: [
+    ReactiveFormsModule,
     CommonModule,
     EventRoutingModule,
     ArchwizardModule,
     NgxPaginationModule,
     NgxLoadingModule,
     UtilitiesModule,
-    FormsModule
-  ]
+    FormsModule,
+  ],
 })
-export class EventModule { }
+export class EventModule {}

@@ -4,29 +4,37 @@ import { WizardComponent } from 'angular-archwizard';
 import { GeneralService } from 'src/app/services/general.service';
 import { DatePipe } from '@angular/common';
 import { ApiservicesService } from 'src/app/services/api.service';
-import { EventSample } from 'src/app/Model/Event_Sample';
+import { EventSample, EventSampleUpdate } from 'src/app/Model/Event_Sample';
 import dateFormat, { masks } from 'dateformat';
 import { ActivatedRoute, Router } from '@angular/router';
+import {
+  FormsModule,
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormControl,
+} from '@angular/forms';
+import { setDefaults } from 'sweetalert/typings/modules/options';
 import Swal from 'sweetalert2';
-
-import * as moment from 'moment';
-// import swal from 'sweetalert';
 @Component({
-  selector: 'app-new-event-sample',
-  templateUrl: './new-event-sample.component.html',
-  styleUrls: ['./new-event-sample.component.css'],
+  selector: 'app-update-sample',
+  templateUrl: './update-sample.component.html',
+  styleUrls: ['./update-sample.component.css'],
 })
-export class NewEventSampleComponent implements OnInit {
+export class UpdateSampleComponent implements OnInit {
   @ViewChild(WizardComponent)
   public wizard: WizardComponent;
-  checkInput = false;
+  checkDiaDiem = false;
+  readonlyInput = false;
+  inputDiaDiem;
   locationListAll;
-  evenSample = new EventSample();
-  inputDiaDiem: string;
+  evenSample = new EventSampleUpdate();
+  idLichTuanMau;
   dateStart;
-  dateEnd = new Date();
+  dateEnd;
   hourStart: any;
   hourEnd: any;
+  eventSampleDataUpdate;
   name = 'Angular ';
   today = Date.now();
   wizardStep = 0;
@@ -40,7 +48,7 @@ export class NewEventSampleComponent implements OnInit {
     note: '',
     file: [],
   };
-  chosenAssigneelList: any[] = [];
+  chosenAssigneelList: any[];
   allUserInStep2List;
   majorAssignee;
   groupKeyChosenInStep2 = 'all';
@@ -62,39 +70,60 @@ export class NewEventSampleComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.wizardStep);
-    this.onAsigneeGroupChange(null);
+    this.idLichTuanMau = this.routerAc.snapshot.params['id'];
     console.log(this.generalService);
-    this.dualListUpdateForAssignee(null);
-    this.getListLocationAll();
-    const now = new Date();
-    this.dateStart = dateFormat(now, 'isoDate');
-    this.dateEnd = dateFormat(now, 'isoDate');
-    const test = dateFormat(now, 'isoTime');
-    this.hourStart = test.substring(0, 5);
-    this.hourEnd = test.substring(0, 5);
-    this.checkInput = false;
-    this.evenSample.diadiem = '';
+    // this.dualListUpdateForAssignee(null);
+    this.getListLocationAll(null);
+    this.getById(this.routerAc.snapshot.params['id']);
     // Wed, 22 Dec 2021 00:31:25 GMT
-    //////////////////////////////// Validate
 
-    ////////////////////////////////
     // T4 ngày 22/12/2021
   }
 
-  changeLapLai(value) {
-    this.evenSample.laplai = value;
-  }
-  changeDiaDiem(values: any) {
-    console.log(values);
-    if (values) {
-      this.checkInput = true;
-      this.evenSample.diadiem = values;
-    } else {
-      this.checkInput = false;
-      this.evenSample.diadiem = '';
+  async getById(id: string) {
+    console.log(id);
+    try {
+      this.eventSampleDataUpdate = await this.api.httpCall(
+        this.api.apiLists.GetEventDetailById,
+        {},
+        { ltid: id },
+        'get',
+        true
+      );
+      this.getListLocationAll(this.eventSampleDataUpdate.diadiem);
+      this.evenSample.noidung = this.eventSampleDataUpdate.noidung;
+      this.evenSample.chutri = this.eventSampleDataUpdate.chutri;
+      this.evenSample.chuanbi = this.eventSampleDataUpdate.chuanbi;
+      this.evenSample.khachmoi = this.eventSampleDataUpdate.khachmoi;
+      this.evenSample.diadiem = this.eventSampleDataUpdate.diadiem;
+      this.evenSample.noidung = this.eventSampleDataUpdate.noidung;
+      this.evenSample.ghichu = this.eventSampleDataUpdate.ghichu;
+      this.evenSample.thanhphan = this.eventSampleDataUpdate.thanhphan;
+      console.log(this.eventSampleDataUpdate);
+      this.chosenAssigneelList = this.eventSampleDataUpdate.dsLienQuan;
+      this.dateStart = this.eventSampleDataUpdate.tgbatdau.substring(0, 10);
+      this.hourStart = this.eventSampleDataUpdate.tgbatdau.substring(11, 16);
+      this.dateEnd = this.eventSampleDataUpdate.tgketthuc.substring(0, 10);
+      this.hourEnd = this.eventSampleDataUpdate.tgketthuc.substring(11, 16);
+      console.log(this.chosenAssigneelList);
+      this.onAsigneeGroupChange(null, this.chosenAssigneelList);
+      // this.onAsigneeGroupChange2(null, 'U0005');
+    } catch (e) {
+      console.log(e);
     }
   }
-  async getListLocationAll() {
+  changeLapLai(values: any) {
+    this.eventSampleDataUpdate.laplai = values;
+  }
+  changeDiaDiem(values: any) {
+    this.eventSampleDataUpdate.diadiem = values;
+    this.inputDiaDiem = '';
+    console.log(values);
+    values == ''
+      ? ((this.readonlyInput = false), (this.checkDiaDiem = false))
+      : ((this.readonlyInput = true), (this.checkDiaDiem = true));
+  }
+  async getListLocationAll(localCheck) {
     try {
       this.locationListAll = await this.api.httpCall(
         this.api.apiLists.GetAllLocations,
@@ -103,6 +132,18 @@ export class NewEventSampleComponent implements OnInit {
         'get',
         true
       );
+      if (localCheck) {
+        this.checkDiaDiem =
+          this.locationListAll.filter(
+            (location) => location.tenDiaDiem == localCheck
+          ).length === 0
+            ? false
+            : true;
+        if (!this.checkDiaDiem) {
+          this.inputDiaDiem = localCheck;
+        }
+      }
+
       // console.log(this.locationListAll.length);
     } catch (e) {
       console.log(e.message);
@@ -111,68 +152,52 @@ export class NewEventSampleComponent implements OnInit {
   goBack() {
     this._location.back();
   }
-  onAsigneeGroupChange(e) {
-    console.log(this.groupKeyChosenInStep2);
+  // setDefaults(arr) {
+  //   this.chosenAssigneelList = arr;
+  // }
+  filterItemvsArr(arr1, arr2) {
+    const arrtemp = [];
+    arr2.forEach((i) => {
+      arrtemp.push(arr1.find((item) => item.userId == i.uid));
+    });
+    return arrtemp;
+  }
+
+  onAsigneeGroupChange(e, values) {
     console.log(e);
     if (e == null || this.groupKeyChosenInStep2 == 'all') {
-      this.allUserInStep2List = this.generalService.cloneAnything(
+      (this.allUserInStep2List = this.generalService.cloneAnything(
         this.generalService.allUsers
+      )),
+        console.log(values);
+      this.chosenAssigneelList = this.filterItemvsArr(
+        this.generalService.cloneAnything(this.generalService.allUsers),
+        values
       );
     } else {
       this.allUserInStep2List = this.generalService.allUsersWithGroups[`${e}`];
     }
+    if (values) {
+    }
   }
   onChange(e: any) {
-    this.onAsigneeGroupChange(e);
+    this.onAsigneeGroupChange(e, null);
   }
-  onChangeUser(e: any) {
-    console.log(e);
-  }
+  // onChangeUser(e: any) {
+  //   console.log(e);
+  // }
   dualListUpdateForAssignee(event) {
     console.log(event);
     if (event) {
       this.allUserInStep2List = event.leftList;
       this.chosenAssigneelList = event.rightList;
-      this.evenSample.dsLienQuan = event.rightList;
     } else {
       this.chosenAssigneelList = [];
     }
+    console.log(this.eventSampleDataUpdate);
     console.log(this.chosenAssigneelList);
-    // if (this.groupKeyChosenInStep2 == 'all') {
-    //   for (let i = 0; i < this.allUserInStep2List.length; ++i) {
-    //     if (
-    //       !this.containsObject(
-    //         this.allUserInStep2List[i],
-    //         this.generalService.allUsers
-    //       )
-    //     )
-    //       this.allUserInStep2List.splice(i, 1);
-    //   }
-    // } else {
-    //   for (let i = 0; i < this.allUserInStep2List.length; ++i) {
-    //     if (
-    //       !this.containsObject(
-    //         this.allUserInStep2List[i],
-    //         this.generalService.allUsersWithGroups[
-    //           `${this.groupKeyChosenInStep2}`
-    //         ]
-    //       )
-    //     )
-    //       this.allUserInStep2List.splice(i, 1);
-    //   }
-    // }
-    //kiem tra xem majorAssignee đã chọn trước đó còn trong list chosen hay ko.
-    // if (this.majorAssignee != null) {
-    //   let check = false;
-    //   for (let i = 0; i < this.chosenAssigneelList.length; ++i) {
-    //     if (this.majorAssignee == this.chosenAssigneelList[i]) {
-    //       check = true;
-    //       break;
-    //     }
-    //   }
-    //   if (!check) this.majorAssignee = null;
-    // }
   }
+
   removeFile(index) {
     this.newEventData.file.splice(index, 1);
     const dt = new DataTransfer();
@@ -194,7 +219,7 @@ export class NewEventSampleComponent implements OnInit {
     this.wizard.goToStep(numb);
   }
   finish() {}
-  async addEventSample() {
+  async updateEventSample() {
     /// format date time start
     const date = new Date(this.dateStart);
     const hourS = this.hourStart;
@@ -223,37 +248,42 @@ export class NewEventSampleComponent implements OnInit {
     const newDateEnd = new Date(year2, month2, day2, hour2, minute2);
     const temp2 = dateFormat(newDateEnd, 'isoDateTime');
     const dateTimeFormatter2 = temp2.substring(0, 19);
-    this.evenSample.tgbatdau = dateTimeFormatter;
-    this.evenSample.tgketthuc = dateTimeFormatter2;
+    this.eventSampleDataUpdate.tgbatdau = dateTimeFormatter;
+    this.eventSampleDataUpdate.tgketthuc = dateTimeFormatter2;
     const arrUserId = [];
-    this.evenSample.dsLienQuan.forEach((i) => {
+    this.chosenAssigneelList.forEach((i) => {
       arrUserId.push(i.userId);
     });
-    this.evenSample.dsLienQuan = arrUserId;
-    this.evenSample.diadiem =
-      this.inputDiaDiem || this.evenSample.diadiem == ''
-        ? this.inputDiaDiem
-        : this.evenSample.diadiem;
-    console.log(this.evenSample);
-    // Validate
-    if (this.evenSample.noidung) {
+    this.eventSampleDataUpdate.dsLienQuan = arrUserId;
+    this.eventSampleDataUpdate.idLichTuanMau = this.idLichTuanMau;
+    this.eventSampleDataUpdate.noidung = this.evenSample.noidung;
+    this.eventSampleDataUpdate.chutri = this.evenSample.chutri;
+    this.eventSampleDataUpdate.chuanbi = this.evenSample.chuanbi;
+    this.eventSampleDataUpdate.khachmoi = this.evenSample.khachmoi;
+    this.eventSampleDataUpdate.noidung = this.evenSample.noidung;
+    this.eventSampleDataUpdate.ghichu = this.evenSample.ghichu;
+    this.eventSampleDataUpdate.thanhphan = this.evenSample.thanhphan;
+    this.eventSampleDataUpdate.diadiem = this.inputDiaDiem
+      ? this.inputDiaDiem
+      : this.eventSampleDataUpdate.diadiem;
+    console.log(this.eventSampleDataUpdate);
+    if (this.eventSampleDataUpdate.noidung) {
       this.errors.noidung = '';
     }
-    if (this.evenSample.chutri) {
+    if (this.eventSampleDataUpdate.chutri) {
       this.errors.chutri = '';
     }
-    if (this.evenSample.thanhphan) {
+    if (this.eventSampleDataUpdate.thanhphan) {
       this.errors.thanhphan = '';
     }
-    if (this.evenSample.diadiem) {
+    if (this.eventSampleDataUpdate.diadiem) {
       this.errors.diadiem = '';
     }
-    ///////////////
     if (
-      this.evenSample.diadiem &&
-      this.evenSample.noidung &&
-      this.evenSample.chutri &&
-      this.evenSample.thanhphan
+      this.eventSampleDataUpdate.diadiem &&
+      this.eventSampleDataUpdate.noidung &&
+      this.eventSampleDataUpdate.chutri &&
+      this.eventSampleDataUpdate.thanhphan
     ) {
       this.errors.chutri =
         this.errors.diadiem =
@@ -262,20 +292,22 @@ export class NewEventSampleComponent implements OnInit {
           '';
       try {
         await this.api.httpCall(
-          this.api.apiLists.AddNewEventSample,
+          this.api.apiLists.UpdateEventSample,
           {},
-          this.evenSample,
+          this.eventSampleDataUpdate,
           'post',
           true
         );
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: 'Thêm Thành Công',
+          title: 'Sửa Thành Công',
           showConfirmButton: false,
           timer: 1000,
         });
-        this.router.navigate(['/event/event-sample']);
+        this.router.navigate([
+          `event/new-event-sample/detail/${this.idLichTuanMau}`,
+        ]);
       } catch (e) {
         console.log(e);
       }
@@ -290,34 +322,33 @@ export class NewEventSampleComponent implements OnInit {
         focusCancel: false,
         confirmButtonText: `Hủy`,
       }).then(async (result) => {
-        this.chosenAssigneelList = [];
         if (
-          !this.evenSample.diadiem &&
-          !this.evenSample.noidung &&
-          !this.evenSample.chutri &&
-          !this.evenSample.thanhphan
+          !this.eventSampleDataUpdate.diadiem &&
+          !this.eventSampleDataUpdate.noidung &&
+          !this.eventSampleDataUpdate.chutri &&
+          !this.eventSampleDataUpdate.thanhphan
         ) {
           this.errors.thanhphan = 'Vui lòng nhập vào ô này !';
           this.errors.chutri = 'Vui lòng nhập vào ô này !';
           this.errors.noidung = 'Vui lòng nhập vào ô này !';
           this.errors.diadiem = 'Vui lòng nhập vào ô này !';
         } else {
-          if (!this.evenSample.noidung) {
+          if (!this.eventSampleDataUpdate.noidung) {
             this.errors.noidung = 'Vui lòng nhập vào ô này !';
           }
-          if (!this.evenSample.chutri) {
+          if (!this.eventSampleDataUpdate.chutri) {
             this.errors.chutri = 'Vui lòng nhập vào ô này !';
           }
-          if (!this.evenSample.thanhphan) {
+          if (!this.eventSampleDataUpdate.thanhphan) {
             this.errors.thanhphan = 'Vui lòng nhập vào ô này !';
           }
-          if (!this.evenSample.diadiem) {
+          if (!this.eventSampleDataUpdate.diadiem) {
             this.errors.diadiem = 'Vui lòng nhập vào ô này !';
-            this.evenSample.diadiem == '';
+            this.eventSampleDataUpdate.diadiem == '';
           }
-          if (!this.inputDiaDiem && this.checkInput == false) {
+          if (!this.inputDiaDiem && this.checkDiaDiem == false) {
             this.errors.diadiem = 'Vui lòng nhập vào ô này !';
-            this.evenSample.diadiem == '';
+            this.eventSampleDataUpdate.diadiem == '';
           }
         }
       });

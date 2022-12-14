@@ -1,3 +1,5 @@
+import { Event } from './../Model/Event';
+import { UpdateSampleComponent } from './../event/update-sample/update-sample.component';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -72,6 +74,17 @@ export class ApiservicesService {
     UpdateLocation: '/api/Event/UpdateLocation',
     DeleteLocation: '/api/Event/DeleteLocation',
     AddLocation: '/api/Event/AddNewLocation',
+    ///////
+    GetAllEventSample: '/api/Event/GetAllEventSample',
+    GetEventDetailById: '/api/Event/GetEventDetailById',
+    AddNewEventSample: '/api/Event/AddNewEventSample',
+    DeleteEventSample: '/api/Event/DeleteEventSample',
+    UpdateEventSample: '/api/Event/UpdateEventSample',
+    //// Event
+    GetAllEventByType: '/api/Event/GetAllEventByType',
+    CreateNewEvent: '/api/Event/CreateNewEvent',
+    AcceptAllEventRequest: '/api/Event/AcceptAllEventRequest',
+    UpdateEvent: '/api/Event/UpdateEvent',
   };
 
   constructor(
