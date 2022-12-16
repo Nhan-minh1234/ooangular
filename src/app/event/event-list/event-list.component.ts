@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { GeneralService } from 'src/app/services/general.service';
 import { HttpClient } from '@angular/common/http';
 import data from './event.language';
@@ -7,20 +7,25 @@ import { Event } from 'src/app/Model/Event';
 import { ApiservicesService } from 'src/app/services/api.service';
 import { Location } from '@angular/common';
 import Swal from 'sweetalert2';
-
+import dateFormat, { masks } from 'dateformat';
+import { Workbook } from 'exceljs';
+import * as fs from 'file-saver';
 @Component({
   selector: 'app-event-list',
   templateUrl: './event-list.component.html',
   styleUrls: ['./event-list.component.css'],
 })
 export class EventListComponent implements OnInit {
-  date14: Date;
+  // @ViewChild('TABLE', { static: false }) TABLE: ElementRef;
+  // title = 'Excel';
   masterSelectedApproved: boolean;
   masterSelectedNotApproved: boolean;
   checkListNotApproved: Array<any> = [];
   test = 'line-through';
   checkListApproved: Array<any> = [];
   EventNotApproved;
+  dateFrom;
+  dateTo;
   editable = true;
   eventDetail = {
     date: '',
@@ -74,8 +79,16 @@ export class EventListComponent implements OnInit {
   getEvents(a) {
     this.dateSelectedEvents = a;
     console.log(this.dateSelectedEvents);
+    console.log(this.getMonday(a.fulldate));
+    if (this.currentTab) {
+      this.gData(1, this.getMonday(a.fulldate), this.getSunday(a.fulldate));
+    } else {
+      this.gData(0, this.getMonday(a.fulldate), this.getSunday(a.fulldate));
+    }
   }
   ngOnInit() {
+    this.getDateArrChenhLech('12-01-2022', '12-12-2022');
+
     this.getDateEventInMonth();
     console.log(this.events);
     console.log(this.currentTab);
@@ -89,6 +102,17 @@ export class EventListComponent implements OnInit {
     if (string == '0') {
       return 'none';
     } else return 'line-through';
+  }
+  checkToday(stringDate: string) {
+    const date = dateFormat(new Date(stringDate.substring(0, 10)), 'isoDate');
+    const dateToday = `${new Date().getFullYear()}-${
+      new Date().getMonth() + 1
+    }-${new Date().getDate()}`;
+    if (date == dateToday) {
+      return 'rgb(0,145,255)';
+    } else {
+      return '';
+    }
   }
   getDate(date: string) {
     const Newdate = new Date(date);
@@ -119,7 +143,6 @@ export class EventListComponent implements OnInit {
     }
     return thu;
   }
-
   layThoiGianChenhLech(date: string) {
     const ngayHienTai = new Date().getTime();
     const ngayNhap = new Date(date).getTime();
@@ -158,6 +181,39 @@ export class EventListComponent implements OnInit {
       );
     } else {
       return result + ' ngày trước';
+    }
+  }
+  getDateArrChenhLech(dateFrom: string, dateTo: string) {
+    const dateF = new Date(dateFrom);
+    const dateT = new Date(dateTo);
+    const dateFTime = new Date(dateFrom).getTime();
+    const dateTTime = new Date(dateTo).getTime();
+    console.log(dateFTime, dateTTime);
+    const millisBetween = dateTTime - dateFTime;
+    const days = millisBetween / (1000 * 3600 * 24);
+    const result = Math.round(Math.abs(days));
+    console.log(result);
+    const ArrDate = [];
+    if (result >= 1) {
+      const stringDateDefault = dateF.getDate();
+      for (let i = 0; i <= result; i++) {
+        console.log(dateF.getMonth(), dateT.getMonth());
+        if (dateF.getMonth() == dateT.getMonth()) {
+          const stringDateD =
+            (stringDateDefault + i).toString().length == 1
+              ? '0' + (stringDateDefault + i).toString()
+              : (stringDateDefault + i).toString();
+          const stringDate = `${stringDateD}-${
+            dateF.getMonth() + 1
+          }-${dateF.getFullYear()}`;
+
+          ArrDate.push(stringDate);
+        }
+      }
+      console.log(ArrDate);
+      return ArrDate;
+    } else {
+      return false;
     }
   }
   async getDateEventInMonth() {
@@ -252,8 +308,30 @@ export class EventListComponent implements OnInit {
   openNewEvent() {
     this.router.navigate(['/event/new-event']);
   }
-  async gData(n: number) {
+  getMonday(d) {
+    d = new Date(d);
+    const day = d.getDay(),
+      diff = d.getDate() - day + (day == 0 ? -6 : 1); // adjust when day is sunday
+    const date = dateFormat(new Date(d.setDate(diff)), 'isoDate');
+    console.log(date);
+    return date;
+  }
+  getSunday(d) {
+    d = new Date(d);
+    var day = d.getDay(),
+      diff = d.getDate() - day + (day == 0 ? -6 : 1); // adjust when day is sunday
+    console.log(new Date(d.setDate(diff)));
+    const monday = new Date(d.setDate(diff));
+    const date = dateFormat(monday.setDate(monday.getDate() + 6), 'isoDate');
+    console.log(date);
+    return date;
+  }
+  async gData(n: number, fromdate = new Date(), endDate = new Date()) {
     this.spinnerLoading = true;
+    const date1 = new Date(fromdate);
+    const date2 = new Date(endDate);
+    this.dateFrom = this.getMonday(date1);
+    this.dateTo = this.getSunday(date2);
     this.EventNotApproved = await this.api.httpCall(
       this.api.apiLists.GetAllEventByType + `?type=${n}`,
       {},
@@ -262,14 +340,33 @@ export class EventListComponent implements OnInit {
       true
     );
     this.EventNotApproved = this.EventNotApproved.reverse();
+    const test = [...this.EventNotApproved];
+    const Arr = test
+      .filter((e) => {
+        const date = new Date(e.tgbatdau.substring(0, 10));
+        const dateF = new Date(this.dateFrom);
+        const dateT = new Date(this.dateTo);
+        return date >= dateF && date <= dateT;
+      })
+      .sort((a, b) => {
+        const date1: any = new Date(a.tgbatdau);
+        const date2: any = new Date(b.tgbatdau);
+        return date1 - date2;
+      });
+    // .sort((a, b) => {
+    //   console.log(Number(a.tgbatdau.substring(11, 13)));
+    //   const hour1: any = Number(a.tgbatdau.substring(11, 13));
+    //   const hour2: any = Number(b.tgbatdau.substring(11, 13));
+    //   return hour1 - hour2;
+    // });
+    // .sort((a, b) => {
+    //   const mini1: any = Number(a.tgbatdau.substring(15, 17));
+    //   const mini2: any = Number(b.tgbatdau.substring(15, 17));
+    //   return mini1 - mini2;
+    // });
+    this.EventNotApproved = Arr;
+    console.log(Arr);
     console.log(this.EventNotApproved);
-    console.log(this.config);
-    this.config = {
-      id: 'paging',
-      itemsPerPage: this.pageSize,
-      currentPage: this.page,
-      totalItems: this.EventNotApproved.length,
-    };
     console.log(this.config);
 
     // this.EventNotApproved.filter((i) => i.pheduyet == '0').forEach((item) => {
@@ -316,6 +413,131 @@ export class EventListComponent implements OnInit {
       focusCancel: false,
     });
   }
+  //export exe
+  exPortExcel() {
+    let workbook = new Workbook();
+    let worksheet = workbook.addWorksheet('LichTuan');
+
+    // worksheet.columns = [
+    //   {
+    //     header: 'Ngày Bắt Đầu',
+    //     key: 'dateF',
+    //     width: 40,
+    //     style: {
+    //       font: { name: 'Arial ', size: 10 },
+    //       alignment: { vertical: 'middle', horizontal: 'center' },
+    //     },
+    //   },
+    //   {
+    //     header: 'Ngày Kết Thúc',
+    //     key: 'dateT',
+    //     width: 40,
+    //     style: {
+    //       font: { name: 'Arial ', size: 10 },
+    //       alignment: { vertical: 'middle', horizontal: 'center' },
+    //     },
+    //   },
+    //   {
+    //     header: 'Nội dung',
+    //     key: 'noidung',
+    //     width: 42,
+    //     style: {
+    //       font: { name: 'Arial ', size: 10 },
+    //       alignment: { vertical: 'middle', horizontal: 'center' },
+    //     },
+    //   },
+    //   {
+    //     header: 'Địa điểm',
+    //     key: 'diadiem',
+    //     width: 10,
+    //     style: {
+    //       font: { name: 'Arial ', size: 10 },
+    //       alignment: { vertical: 'middle', horizontal: 'center' },
+    //     },
+    //   },
+    // ];
+    // var row = worksheet.addRow([], "n");
+    worksheet.mergeCells('A1:E1');
+    worksheet.getCell('A1').value = `Lịch Tuần `;
+    // worksheet.getCell('A1').alignment = {
+    //   vertical: 'middle',
+    //   horizontal: 'center',
+    // };
+    worksheet.getCell('A1').style = {
+      font: {
+        name: 'Arial Black ',
+        size: 14,
+        color: { argb: 'blue' },
+        bold: true,
+      },
+      alignment: { vertical: 'middle', horizontal: 'center' },
+    };
+    worksheet.getCell('A2').style = {
+      font: {
+        name: 'Arial Black ',
+        size: 12,
+        bold: true,
+      },
+      alignment: { vertical: 'middle', horizontal: 'center' },
+    };
+    worksheet.getCell('A2').value = 'Ngày Giờ Bắt Đầu';
+    worksheet.getCell('B2').style = {
+      font: {
+        name: 'Arial Black ',
+        size: 12,
+        bold: true,
+      },
+      alignment: { vertical: 'middle', horizontal: 'center' },
+    };
+    worksheet.getCell('B2').value = 'Ngày Giờ Kết Thúc';
+    worksheet.getCell('C2').style = {
+      font: {
+        name: 'Arial Black ',
+        size: 12,
+        bold: true,
+      },
+      alignment: { vertical: 'middle', horizontal: 'center' },
+    };
+    worksheet.getCell('C2').value = 'Nội Dung';
+    worksheet.getCell('D2').style = {
+      font: {
+        name: 'Arial Black ',
+        size: 12,
+        bold: true,
+      },
+      alignment: { vertical: 'middle', horizontal: 'center' },
+    };
+    worksheet.getCell('D2').value = 'Danh Sách Liên Quan';
+    // this.EventNotApproved.forEach((e) => {
+    //   worksheet.addRow(
+    //     {
+    //       dateF: `${this.getDate(
+    //         e.tgbatdau.substring(0, 10)
+    //       )}: ${e.tgbatdau.substring(
+    //         0,
+    //         10
+    //       )}- Thời Gian: ${e.tgbatdau.substring(11, 13)}`,
+    //       dateT: `${this.getDate(
+    //         e.tgketthuc.substring(0, 10)
+    //       )}: ${e.tgketthuc.substring(
+    //         0,
+    //         10
+    //       )}- Thời Gian: ${e.tgketthuc.substring(11, 13)}`,
+    //       noidung: e.noidung,
+    //       diadiem: e.diadiem,
+    //     },
+    //     'n'
+    //   );
+    // });
+
+    workbook.xlsx.writeBuffer().then((data) => {
+      let blob = new Blob([data], {
+        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      });
+      fs.saveAs(blob, 'LichTuan.xlsx');
+    });
+  }
+
   getLabel(key) {
     return data[`${this.generalService.currentLanguage.Code}`][`${key}`];
   }
