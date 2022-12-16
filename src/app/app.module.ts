@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UtilitiesModule } from './utilities/utilities.module';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,37 +15,38 @@ import { NgChartsModule } from 'ng2-charts';
 import { SignDocumentsComponent } from './sign-documents/sign-documents.component';
 import { SearchComponent } from './search/search/search.component';
 import { AdminComponent } from './admin/admin/admin.component';
-
-
-
+import { NgxPaginationModule } from 'ngx-pagination';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
-
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    PersonalComponent,  
+    PersonalComponent,
     ClientComponent,
     SignDocumentsComponent,
     SearchComponent,
     AdminComponent,
-  
   ],
   imports: [
+    CommonModule,
     BrowserAnimationsModule,
     NgChartsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    NgxPaginationModule,
     FormsModule,
+    ReactiveFormsModule,
     UtilitiesModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
-      tapToDismiss: true
+      tapToDismiss: true,
     }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [CommonModule, FormsModule, ReactiveFormsModule],
 })
-export class AppModule { }
+export class AppModule {}
