@@ -1,0 +1,11 @@
+<h3 *ngIf="title===''" class="card-title placeholder-glow">
+    <span class="placeholder col-6"></span>
+</h3>
+<div class="wrap">
+    <label class="h3 text-center" (click)="isEdit = true" *ngIf="!isEdit && title!==''">{{title}}</label> <i class="uil-pen h3"></i>
+</div>
+<div>
+    <input *ngIf="isEdit" type="text" class="h3 w-75" name="chude" id="chude" [(ngModel)]="title">
+    <button *ngIf="isEdit" type="button" class="custom-btn text-success"><i class="uil-check" (click)="updateTitle()"></i></button>
+    <button *ngIf="isEdit" type="button" (click)="cancelEdit()" class="custom-btn text-danger"><i class="uil-times"></i></button>
+</div>
