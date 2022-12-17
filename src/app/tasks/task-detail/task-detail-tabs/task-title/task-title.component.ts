@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { ApiservicesService } from 'src/app/services/api.service';
 import { GeneralService } from 'src/app/services/general.service';
 @Component({
@@ -8,14 +8,18 @@ import { GeneralService } from 'src/app/services/general.service';
 })
 export class TaskTitleComponent implements OnInit {
 
-  @Input() chude: string = "";
-  @Input() mscv: string = "";
+  @Input() chude: string;
+  @Input() mscv: string;
+  @Input() EditEnable: boolean = false;
   @Output() reloadData = new EventEmitter();
   isEdit: boolean = false;
   title: string
   constructor(private generalService: GeneralService, private api: ApiservicesService) { }
 
   ngOnInit(): void {
+    this.title = `${this.chude}`
+  }
+  ngOnChanges(changes: SimpleChanges) {
     this.title = `${this.chude}`
   }
   cancelEdit() {

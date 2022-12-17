@@ -1,3 +1,24 @@
+<div class="row col-12">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Nhật ký</h4>
+            <div class="row ms-3">
+                <div class="d-flex align-items-start mt-1" *ngFor="let i of dsNhatKy | paginate: config">
+                    <app-avatar-tooltip [fullname]="i.nguoiPhanHoi.hoTen" [size]="'sm'">
+                    </app-avatar-tooltip>
+                    <div class="ms-2 mb-3">
+                        <div class="d-flex">
+                            <h5>{{i.nguoiPhanHoi.hoTen}}</h5><label class="ms-1 text-success">({{timeToCalendar(i.thoiGianPhanHoi)}})</label>
+                        </div>
+                        <div [innerHTML]="i.noiDung"></div>
+                    </div>
+                </div>
+                <pagination-controls id="paging" [previousLabel]="'Quay lại'" [nextLabel]="'Tiếp tục'" responsive="true"
+                    responsive="true" (pageChange)="handlePageChange($event)"></pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>
 <div id="standard-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg">

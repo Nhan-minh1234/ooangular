@@ -1,4 +1,4 @@
-label:hover {
+.label-enable-edit:hover {
     border: 2px solid;
 }
 
@@ -41,14 +41,16 @@ input:focus {
     margin-left: 2px;
 }
 
+.custom-btn:hover {
+    background-color: beige;
+}
+
 @keyframes showup {
     0% {
-        margin-left: 3px;
         opacity: 0.5;
     }
 
     100% {
-        margin-left: 0px;
         opacity: 1;
     }
 }
