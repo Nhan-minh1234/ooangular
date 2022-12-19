@@ -1,3 +1,4 @@
+import dateFormat, { masks } from 'dateformat';
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { GeneralService } from 'src/app/services/general.service';
 import { HttpClient } from '@angular/common/http';
@@ -21,9 +22,7 @@ export class LoadCommentComponent implements OnInit {
   checkListNotApproved: Array<any> = [];
   test = 'line-through';
   EventComments;
-  comment = {
-    noidung: '',
-  };
+  comment = { noidung: '' };
   checkListApproved: Array<any> = [];
   EventNotApproved;
   editable = true;
@@ -37,7 +36,7 @@ export class LoadCommentComponent implements OnInit {
     status: null,
   };
   eventSandbox;
-
+  commentList;
   spinnerLoading = false;
   eventListData;
   editorConfig: AngularEditorConfig = {
@@ -79,9 +78,44 @@ export class LoadCommentComponent implements OnInit {
     const All = [...NotApproved, ...Approved];
     this.EventComments = All.filter((x) => x.lichtuanid == id)[0];
     this.EventComments.status = false;
+    this.getComment(this.EventComments.lichtuanid);
     this.spinnerLoading = false;
   }
-  async addAComment(): Promise<void> {
+  async getComment(id) {
+    console.log(id);
+    this.commentList = await this.api.httpCall(
+      this.api.apiLists.GetAllCommentFromIdAndType + `?type=LT` + `&from=${id}`,
+      {},
+      {},
+      'get',
+      true
+    );
+    console.log(this.commentList);
+  }
+  async addAComment() {
+    const newDateEnd = new Date(
+      new Date().getFullYear(),
+      new Date().getMonth(),
+      new Date().getDate(),
+      new Date().getHours(),
+      new Date().getMinutes()
+    );
+    const temp2 = dateFormat(newDateEnd, 'isoDateTime');
+    await this.api.httpCall(
+      this.api.apiLists.addComment,
+      {},
+      {
+        fromID: this.EventComments.lichtuanid,
+        loaiCMT: 'LT',
+        noiDung: this.comment.noidung,
+        ngayTao: temp2.substring(0, 19),
+      },
+      'post',
+      true
+    );
+    this.getComment(this.EventComments.lichtuanid);
+    this.comment.noidung = '';
+    console.log(this.commentList);
     // if (this.taskHistory.noiDung !== "" && this.taskHistory.noiDung !== undefined) {
     //   this.taskHistory.mscv = this.TaskDetail.mscv;
     //   this.taskHistory.danhSachNguoiXuLyKeTiepHoTen = "";
@@ -90,7 +124,6 @@ export class LoadCommentComponent implements OnInit {
     //   var res = await this.api.httpCall(this.api.apiLists.AddNewTaskHistory, {}, this.taskHistory, 'post', true);
     //   this.reloadData.emit();
     // }
-    alert(this.comment.noidung);
   }
   checkhuy(string) {
     if (string == '0') {
