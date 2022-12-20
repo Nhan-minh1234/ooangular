@@ -35,6 +35,10 @@ export class LoadCommentComponent implements OnInit {
     time_end: '',
     status: null,
   };
+  repC = {
+    nguoi: '',
+    noidung: '',
+  };
   eventSandbox;
   commentList;
   spinnerLoading = false;
@@ -43,6 +47,7 @@ export class LoadCommentComponent implements OnInit {
     height: '150px',
     editable: true,
   };
+  // text = '<div class="demo"><b>This is my HTML.</b></div>';
   constructor(
     private httpClient: HttpClient,
     private el: ElementRef,
@@ -58,6 +63,40 @@ export class LoadCommentComponent implements OnInit {
 
   ngOnInit(): void {
     this.getById(this.routerAc.snapshot.params['id']);
+  }
+  getDateArrChenhLech(dateFrom: string, dateTo: string) {
+    const dateF = new Date(dateFrom);
+    const dateT = new Date(dateTo);
+    const dateFTime = new Date(dateFrom).getTime();
+    const dateTTime = new Date(dateTo).getTime();
+    const millisBetween = dateTTime - dateFTime;
+    const days = millisBetween / (1000 * 3600 * 24);
+    const result = Math.round(Math.abs(days));
+    const ArrDate = [];
+    if (result >= 1) {
+      const stringDateDefault = dateF.getDate();
+      for (let i = 0; i <= result; i++) {
+        if (dateF.getMonth() == dateT.getMonth()) {
+          const stringDateD =
+            (stringDateDefault + i).toString().length == 1
+              ? '0' + (stringDateDefault + i).toString()
+              : (stringDateDefault + i).toString();
+          const stringMonthD =
+            (dateF.getMonth() + 1).toString().length == 1
+              ? '0' + (dateF.getMonth() + 1).toString()
+              : (dateF.getMonth() + 1).toString();
+          const stringDate = `${dateF.getFullYear()}-${stringMonthD}-${stringDateD}`;
+          ArrDate.push(stringDate);
+        }
+      }
+      return ArrDate;
+    } else {
+      const stringDate = `${dateF.getFullYear()}-${
+        dateF.getMonth() + 1
+      }-${dateF.getDate()}`;
+      ArrDate.push(stringDate);
+      return ArrDate;
+    }
   }
   async getById(id) {
     this.spinnerLoading = true;
@@ -78,9 +117,62 @@ export class LoadCommentComponent implements OnInit {
     const All = [...NotApproved, ...Approved];
     this.EventComments = All.filter((x) => x.lichtuanid == id)[0];
     this.EventComments.status = false;
-    this.getComment(this.EventComments.lichtuanid);
+    const ArrDate = this.getDateArrChenhLech(
+      this.EventComments.tgbatdau.substring(0, 10),
+      this.EventComments.tgketthuc.substring(0, 10)
+    );
+    const arrTam = [];
+    const ArrEnd = [];
+    if (ArrDate.length > 1) {
+      console.log(ArrDate);
+      ArrDate.forEach((it) => {
+        // console.log(it);
+        // e.ngay = it;
+        // console.log(e);
+        ArrEnd.push({ ...this.EventComments, ngay: it });
+      });
+      ArrEnd.sort((a, b) => {
+        const date1: any = new Date(a.ngay);
+        const date2: any = new Date(b.ngay);
+        if (date1 != date2) {
+          return date1 - date2;
+        } else if (
+          new Date(a.tgbatdau).getHours() != new Date(b.tgbatdau).getHours()
+        ) {
+          const hour1: any = new Date(a.tgbatdau).getHours();
+          const hour2: any = new Date(b.tgbatdau).getHours();
+          return hour1 - hour2;
+        } else {
+          const minute1: any = new Date(a.tgbatdau).getMinutes();
+          const minute2: any = new Date(b.tgbatdau).getMinutes();
+          return minute1 - minute2;
+        }
+      });
+    } else {
+      const obj = {
+        ...this.EventComments,
+        ngay: this.EventComments.tgbatdau.substring(0, 10),
+      };
+      console.log(obj);
+      ArrEnd.push(obj);
+    }
+    this.EventComments = ArrEnd;
+    this.getComment(this.EventComments[0].lichtuanid);
     this.spinnerLoading = false;
   }
+  repComment(id, noidung, nguoitao) {
+    // this.comment.noidung = `<div style="background-Color: RGB(247 243 29); color: red; width:50%; font-size:14px; padding:10px">${noidung}</div>`;
+    this.repC.nguoi = nguoitao;
+    const stringCutDiv = noidung.substring(5);
+    this.repC.noidung =
+      noidung.search('<div>') != -1
+        ? this.decodeHtmlCharCodes(
+            stringCutDiv.substring(0, stringCutDiv.search('</div>'))
+          )
+        : this.decodeHtmlCharCodes(noidung);
+    console.log(stringCutDiv.substring(0, stringCutDiv.search('</div>')));
+  }
+
   async getComment(id) {
     console.log(id);
     this.commentList = await this.api.httpCall(
@@ -90,32 +182,108 @@ export class LoadCommentComponent implements OnInit {
       'get',
       true
     );
+    // this.commentList.forEach((comment) => {
+    //   console.log(comment.noiDung.split('\\').join(''));
+    //   comment.noiDung = comment.noiDung.split('\\').join('');
+    // });
     console.log(this.commentList);
   }
-  async addAComment() {
-    const newDateEnd = new Date(
-      new Date().getFullYear(),
-      new Date().getMonth(),
-      new Date().getDate(),
-      new Date().getHours(),
-      new Date().getMinutes()
-    );
-    const temp2 = dateFormat(newDateEnd, 'isoDateTime');
-    await this.api.httpCall(
-      this.api.apiLists.addComment,
-      {},
-      {
-        fromID: this.EventComments.lichtuanid,
-        loaiCMT: 'LT',
-        noiDung: this.comment.noidung,
-        ngayTao: temp2.substring(0, 19),
-      },
-      'post',
-      true
-    );
-    this.getComment(this.EventComments.lichtuanid);
+  exitRepComment() {
+    this.repC.noidung = '';
+    this.repC.nguoi = '';
     this.comment.noidung = '';
-    console.log(this.commentList);
+  }
+  decodeHtmlCharCodes = (str) =>
+    str.replace(/(&#(\d+);)/g, (match, capture, charCode) =>
+      String.fromCharCode(charCode)
+    );
+  async addAComment() {
+    if (this.comment.noidung) {
+      Swal.fire({
+        title: '<strong>Bạn chắc chắn muốn phản hồi ?</strong>',
+        icon: 'warning',
+        html: `Phản hồi gửi đi sẽ không xóa được !`,
+        showCloseButton: true,
+        showCancelButton: true,
+        focusConfirm: false,
+        reverseButtons: true,
+        focusCancel: true,
+        cancelButtonText: `Quay lại`,
+        confirmButtonText: `Gửi`,
+      }).then(async (result) => {
+        if (result.value) {
+          const newDateEnd = new Date(
+            new Date().getFullYear(),
+            new Date().getMonth(),
+            new Date().getDate(),
+            new Date().getHours(),
+            new Date().getMinutes()
+          );
+          const temp2 = dateFormat(newDateEnd, 'isoDateTime');
+          console.log(this.comment.noidung, this.repC.noidung);
+          let string = !this.repC.noidung
+            ? this.comment.noidung
+            : '<div>' +
+              this.decodeHtmlCharCodes(this.comment.noidung) +
+              '</div><div style="border: 2px solid black; padding:10px; margin:10px 0 5px 2%">' +
+              '<div>Trích dẫn từ: <span style="font-weight:bold; font-size:15px">' +
+              '<b>' +
+              this.repC.nguoi +
+              '</b>' +
+              '</span> </div><div>' +
+              this.decodeHtmlCharCodes(this.repC.noidung) +
+              '</div></div>';
+          console.log(string);
+
+          try {
+            await this.api.httpCall(
+              this.api.apiLists.addComment,
+              {},
+              {
+                fromID: this.EventComments[0].lichtuanid,
+                loaiCMT: 'LT',
+                noiDung: string,
+                ngayTao: temp2.substring(0, 19),
+              },
+              'post',
+              true
+            );
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Phản hồi Thành Công',
+              showConfirmButton: false,
+              timer: 1000,
+            });
+          } catch (e) {
+            console.log(e);
+          }
+        }
+
+        this.repC.noidung = '';
+        this.repC.nguoi = '';
+        this.getComment(this.EventComments[0].lichtuanid);
+        this.comment.noidung = '';
+        console.log(this.commentList);
+      });
+    } else {
+      Swal.fire({
+        title: '<strong>Nội dung phản hồi trống ?</strong>',
+        icon: 'warning',
+        html: `Bạn chưa nhập phản hồi !`,
+        showCloseButton: true,
+        showCancelButton: true,
+        focusConfirm: false,
+        reverseButtons: true,
+        focusCancel: true,
+        cancelButtonText: `Quay lại`,
+        confirmButtonText: `Nhập Lại`,
+      }).then(async (result) => {});
+      this.repC.noidung = '';
+      this.repC.nguoi = '';
+      this.comment.noidung = '';
+    }
+
     // if (this.taskHistory.noiDung !== "" && this.taskHistory.noiDung !== undefined) {
     //   this.taskHistory.mscv = this.TaskDetail.mscv;
     //   this.taskHistory.danhSachNguoiXuLyKeTiepHoTen = "";
@@ -331,32 +499,7 @@ export class LoadCommentComponent implements OnInit {
     });
   }
   //Duyệt
-  // ApprovedAgain(id) {
-  //   console.log(id);
-  //   Swal.fire({
-  //     title: '<strong>Bạn chắc chắn duyệt ?</strong>',
-  //     icon: 'warning',
-  //     html: `sau khi duyệt có thể phục hồi được !`,
-  //     showCloseButton: true,
-  //     showCancelButton: true,
-  //     focusConfirm: false,
-  //     reverseButtons: true,
-  //     focusCancel: true,
-  //     cancelButtonText: `Quay lại`,
-  //     confirmButtonText: `Duyệt`,
-  //   }).then(async (result) => {
-  //     if (result.value) {
-  //       const arr = this.EventNotApproved.filter(
-  //         (item) => item.lichtuanid == id
-  //       );
-  //       console.log(arr);
-  //       if (arr.length > 0) {
-  //         arr[0].huy = '0';
-  //         this.gData(1);
-  //       }
-  //     }
-  //   });
-  // }
+
   async Approved(id) {
     console.log(id);
     Swal.fire({
@@ -479,6 +622,7 @@ export class LoadCommentComponent implements OnInit {
             showConfirmButton: false,
             timer: 1500,
           });
+          this.router.navigate(['/event/event-list']);
         } catch (e) {
           console.log(e);
         }
@@ -486,8 +630,6 @@ export class LoadCommentComponent implements OnInit {
     });
   }
   async deleteEventMultiple() {
-    console.log(this.checkListApproved);
-    console.log(this.checkListNotApproved);
     Swal.fire({
       title: '<strong>Bạn chắc chắn Xóa ?</strong>',
       icon: 'warning',
@@ -502,38 +644,21 @@ export class LoadCommentComponent implements OnInit {
     }).then(async (result) => {
       if (result.value) {
         try {
-          // if (this.currentTab) {
-          //   await this.api.httpCall(
-          //     this.api.apiLists.DeleteEvent,
-          //     {},
-          //     this.checkListApproved,
-          //     'post',
-          //     true
-          //   );
-          //   Swal.fire({
-          //     position: 'center',
-          //     icon: 'success',
-          //     title: 'Xóa lịch Thành Công',
-          //     showConfirmButton: false,
-          //     timer: 1000,
-          //   });
-          // } else {
-          //   console.log(this.checkListNotApproved);
-          //   await this.api.httpCall(
-          //     this.api.apiLists.DeleteEvent,
-          //     {},
-          //     this.checkListNotApproved,
-          //     'post',
-          //     true
-          //   );
-          //   Swal.fire({
-          //     position: 'center',
-          //     icon: 'success',
-          //     title: 'Xóa lịch Thành Công',
-          //     showConfirmButton: false,
-          //     timer: 1000,
-          //   });
-          // }
+          await this.api.httpCall(
+            this.api.apiLists.DeleteEvent,
+            {},
+            this.EventComments[0].lichtuanid,
+            'post',
+            true
+          );
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Xóa lịch Thành Công',
+            showConfirmButton: false,
+            timer: 1000,
+          });
+          this.router.navigate(['/event/event-list']);
         } catch (e) {
           console.log(e);
         }

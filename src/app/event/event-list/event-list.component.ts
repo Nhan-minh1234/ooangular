@@ -87,7 +87,6 @@ export class EventListComponent implements OnInit {
     }
   }
   ngOnInit() {
-    this.getDateArrChenhLech('12-01-2022', '12-12-2022');
     this.getDateEventInMonth();
     if (this.currentTab) {
       this.gData(1);
@@ -95,10 +94,16 @@ export class EventListComponent implements OnInit {
       this.gData(0);
     }
   }
-  checkhuy(string) {
-    if (string == '0') {
-      return 'none';
-    } else return 'line-through';
+  checkhuy(string, stringD) {
+    // if (stringD == '1') {
+    //   return 'none';
+    // } else if (stringD == '0') {
+    //   return 'line-through';
+    // }
+
+    if (string == '1') {
+      return 'line-through';
+    } else return 'none';
   }
   checkToday(stringDate: string) {
     const date = dateFormat(new Date(stringDate.substring(0, 10)), 'isoDate');
@@ -725,6 +730,46 @@ export class EventListComponent implements OnInit {
             timer: 1000,
           });
         } catch (e) {}
+      }
+    });
+  }
+  async CancelEventMulti() {
+    Swal.fire({
+      title: '<strong>Bạn chắc chắn hủy ?</strong>',
+      icon: 'warning',
+      html: `sau khi hủy có thể phục hồi được !`,
+      showCloseButton: true,
+      showCancelButton: true,
+      focusConfirm: false,
+      reverseButtons: true,
+      focusCancel: true,
+      cancelButtonText: `Quay lại`,
+      confirmButtonText: `Hủy Lịch`,
+    }).then(async (result) => {
+      if (result.value) {
+        try {
+          this.EventNotApproved = await this.api.httpCall(
+            this.api.apiLists.CancelAllEvent,
+            {},
+            this.checkListApproved,
+            'post',
+            true
+          );
+          if (this.currentTab) {
+            this.gData(1);
+          } else {
+            this.gData(0);
+          }
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Hủy lịch Thành Công',
+            showConfirmButton: false,
+            timer: 1000,
+          });
+        } catch (e) {
+          console.log(e);
+        }
       }
     });
   }

@@ -65,9 +65,9 @@
   </div>
 
   <div class="row">
-    <div class="col-9">
+    <div class="col-12">
       <div class="page-title-box">
-        <h4 class="page-title">
+        <h4 class="page-title" style="word-break: break-word !important">
           {{ getLabel("pageTitle") }}
           {{ currentTab ? "đã duyệt" : "chưa duyệt" }}
           <span style="color: #ea3a72; font-weight: bold"
@@ -200,14 +200,14 @@
               <div
                 class="col_nd"
                 [ngStyle]="{
-                  'text-decoration': checkhuy(item.huy)
+                  'text-decoration': checkhuy(item.huy, item.pheduyet)
                 }"
               >
                 {{ item.noidung }}
               </div>
               <div
                 [ngStyle]="{
-                  'text-decoration': checkhuy(item.huy)
+                  'text-decoration': checkhuy(item.huy, item.pheduyet)
                 }"
               >
                 <span class="col_lable_title">Chủ trì: </span>
@@ -220,7 +220,7 @@
               <div
                 *ngIf="item.thanhphan"
                 [ngStyle]="{
-                  'text-decoration': checkhuy(item.huy)
+                  'text-decoration': checkhuy(item.huy, item.pheduyet)
                 }"
               >
                 <span class="col_lable_title">Thành Phần: </span>
@@ -229,7 +229,7 @@
               <div
                 *ngIf="item.diadiem"
                 [ngStyle]="{
-                  'text-decoration': checkhuy(item.huy)
+                  'text-decoration': checkhuy(item.huy, item.pheduyet)
                 }"
               >
                 <span class="col_lable_title">Địa Điểm: </span>
@@ -482,7 +482,13 @@
         >
           Phê Duyệt
         </button>
-        <button type="button" class="btn btn-success rounded mb-1">Hủy</button>
+        <button
+          type="button"
+          class="btn btn-success rounded mb-1"
+          (click)="CancelEventMulti()"
+        >
+          Hủy
+        </button>
         <button
           type="submit"
           name="ctl22$DANHMUC$ctl02$btnDel"

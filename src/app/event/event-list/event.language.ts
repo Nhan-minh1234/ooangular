@@ -14,7 +14,7 @@ let data = {
     unverify: 'Unverify',
   },
   VN: {
-    pageTitle: 'Danh sách lịch tuần',
+    pageTitle: 'Lịch tuần',
     newFile: 'Thêm lịch mới',
     itemsPerPage: 'Số lượng thư mục mỗi trang',
     nextBtn: 'Trang sau',

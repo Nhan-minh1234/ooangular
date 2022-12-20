@@ -64,7 +64,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-9">
+    <div class="col-xl-8 col-md-12">
       <!--End page title-->
       <table
         id="basic-datatable"
@@ -75,7 +75,6 @@
             <th width="20%">{{ getLabel("dateCol") }}</th>
             <th width="10%">{{ getLabel("timeCol") }}</th>
             <th>{{ getLabel("descriptionCol") }}</th>
-            <th width="15%">{{ getLabel("locationCol") }}</th>
             <th width="8%">Thao Tác</th>
             <th width="3%">
               <input
@@ -90,38 +89,26 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="">
+          <tr class="" *ngFor="let item of EventComments">
             <td class="col-ngay">
               <span class="col_ngay_content">
-                {{ getDate(EventComments ? EventComments.tgbatdau : "") }} ({{
-                  EventComments
-                    ? EventComments.tgbatdau
-                    : ("" | slice : 0 : 10 | date : "dd/MM/yyyy")
-                }})</span
-              ><br />
-              Đến<br />
-              <span class="col_ngay_content">
-                {{ getDate(EventComments ? EventComments.tgketthuc : "") }}
-                ({{
-                  EventComments
-                    ? EventComments.tgketthuc
-                    : ("" | slice : 0 : 10 | date : "dd/MM/yyyy")
-                }})</span
-              >
+                {{ getDate(item.ngay) }} <br />({{
+                  item.ngay | slice : 0 : 10 | date : "dd/MM/yyyy"
+                }})
+                <span style="color: #ffc107; font-style: italic"
+                  >({{ EventComments.length }})</span
+                >
+              </span>
             </td>
             <td class="col-ngay">
               <span class="col_tg">{{
-                EventComments
-                  ? EventComments.tgbatdau
-                  : ("" | date : "shortTime")
+                !EventComments ? "" : (item.tgbatdau | date : "shortTime")
               }}</span>
               <br />
               Tới <br />
               <span class="col_tg">
                 {{
-                  EventComments
-                    ? EventComments.tgketthuc
-                    : ("" | date : "shortTime")
+                  !EventComments ? "" : (item.tgketthuc | date : "shortTime")
                 }}
               </span>
             </td>
@@ -134,7 +121,7 @@
                   )
                 }"
               >
-                {{ EventComments ? EventComments.noidung : "" }}
+                {{ EventComments ? item.noidung : "" }}
               </div>
               <div
                 [ngStyle]="{
@@ -145,26 +132,38 @@
               >
                 <span class="col_lable_title">Chủ trì: </span>
                 <span class="col_nd_content">{{
-                  EventComments ? EventComments.chutri : ""
+                  EventComments ? item.chutri : ""
                 }}</span>
               </div>
               <div *ngIf="EventComments && EventComments.chuanbi">
                 <span class="col_lable_title">Chuẩn bị: </span>
                 <span class="col_nd_content">{{
-                  EventComments ? EventComments.chuanbi : ""
+                  EventComments ? item.chuanbi : ""
                 }}</span>
               </div>
               <div
-                *ngIf="EventComments && EventComments.thanhphan"
+                *ngIf="EventComments && item.thanhphan"
                 [ngStyle]="{
-                  'text-decoration': checkhuy(
-                    EventComments ? EventComments.huy : ''
-                  )
+                  'text-decoration': checkhuy(EventComments ? item.huy : '')
                 }"
               >
                 <span class="col_lable_title">Thành Phần: </span>
                 <span class="col_nd_content">{{
-                  EventComments ? EventComments.thanhphan : ""
+                  EventComments ? item.thanhphan : ""
+                }}</span>
+              </div>
+              <div
+                *ngIf="EventComments ? item.diadiem : true"
+                [ngStyle]="{
+                  'text-decoration': checkhuy(
+                    EventComments ? item.huy : '0',
+                    EventComments ? item.pheduyet : '0'
+                  )
+                }"
+              >
+                <span class="col_lable_title">Địa Điểm: </span>
+                <span class="col_nd_content" style="font-weight: bold">{{
+                  EventComments ? item.diadiem : ""
                 }}</span>
               </div>
               <div>
@@ -172,7 +171,7 @@
                 <span
                   style="cursor: pointer"
                   class="col_nd_content"
-                  (click)="showDSLQ(EventComments.dsLienQuan)"
+                  (click)="showDSLQ(item.dsLienQuan)"
                   ><img
                     data-bs-toggle="tooltip"
                     data-bs-placement="bottom"
@@ -194,24 +193,20 @@
                     title="Người đăng ký"
                     src="../../../assets/images/icon/iconEvent/cal-private.gif"
                   /><span style="color: #85888d"
-                    >{{ EventComments ? EventComments.tennguoidangky : "" }},
+                    >{{ EventComments ? item.tennguoidangky : "" }},
                     {{
-                      layThoiGianChenhLech(
-                        EventComments ? EventComments.ngaytao : ""
-                      )
+                      layThoiGianChenhLech(EventComments ? item.ngaytao : "")
                     }}
                     , lúc
                     {{
-                      !EventComments
-                        ? ""
-                        : (EventComments.ngaytao | date : "shortTime")
+                      !EventComments ? "" : (item.ngaytao | date : "shortTime")
                     }}
                   </span>
                   )
                   <span
                     [routerLink]="[
                       '/event/event-list/LoadComment-event/',
-                      EventComments ? EventComments.lichtuanid : ''
+                      EventComments ? EventComments[0].lichtuanid : ''
                     ]"
                     style="cursor: pointer"
                   >
@@ -226,7 +221,7 @@
                   </span>
                 </span>
               </div>
-              <div *ngIf="EventComments && EventComments.pheduyet == '1'">
+              <div *ngIf="EventComments && item.pheduyet">
                 <span class="col_lable_title"
                   >(<img
                     data-bs-toggle="tooltip"
@@ -239,17 +234,13 @@
                     title="Người Duyệt"
                     src="../../../assets/images/icon/iconEvent/cal-private.gif"
                   /><span style="color: #85888d"
-                    >{{ EventComments ? EventComments.tennguoipheduyet : "" }},
+                    >{{ EventComments ? item.tennguoipheduyet : "" }},
                     {{
-                      layThoiGianChenhLech(
-                        EventComments ? EventComments.ngaytao : ""
-                      )
+                      layThoiGianChenhLech(EventComments ? item.ngaytao : "")
                     }}
                     , lúc
                     {{
-                      !EventComments
-                        ? ""
-                        : (EventComments.ngaytao | date : "shortTime")
+                      !EventComments ? "" : (item.ngaytao | date : "shortTime")
                     }}
                   </span>
 
@@ -258,16 +249,7 @@
               </div>
               <br />
             </td>
-            <td
-              class="col_diadiem"
-              [ngStyle]="{
-                'text-decoration': checkhuy(
-                  EventComments ? EventComments.huy : ''
-                )
-              }"
-            >
-              {{ EventComments ? EventComments.diadiem : "" }}
-            </td>
+
             <!-- <td class="text-center" >
                               <div id="tooltip-container1">
                                   <span class="d-inline-block" tabindex="0" data-bs-container="#tooltip-container1"
@@ -279,14 +261,14 @@
             <td>
               <div
                 class="align-eventcommentss-center"
-                *ngIf="EventComments && EventComments.huy == '1'"
+                *ngIf="EventComments.huy != '1'"
               >
                 <button
                   class="btn-icon cusor"
                   data-bs-toggle="tooltip"
                   data-bs-placement="bottom"
                   title="Duyệt"
-                  (click)="Approved(EventComments.lichtuanid)"
+                  (click)="Approved(EventComments[0].lichtuanid)"
                 >
                   <img src="../../../assets/images/icon/iconEvent/accept.png" />
                 </button>
@@ -295,7 +277,7 @@
                 <button
                   [routerLink]="[
                     '/event/event-list/update-event/',
-                    EventComments ? EventComments.lichtuanid : ''
+                    EventComments ? EventComments[0].lichtuanid : ''
                   ]"
                   class="btn-icon cusor"
                   data-bs-toggle="tooltip"
@@ -311,7 +293,7 @@
                   data-bs-toggle="tooltip"
                   data-bs-placement="bottom"
                   title="Xóa"
-                  (click)="deleteEvent(EventComments.lichtuanid)"
+                  (click)="deleteEvent(EventComments[0].lichtuanid)"
                 >
                   <img src="../../../assets/images/icon/iconEvent/delete.gif" />
                 </button>
@@ -325,7 +307,7 @@
                   data-bs-toggle="tooltip"
                   data-bs-placement="bottom"
                   title="Hủy"
-                  (click)="CancelEvent(EventComments.lichtuanid)"
+                  (click)="CancelEvent(EventComments[0].lichtuanid)"
                 >
                   <img src="../../../assets/images/icon/iconEvent/Cancel.png" />
                 </button>
@@ -385,7 +367,7 @@
       </table>
       <!-- /////////////////// Pagination -->
     </div>
-    <div class="col-3">
+    <div class="col-xl-4 col-md-12">
       <div class="list-group">
         <button
           type="button"
@@ -471,7 +453,7 @@
         >
       </h6>
     </div>
-    <div class="col-9">
+    <div class="col-xl-8 col-md-12">
       <div class="card mt-3 rounded">
         <div class="card-body">
           <h4 class="card-title">Phản hồi</h4>
@@ -488,9 +470,62 @@
                     {{ i.ngayTao | date : "shortTime" }}, ngày
                     {{ i.ngayTao | date : "dd-MM-YYYY" }}
                   </i>
+                  <div style="margin-left: 10px">
+                    <img
+                      src="../../../assets/images/icon/iconEvent/6086058.png"
+                      alt="trả lời phản hồi"
+                      width="30px"
+                      height="30px"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="bottom"
+                      title="Trả lời phản hồi"
+                      style="cursor: pointer"
+                      (click)="
+                        repComment(i.idComment, i.noiDung, i.tenNguoiTao)
+                      "
+                    />
+                  </div>
                 </div>
-                <div [innerHTML]="i.noiDung"></div>
+
+                <div [innerHTML]="i.noiDung.split('\\').join('')"></div>
               </div>
+            </div>
+          </div>
+          <div
+            *ngIf="repC.nguoi && repC.noidung"
+            style="
+              border: 1px solid black;
+              background-color: #ffc0cb;
+              color: black;
+              padding: 10px;
+            "
+          >
+            <img
+              src="../../../assets/images/icon/iconEvent/4660443.png"
+              width="20px"
+              height="20px"
+              alt="Đang trả lời"
+              data-bs-toggle="tooltip"
+              data-bs-placement="bottom"
+              title="đang trả lời phản hồi"
+            />
+            <img
+              style="float: right; cursor: pointer"
+              src="../../../assets/images/icon/iconEvent/877932.png"
+              width="20px"
+              height="20px"
+              alt="Thoát"
+              (click)="exitRepComment()"
+              data-bs-toggle="tooltip"
+              data-bs-placement="bottom"
+              title="Thoát trả lời phản hồi"
+            />
+            <div>
+              Đang trả lời
+              <span style="font-weight: bold">{{ repC.nguoi }}</span>
+            </div>
+            <div style="font-size: 13px; color: rgb(64, 61, 61)">
+              {{ repC.noidung }}
             </div>
           </div>
           <div class="row mt-3">
@@ -511,7 +546,10 @@
         </div>
       </div>
     </div>
-    <div class="col-3" style="border: solid 1px rgb(230, 229, 229)">
+    <div
+      class="col-xl-4 col-md-12"
+      style="border: solid 1px rgb(230, 229, 229)"
+    >
       <h6
         style="
           padding: 10px;
@@ -523,7 +561,7 @@
         <span style="padding-left: 10px"> Người liên quan</span>
       </h6>
       <div
-        *ngFor="let i of EventComments ? EventComments.dsLienQuan : []"
+        *ngFor="let i of EventComments ? EventComments[0].dsLienQuan : []"
         style="text-align: center"
       >
         <span style="font-size: 14; font-weight: bold">{{ i.hoTen }}</span>
