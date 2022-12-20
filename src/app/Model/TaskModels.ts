@@ -5,9 +5,9 @@ import { UserResponseModel } from "./UserModels";
 import { GeneralService as generalService } from "../services/general.service";
 
 export class TaskDetailModel {
-    mscv: string;
-    chude: string;
-    noidung: string;
+    mscv: string = "";
+    chude: string = "";
+    noidung: string = "";
     ngayBatDau: string;
     ngayKetThuc: string;
     fileDinhKem: string;

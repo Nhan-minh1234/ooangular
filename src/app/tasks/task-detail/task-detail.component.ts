@@ -14,7 +14,9 @@ import { TaskDetailModel } from 'src/app/Model/TaskModels';
 export class TaskDetailComponent implements OnInit {
   spinnerLoading = false
   taskID
-  taskDetail: TaskDetailModel
+  taskDetail: TaskDetailModel = new TaskDetailModel()
+  isCreateBy: boolean = false
+  isAssigner: boolean = false
   constructor(private route: ActivatedRoute, private el: ElementRef, private api: ApiservicesService, public generalService: GeneralService, private router: Router) {
   }
   ngOnInit(): void {
@@ -26,10 +28,11 @@ export class TaskDetailComponent implements OnInit {
   getLabel(key) {
     return data[`${this.generalService.currentLanguage.Code}`][`${key}`]
   }
-  async getTaskDetail(): Promise<void> {
+  async getTaskDetail() {
     var res = await this.api.httpCall(this.api.apiLists.getTaskDetail + this.taskID, {}, {}, 'get', true)
     this.taskDetail = <TaskDetailModel>res;
-    console.log(this.isAssigner());
+    this.checkIsAssigner();
+    this.checkIsCreateBy();
   }
   async requestFinishTask() {
     var res = await this.api.httpCall(this.api.apiLists.RequestFinishATask + `?mscv=${this.taskID}`, {}, {}, 'post', true)
@@ -39,13 +42,16 @@ export class TaskDetailComponent implements OnInit {
     var res = await this.api.httpCall(this.api.apiLists.FinishATask + `?mscv=${this.taskID}`, {}, {}, 'post', true)
     this.getTaskDetail();
   }
-  isAssigner() {
-    let check = false;
+  checkIsAssigner() {
     this.taskDetail.danhSachNguoiXuLy.forEach(x => {
       if (x.userId === this.generalService.userData.userID) {
-        check = true
+        this.isAssigner = true;
       }
     })
-    return check
+  }
+  checkIsCreateBy() {
+    if (this.taskDetail.nguoiTao.userId === this.generalService.userData.userID) {
+      this.isCreateBy = true;
+    }
   }
 }

@@ -9,11 +9,13 @@ import { UserResponseModel } from 'src/app/Model/UserModels';
 export class TaskUsersComponent implements OnInit {
 
   constructor() { }
-  @Input() dsThamGia:Array<UserResponseModel>
-  @Input() dsDangXuLy:Array<UserResponseModel>
-  @Input() dsDaXuLy:Array<UserResponseModel>
-  @Input() dsChuaXuLy:Array<UserResponseModel>
-  @Input() dsDuocXem:Array<UserResponseModel>
+  @Input() dsThamGia: Array<UserResponseModel> = []
+  @Input() nguoiTao: UserResponseModel = new UserResponseModel()
+  @Input() nguoiXuLy: UserResponseModel = new UserResponseModel()
+  //@Input() dsDangXuLy: Array<UserResponseModel> = []
+  //@Input() dsDaXuLy: Array<UserResponseModel> = []
+  //@Input() dsChuaXuLy: Array<UserResponseModel> = []
+  @Input() dsDuocXem: Array<UserResponseModel> = []
   ngOnInit(): void {
   }
 
