@@ -7,77 +7,90 @@ import { RouteGuardService } from './services/route-guard.service';
 const routes: Routes = [
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
   },
 
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     canActivate: [RouteGuardService],
     path: 'dashboard',
-    loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
+    loadChildren: () =>
+      import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
   },
   {
     canActivate: [RouteGuardService],
     path: 'user',
-    loadChildren: () => import('./users/users.module').then(m => m.UsersModule)
+    loadChildren: () =>
+      import('./users/users.module').then((m) => m.UsersModule),
   },
   {
     canActivate: [RouteGuardService],
     path: 'tasks',
-    loadChildren: () => import('./tasks/task.module').then(m => m.TasksModule)
+    loadChildren: () =>
+      import('./tasks/task.module').then((m) => m.TasksModule),
   },
   {
     canActivate: [RouteGuardService],
     path: 'social',
-    loadChildren: () => import('./social/social.module').then(m => m.SocialModule)
+    loadChildren: () =>
+      import('./social/social.module').then((m) => m.SocialModule),
   },
   {
     canActivate: [RouteGuardService],
     path: 'event',
-    loadChildren: () => import('./event/event.module').then(m => m.EventModule)
+    loadChildren: () =>
+      import('./event/event.module').then((m) => m.EventModule),
   },
   {
     canActivate: [RouteGuardService],
     path: 'personal',
-    loadChildren: () => import('./personal/personal.module').then(m => m.PersonalModule)
+    loadChildren: () =>
+      import('./personal/personal.module').then((m) => m.PersonalModule),
   },
   {
     canActivate: [RouteGuardService],
     path: 'document',
-    loadChildren: () => import('./document/document.module').then(m => m.DocumentModule)
+    loadChildren: () =>
+      import('./document/document.module').then((m) => m.DocumentModule),
   },
   {
     canActivate: [RouteGuardService],
     path: 'client',
-    loadChildren: () => import('./client/client.module').then(m => m.ClientModule)
+    loadChildren: () =>
+      import('./client/client.module').then((m) => m.ClientModule),
   },
   {
     canActivate: [RouteGuardService],
     path: 'sign-documents',
-    loadChildren: () => import('./sign-documents/sign-documents.module').then(m => m.SignDocumentsModule)
+    loadChildren: () =>
+      import('./sign-documents/sign-documents.module').then(
+        (m) => m.SignDocumentsModule
+      ),
   },
   {
     canActivate: [RouteGuardService],
     path: 'search',
-    loadChildren: () => import('./search/search.module').then(m => m.SearchModule)
+    loadChildren: () =>
+      import('./search/search.module').then((m) => m.SearchModule),
   },
-   {
+  {
     canActivate: [RouteGuardService],
     path: 'admin',
-    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+    loadChildren: () =>
+      import('./admin/admin.module').then((m) => m.AdminModule),
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: '**', redirectTo: 'home' }
+  { path: '**', redirectTo: 'home' },
 ];
 const config: ExtraOptions = {
   useHash: false,
-  initialNavigation: 'disabled'
+  initialNavigation: 'disabled',
 };
 @NgModule({
   imports: [RouterModule.forRoot(routes, config)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

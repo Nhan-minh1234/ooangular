@@ -10,122 +10,118 @@
         </div>
     </div>
     <!-- end page title -->
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row mt-3 mb-3">
-                        <div class="col-lg-2 col-sm-12">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/1200px-Angular_full_color_logo.svg.png"
-                                class="img-thumbnail" alt="test">
-                        </div>
-                        <div class="col-lg-7 col-sm-12 d-flex flex-column justify-content-evenly">
-                            <h3 class="text-dark"> Online Office Angular <span class="badge badge-outline-warning">Đang
-                                    thực hiện</span>
-                            </h3>
-                            <label class="description">Triển khai làm mới giao diện và công nghệ Online Office
-                                2022</label>
-                            <div class="row d-flex">
-                                <div class="col-md-4 col-sm-12 mb-3 mb-md-0">
-                                    <div class="task-report">
-                                        <div class="d-flex align-items-center">
-                                            <div
-                                                class="d-flex justify-content-center align-items-center icon-round-custom rounded-circle">
-                                                <i class="uil-calendar-alt"></i>
-                                            </div>
-                                            <div class="ms-2">
-                                                <h5 class="m-0 text-dark">Ngày bắt đầu</h5>
-                                                <h4>02/09/2022</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-12 mb-3 mb-md-0">
-                                    <div class="task-report">
-                                        <div class="d-flex align-items-center">
-                                            <div
-                                                class="d-flex justify-content-center align-items-center icon-round-custom rounded-circle">
-                                                <i class="uil-check-circle"></i>
-                                            </div>
-                                            <div class="ms-2">
-                                                <h5 class="m-0 text-dark">Ngày kết thúc</h5>
-                                                <h4>02/10/2022</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+    <div class="row text-dark fw-bold">
+        <div class="col-md-8 col-12 d-flex flex-column gap-1">
+            <div class="row">
+                <app-task-title [chude]="taskDetail.chude" [mscv]="taskDetail.mscv" [EditEnable]="isCreateBy"
+                    (reloadData)="getTaskDetail()"></app-task-title>
+            </div>
+            <div class="row col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="btn-wrap">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#standard-modal">Phản hồi</button>
+                            <button type="button" class="btn btn-primary">Quan tâm</button>
+                            <button type="button" class="btn btn-primary" *ngIf="isCreateBy">
+                                Đánh giá
+                            </button>
+                            <button type="button" class="btn btn-primary">Đã xử lý</button>
+                            <button type="button" class="btn btn-primary" *ngIf="isAssigner">Đề xuất kết thúc</button>
+                            <button type="button" class="btn btn-warning" *ngIf="isCreateBy" (click)="finishATask()">
+                                Kết thúc
+                            </button>
+                            <button type="button" class="btn btn-danger" *ngIf="isCreateBy">Xoá</button>
+                            <div class="dropdown text-dark">
+                                <button class="btn btn-secondary dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    ...
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" href="#" *ngIf="isCreateBy">Thêm người xem</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Thêm người tham gia</a></li>
+                                    <li><a class="dropdown-item" href="#">Không nhắc mới</a></li>
+                                    <li><a class="dropdown-item" href="#">Tạo công việc con</a></li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="col-3">
-                            <div>
-                                <button type="button" class="btn btn-primary" [routerLink]="'/tasks/new-task'">Thêm công
-                                    việc</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <ul class="nav nav-tabs nav-bordered mb-3">
-                            <li class="nav-item">
-                                <a href="#overview" data-bs-toggle="tab" aria-expanded="false" class="nav-link active">
-                                    <i class="mdi mdi-home-variant d-md-none d-block"></i>
-                                    <span class="d-none d-md-block">Tổng quan</span>
-                                </a>
-                            </li>
-                            <!-- <li class="nav-item">
-                                <a href="#activity" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
-                                    <i class="mdi mdi-home-variant d-md-none d-block"></i>
-                                    <span class="d-none d-md-block">Thảo luận</span>
-                                </a>
-                            </li> -->
-                            <li class="nav-item">
-                                <a href="#targets" data-bs-toggle="tab" aria-expanded="true" class="nav-link">
-                                    <i class="mdi-cog-outline d-md-none d-block"></i>
-                                    <span class="d-none d-md-block">Công việc</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#users" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
-                                    <i class="mdi mdi-account-multiple d-md-none d-block"></i>
-                                    <span class="d-none d-md-block">Danh sách tham gia</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#files" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
-                                    <i class="mdi mdi-cog-outline d-md-none d-block"></i>
-                                    <span class="d-none d-md-block">Tệp tin</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#setting" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
-                                    <i class="uil-cog d-md-none d-block"></i>
-                                    <span class="d-none d-md-block">Cài đặt công việc</span>
-                                </a>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="row col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Chi tiết</h4>
+                        <div class="ms-3">
+                            <div class="row">
+                                <div class="col-3">
+                                    Trạng thái:
+                                </div>
+                                <div class="col-8">
+                                    Đang thực hiện
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3">
+                                    Thuộc nhóm:
+                                </div>
+                                <div class="col-8">
+                                    Tên nhóm công việc
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3">
+                                    Dự án:
+                                </div>
+                                <div class="col-8" *ngIf="taskDetail.duAn">
+                                    {{taskDetail.duAn }}
+                                </div>
+                                <div class="col-8" *ngIf="taskDetail.duAn==null">
+                                    Công việc này không thuộc dự án nào
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Nội dung</h4>
+                        <div class="ms-3" [innerHTML]="taskDetail.noidung"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Tệp tin đính kèm</h4>
+                        <div class="ms-3">Chưa hoàn thành</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Văn bản đính kèm</h4>
+                        <div class="ms-3">Chưa hoàn thành</div>
+                    </div>
+                </div>
+            </div>
 
-        <div class="tab-content">
-            <div class="tab-pane show active" id="overview">
-                <app-task-overview></app-task-overview>
-            </div>
-            <!-- <div class="tab-pane" id="activity">
-                <app-task-activity></app-task-activity>
-            </div> -->
-            <div class="tab-pane" id="targets">
-                <app-task-targets></app-task-targets>
-            </div>
-            <div class="tab-pane" id="users">
-                <app-task-users></app-task-users>
-            </div>
-            <div class="tab-pane" id="files">
-                <app-task-files></app-task-files>
-            </div>
-            <div class="tab-pane" id="setting">
-                <app-task-setting></app-task-setting>
-            </div>
+            <app-task-history *ngIf="taskDetail" [mscv]="taskDetail.mscv" (reloadData)="getTaskDetail()"
+                [dsNhatKy]="taskDetail.nhatKyCongViec"></app-task-history>
+
+            <app-task-targets></app-task-targets>
+        </div>
+        <div class="col-md-4 col-12">
+            <app-task-duedate [batdau]="taskDetail.ngayBatDau" [hoanthanh]="taskDetail.ngayKetThuc"
+                (reloadData)="getTaskDetail()" [mscv]="taskDetail.mscv" [EditEnable]="isCreateBy"></app-task-duedate>
+            <app-task-users [dsThamGia]="taskDetail.danhSachNguoiXuLy" [nguoiTao]="taskDetail.nguoiTao"
+                [dsDuocXem]="taskDetail.danhSachNguoiDuocXem"></app-task-users>
         </div>
     </div>
+    <app-task-history *ngIf="taskDetail" [mscv]="taskDetail.mscv" (reloadData)="getTaskDetail()"></app-task-history>
 </div>

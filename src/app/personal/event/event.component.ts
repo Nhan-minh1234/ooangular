@@ -30,8 +30,15 @@ export class EventComponent implements OnInit {
   count = 500;
 
   config
+  
+
   constructor(private httpClient: HttpClient,  public generalService: GeneralService, private router: Router) { }
 
+  dateSelectedEvents
+  getEvents(a) {
+    this.dateSelectedEvents = a
+  }
+  events = []
   ngOnInit(): void {
     this.gData();
   }

@@ -23,7 +23,8 @@
     <div class="row">
         <div class="col-10">
             <div class="page-title-box">
-                <h4 class="page-title">Dự án đang xem</h4>
+                <h4 class="page-title">Danh sách dự án thuộc dự án:<b
+                        class="text-primary">{{currentProject.tenDuAn}}</b></h4>
             </div>
         </div>
     </div>
@@ -31,11 +32,12 @@
     <div class="row">
         <div class="col-9">
 
-            <table id="basic-datatable" class="table dt-responsive nowrap w-100">
+            <table id="basic-datatable" class="table table-bordered table-striped border
+            border-style table-hover table-centered mb-2 dt-responsive nowrap w-100 content-table">
                 <thead>
                     <tr>
-                        <th><span type="checkbox" title="Chọn/bỏ chọn tất cả"><input 
-                                    type="checkbox" name="công việc" /></span></th>
+                        <th><span type="checkbox" title="Chọn/bỏ chọn tất cả"><input type="checkbox"
+                                    name="công việc" /></span></th>
                         <th> Công việc thuộc dự án </th>
                         <th> Ngày bắt đàu </th>
                         <th> Ngày hoàn thành </th>
@@ -43,38 +45,53 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let item of eventListData | paginate: config" data-bs-toggle="modal"
-                    data-bs-target="#scrollable-modal">
-                        <td><span type="checkbox" title="Chọn/bỏ chọn tất cả"><input (change)="addlist(item.id,$event)" type="checkbox"
-                                    name="công việc" /></span></td>
-                        <td>{{item.name}}</td>
-                        <td>{{item.start|date:"dd/MM/yyyy"}}</td>
-                        <td>{{item.end|date:"dd/MM/yyyy"}}</td>
+                    <tr *ngFor="let item of taskByProjectData | paginate: config">
+                        <td> <input type="checkbox" (change)="addlist(item.mscv,$event)" class="form-check-input"
+                                [id]="item.mscv"></td>
+                        <td><a [routerLink]="'/tasks/task-detail/'+item.mscv">{{item.chuDe}}</a></td>
+                        <td>{{item.ngayBD|date:"dd/MM/yyyy"}}</td>
+                        <td>{{item.ngayKT |date:"dd/MM/yyyy"}}</td>
                     </tr>
                 </tbody>
             </table>
+            <div class="list row">
+                <div class="col-md-8">
+                    <pagination-controls id="paging" [previousLabel]="getLabel('previousBtn')"
+                        [nextLabel]="getLabel('nextBtn')" responsive="true" responsive="true"
+                        (pageChange)="handlePageChange($event)"></pagination-controls>
+                </div>
+                <div class="col-md-4">
+                    {{getLabel("itemsPerPage")}}:
+                    <select style="border: solid 1px rgb(230, 229, 229);" (change)="handlePageSizeChange($event)">
+                        <option *ngFor="let size of pageSizes" [ngValue]="size">
+                            {{ size }}
+                        </option>
+                    </select>
+                </div>
+            </div>
         </div>
         <div class="col-3">
-            <abbr style="width:200px;height:auto; float: right !important; ;" class="row">
-                <button [routerLink]="'/tasks/project-list'" type="button" class="btn btn-primary mb-2"> Thêm/sửa/xóa dự án
-                </button> 
-                <button [routerLink]="" type="button" class="btn btn-primary mb-2"> Đưa CV vào dự
-                    án </button>
-                <button (click)="test()" type="button" class="btn btn-primary"> Xóa CV khỏi dự án
-                </button>
-            </abbr>
-    </div>
-    <div class="list row">
-        <div class="col-md-8">
-            <pagination-controls id="paging" [previousLabel]="getLabel('previousBtn')" [nextLabel]="getLabel('nextBtn')"
-                responsive="true" responsive="true" (pageChange)="handlePageChange($event)"></pagination-controls>
+            <div class="list-group">
+                <div class="list-group-item active">Tác vụ</div>
+                <div class="list-group-item">
+                    <button [routerLink]="'/tasks/project-list'" type="button" class="btn btn-danger w-100 mb-2">
+                        Thêm/sửa/xóa Dự án
+                    </button>
+                    <button [routerLink]="'/tasks/pass-project'" type="button" class="btn btn-danger w-100 mb-2">
+                        Đưa CV vào Dự án
+                    </button>
+                    <button type="button" class="btn btn-danger w-100" (click)="RemoveTasksFromProject()">
+                        Xóa CV khỏi Dự án
+                    </button>
+                </div>
+                <div class="list-group-item active">
+                    Danh sách nhóm
+                </div>
+                <div class="list-group-item d-flex flex-column gap-3">
+                    <label class="pointer" *ngFor="let item of projectData"
+                        [ngClass]="{'text-danger':item.msda === currentProject.msda}"
+                        (click)="changeProject(item)">{{item.stt}}.
+                        {{item.tenDuAn}} <b *ngIf="item.msda === currentProject.msda">(Đang chọn)</b></label>
+                </div>
+            </div>
         </div>
-        <div class="col-md-4">
-            {{getLabel("itemsPerPage")}}:
-            <select style="border: solid 1px rgb(230, 229, 229);" (change)="handlePageSizeChange($event)">
-                <option *ngFor="let size of pageSizes" [ngValue]="size">
-                    {{ size }}
-                </option>
-            </select>
-        </div>
-    </div>

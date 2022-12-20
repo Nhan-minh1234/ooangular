@@ -6,6 +6,7 @@ import { EventComponent } from './event/event.component';
 import { FileCabinetComponent } from './file-cabinet/file-cabinet.component';
 import { NewEventComponent } from './new-event/new-event.component';
 import { NewFileCabinetComponent } from './new-file-cabinet/new-file-cabinet.component';
+import { AddWorkgroupComponent } from './add-workgroup/add-workgroup.component';
 
 import { PersonalComponent } from './personal.component';
 
@@ -44,6 +45,10 @@ const routes: Routes = [{
     {
       data: { "link": "/personal/add-business-card" },
       path: 'add-business-card',
+      component: AddBusinessCardComponent
+    },{
+      data: { "link": "/personal/add-workgroup" },
+      path: 'add-workgroup', 
       component: AddBusinessCardComponent
     },
   ]

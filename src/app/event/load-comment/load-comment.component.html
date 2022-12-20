@@ -1,0 +1,535 @@
+{{ EventComments | json }}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-1 my-auto">
+      <img
+        (click)="goBack()"
+        style="
+          cursor: pointer;
+          opacity: 0.5;
+          width: 30px;
+          height: auto;
+          margin: auto;
+        "
+        src="assets/imgs/left.png"
+      />
+    </div>
+    <div class="col-11">
+      <div class="page-title-box">
+        <h4 class="page-title">Xem Chi tiết Lịch Tuần</h4>
+      </div>
+    </div>
+  </div>
+  <ngx-loading
+    [show]="spinnerLoading"
+    [config]="{
+      primaryColour: 'whitesmoke',
+      backdropBorderRadius: '3px',
+      fullScreenBackdrop: true
+    }"
+  ></ngx-loading>
+  <!-- start page title -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Thông Báo</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <p>Có lỗi xảy ra khi kết nối đến máy chủ. Xin vui lòng thử lại</p>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Đóng
+          </button>
+          <!--<button (click)="getTaskList()" type="button" class="btn btn-primary">Thử lại</button>-->
+          <button
+            (click)="openNewEvent()"
+            type="button"
+            class="btn btn-primary"
+          >
+            Thử lại
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-9">
+      <!--End page title-->
+      <table
+        id="basic-datatable"
+        class="table table-bordered table-striped border border-style table-hover table-centered mb-2 dt-responsive nowrap w-100 content-table"
+      >
+        <thead>
+          <tr>
+            <th width="20%">{{ getLabel("dateCol") }}</th>
+            <th width="10%">{{ getLabel("timeCol") }}</th>
+            <th>{{ getLabel("descriptionCol") }}</th>
+            <th width="15%">{{ getLabel("locationCol") }}</th>
+            <th width="8%">Thao Tác</th>
+            <th width="3%">
+              <input
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                title="Chọn để đánh dấu tất cả hoặc hủy tất cả"
+                type="checkbox"
+                [(ngModel)]="masterSelectedApproved"
+                (change)="selectAll(masterSelectedApproved, EventComments)"
+              />
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="">
+            <td class="col-ngay">
+              <span class="col_ngay_content">
+                {{ getDate(EventComments ? EventComments.tgbatdau : "") }} ({{
+                  EventComments
+                    ? EventComments.tgbatdau
+                    : ("" | slice : 0 : 10 | date : "dd/MM/yyyy")
+                }})</span
+              ><br />
+              Đến<br />
+              <span class="col_ngay_content">
+                {{ getDate(EventComments ? EventComments.tgketthuc : "") }}
+                ({{
+                  EventComments
+                    ? EventComments.tgketthuc
+                    : ("" | slice : 0 : 10 | date : "dd/MM/yyyy")
+                }})</span
+              >
+            </td>
+            <td class="col-ngay">
+              <span class="col_tg">{{
+                EventComments
+                  ? EventComments.tgbatdau
+                  : ("" | date : "shortTime")
+              }}</span>
+              <br />
+              Tới <br />
+              <span class="col_tg">
+                {{
+                  EventComments
+                    ? EventComments.tgketthuc
+                    : ("" | date : "shortTime")
+                }}
+              </span>
+            </td>
+            <td>
+              <div
+                class="col_nd"
+                [ngStyle]="{
+                  'text-decoration': checkhuy(
+                    EventComments ? EventComments.huy : ''
+                  )
+                }"
+              >
+                {{ EventComments ? EventComments.noidung : "" }}
+              </div>
+              <div
+                [ngStyle]="{
+                  'text-decoration': checkhuy(
+                    EventComments ? EventComments.huy : ''
+                  )
+                }"
+              >
+                <span class="col_lable_title">Chủ trì: </span>
+                <span class="col_nd_content">{{
+                  EventComments ? EventComments.chutri : ""
+                }}</span>
+              </div>
+              <div *ngIf="EventComments && EventComments.chuanbi">
+                <span class="col_lable_title">Chuẩn bị: </span>
+                <span class="col_nd_content">{{
+                  EventComments ? EventComments.chuanbi : ""
+                }}</span>
+              </div>
+              <div
+                *ngIf="EventComments && EventComments.thanhphan"
+                [ngStyle]="{
+                  'text-decoration': checkhuy(
+                    EventComments ? EventComments.huy : ''
+                  )
+                }"
+              >
+                <span class="col_lable_title">Thành Phần: </span>
+                <span class="col_nd_content">{{
+                  EventComments ? EventComments.thanhphan : ""
+                }}</span>
+              </div>
+              <div>
+                <span class="col_lable_title">Danh sách liên quan: </span>
+                <span
+                  style="cursor: pointer"
+                  class="col_nd_content"
+                  (click)="showDSLQ(EventComments.dsLienQuan)"
+                  ><img
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="bottom"
+                    title="Danh sách liên quan"
+                    src="../../../assets/images/icon/iconEvent/hand_point.png"
+                /></span>
+              </div>
+
+              <div>
+                <span class="col_lable_title"
+                  >(<img
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="bottom"
+                    title="Người đăng ký"
+                    src="../../../assets/images/icon/iconEvent/AddNew.png"
+                  /><img
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="bottom"
+                    title="Người đăng ký"
+                    src="../../../assets/images/icon/iconEvent/cal-private.gif"
+                  /><span style="color: #85888d"
+                    >{{ EventComments ? EventComments.tennguoidangky : "" }},
+                    {{
+                      layThoiGianChenhLech(
+                        EventComments ? EventComments.ngaytao : ""
+                      )
+                    }}
+                    , lúc
+                    {{
+                      !EventComments
+                        ? ""
+                        : (EventComments.ngaytao | date : "shortTime")
+                    }}
+                  </span>
+                  )
+                  <span
+                    [routerLink]="[
+                      '/event/event-list/LoadComment-event/',
+                      EventComments ? EventComments.lichtuanid : ''
+                    ]"
+                  >
+                    <img
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="bottom"
+                      title="Xem phản hồi"
+                      src="../../../assets/images/icon/iconEvent/forum.gif"
+                    /><span style="font-weight: bold; color: red">
+                      ({{ EventComments ? EventComments.soComment : "" }})</span
+                    >
+                  </span>
+                </span>
+              </div>
+              <div *ngIf="EventComments && EventComments.pheduyet == '1'">
+                <span class="col_lable_title"
+                  >(<img
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="bottom"
+                    title="Người Duyệt"
+                    src="../../../assets/images/icon/iconEvent/accept.png"
+                  /><img
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="bottom"
+                    title="Người Duyệt"
+                    src="../../../assets/images/icon/iconEvent/cal-private.gif"
+                  /><span style="color: #85888d"
+                    >{{ EventComments ? EventComments.tennguoipheduyet : "" }},
+                    {{
+                      layThoiGianChenhLech(
+                        EventComments ? EventComments.ngaytao : ""
+                      )
+                    }}
+                    , lúc
+                    {{
+                      !EventComments
+                        ? ""
+                        : (EventComments.ngaytao | date : "shortTime")
+                    }}
+                  </span>
+
+                  )
+                </span>
+              </div>
+              <br />
+            </td>
+            <td
+              class="col_diadiem"
+              [ngStyle]="{
+                'text-decoration': checkhuy(
+                  EventComments ? EventComments.huy : ''
+                )
+              }"
+            >
+              {{ EventComments ? EventComments.diadiem : "" }}
+            </td>
+            <!-- <td class="text-center" >
+                              <div id="tooltip-container1">
+                                  <span class="d-inline-block" tabindex="0" data-bs-container="#tooltip-container1"
+                                      data-bs-toggle="tooltip" title="Chuyển thành lịch cá nhân">
+                                      <i class="uil-code"></i>
+                                  </span>
+                              </div>
+                          </td> -->
+            <td>
+              <div
+                class="align-eventcommentss-center"
+                *ngIf="EventComments && EventComments.huy == '1'"
+              >
+                <button
+                  class="btn-icon cusor"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="bottom"
+                  title="Duyệt"
+                  (click)="Approved(EventComments.lichtuanid)"
+                >
+                  <img src="../../../assets/images/icon/iconEvent/accept.png" />
+                </button>
+              </div>
+              <div class="align-eventcommentss-center">
+                <button
+                  [routerLink]="[
+                    '/event/event-list/update-event/',
+                    EventComments ? EventComments.lichtuanid : ''
+                  ]"
+                  class="btn-icon cusor"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="bottom"
+                  title="Sửa"
+                >
+                  <img src="../../../assets/images/icon/iconEvent/edit.gif" />
+                </button>
+              </div>
+              <div class="align-eventcommentss-center">
+                <button
+                  class="btn-icon cusor"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="bottom"
+                  title="Xóa"
+                  (click)="deleteEvent(EventComments.lichtuanid)"
+                >
+                  <img src="../../../assets/images/icon/iconEvent/delete.gif" />
+                </button>
+              </div>
+              <div
+                class="align-eventcommentss-center"
+                *ngIf="EventComments && EventComments.huy == '0'"
+              >
+                <button
+                  class="btn-icon cusor"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="bottom"
+                  title="Hủy"
+                  (click)="CancelEvent(EventComments.lichtuanid)"
+                >
+                  <img src="../../../assets/images/icon/iconEvent/Cancel.png" />
+                </button>
+              </div>
+              <div
+                class="align-eventcommentss-center"
+                *ngIf="EventComments && EventComments.huy == '0'"
+              >
+                <button
+                  class="btn-icon cusor"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="bottom"
+                  title="Chuyển thành lịch cá nhân"
+                >
+                  <img
+                    src="../../../assets/images/icon/iconEvent/LichCaNhan.png"
+                  />
+                </button>
+              </div>
+              <div
+                class="align-eventcommentss-center"
+                *ngIf="EventComments && EventComments.huy == '0'"
+              >
+                <button
+                  class="btn-icon cusor"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="bottom"
+                  title="Chuyển thành công việc"
+                >
+                  <img
+                    src="../../../assets/images/icon/iconEvent/task_tree.gif"
+                  />
+                </button>
+              </div>
+            </td>
+            <td>
+              <input
+                class="cusor"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                title="Chọn để đánh dấu"
+                type="checkbox"
+                [(ngModel)]="
+                  EventComments ? EventComments.status : spinnerLoading
+                "
+                (change)="
+                  onChangeChecked(
+                    EventComments.status,
+                    EventComments.lichtuanid
+                  )
+                "
+              />
+            </td>
+          </tr>
+          <!-- /.modal -->
+        </tbody>
+      </table>
+      <!-- /////////////////// Pagination -->
+    </div>
+    <div class="col-3">
+      <div class="list-group">
+        <button
+          type="button"
+          class="btn btn-success rounded mb-1"
+          data-bs-toggle="modal"
+          data-bs-target="#new-news-modal"
+          style="cursor: pointer"
+          [title]="getLabel('newBtn')"
+          img
+          (click)="openNewEvent()"
+          src="assets/imgs/plus.png"
+        >
+          Thêm mới lịch tuần
+        </button>
+        <button
+          type="button"
+          class="btn btn-success rounded mb-1"
+          (click)="ApprovedMultiple()"
+        >
+          Phê Duyệt
+        </button>
+        <button type="button" class="btn btn-success rounded mb-1">Hủy</button>
+        <button
+          type="submit"
+          name="ctl22$DANHMUC$ctl02$btnDel"
+          value="Xóa"
+          class="btn btn-success rounded mb-1"
+          (click)="deleteEventMultiple()"
+        >
+          Xóa
+        </button>
+        <button type="button" class="btn btn-success rounded mb-1">
+          In Lịch
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- <div>
+    <h5 style="background-color: #2185c5; padding: 15px; color: white">
+      Xem phản hồi
+      <span style="color: #d1f318; font-style: italic">
+        ({{ EventComments.soComment }})</span
+      >
+    </h5>
+    <div class="pad i">
+      <h6
+        style="
+          padding: 10px;
+          background-color: #2185c5;
+          color: white;
+          border-top-left-radius: 20px;
+          border-top-right-radius: 20px;
+        "
+      >
+        <span style="padding-left: 10px"> Nhập Phải Hồi</span>
+      </h6>
+    </div>
+    <div class="pad2 i">
+      <h6
+        style="
+          padding: 10px;
+          background-color: #2185c5;
+          color: white;
+          border-top-left-radius: 20px;
+          border-top-right-radius: 20px;
+          text-align: center;
+        "
+      >
+        <span> Người liên quan</span>
+      </h6>
+      <div style="text-align: center">
+        <span style="font-size: 14px; font-weight: bold"> Người 1</span>
+      </div>
+    </div>
+  </div> -->
+  <div class="row">
+    <div class="col-12">
+      <h6 style="padding: 10px; background-color: #2185c5; color: white">
+        <span style="padding-left: 10px">
+          Xem Phải Hồi<span style="color: #d1f318; font-style: italic">
+            ({{ EventComments ? EventComments.soComment : 0 }})</span
+          ></span
+        >
+      </h6>
+    </div>
+    <div class="col-9">
+      <div class="card mt-3 rounded">
+        <div class="card-body">
+          <h4 class="card-title">Phản hồi</h4>
+          <div class="row">
+            <!-- <div class="text-center load-more-comments"><i class="pointer">Hiển thị thêm bình luận</i></div> -->
+            <div
+              class="d-flex align-items-start"
+              *ngFor="let i of EventComments.nhatKyCongViec"
+            >
+              <app-avatar-tooltip
+                [fullname]="i.nguoiPhanHoi.hoTen"
+                [size]="'sm'"
+              >
+              </app-avatar-tooltip>
+              <div class="ms-2 mb-3">
+                <div class="d-flex align-items-center">
+                  <h5>i.nguoiPhanHoi.hoTen</h5>
+                  <i class="ms-1">i.thoiGianPhanHoi</i>
+                </div>
+                <div [innerHTML]="i.noiDung"></div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <angular-editor
+              [config]="editorConfig"
+              [(ngModel)]="comment.noidung"
+            ></angular-editor>
+            <div class="d-flex justify-content-end mt-1">
+              <button
+                type="button"
+                class="btn btn-success"
+                (click)="addAComment()"
+              >
+                <i class="uil-message"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-3" style="border: solid 1px rgb(230, 229, 229)">
+      <h6
+        style="
+          padding: 10px;
+          background-color: #2185c5;
+          color: white;
+          text-align: center;
+        "
+      >
+        <span style="padding-left: 10px"> Người liên quan</span>
+      </h6>
+      <div
+        *ngFor="let i of EventComments.dsLienQuan"
+        style="text-align: center"
+      >
+        <span style="font-size: 14; font-weight: bold">{{ i.hoTen }}</span>
+      </div>
+    </div>
+  </div>
+</div>

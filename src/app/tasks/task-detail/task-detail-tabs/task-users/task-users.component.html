@@ -1,28 +1,20 @@
-<div class="row">
-    <div class="d-flex justify-content-between">
-        <h3 class="text-dark">Danh sách tham gia</h3>
-        <div class="w-40">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                <span class="input-group-text text-primary"><i class="uil-search-alt"></i></span>
-            </div>
-        </div>
-    </div>
-    <div class="col-4" *ngFor="let i of[0,1,2,3,4,5,6,7,8,9]">
-        <div class="card intro rounded">
-            <div class="card-body">
-                <div class="d-flex flex-column justify-content-between align-items-center">
-                    <img src="assets/images/users/avatar-2.jpg" class="avatar-md rounded-circle" alt="avatar">
-                    <h4 class="text-dark mb-0">Nguyễn Hoài Thương {{i}}</h4>
-                    <i>Team kĩ thuật</i>
-                    <div class="d-flex justify-content-evenly w-75 mt-3">
-                        <div class="task-report">
-                            <h4><i class="uil-receipt-alt"></i>20</h4>
-                            <b>Công việc</b>
-                        </div>
-                        <div class="task-report">
-                            <h4><i class="uil-receipt-alt text-success"></i>10</h4>
-                            <b>Hoàn thành</b>
+<div class="row col-12">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Người xử lý chính</h4>
+            <div class="list-group mt-1">
+                <div class="list-group-item">
+                    <div class="d-flex align-items-start" *ngIf="nguoiTao">
+                        <!-- <img src="assets/images/users/avatar-2.jpg" class="avatar-sm rounded-circle" alt="avatar"> -->
+                        <app-avatar-tooltip [fullname]="nguoiTao.hoTen" [size]="'sm'">
+                        </app-avatar-tooltip>
+                        <div class="ms-1 d-flex flex-column gap-1">
+                            <h5 class="text-dark mb-0">{{nguoiTao.hoTen}}</h5>
+                            <i class="text-success fs-6">Đã xử lý</i>
+                            <b class="fs-6 text-success" *ngIf="nguoiTao.soLanXem>0">Xem {{i.soLanXem}} lần, lần cuối:
+                                {{nguoiTao.thoiGianXem}}</b>
+                            <i class="fs-6 text-danger" *ngIf="nguoiTao.soLanXem<1">Chưa xem</i>
+                            <label>Đánh giá:</label>
                         </div>
                     </div>
                 </div>
@@ -30,22 +22,78 @@
         </div>
     </div>
 </div>
-<nav>
-    <ul class="pagination">
-        <li class="page-item">
-            <a class="page-link" href="javascript: void(0);" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-            </a>
-        </li>
-        <li class="page-item"><a class="page-link" href="javascript: void(0);">1</a></li>
-        <li class="page-item"><a class="page-link" href="javascript: void(0);">2</a></li>
-        <li class="page-item"><a class="page-link" href="javascript: void(0);">3</a></li>
-        <li class="page-item"><a class="page-link" href="javascript: void(0);">4</a></li>
-        <li class="page-item"><a class="page-link" href="javascript: void(0);">5</a></li>
-        <li class="page-item">
-            <a class="page-link" href="javascript: void(0);" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-            </a>
-        </li>
-    </ul>
-</nav>
+<div class="row col-12">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Người tạo</h4>
+            <div class="list-group mt-1">
+                <div class="list-group-item">
+                    <div class="d-flex align-items-start" *ngIf="nguoiTao">
+                        <!-- <img src="assets/images/users/avatar-2.jpg" class="avatar-sm rounded-circle" alt="avatar"> -->
+                        <app-avatar-tooltip [fullname]="nguoiTao.hoTen" [size]="'sm'">
+                        </app-avatar-tooltip>
+                        <div class="ms-1 d-flex flex-column gap-1">
+                            <h5 class="text-dark mb-0">{{nguoiTao.hoTen}}</h5>
+                            <i class="text-success fs-6">Đã xử lý</i>
+                            <b class="fs-6 text-success" *ngIf="nguoiTao.soLanXem>0">Xem {{i.soLanXem}} lần, lần cuối:
+                                {{nguoiTao.thoiGianXem}}</b>
+                            <i class="fs-6 text-danger" *ngIf="nguoiTao.soLanXem<1">Chưa xem</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row col-12">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Phối hợp thực hiện</h4>
+            <div class="list-group mt-1">
+                <div class="list-group-item" *ngFor="let i of dsThamGia">
+                    <div class="d-flex align-items-start">
+                        <!-- <img src="assets/images/users/avatar-2.jpg" class="avatar-sm rounded-circle" alt="avatar"> -->
+                        <app-avatar-tooltip [fullname]="i.hoTen" [size]="'sm'">
+                        </app-avatar-tooltip>
+                        <div class="ms-1 d-flex flex-column gap-1">
+                            <h5 class="text-dark mb-0">{{i.hoTen}}</h5>
+                            <i class="text-success fs-6">Đã xử lý</i>
+                            <b class="fs-6 text-success" *ngIf="i.soLanXem>0">Xem {{i.soLanXem}} lần, lần cuối:
+                                {{i.thoiGianXem}}</b>
+                            <i class="fs-6 text-danger" *ngIf="i.soLanXem<1">Chưa xem</i>
+                            <label>Đánh giá:</label>
+                        </div>
+                    </div>
+                    <!-- <div class="text-end">
+                        <span class="badge bg-primary me-1">Kĩ thuật</span>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row col-12">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Được xem</h4>
+            <div class="list-group mt-1">
+                <div class="list-group-item" *ngFor="let i of dsDuocXem">
+                    <div class="d-flex align-items-start">
+                        <!-- <img src="assets/images/users/avatar-2.jpg" class="avatar-sm rounded-circle" alt="avatar"> -->
+                        <app-avatar-tooltip [fullname]="i.hoTen" [size]="'sm'">
+                        </app-avatar-tooltip>
+                        <div class="ms-1 d-flex flex-column gap-1">
+                            <h5 class="text-dark mb-0">{{i.hoTen}}</h5>
+                            <b class="fs-6 text-success" *ngIf="i.soLanXem>0">Xem {{i.soLanXem}} lần, lần cuối:
+                                {{i.thoiGianXem}}</b>
+                            <i class="fs-6 text-danger" *ngIf="i.soLanXem<1">Chưa xem</i>
+                        </div>
+                    </div>
+                    <!-- <div class="text-end">
+                        <span class="badge bg-primary me-1">Kĩ thuật</span>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

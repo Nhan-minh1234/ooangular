@@ -14,17 +14,13 @@
     color: #476cff;
 }
 
-.event-item>div::before {
-    margin-right: 20px;
+.event-item>div>div::before {
+    position: absolute;
+    left: 0;
     content: '';
     width: 3px;
     height: 70px;
     background-color: rgb(0, 0, 0);
-}
-
-.event-item>div>.btn {
-    right: 40px;
-    position: absolute;
 }
 
 .event-item {

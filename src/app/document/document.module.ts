@@ -15,6 +15,7 @@ import { NewTextGoComponent } from './new-text-go/new-text-go.component';
 import { UtilitiesModule } from '../utilities/utilities.module';
 import { FormsModule } from '@angular/forms';
 import { AllTextComponent } from './all-text/all-text.component';
+import { DetailDocumentComponent } from './detail-document/detail-document.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AllTextComponent } from './all-text/all-text.component';
     TextSourceComponent,
     NewDocumentComponent,
     NewTextGoComponent,
-    AllTextComponent
+    AllTextComponent,
+    DetailDocumentComponent
 
   ],
   imports: [

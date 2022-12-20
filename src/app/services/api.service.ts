@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { GeneralService } from './general.service';
 import { timeout, catchError } from 'rxjs/operators';
+import { UserDetailComponent } from '../admin/user-detail/user-detail.component';
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +13,65 @@ export class ApiservicesService {
     login: '/api/Users/token',
     getUserByID: '/api/Users/GetUserByUserId/',
     getAllUsers: '/api/Users/GetAllUsers',
+
     updateUserInfo: '/api/Users/UpdateUser',
-    getTasks:'/api/Tasks/GetAllTasks/',
+    getTasks: '/api/Tasks/GetAllTasks/',
+
     getTaskDetail: '/api/Tasks/GetTaskDetail/',
     createNewTask: '/api/Tasks/CreateNewTask',
     getAllUserGroups: '/api/Groups/GetAllGroups',
-    uploadFile: '/api/File/Upload?subDirectory=',
-    downloadFile: '/api/File/Download'
+    uploadFile: '/api/File/Upload?subDirectory',
+    downloadFile: '/api/File/Download',
+
+
+    getAllGroupsByUserld:'/api/Users/GetAllGroupsByUserId/', // nhóm theo userId
+    deleteUser:'/api/Users/DeleteUser', // Xóa người dùng 'rồi '
+    addNewUser:'/api/Users/AddNewUser/', // thêm người dùng 'rồi '
+    removeOneSelectedGroupFromUser:'/api/Users/RemoveOneSelectedGroupFromUser', // xóa 1 nhóm khỏi người dùng /
+    assignMultiRightsToUser:'/api/Users/AssignMultiRightsToUser' , //gán nhiều quyền cho người dùng / r
+    removeAllRightFromUser:'/api/Users/RemoveOneRightFromUser', //Xóa tất cả quyền khỏi người dùng / r
+    assignMultiGroupsToUser:'/api/Users/AssignOneGroupToUser', // gán nhiều nhóm/phòng ban cho người dùng / 
+​    removeMultiSelectedGroupsFromUser:'/api/Users/RemoveMultiSelectedGroupsFromUser', //xóa nhiều nhóm được chỉ định cho khỏi người dùng /
+    getUserByUserName : '/api/Users/GetUserByUserName/', // Lấy thông tin chi tiết người dùng theo Username 
+    lockUserById: '/api/Users/LockUserById', // Khóa User
+    getAllUsersByStatus:'/api/Users/GetAllUsersByStatus', // Trạng thái user
+    resetUserPasswordById:'/api/Users/ResetUserPasswordById',//reset mật khẩu
+    
+    
+
+    GetAllTasksCategoryByUserId: '/api/Tasks/GetAllTasksCategoryByUserId',
+    UpdateTaskTitle: '/api/Tasks/UpdateTaskTitle',
+    AddCategoryToTask: '/api/Tasks/AddCategoryToTask',
+    AssignNewParticipantToTask: '/api/Tasks/AssignNewParticipantToTask',
+    AssignNewViewerToTask: '/api/Tasks/AssignNewViewerToTask',
+    DelayTask: '/api/Tasks/DelayTask',
+    AssignNewListParticipantToTask: '/api/Tasks/AssignNewListParticipantToTask',
+    AssignNewListViewerToTask: '/api/Tasks/AssignNewListViewerToTask',
+    FollowATask: '/api/Tasks/FollowATask',
+    ChangeMajorAssignment: '/api/Tasks/ChangeMajorAssignment',
+    RequestFinishATask: '/api/Tasks/RequestFinishATask',
+    FinishATask: '/api/Tasks/FinishATask',
+    AddNewTaskHistory: '/api/Tasks/AddNewTaskHistory',
+    GetAllTasksProject: '/api/Tasks/GetAllTasksProject',
+    getAllRights: '/api/Rights/GetAllRights',
+    getAllRightsByUserld: '/api/Users/GetAllRightsByUserId/',
+    UpdateTasksCategory: '/api/Tasks/UpdateTasksCategory',
+    DeleteATasksCategory: '/api/Tasks/DeleteATasksCategory',
+    CreateNewTasksCategory: '/api/Tasks/CreateNewTasksCategory',
+    GetAllTasksByCategory: '/api/Tasks/GetAllTasksByCategory',
+    RemoveListOfTasksFromCategory: '/api/Tasks/RemoveListOfTasksFromCategory',
+    GetAllTasksNotInAnyCategory: '/api/Tasks/GetAllTasksNotInAnyCategory',
+    AddTasksToCategory: '/api/Tasks/AddTasksToCategory',
+    GetAllTasksByProjectId: '/api/Tasks/GetAllTasksByProjectId',
+    UpdateTasksProject: '/api/Tasks/UpdateTasksProject',
+    CreateATasksProject: '/api/Tasks/CreateATasksProject',
+    DeleteTasksProject: '/api/Tasks/DeleteTasksProject',
+    RemoveTasksFromProject: 'api/Tasks/RemoveTasksFromProject',
+    GetAllTasksNotInAnyProject: '/api/Tasks/GetAllTasksNotInAnyProject',
+    AddTasksToProject: '/api/Tasks/AddTasksToProject',
+    GetAllTasksSample: '/api/Tasks/GetAllTasksSample',
+    TasksSampleDetail: '/api/Tasks/TasksSampleDetail'
+
   }
 
   constructor(private httpClient: HttpClient, private router: Router, private generalService: GeneralService) {
@@ -48,10 +101,12 @@ export class ApiservicesService {
 
   }
   httpCall(url, header, body, method, showErr) {
+    //Ở đây đã có code sẵn truyền.
     url = this.generalService.appConfig.API_BASE_URL + url;
     if (this.generalService.userData != null) {
-      header['Authorization'] = 'Bearer ' + this.generalService.userData.token;
+      header['Authorization'] = `Bearer ${this.generalService.userData.token}`;
     }
+
     return new Promise((resolve, reject) => {
       //use angular http        
       if (method == 'get') {
@@ -59,7 +114,7 @@ export class ApiservicesService {
           .pipe(
             timeout(this.defaultTimeout),
             catchError(e => {
-              return Promise.reject('TimeOut');;
+              return Promise.reject('TimeOut');
             })
           )
           .subscribe(res => {
@@ -67,8 +122,8 @@ export class ApiservicesService {
             resolve(res);
           }, (err) => {
             console.log(err)
-            if(showErr)
-            this.generalService.showErrorToast(0,'Đã xảy ra lỗi kết nối với hệ thống. Xin vui lòng thử lại.')
+            if (showErr)
+              this.generalService.showErrorToast(0, 'Đã xảy ra lỗi kết nối với hệ thống. Xin vui lòng thử lại.')
             reject(err);
           });
       }
@@ -85,8 +140,8 @@ export class ApiservicesService {
             resolve(res);
           }, (err) => {
             console.log(err)
-            if(showErr)
-            this.generalService.showErrorToast(0,'Đã xảy ra lỗi kết nối với hệ thống. Xin vui lòng thử lại.')
+            if (showErr)
+              this.generalService.showErrorToast(0, 'Đã xảy ra lỗi kết nối với hệ thống. Xin vui lòng thử lại.')
             reject(err);
           });
       }
@@ -103,8 +158,8 @@ export class ApiservicesService {
             resolve(res);
           }, (err) => {
             console.log(err)
-            if(showErr)
-            this.generalService.showErrorToast(0,'Đã xảy ra lỗi kết nối với hệ thống. Xin vui lòng thử lại.')
+            if (showErr)
+              this.generalService.showErrorToast(0, 'Đã xảy ra lỗi kết nối với hệ thống. Xin vui lòng thử lại.')
             reject(err);
           });
       }
@@ -121,8 +176,8 @@ export class ApiservicesService {
             resolve(res);
           }, (err) => {
             console.log(err)
-            if(showErr)
-            this.generalService.showErrorToast(0,'Đã xảy ra lỗi kết nối với hệ thống. Xin vui lòng thử lại.')
+            if (showErr)
+              this.generalService.showErrorToast(0, 'Đã xảy ra lỗi kết nối với hệ thống. Xin vui lòng thử lại.')
             reject(err);
           });
       }
@@ -139,8 +194,8 @@ export class ApiservicesService {
             resolve(res);
           }, (err) => {
             console.log(err)
-            if(showErr)
-            this.generalService.showErrorToast(0,'Đã xảy ra lỗi kết nối với hệ thống. Xin vui lòng thử lại.')
+            if (showErr)
+              this.generalService.showErrorToast(0, 'Đã xảy ra lỗi kết nối với hệ thống. Xin vui lòng thử lại.')
             reject(err);
           });
       }
@@ -148,8 +203,7 @@ export class ApiservicesService {
   }
 
 
-  async initDataFromServer()
-  {
+  async initDataFromServer() {
     this.getUserInfo();
     this.getAllUsers(null, null);
   }
@@ -177,13 +231,14 @@ export class ApiservicesService {
       let result = <any>res
       if (result.succeeded) {
         this.generalService.allUsers = result.data;
-        this.generalService.allUsersWithGroups = this.generalService.groupByKey(result.data,'groupChinhName')
+        this.generalService.allUsersWithGroups = this.generalService.groupByKey(result.data, 'groupChinhName')
         this.generalService.allUserGroupsKey = Object.keys(this.generalService.allUsersWithGroups)
       }
     } catch (error) {
 
     }
   }
-
  
+
+
 }

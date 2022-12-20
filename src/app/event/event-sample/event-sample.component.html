@@ -1,131 +1,115 @@
-<div class="container-fluid">
-    <div class="col-11">
-        <div class="page-title-box">
-            <h4 class="page-title">Lịch tuần mẫu</h4>
-        </div>
+<div class="container-fluid row">
+  <div class="row">
+    <div class="col-1 my-auto">
+      <img
+        (click)="goBack()"
+        style="
+          cursor: pointer;
+          opacity: 0.5;
+          width: 30px;
+          height: auto;
+          margin: auto;
+        "
+        src="assets/imgs/left.png"
+      />
     </div>
-
-    <table class="table table-hover table-centered mb-0">
+    <div class="col-11">
+      <div class="page-title-box">
+        <h4 class="page-title">Danh Sách Lịch Tuần Mẫu</h4>
+      </div>
+    </div>
+  </div>
+  <div class="col-9">
+    <div class="row">
+      <table
+        id="basic-datatable"
+        class="table table-bordered table-striped border border-style table-hover table-centered mb-2 dt-responsive nowrap w-100 content-table"
+      >
         <thead>
-            <tr>
-                <th>Tên</th>
-                <th>Ngày</th>
-                <th>Giờ</th>
-                <th>Nội dung</th>
-                <th>Địa điểm</th>
-            </tr>
+          <tr>
+            <th width="5%">STT</th>
+            <th>Tiêu Đề</th>
+            <th>Lặp Lại</th>
+          </tr>
         </thead>
+        <tr *ngIf="spinnerLoading">
+          <td colspan="3" style="background-color: white">
+            <div class="lds-facebook" style="width: 100%; margin-left: 20%">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </td>
+        </tr>
         <tbody>
-            <tr *ngFor="let i of eventSampleData" data-bs-toggle="modal" class="pointer" data-bs-target="#event-sample-modal">
-                <td>{{i.name}}</td>
-                <td>{{i.date}}</td>
-                <td>14h00</td>
-                <td>Đi học</td>
-                <td>Quận 12
-                </td>
-            </tr>
-            <div id="event-sample-modal" class="modal fade" tabindex="-1" role="dialog"
-                aria-labelledby="standard-modalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="standard-modalLabel">Chi tiết lịch tuần mẫu</h4>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
-                        </div>
-                        <div class="modal-body">
-                            <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
-                                <li class="nav-item">
-                                    <a href="#detailTab" data-bs-toggle="tab" aria-expanded="false"
-                                        class="nav-link rounded-0 active">
-                                        <i class="mdi mdi-information d-md-none d-block"></i>
-                                        <span class="d-none d-md-block">Thông Tin</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#assigneeTab" data-bs-toggle="tab" aria-expanded="true"
-                                        class="nav-link rounded-0">
-                                        <i class="mdi mdi-key d-md-none d-block"></i>
-                                        <span class="d-none d-md-block">Danh sách tham gia</span>
-                                    </a>
-                                </li>
-                            </ul>
+          <tr
+            *ngFor="let i of eventSampleData | paginate : config; index as in"
+          >
+            <td>
+              <a
+                [routerLink]="[
+                  '/event/new-event-sample/detail',
+                  i ? i.lichtuanid : null
+                ]"
+                style="text-decoration: none"
+                >{{ in + 1 }}</a
+              >
+            </td>
 
-                            <div class="tab-content">
-                                <div class="tab-pane  show active" id="detailTab">
-                                    <div class="row">
-                                        <div class="mb-3 col-12">
-                                            <label for="simpleinput" class="form-label">Tiêu đề:</label>
-                                            <input [readonly]="editable" type="text" id="simpleinput"
-                                                class="form-control">
-                                        </div>
-                                        <div class="mb-3 col-lg-6 col-sm-12 row">
-                                            <label for="simpleinput" class="form-label">Bắt đầu:</label>
-                                            <div class="col-lg-6 col-sm-12">
-                                                <input [readonly]="editable" class="form-control" id="example-date"
-                                                     type="date"
-                                                    name="date">
-                                            </div>
-                                            <div class="col-lg-6 col-sm-12">
-                                                <input [readonly]="editable" class="form-control" id="example-time"
-                                                     type="time"
-                                                    name="time">
-                                            </div>
-                                        </div>
-                                        <div class="mb-3 col-lg-6 col-sm-12 row">
-                                            <label for="simpleinput" class="form-label">Kết thúc:</label>
-                                            <div class="col-lg-6 col-sm-12">
-                                                <input [readonly]="editable" class="form-control" id="example-date"
-                                                     type="date"
-                                                    name="date">
-                                            </div>
-                                            <div class="col-lg-6 col-sm-12">
-                                                <input [readonly]="editable" class="form-control" id="example-time"
-                                                     type="time"
-                                                    name="time">
-                                            </div>
-                                        </div>
-                                        <div class="mb-3 col-12">
-                                            <label for="simpleinput" class="form-label">Nội dung:</label>
-                                            <textarea class="form-control" [readonly]="editable" id="example-textarea"
-                                                rows="5"></textarea>
-                                        </div>
-                                        <div class="mb-3 col-12">
-                                            <label for="simpleinput" class="form-label">Địa điểm:</label>
-                                            <select id="example-multiselect" [disabled]="editable" class="form-control">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="tab-pane" id="assigneeTab">
-                                    <p>{{'Đang cập nhật'|uppercase}}</p>
-                                </div>
-                            </div>
-                            
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Đóng</button>
-                            <button *ngIf="!editable" type="button" class="btn btn-warning"
-                            (click)="cancelEditEvent()">Huỷ</button>
-                            <button *ngIf="!editable" (click)="close()" type="button"
-                            class="btn btn-success">Lưu</button>
-                            <button *ngIf="editable" type="button" class="btn btn-primary"
-                                (click)="editEvent()">Sửa</button>
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
-
-            <button [routerLink]="['/event/new-event-sample']" type="button" class="btn btn-info">
-                Thêm mới
-            </button>
+            <td style="color: rgb(46, 22, 169); font-weight: bold">
+              <a
+                [routerLink]="[
+                  '/event/new-event-sample/detail',
+                  i ? i.lichtuanid : null
+                ]"
+                style="text-decoration: none"
+              >
+                {{ i.tieude }}</a
+              >
+            </td>
+            <td>{{ i.laplai ? "Lặp Lại" : " Không Lặp Lại" }}</td>
+          </tr>
         </tbody>
-    </table>
-
+      </table>
+    </div>
+    <div class="list row">
+      <div class="col-md-9">
+        <pagination-controls
+          id="paging"
+          [previousLabel]="'Quay lại'"
+          [nextLabel]="'Tiếp tục'"
+          responsive="true"
+          responsive="true"
+          (pageChange)="handlePageChange($event)"
+        ></pagination-controls>
+      </div>
+      <div class="col-md-3">
+        Số lượng thư mục
+        <select
+          style="border: solid 1px rgb(230, 229, 229)"
+          (change)="handlePageSizeChange($event)"
+        >
+          <option *ngFor="let size of pageSizes" [ngValue]="size">
+            {{ size }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <!---->
+  <div class="col-3">
+    <div class="list-group">
+      <button
+        [routerLink]="['/event/new-event-sample']"
+        type="button"
+        class="btn btn-info"
+      >
+        Thêm mới
+      </button>
+    </div>
+  </div>
 </div>
+<!--modal-->
+
+<!---->
+<!--Cách biệt-->

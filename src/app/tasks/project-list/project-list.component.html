@@ -23,108 +23,86 @@
         </div>
         <div class="col-10">
             <div class="page-title-box">
-                <h4 class="page-title">Dự án công việc</h4>
+                <h4 class="page-title">Dự án công việc:</h4>
             </div>
         </div>
     </div>
-    
+
     <div class="row">
         <div class="col-10">
-    <table id="basic-datatable" class="table table-striped table-hover dt-responsive nowrap w-100">
-        <thead>
-            <tr>
-                <th>STT</th>
-                <th>Tên dự án</th>
-                <th>Tình trạng</th>
-            
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of eventListData | paginate: config" data-bs-toggle="modal"
-            data-bs-target="#scrollable-modal" (click)="seeDetail(item)">
-                <td>{{item.number}}</td>
-                <td>{{item.name}}</td>
-                <td>{{item.status}}</td>
-            </tr>
-            <tr>
-                <td><select [(ngModel)]="newlist.number"  name="" id="">
-                    <option *ngFor="let i of number()" >{{i}}</option>
-                    
-                </select></td>
-                <td><input  [(ngModel)]="newlist.name"  type="text" id="" style="width:100%;" />
-                </td>
-                <td>
-                    <input (click)="clicknew()" type="submit" name="" value="Thêm mới"  />
-                </td>
-            </tr>
-            <div class="modal fade" id="scrollable-modal" tabindex="-1" role="dialog"
-            aria-labelledby="scrollableModalTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="scrollableModalTitle">Chi tiết dự án</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
-                    </div>
-                    <div class="modal-body">
-                        <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
-                            <li class="nav-item">
-                                <a href="#detailTab" data-bs-toggle="tab" aria-expanded="false"
-                                    class="nav-link rounded-0 active">
-                                    <i class="mdi mdi-information d-md-none d-block"></i>
-                                    <span class="d-none d-md-block">Thông tin</span>
-                                </a>
-                            </li>
-                           
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane  show active" id="detailTab">
-
-                                <div class="row">
-                                    <div class="mb-3 col-12">
-                                        <label for="simpleinput" class="form-label">STT</label>
-                                        <input [readonly]="editable" type="text" id="simpleinput"
-                                            [(ngModel)]="eventDetail.title" class="form-control">
-                                    </div>
-                                   
-                                    <div class="mb-3 col-12">
-                                        <label for="simpleinput" class="form-label">Tên dự án</label>
-                                        <textarea class="form-control" [readonly]="editable" id="example-textarea"
-                                            [(ngModel)]="eventDetail.description" rows="1"></textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="example-fileinput" class="form-label">Tình trạng</label>
-                                        <select class="form-select" id="example-select" >
-                                            <option >Đã xử lý</option>
-                                            <option>Chưa xử lý</option>
-                                        </select>
-                                    </div>
-                                  
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="assigneeTab">
-                                <p>{{'working'|uppercase}}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                        <button *ngIf="!editable" type="button" class="btn btn-warning"
-                            (click)="cancelEditEvent()">Huỷ</button>
-                        <button *ngIf="!editable" (click)="close()" type="button" class="btn btn-success">Lưu</button>
-                        <button *ngIf="editable" type="button" class="btn btn-primary"
-                            (click)="editEvent()">Sửa</button>
-                        <button type="button" class="btn btn-danger" >Xóa</button>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-        </tbody>
-        </table>
+            <table id="basic-datatable" class="table table-bordered table-striped border-color-style
+             table-hover table-centered mb-2 dt-responsive nowrap w-100 content-table">
+                <thead>
+                    <tr>
+                        <th class="d-flex justify-content-center">STT</th>
+                        <th>Tên dự án</th>
+                        <th>Tình trạng</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of projectData | paginate: config">
+                        <td class="text-center" style="width: 10%;">
+                            <label *ngIf="projectEditData.msda !== item.msda">
+                                {{item.stt}}
+                            </label>
+                            <select class="form-select" name="sttEdit" [(ngModel)]="projectEditData.stt"
+                                *ngIf="projectEditData.msda === item.msda">
+                                <option *ngFor="let i of numbers" [value]="i">{{i}}
+                                </option>
+                            </select>
+                        </td>
+                        <td>
+                            <label *ngIf="projectEditData.msda !== item.msda">
+                                {{item.tenDuAn}}
+                            </label>
+                            <input [(ngModel)]="projectEditData.tenDuAn" *ngIf="projectEditData.msda === item.msda"
+                                type="text" name="tenDuAnEdit" id="tenDuAn" class=" form-control">
+                        </td>
+                        <td>
+                            <label *ngIf="projectEditData.msda !== item.msda">
+                                {{item.tinhTrang === 0 ? 'Chưa hoàn thành' : 'Đã kết thúc'}}
+                            </label>
+                            <select class="form-select" name="Tình trạng dự án" id="tinhtrangDA"
+                                *ngIf="projectEditData.msda === item.msda" [(ngModel)]="projectEditData.tinhTrang">
+                                <option value="0">Chưa hoàn thành</option>
+                                <option value="1">Đã kết thúc</option>
+                            </select>
+                        </td>
+                        <td class="text-center gap-3 d-flex justify-content-center gap-3">
+                            <button type="button" *ngIf="projectEditData.msda !== item.msda" (click)="projectEdit(item)"
+                                class="btn btn-warning"><i class="uil-edit-alt"></i></button>
+                            <button type="button" *ngIf="projectEditData.msda !== item.msda"
+                                (click)="projectDelete(item.msda)" class="btn btn-danger"><i
+                                    class="uil-trash-alt"></i></button>
+                            <button type="button" (click)="projectSaveEdit(item)"
+                                *ngIf="projectEditData.msda === item.msda" class="btn btn-success">
+                                <i class="uil-check"></i>
+                            </button>
+                            <button type="button" (click)="projectCancelEdit()"
+                                *ngIf="projectEditData.msda === item.msda" class="btn btn-danger">
+                                <i class="uil-times"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><select [(ngModel)]="projectCreateData.stt" name="" id="">
+                                <option *ngFor="let i of numbers">{{i}}</option>
+                            </select></td>
+                        <td><input [(ngModel)]="projectCreateData.tenda" type="text" id="" style="width:100%;" />
+                        </td>
+                        <td>
+                            <button type="button" (click)="projectCreateNew()" class="btn btn-primary">Thêm mới</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <div class="list row">
             <div class="col-md-8">
-                <pagination-controls id="paging" [previousLabel]="getLabel('previousBtn')" [nextLabel]="getLabel('nextBtn')"
-                    responsive="true" responsive="true" (pageChange)="handlePageChange($event)"></pagination-controls>
+                <pagination-controls id="paging" [previousLabel]="getLabel('previousBtn')"
+                    [nextLabel]="getLabel('nextBtn')" responsive="true" responsive="true"
+                    (pageChange)="handlePageChange($event)"></pagination-controls>
             </div>
             <div class="col-md-4">
                 {{getLabel("itemsPerPage")}}:

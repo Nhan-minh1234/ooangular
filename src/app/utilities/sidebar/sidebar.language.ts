@@ -12,11 +12,10 @@ let data = [
     },
     'routing': [
       '/task-list',
-      '/task-report',
-      '/task-autocomplete',
+      '/task-report',      
       '/task-samples',
       "/report",
-      "/periodic-report",
+      "/periodical-report",
       "/project",
       "/project-group",   
       "/topic"
@@ -102,16 +101,13 @@ let data = [
     "id": "document",
     "EN": {
       "title": "Van ban [Eng]",
-      "items": ["all-text", "Inoming Text","Text go","Internal Text","Search","Create Folder","Text Source","Text Inheritance"]
+      "items": ["all-text", "Search","Create Folder","Text Source","Text Inheritance"]
     },
-    "VN": {"title": "Văn bản","items": [ "Tất cả văn bản","Văn bản đến","Văn bản đi","Văn bản nội bộ","Tìm kiếm","Tạo thư mục","Nguồn văn bản","Kế thừa văn bản"
+    "VN": {"title": "Văn bản","items": [ "Tất cả văn bản","Tìm kiếm","Tạo thư mục","Nguồn văn bản","Kế thừa văn bản"
       ]
     },
     "routing":  [
       '/all-text',
-      '/incoming-text',
-      '/text-go',
-      '/internal-text',
       '/search',
       '/create-folder',
       '/text-source',
