@@ -86,13 +86,13 @@ export class UserManagerComponent implements OnInit {
   {
     "userId": "",
     "fullName": "",
-    "groupIdChinh": "",
+    "groupIdChinh": "GP005",
     "title": "",
     "email": "",
     "phone": "",
     "active": 0,
     "nguoiTao": "U001",
-    "isLeader": 0
+    "isLeader": 1
   }
   ganquyen={
   "userId": "",
@@ -262,20 +262,17 @@ async updateUserName(){
     // Dạ vẫn báo lỗi ạ
     this.update.userId=this.user.userId
     this.update.fullName=this.user.fullName
-    this.update.groupIdChinh=this.user.groupIdChinh
     this.update.title=this.user.title
     this.update.email=this.user.email
     this.update.phone=this.user.phone
-    this.update.active=this.user.active
-    this.update.nguoiTao=this.user.nguoiTao
-    this.update.isLeader=this.user.isLeader
-    res = await this.api.httpCall(this.api.apiLists.updateUserInfo,{},this.update, 'post',true);
-    result=<any>res
-    console.log(result)
-    console.log('a')
-    this.capNhatUser = Array.from(result)
-    console.log(this.capNhatUser)
-  } catch{}
+    this.update.isLeader=0
+   await this.api.httpCall(this.api.apiLists.updateUserInfo,{},this.update,'post',true);
+    // result=<any>res
+    // this.capNhatUser = Array.from(result)
+    console.log(this.update)
+  } catch(e){
+console.log(e)
+  }
 }
 // Gán nhiều quyền được chỉ định cho user
 async assignMultiple (){
