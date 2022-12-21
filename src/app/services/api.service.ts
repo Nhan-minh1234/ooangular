@@ -70,7 +70,36 @@ export class ApiservicesService {
     GetAllTasksNotInAnyProject: '/api/Tasks/GetAllTasksNotInAnyProject',
     AddTasksToProject: '/api/Tasks/AddTasksToProject',
     GetAllTasksSample: '/api/Tasks/GetAllTasksSample',
-    TasksSampleDetail: '/api/Tasks/TasksSampleDetail'
+    TasksSampleDetail: '/api/Tasks/TasksSampleDetail',
+    GetTasksTotalsByGroup:'/api/Tasks/GetTasksTotalsByGroup',
+
+
+
+
+    GetEventDetailById:'/api/Event/GetEventDetailById',
+    GetAllLocations:'/api/Event/GetAllLocation',
+    UpdateEventSample:'UpdateEventSample',
+    GetAllEventByType:'GetAllEventByType',
+    CancelAllEvent:'/api/Event/CancelAllEvent',
+    AcceptAllEventRequest:'/api/Event/AcceptAllEventRequest',
+    DeleteEvent:'/api/Event/DeleteEvent',
+    GetAllEventSample:'/api/Event/GetAllEventSample',
+    DeleteEventSample:'/api/Event/DeleteEventSample',
+    AddLocation:'/api/Event/AddNewLocation',
+    UpdateLocation:'/api/Event/UpdateLocation',
+    DeleteLocation:'/api/Event/DeleteLocation',
+    AddNewEventSample:'/api/Event/AddNewEventSample',
+    UpdateEvent:'/api/Event/UpdateEvent',
+    CreateNewEvent:'/api/Event/CreateNewEvent',
+    
+
+
+
+
+
+
+    GetAllGroups:'/api/Groups/GetAllGroups',
+
 
   }
 
