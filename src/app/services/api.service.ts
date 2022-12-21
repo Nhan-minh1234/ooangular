@@ -31,7 +31,7 @@ export class ApiservicesService {
     assignMultiRightsToUser:'/api/Users/AssignMultiRightsToUser' , //gán nhiều quyền cho người dùng / r
     removeAllRightFromUser:'/api/Users/RemoveOneRightFromUser', //Xóa tất cả quyền khỏi người dùng / r
     assignMultiGroupsToUser:'/api/Users/AssignOneGroupToUser', // gán nhiều nhóm/phòng ban cho người dùng / 
-​    removeMultiSelectedGroupsFromUser:'/api/Users/RemoveMultiSelectedGroupsFromUser', //xóa nhiều nhóm được chỉ định cho khỏi người dùng /
+​   removeMultiSelectedGroupsFromUser:'/api/Users/RemoveMultiSelectedGroupsFromUser', //xóa nhiều nhóm được chỉ định cho khỏi người dùng /
     getUserByUserName : '/api/Users/GetUserByUserName/', // Lấy thông tin chi tiết người dùng theo Username 
     lockUserById: '/api/Users/LockUserById', // Khóa User
     getAllUsersByStatus:'/api/Users/GetAllUsersByStatus', // Trạng thái user
@@ -71,37 +71,31 @@ export class ApiservicesService {
     AddTasksToProject: '/api/Tasks/AddTasksToProject',
     GetAllTasksSample: '/api/Tasks/GetAllTasksSample',
     TasksSampleDetail: '/api/Tasks/TasksSampleDetail',
-    GetTasksTotalsByGroup:'/api/Tasks/GetTasksTotalsByGroup',
-
-
-
-
-    GetEventDetailById:'/api/Event/GetEventDetailById',
-    GetAllLocations:'/api/Event/GetAllLocation',
-    UpdateEventSample:'UpdateEventSample',
-    GetAllEventByType:'GetAllEventByType',
-    CancelAllEvent:'/api/Event/CancelAllEvent',
-    AcceptAllEventRequest:'/api/Event/AcceptAllEventRequest',
-    DeleteEvent:'/api/Event/DeleteEvent',
-    GetAllEventSample:'/api/Event/GetAllEventSample',
-    DeleteEventSample:'/api/Event/DeleteEventSample',
-    AddLocation:'/api/Event/AddNewLocation',
-    UpdateLocation:'/api/Event/UpdateLocation',
-    DeleteLocation:'/api/Event/DeleteLocation',
-    AddNewEventSample:'/api/Event/AddNewEventSample',
-    UpdateEvent:'/api/Event/UpdateEvent',
-    CreateNewEvent:'/api/Event/CreateNewEvent',
-    
-
-
-
-
-
-
+    //////////////////////////////////////////////////////////////// Location: '/api/'
+    GetAllLocations: '/api/Event/GetAllLocation',
+    UpdateLocation: '/api/Event/UpdateLocation',
+    DeleteLocation: '/api/Event/DeleteLocation',
+    AddLocation: '/api/Event/AddNewLocation',
+    ///////
+    GetAllEventSample: '/api/Event/GetAllEventSample',
+    GetEventDetailById: '/api/Event/GetEventDetailById',
+    AddNewEventSample: '/api/Event/AddNewEventSample',
+    DeleteEventSample: '/api/Event/DeleteEventSample',
+    UpdateEventSample: '/api/Event/UpdateEventSample',
+    //// Event
+    GetAllEventByType: '/api/Event/GetAllEventByType',
+    CreateNewEvent: '/api/Event/CreateNewEvent',
+    AcceptAllEventRequest: '/api/Event/AcceptAllEventRequest',
+    UpdateEvent: '/api/Event/UpdateEvent',
+    CancelAllEvent: '/api/Event/CancelAllEvent',
+    DeleteEvent: '/api/Event/DeleteEvent',
+    //commment
+    GetAllCommentFromIdAndType: '/api/Comment/GetAllCommentFromIdAndType',
+    addComment: '/api/Comment/addComment',
+    GetTasksTotalsByGroup:'/api/Tasks/GetTasksTotalsByGroup', 
     GetAllGroups:'/api/Groups/GetAllGroups',
-
-
-  }
+  };  
+  
 
   constructor(private httpClient: HttpClient, private router: Router, private generalService: GeneralService) {
   }

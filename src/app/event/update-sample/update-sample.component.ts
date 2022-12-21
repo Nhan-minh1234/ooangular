@@ -311,6 +311,60 @@ export class UpdateSampleComponent implements OnInit {
       } catch (e) {
         console.log(e);
       }
+    } else if (
+      new Date(
+        newDateStart.getFullYear(),
+        newDateStart.getMonth(),
+        newDateStart.getDate()
+      ) <
+        new Date(
+          new Date().getFullYear(),
+          new Date().getMonth(),
+          new Date().getDate()
+        ) ||
+      newDateStart >= newDateEnd
+    ) {
+      Swal.fire({
+        title: '<strong>Ngày Giờ Không Hợp Lệ ?</strong>',
+        icon: 'warning',
+        html: `Ngày bắt đầu phải lớn hơn ngày hiện tại và nhỏ hơn ngày kết thúc! !`,
+        showCloseButton: true,
+        focusConfirm: true,
+        reverseButtons: true,
+        focusCancel: false,
+        confirmButtonText: `Hủy`,
+      }).then(async (result) => {
+        this.chosenAssigneelList = [];
+        if (
+          !this.evenSample.diadiem &&
+          !this.evenSample.noidung &&
+          !this.evenSample.chutri &&
+          !this.evenSample.thanhphan
+        ) {
+          this.errors.thanhphan = '';
+          this.errors.chutri = '';
+          this.errors.noidung = '';
+          this.errors.diadiem = '';
+        } else {
+          if (!this.evenSample.noidung) {
+            this.errors.noidung = '';
+          }
+          if (!this.evenSample.chutri) {
+            this.errors.chutri = '';
+          }
+          if (!this.evenSample.thanhphan) {
+            this.errors.thanhphan = '';
+          }
+          if (!this.evenSample.diadiem) {
+            this.errors.diadiem = '';
+            this.evenSample.diadiem == '';
+          }
+          if (!this.inputDiaDiem && this.checkDiaDiem == false) {
+            this.errors.diadiem = '';
+            this.evenSample.diadiem == '';
+          }
+        }
+      });
     } else {
       Swal.fire({
         title: '<strong>Thiếu Thông Tin ?</strong>',
