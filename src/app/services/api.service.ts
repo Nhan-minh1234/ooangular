@@ -70,7 +70,8 @@ export class ApiservicesService {
     GetAllTasksNotInAnyProject: '/api/Tasks/GetAllTasksNotInAnyProject',
     AddTasksToProject: '/api/Tasks/AddTasksToProject',
     GetAllTasksSample: '/api/Tasks/GetAllTasksSample',
-    TasksSampleDetail: '/api/Tasks/TasksSampleDetail'
+    TasksSampleDetail: '/api/Tasks/TasksSampleDetail',
+    GetTasksTotalsByGroup:'/api/Tasks/GetTasksTotalsByGroup',
 
   }
 
