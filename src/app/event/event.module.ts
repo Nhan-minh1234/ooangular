@@ -19,6 +19,7 @@ import { CalendarComponent } from '../utilities/calendar/calendar.component';
 import { EventUpdateComponent } from './event-update/event-update.component';
 import { LoadCommentComponent } from './load-comment/load-comment.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+
 @NgModule({
   declarations: [
     EventComponent,
